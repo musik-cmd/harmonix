@@ -44,3 +44,4 @@ function pokazInterwal(klucz) {
 
     voice.draw(context, stave);
 }
+alert("Harmonix działa!");
