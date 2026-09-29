@@ -14,7 +14,7 @@ h1{text-align:center;font-size:42px;margin:0 0 10px}
 .subtitle{text-align:center;color:#6b6680;font-size:18px;margin-bottom:40px}
 .interval-list{display:flex;flex-direction:column;gap:14px}
 .interval-item{background:white;border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(40,30,80,.08)}
-.interval-button{width:100%;border:none;background:white;padding:22px 25px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:#252238;font-size:18px;font-weight:700}
+.interval-button{width:100%;border:0;background:white;padding:22px 25px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:#252238;font-size:18px;font-weight:700}
 .interval-content{display:none;padding:0 25px 30px}
 .interval-item.open .interval-content{display:block}
 .arrow{font-size:20px}
@@ -22,7 +22,7 @@ h1{text-align:center;font-size:42px;margin:0 0 10px}
 .staff-title{font-size:15px;color:#6b6680;margin:20px 0 5px;font-weight:600}
 .staff-box{width:100%;overflow:hidden}
 .listen-area{text-align:center;margin-top:25px}
-.listen-button{border:none;border-radius:12px;padding:13px 24px;background:#252238;color:white;font-size:15px;font-weight:600;cursor:pointer}
+.listen-button{border:0;border-radius:12px;padding:13px 24px;background:#252238;color:white;font-size:15px;font-weight:600;cursor:pointer}
 .listen-button:disabled{opacity:.6}
 .status{margin-top:10px;font-size:13px;color:#777187;min-height:18px}
 </style>
@@ -35,10 +35,7 @@ h1{text-align:center;font-size:42px;margin:0 0 10px}
 <a href="interwaly.html" class="back">← Wróć do interwałów</a>
 
 <h1>Seksty</h1>
-
-<div class="subtitle">
-Zmniejszone, małe, wielkie i zwiększone
-</div>
+<div class="subtitle">Zmniejszone, małe, wielkie i zwiększone</div>
 
 <div class="interval-list" id="list"></div>
 
@@ -117,10 +114,8 @@ list.innerHTML+=`
 
 <button class="interval-button"
 onclick="toggleInterval('${type}',this)">
-
 <span>♩ ${data.name}</span>
 <span class="arrow">⌄</span>
-
 </button>
 
 <div class="interval-content">
@@ -149,8 +144,6 @@ onclick="playInterval('${type}',this)">
 });
 
 
-/* OTWIERANIE */
-
 function toggleInterval(type,button){
 
 const item=button.parentElement;
@@ -160,13 +153,8 @@ document.querySelectorAll(".interval-item")
 .forEach(x=>x.classList.remove("open"));
 
 if(!open){
-
 item.classList.add("open");
-
-setTimeout(()=>{
-drawInterval(type);
-},50);
-
+setTimeout(()=>drawInterval(type),50);
 }
 
 }
@@ -232,9 +220,6 @@ width="100%"
 style="display:block;max-width:700px;margin:auto">
 `;
 
-
-/* 5 LINII */
-
 for(let i=0;i<5;i++){
 
 const y=top+i*gap;
@@ -250,9 +235,6 @@ stroke-width="1.5"/>
 `;
 
 }
-
-
-/* KLUCZE */
 
 if(clef==="treble"){
 
@@ -278,7 +260,6 @@ fill="#252238">𝄢</text>
 
 }
 
-
 const positions=[330,480];
 
 notes.forEach((note,index)=>{
@@ -293,16 +274,14 @@ top+
 step*(gap/2);
 
 
-/* LINIE DODANE POD */
+/* LINIE DODANE */
 
 if(step<=-2){
 
 for(let s=-2;s>=step;s-=2){
 
 const ly=
-top+
-4*gap-
-s*(gap/2);
+top+4*gap-s*(gap/2);
 
 svg+=`
 <line
@@ -318,17 +297,12 @@ stroke-width="1.5"/>
 
 }
 
-
-/* LINIE DODANE NAD */
-
 if(step>=10){
 
 for(let s=10;s<=step;s+=2){
 
 const ly=
-top+
-4*gap-
-s*(gap/2);
+top+4*gap-s*(gap/2);
 
 svg+=`
 <line
@@ -349,14 +323,9 @@ stroke-width="1.5"/>
 
 let accidental="";
 
-if(note.accidental==="b")
-accidental="♭";
-
-if(note.accidental==="#")
-accidental="♯";
-
-if(note.accidental==="bb")
-accidental="𝄫";
+if(note.accidental==="b") accidental="♭";
+if(note.accidental==="#") accidental="♯";
+if(note.accidental==="bb") accidental="𝄫";
 
 if(accidental){
 
@@ -394,7 +363,6 @@ stroke-width="2"/>
 
 });
 
-
 svg+="</svg>";
 
 container.innerHTML=svg;
@@ -402,18 +370,12 @@ container.innerHTML=svg;
 }
 
 
-/* PIANINO — NIE ZMIENIAMY MECHANIZMU */
+/* ==========================================
+   PIANINO
+   DWA NIEZALEŻNE GŁOSY DO HARMONII
+========================================== */
 
-let piano=null;
-
-async function createPiano(){
-
-if(piano)
-return piano;
-
-piano=new Tone.Sampler({
-
-urls:{
+const pianoUrls={
 
 A0:"A0.mp3",
 C1:"C1.mp3",
@@ -448,18 +410,43 @@ C6:"C6.mp3",
 A6:"A6.mp3",
 C7:"C7.mp3"
 
-},
+};
 
-release:1.2,
+let piano1=null;
+let piano2=null;
+
+
+async function createPianos(){
+
+if(piano1 && piano2){
+return;
+}
+
+piano1=new Tone.Sampler({
+
+urls:pianoUrls,
+
+release:1.4,
 
 baseUrl:
 "https://tonejs.github.io/audio/salamander/"
 
 }).toDestination();
 
-await Tone.loaded();
 
-return piano;
+piano2=new Tone.Sampler({
+
+urls:pianoUrls,
+
+release:1.4,
+
+baseUrl:
+"https://tonejs.github.io/audio/salamander/"
+
+}).toDestination();
+
+
+await Tone.loaded();
 
 }
 
@@ -491,8 +478,7 @@ status.textContent=
 
 await Tone.start();
 
-const instrument=
-await createPiano();
+await createPianos();
 
 const first=
 intervals[type].piano[0];
@@ -506,14 +492,14 @@ intervals[type].piano[1];
 status.textContent=
 "🎵 Melodycznie";
 
-instrument.triggerAttackRelease(
+piano1.triggerAttackRelease(
 first,
 0.7
 );
 
 await wait(850);
 
-instrument.triggerAttackRelease(
+piano1.triggerAttackRelease(
 second,
 0.7
 );
@@ -527,26 +513,30 @@ status.textContent=
 "🎶 Harmonicznie";
 
 const together=
-Tone.now()+0.1;
+Tone.now()+0.15;
 
-instrument.triggerAttackRelease(
+/* GŁOS 1 */
+
+piano1.triggerAttackRelease(
 first,
-1.7,
+1.8,
 together
 );
 
-instrument.triggerAttackRelease(
+/* GŁOS 2 */
+
+piano2.triggerAttackRelease(
 second,
-1.7,
+1.8,
 together
 );
 
-await wait(2000);
+await wait(2100);
 
 status.textContent=
 "✓ Melodycznie + harmonicznie";
 
-await wait(600);
+await wait(500);
 
 status.textContent="";
 
