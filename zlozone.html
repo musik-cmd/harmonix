@@ -1,132 +1,147 @@
 <!DOCTYPE html>
 
 <html lang="pl">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interwały złożone — Harmonix</title>
 
 ```
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Harmonix — Interwały złożone</title>
-
-<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/tone@14.8.49/build/Tone.js"></script>
 
 <style>
-
-    .lesson {
-        text-align: left;
-        margin-top: 35px;
+    * {
+        box-sizing: border-box;
     }
 
-    .lesson-card {
-        background: white;
-        border-radius: 22px;
-        padding: 28px;
-        margin-bottom: 20px;
-        box-shadow: 0 8px 30px rgba(40, 30, 80, 0.08);
-    }
-
-    .lesson-card h2 {
-        margin-top: 0;
-        font-size: 23px;
-    }
-
-    .lesson-card p {
-        color: #5f5a70;
-        line-height: 1.6;
-    }
-
-    .intro {
-        margin-bottom: 25px;
-    }
-
-    .interval-group {
-        margin-bottom: 30px;
-    }
-
-    .interval-group h2 {
-        margin-bottom: 8px;
-    }
-
-    .interval-description {
-        margin-bottom: 20px;
-    }
-
-    .example {
-        margin-top: 18px;
-        padding: 20px;
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
         background: #f7f5ff;
-        border-radius: 18px;
-        text-align: center;
+        color: #252238;
     }
 
-    .example-title {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 5px;
-    }
-
-    .example-subtitle {
-        color: #777187;
-        font-size: 14px;
-        margin-bottom: 12px;
-    }
-
-    .staff {
-        width: 100%;
-        max-width: 650px;
-        height: 180px;
+    .page {
+        max-width: 1050px;
         margin: 0 auto;
-        display: block;
-    }
-
-    .listen {
-        margin-top: 12px;
-        padding: 11px 18px;
-        border: none;
-        border-radius: 12px;
-        background: #252238;
-        color: white;
-        font-size: 15px;
-        cursor: pointer;
-    }
-
-    .listen:hover {
-        opacity: 0.9;
-    }
-
-    .status {
-        margin-top: 9px;
-        font-size: 14px;
-        color: #777187;
-        min-height: 20px;
-    }
-
-    .formula {
-        display: inline-block;
-        padding: 8px 13px;
-        background: white;
-        border-radius: 10px;
-        margin-top: 8px;
-        font-weight: 700;
+        padding: 35px 20px 60px;
     }
 
     .back {
         display: inline-block;
-        margin-top: 5px;
-        margin-bottom: 30px;
-        color: #5d4fc7;
+        margin-bottom: 20px;
+        color: #6256a8;
         text-decoration: none;
         font-weight: 700;
     }
 
-    .back:hover {
-        text-decoration: underline;
+    h1 {
+        font-size: 42px;
+        margin: 10px 0;
     }
 
+    .intro {
+        background: white;
+        padding: 22px;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(40, 30, 80, 0.07);
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+
+    .intro strong {
+        color: #6256a8;
+    }
+
+    .section-title {
+        margin: 38px 0 18px;
+        font-size: 28px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 22px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 30px rgba(40, 30, 80, 0.08);
+    }
+
+    .card h3 {
+        margin-top: 0;
+        font-size: 23px;
+    }
+
+    .description {
+        color: #6f6a80;
+        line-height: 1.5;
+        margin-bottom: 18px;
+    }
+
+    .staff-box {
+        background: #faf9ff;
+        border-radius: 16px;
+        padding: 12px;
+        overflow-x: auto;
+        margin-bottom: 18px;
+    }
+
+    svg {
+        display: block;
+        margin: auto;
+        min-width: 650px;
+    }
+
+    .info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 18px;
+    }
+
+    .tag {
+        background: #eeeaff;
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    button {
+        border: none;
+        background: #6256a8;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+    .status {
+        display: inline-block;
+        margin-left: 12px;
+        color: #777187;
+        font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+        h1 {
+            font-size: 32px;
+        }
+
+        .card {
+            padding: 18px;
+        }
+
+        .status {
+            display: block;
+            margin: 10px 0 0;
+        }
+    }
 </style>
 ```
 
@@ -134,847 +149,327 @@
 
 <body>
 
-<main class="hero">
+<div class="page">
 
 ```
-<div class="container">
+<a class="back" href="interwaly.html">← Wróć do interwałów</a>
 
-    <div class="logo">
-        Interwały złożone
-    </div>
+<h1>Interwały złożone</h1>
 
-    <div class="subtitle">
-        Interwały większe od oktawy — wszystkie podstawowe rodzaje jakości.
-    </div>
+<div class="intro">
+    <strong>Interwał złożony</strong> to interwał większy od oktawy.
+    Powstaje przez połączenie oktawy z odpowiednim interwałem prostym.
+    <br><br>
 
+    Przykładowo:
+    <strong>nona = oktawa + sekunda</strong>,
+    <strong>decyma = oktawa + tercja</strong>,
+    <strong>undecyma = oktawa + kwarta</strong>.
+    <br><br>
 
-    <div class="lesson">
+    Ważne: przy określaniu interwału liczymy również
+    <strong>oktawę</strong>, dlatego np. C4–D5 to nona, a nie sekunda.
+</div>
 
 
-        <!-- WPROWADZENIE -->
+<!-- NONY -->
 
-        <div class="lesson-card intro">
+<h2 class="section-title">Nony</h2>
 
-            <h2>
-                🎼 Czym są interwały złożone?
-            </h2>
+<div id="nony"></div>
 
-            <p>
-                Interwał złożony to interwał większy od oktawy.
-                Powstaje przez połączenie oktawy z interwałem prostym.
-            </p>
 
-            <p>
-                Przykładowo:
-            </p>
+<!-- DECYMY -->
 
-            <ul>
+<h2 class="section-title">Decymy</h2>
 
-                <li>
-                    <strong>nona</strong> = oktawa + sekunda
-                </li>
+<div id="decymy"></div>
 
-                <li>
-                    <strong>decymа</strong> = oktawa + tercja
-                </li>
 
-                <li>
-                    <strong>undecyma</strong> = oktawa + kwarta
-                </li>
+<!-- UNDECYMY -->
 
-                <li>
-                    <strong>duodecyma</strong> = oktawa + kwinta
-                </li>
+<h2 class="section-title">Undecymy</h2>
 
-                <li>
-                    <strong>tercdecyma</strong> = oktawa + seksta
-                </li>
+<div id="undecymy"></div>
 
-                <li>
-                    <strong>kwartdecyma</strong> = oktawa + septyma
-                </li>
 
-                <li>
-                    <strong>kwintdecyma</strong> = oktawa + oktawa
-                </li>
+<!-- DUODECYMY -->
 
-            </ul>
+<h2 class="section-title">Duodecymy</h2>
 
-            <div class="formula">
-                Interwał złożony = oktawa + interwał prosty
-            </div>
+<div id="duodecymy"></div>
 
-        </div>
 
+<!-- TERCDCYMY -->
 
-        <!-- NONA -->
+<h2 class="section-title">Tercdecyma</h2>
 
-        <div class="lesson-card interval-group">
+<div id="tercdecyma"></div>
 
-            <h2>9️⃣ Nona</h2>
 
-            <p class="interval-description">
-                Nona jest odpowiednikiem sekundy powiększonej o oktawę.
-                Może być mała, wielka, zwiększona lub zmniejszona.
-            </p>
+<!-- KWARTDECYMY -->
 
-            <div id="nona"></div>
+<h2 class="section-title">Kwartdecymy</h2>
 
-        </div>
+<div id="kwartdecyma"></div>
 
 
-        <!-- DECYMA -->
+<!-- KWINTDECYMY -->
 
-        <div class="lesson-card interval-group">
+<h2 class="section-title">Kwintdecymy</h2>
 
-            <h2>🔟 Decyma</h2>
-
-            <p class="interval-description">
-                Decyma odpowiada tercji powiększonej o oktawę.
-                Może być mała, wielka, zwiększona lub zmniejszona.
-            </p>
-
-            <div id="decyma"></div>
-
-        </div>
-
-
-        <!-- UNDECYMA -->
-
-        <div class="lesson-card interval-group">
-
-            <h2>1️⃣1️⃣ Undecyma</h2>
-
-            <p class="interval-description">
-                Undecyma odpowiada kwarcie powiększonej o oktawę.
-                Jako odpowiednik kwarty występuje jako czysta,
-                zwiększona lub zmniejszona.
-            </p>
-
-            <div id="undecyma"></div>
-
-        </div>
-
-
-        <!-- DUODECYMA -->
-
-        <div class="lesson-card interval-group">
-
-            <h2>1️⃣2️⃣ Duodecyma</h2>
-
-            <p class="interval-description">
-                Duodecyma odpowiada kwincie powiększonej o oktawę.
-                Może być czysta, zwiększona lub zmniejszona.
-            </p>
-
-            <div id="duodecyma"></div>
-
-        </div>
-
-
-        <!-- TER CDE CYMA -->
-
-        <div class="lesson-card interval-group">
-
-            <h2>1️⃣3️⃣ Tercdecyma</h2>
-
-            <p class="interval-description">
-                Tercdecyma odpowiada sekście powiększonej o oktawę.
-                Może być mała, wielka, zwiększona lub zmniejszona.
-            </p>
-
-            <div id="tercdecyma"></div>
-
-        </div>
-
-
-        <!-- KWARTDECYMA -->
-
-        <div class="lesson-card interval-group">
-
-            <h2>1️⃣4️⃣ Kwartdecyma</h2>
-
-            <p class="interval-description">
-                Kwartdecyma odpowiada septymie powiększonej o oktawę.
-                Może być mała, wielka, zwiększona lub zmniejszona.
-            </p>
-
-            <div id="kwartdecyma"></div>
-
-        </div>
-
-
-        <!-- KWINTDECYMA -->
-
-        <div class="lesson-card interval-group">
-
-            <h2>1️⃣5️⃣ Kwintdecyma</h2>
-
-            <p class="interval-description">
-                Kwintdecyma odpowiada podwójnej oktawie.
-                Może być czysta, zwiększona lub zmniejszona.
-            </p>
-
-            <div id="kwintdecyma"></div>
-
-        </div>
-
-
-    </div>
-
-
-    <a class="back"
-       href="interwaly.html">
-
-        ← Wróć do interwałów
-
-    </a>
+<div id="kwintdecyma"></div>
+```
 
 </div>
-```
-
-</main>
-
-<script src="https://unpkg.com/tone@14.8.49/build/Tone.js"></script>
 
 <script>
 
-
-/* =========================================================
-   FORMY INTERWAŁÓW
-   ========================================================= */
-
-
 const intervals = {
 
-    nona: [
-
+    nony: [
         {
             name: "Nona zmniejszona",
-            notes: "C – D♭♭",
-            piano: ["C4", "D4"],
-            description: "Odpowiada sekundzie zmniejszonej + oktawie."
+            notes: ["C", "Dbb"],
+            pitches: ["C4", "C5"],
+            description: "Oktawa + sekunda zmniejszona.",
+            symbol: "C4 – D𝄫5"
         },
-
         {
             name: "Nona mała",
-            notes: "C – D♭",
-            piano: ["C4", "Db4"],
-            description: "Odpowiada sekundzie małej + oktawie."
+            notes: ["C", "Db"],
+            pitches: ["C4", "Db5"],
+            description: "Oktawa + sekunda mała.",
+            symbol: "C4 – D♭5"
         },
-
         {
             name: "Nona wielka",
-            notes: "C – D",
-            piano: ["C4", "D4"],
-            description: "Odpowiada sekundzie wielkiej + oktawie."
+            notes: ["C", "D"],
+            pitches: ["C4", "D5"],
+            description: "Oktawa + sekunda wielka.",
+            symbol: "C4 – D5"
         },
-
         {
             name: "Nona zwiększona",
-            notes: "C – D♯",
-            piano: ["C4", "D#4"],
-            description: "Odpowiada sekundzie zwiększonej + oktawie."
+            notes: ["C", "D#"],
+            pitches: ["C4", "D#5"],
+            description: "Oktawa + sekunda zwiększona.",
+            symbol: "C4 – D♯5"
         }
-
     ],
 
-
-    decyma: [
-
+    decymy: [
         {
             name: "Decyma zmniejszona",
-            notes: "C – E♭♭",
-            piano: ["C4", "D4"],
-            description: "Odpowiada tercji zmniejszonej + oktawie."
+            notes: ["C", "Ebb"],
+            pitches: ["C4", "D5"],
+            description: "Oktawa + tercja zmniejszona.",
+            symbol: "C4 – E𝄫5"
         },
-
         {
             name: "Decyma mała",
-            notes: "C – E♭",
-            piano: ["C4", "Eb4"],
-            description: "Odpowiada tercji małej + oktawie."
+            notes: ["C", "Eb"],
+            pitches: ["C4", "Eb5"],
+            description: "Oktawa + tercja mała.",
+            symbol: "C4 – E♭5"
         },
-
         {
             name: "Decyma wielka",
-            notes: "C – E",
-            piano: ["C4", "E4"],
-            description: "Odpowiada tercji wielkiej + oktawie."
+            notes: ["C", "E"],
+            pitches: ["C4", "E5"],
+            description: "Oktawa + tercja wielka.",
+            symbol: "C4 – E5"
         },
-
         {
             name: "Decyma zwiększona",
-            notes: "C – E♯",
-            piano: ["C4", "E4"],
-            description: "Odpowiada tercji zwiększonej + oktawie."
+            notes: ["C", "E#"],
+            pitches: ["C4", "F5"],
+            description: "Oktawa + tercja zwiększona.",
+            symbol: "C4 – E♯5"
         }
-
     ],
 
-
-    undecyma: [
-
+    undecymy: [
         {
             name: "Undecyma zmniejszona",
-            notes: "C – F♭",
-            piano: ["C4", "E4"],
-            description: "Odpowiada kwarcie zmniejszonej + oktawie."
+            notes: ["C", "Fb"],
+            pitches: ["C4", "E5"],
+            description: "Oktawa + kwarta zmniejszona.",
+            symbol: "C4 – F♭5"
         },
-
         {
             name: "Undecyma czysta",
-            notes: "C – F",
-            piano: ["C4", "F4"],
-            description: "Odpowiada kwarcie czystej + oktawie."
+            notes: ["C", "F"],
+            pitches: ["C4", "F5"],
+            description: "Oktawa + kwarta czysta.",
+            symbol: "C4 – F5"
         },
-
         {
             name: "Undecyma zwiększona",
-            notes: "C – F♯",
-            piano: ["C4", "F#4"],
-            description: "Odpowiada kwarcie zwiększonej + oktawie."
+            notes: ["C", "F#"],
+            pitches: ["C4", "F#5"],
+            description: "Oktawa + kwarta zwiększona.",
+            symbol: "C4 – F♯5"
         }
-
     ],
 
-
-    duodecyma: [
-
+    duodecymy: [
         {
             name: "Duodecyma zmniejszona",
-            notes: "C – G♭",
-            piano: ["C4", "F#4"],
-            description: "Odpowiada kwincie zmniejszonej + oktawie."
+            notes: ["C", "Gb"],
+            pitches: ["C4", "Gb5"],
+            description: "Oktawa + kwinta zmniejszona.",
+            symbol: "C4 – G♭5"
         },
-
         {
             name: "Duodecyma czysta",
-            notes: "C – G",
-            piano: ["C4", "G4"],
-            description: "Odpowiada kwincie czystej + oktawie."
+            notes: ["C", "G"],
+            pitches: ["C4", "G5"],
+            description: "Oktawa + kwinta czysta.",
+            symbol: "C4 – G5"
         },
-
         {
             name: "Duodecyma zwiększona",
-            notes: "C – G♯",
-            piano: ["C4", "G#4"],
-            description: "Odpowiada kwincie zwiększonej + oktawie."
+            notes: ["C", "G#"],
+            pitches: ["C4", "G#5"],
+            description: "Oktawa + kwinta zwiększona.",
+            symbol: "C4 – G♯5"
         }
-
     ],
-
 
     tercdecyma: [
-
         {
             name: "Tercdecyma zmniejszona",
-            notes: "C – A♭♭",
-            piano: ["C4", "G4"],
-            description: "Odpowiada sekście zmniejszonej + oktawie."
+            notes: ["C", "Abb"],
+            pitches: ["C4", "G5"],
+            description: "Oktawa + seksta zmniejszona.",
+            symbol: "C4 – A𝄫5"
         },
-
         {
             name: "Tercdecyma mała",
-            notes: "C – A♭",
-            piano: ["C4", "G#4"],
-            description: "Odpowiada sekście małej + oktawie."
+            notes: ["C", "Ab"],
+            pitches: ["C4", "Ab5"],
+            description: "Oktawa + seksta mała.",
+            symbol: "C4 – A♭5"
         },
-
         {
             name: "Tercdecyma wielka",
-            notes: "C – A",
-            piano: ["C4", "A4"],
-            description: "Odpowiada sekście wielkiej + oktawie."
+            notes: ["C", "A"],
+            pitches: ["C4", "A5"],
+            description: "Oktawa + seksta wielka.",
+            symbol: "C4 – A5"
         },
-
         {
             name: "Tercdecyma zwiększona",
-            notes: "C – A♯",
-            piano: ["C4", "A#4"],
-            description: "Odpowiada sekście zwiększonej + oktawie."
+            notes: ["C", "A#"],
+            pitches: ["C4", "A#5"],
+            description: "Oktawa + seksta zwiększona.",
+            symbol: "C4 – A♯5"
         }
-
     ],
-
 
     kwartdecyma: [
-
         {
             name: "Kwartdecyma zmniejszona",
-            notes: "C – B♭♭",
-            piano: ["C4", "A4"],
-            description: "Odpowiada septymie zmniejszonej + oktawie."
+            notes: ["C", "Bbb"],
+            pitches: ["C4", "A5"],
+            description: "Oktawa + septyma zmniejszona.",
+            symbol: "C4 – B𝄫5"
         },
-
         {
             name: "Kwartdecyma mała",
-            notes: "C – B♭",
-            piano: ["C4", "A#4"],
-            description: "Odpowiada septymie małej + oktawie."
+            notes: ["C", "Bb"],
+            pitches: ["C4", "Bb5"],
+            description: "Oktawa + septyma mała.",
+            symbol: "C4 – B♭5"
         },
-
         {
             name: "Kwartdecyma wielka",
-            notes: "C – B",
-            piano: ["C4", "B4"],
-            description: "Odpowiada septymie wielkiej + oktawie."
+            notes: ["C", "B"],
+            pitches: ["C4", "B5"],
+            description: "Oktawa + septyma wielka.",
+            symbol: "C4 – B5"
         },
-
         {
             name: "Kwartdecyma zwiększona",
-            notes: "C – B♯",
-            piano: ["C4", "C5"],
-            description: "Odpowiada septymie zwiększonej + oktawie."
+            notes: ["C", "B#"],
+            pitches: ["C4", "C6"],
+            description: "Oktawa + septyma zwiększona.",
+            symbol: "C4 – B♯5"
         }
-
     ],
 
-
     kwintdecyma: [
-
         {
             name: "Kwintdecyma zmniejszona",
-            notes: "C – C♭",
-            piano: ["C4", "B4"],
-            description: "Odpowiada oktawie zmniejszonej."
+            notes: ["C", "Cb"],
+            pitches: ["C4", "B5"],
+            description: "Oktawa + oktawa zmniejszona.",
+            symbol: "C4 – C♭5"
         },
-
         {
             name: "Kwintdecyma czysta",
-            notes: "C – C",
-            piano: ["C4", "C5"],
-            description: "Odpowiada podwójnej oktawie."
+            notes: ["C", "C"],
+            pitches: ["C4", "C6"],
+            description: "Dwie oktawy.",
+            symbol: "C4 – C6"
         },
-
         {
             name: "Kwintdecyma zwiększona",
-            notes: "C – C♯",
-            piano: ["C4", "C#5"],
-            description: "Odpowiada oktawie zwiększonej."
+            notes: ["C", "C#"],
+            pitches: ["C4", "C#6"],
+            description: "Dwie oktawy + półton.",
+            symbol: "C4 – C♯6"
         }
-
     ]
-
 };
 
 
-/* =========================================================
-   PIANINO
-   ========================================================= */
+/* -----------------------------
+   RENDEROWANIE PIĘCIOLINII
+----------------------------- */
 
+const letterIndex = {
+    C: 0,
+    D: 1,
+    E: 2,
+    F: 3,
+    G: 4,
+    A: 5,
+    B: 6
+};
 
-const piano = new Tone.Sampler({
+function parseWrittenNote(note) {
 
-    urls: {
+    const match = note.match(/^([A-G])(bb|b|#)?$/);
 
-        C4: "C4.mp3",
-        "C#4": "Cs4.mp3",
-        D4: "D4.mp3",
-        "D#4": "Ds4.mp3",
-        E4: "E4.mp3",
-        F4: "F4.mp3",
-        "F#4": "Fs4.mp3",
-        G4: "G4.mp3",
-        "G#4": "Gs4.mp3",
-        A4: "A4.mp3",
-        "A#4": "As4.mp3",
-        B4: "B4.mp3",
-        C5: "C5.mp3",
-        "C#5": "Cs5.mp3"
-
-    },
-
-    release: 1,
-
-    baseUrl:
-        "https://tonejs.github.io/audio/salamander/"
-
-}).toDestination();
-
-
-/* =========================================================
-   ZAMIANA OZNACZEŃ NA DŹWIĘKI DO PIANINA
-   ========================================================= */
-
-
-function playbackNotes(notes) {
-
-    return notes.map(note => {
-
-        const replacements = {
-
-            "Db4": "C#4",
-            "D#4": "D#4",
-
-            "Eb4": "D#4",
-
-            "Fb4": "E4",
-
-            "E#4": "F4",
-
-            "F#4": "F#4",
-
-            "Gb4": "F#4",
-
-            "Ab4": "G#4",
-
-            "A#4": "A#4",
-
-            "Bb4": "A#4",
-
-            "Cb4": "B3",
-
-            "B#4": "C5",
-
-            "D4": "D4",
-
-            "E4": "E4",
-
-            "G4": "G4",
-
-            "A4": "A4",
-
-            "B4": "B4",
-
-            "C5": "C5",
-
-            "C#5": "C#5"
-
-        };
-
-        return replacements[note] || note;
-
-    });
-
-}
-
-
-/* =========================================================
-   ODTWARZANIE
-   ========================================================= */
-
-
-async function playNotes(notes, statusId) {
-
-    await Tone.start();
-
-    const playable = playbackNotes(notes);
-
-    const now = Tone.now();
-
-    playable.forEach((note, index) => {
-
-        piano.triggerAttackRelease(
-            note,
-            "1n",
-            now + index * 0.9
-        );
-
-    });
-
-    const status =
-        document.getElementById(statusId);
-
-    if (status) {
-
-        status.textContent =
-            "▶ Odtwarzanie interwału…";
-
-        setTimeout(() => {
-
-            status.textContent = "";
-
-        }, 2200);
-
+    if (!match) {
+        return null;
     }
 
-}
-
-
-/* =========================================================
-   RYSOWANIE PIĘCIOLINII
-   ========================================================= */
-
-
-function createStaff(clef, notes) {
-
-    const yPositions = {
-
-        C: 130,
-        D: 122,
-        E: 115,
-        F: 107,
-        G: 100,
-        A: 92,
-        B: 85
-
+    return {
+        letter: match[1],
+        accidental: match[2] || ""
     };
-
-    function getLetter(note) {
-
-        return note.charAt(0);
-
-    }
-
-
-    function noteY(note, isBass) {
-
-        const letter = getLetter(note);
-
-        let base = yPositions[letter];
-
-
-        if (isBass) {
-
-            const bassPositions = {
-
-                C: 100,
-                D: 92,
-                E: 85,
-                F: 77,
-                G: 70,
-                A: 62,
-                B: 55
-
-            };
-
-            base = bassPositions[letter];
-
-        }
-
-        return base;
-
-    }
-
-
-    function accidental(note) {
-
-        if (note.includes("bb")) {
-            return "♭♭";
-        }
-
-        if (note.includes("#")) {
-            return "♯";
-        }
-
-        if (note.includes("b")) {
-            return "♭";
-        }
-
-        return "";
-
-    }
-
-
-    const isBass = clef === "bass";
-
-    const firstX = 255;
-    const secondX = 385;
-
-    const firstY = noteY(notes[0], isBass);
-    const secondY = noteY(notes[1], isBass);
-
-
-    let svg = `
-
-        <svg class="staff"
-             viewBox="0 0 650 180"
-             xmlns="http://www.w3.org/2000/svg">
-
-            <line x1="80" y1="55" x2="570" y2="55"
-                  stroke="black" stroke-width="2"/>
-
-            <line x1="80" y1="70" x2="570" y2="70"
-                  stroke="black" stroke-width="2"/>
-
-            <line x1="80" y1="85" x2="570" y2="85"
-                  stroke="black" stroke-width="2"/>
-
-            <line x1="80" y1="100" x2="570" y2="100"
-                  stroke="black" stroke-width="2"/>
-
-            <line x1="80" y1="115" x2="570" y2="115"
-                  stroke="black" stroke-width="2"/>
-
-            <text x="88" y="105"
-                  font-size="55">
-
-                ${isBass ? "𝄢" : "𝄞"}
-
-            </text>
-
-    `;
-
-
-    /* linie dodane */
-
-    if (firstY > 115) {
-
-        svg += `
-            <line x1="${firstX - 25}" y1="${firstY}"
-                  x2="${firstX + 25}" y2="${firstY}"
-                  stroke="black" stroke-width="2"/>
-        `;
-
-    }
-
-
-    if (secondY > 115) {
-
-        svg += `
-            <line x1="${secondX - 25}" y1="${secondY}"
-                  x2="${secondX + 25}" y2="${secondY}"
-                  stroke="black" stroke-width="2"/>
-        `;
-
-    }
-
-
-    svg += `
-
-        <ellipse cx="${firstX}" cy="${firstY}"
-                 rx="11" ry="8"
-                 fill="black"/>
-
-        <line x1="${firstX + 10}"
-              y1="${firstY}"
-              x2="${firstX + 10}"
-              y2="${firstY - 55}"
-              stroke="black"
-              stroke-width="2"/>
-
-
-        <ellipse cx="${secondX}" cy="${secondY}"
-                 rx="11" ry="8"
-                 fill="black"/>
-
-        <line x1="${secondX + 10}"
-              y1="${secondY}"
-              x2="${secondX + 10}"
-              y2="${secondY - 55}"
-              stroke="black"
-              stroke-width="2"/>
-
-    `;
-
-
-    const acc1 = accidental(notes[0]);
-    const acc2 = accidental(notes[1]);
-
-
-    if (acc1) {
-
-        svg += `
-            <text x="${firstX - 38}"
-                  y="${firstY + 8}"
-                  font-size="25">
-                ${acc1}
-            </text>
-        `;
-
-    }
-
-
-    if (acc2) {
-
-        svg += `
-            <text x="${secondX - 38}"
-                  y="${secondY + 8}"
-                  font-size="25">
-                ${acc2}
-            </text>
-        `;
-
-    }
-
-
-    svg += `</svg>`;
-
-    return svg;
-
 }
 
 
-/* =========================================================
-   TWORZENIE PRZYKŁADÓW
-   ========================================================= */
+function renderStaff(notes) {
 
+    const width = 720;
+    const height = 220;
 
-function renderInterval(type, data, index) {
+    const linesY = [70, 82, 94, 106, 118];
 
-    const id =
-        `${type}-${index}`;
+    const svg = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg"
+    );
 
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", height);
 
-    return `
+    /* pięciolinia */
 
-        <div class="example">
-
-            <div class="example-title">
-                ${data.name}
-            </div>
-
-            <div class="example-subtitle">
-                ${data.description}
-            </div>
-
-
-            ${createStaff("treble", data.notes.split(" – "))}
-
-
-            <strong>
-                ${data.notes}
-            </strong>
-
-
-            <br>
-
-
-            <button class="listen"
-                    onclick="playNotes(
-                        ${JSON.stringify(data.piano)},
-                        '${id}'
-                    )">
-
-                ▶ Posłuchaj
-
-            </button>
-
-
-            <div class="status"
-                 id="${id}">
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   WSTAWIANIE WSZYSTKICH PRZYKŁADÓW
-   ========================================================= */
-
-
-Object.keys(intervals).forEach(type => {
-
-    const container =
-        document.getElementById(type);
-
-    intervals[type].forEach((data, index) => {
-
-        container.innerHTML +=
-            renderInterval(type, data, index);
-
-    });
-
-});
-
-
-</script>
-
-</body>
-
-</html>
+    linesY.forEach(y => {
