@@ -1,188 +1,360 @@
-function pokazInterwal(klucz, rodzaj = "mala") {
+let piano = null;
+let pianoLoaded = false;
 
-    const kontener = klucz === "wiolinowy"
-        ? "interwal-wiolinowy"
-        : "interwal-basowy";
 
-    const div = document.getElementById(kontener);
+/* =========================
+   ROZWIJANIE SEKCJI
+========================= */
 
-    if (!div) return;
+function toggleInterval(type, button) {
 
-    div.innerHTML = "";
+    const item = button.parentElement;
 
-    const svgNS = "http://www.w3.org/2000/svg";
+    const wasOpen = item.classList.contains("open");
 
-    const svg = document.createElementNS(svgNS, "svg");
+    // zamknij wszystkie
+    document.querySelectorAll(".interval-item")
+        .forEach(element => {
+            element.classList.remove("open");
+        });
 
-    svg.setAttribute("width", "600");
-    svg.setAttribute("height", "210");
-    svg.setAttribute("viewBox", "0 0 600 210");
+    // jeśli nie był otwarty — otwórz
+    if (!wasOpen) {
 
-    // pięciolinia
-    const startX = 100;
-    const firstLineY = 70;
-    const spacing = 12;
+        item.classList.add("open");
 
-    for (let i = 0; i < 5; i++) {
-
-        const line = document.createElementNS(svgNS, "line");
-
-        line.setAttribute("x1", startX);
-        line.setAttribute("x2", "560");
-
-        line.setAttribute("y1", firstLineY + i * spacing);
-        line.setAttribute("y2", firstLineY + i * spacing);
-
-        line.setAttribute("stroke", "#252238");
-        line.setAttribute("stroke-width", "1.5");
-
-        svg.appendChild(line);
+        setTimeout(() => {
+            drawInterval(type);
+        }, 50);
     }
-
-    // klucz
-    const clef = document.createElementNS(svgNS, "text");
-
-    clef.setAttribute("x", "35");
-    clef.setAttribute("y", "120");
-    clef.setAttribute("font-size", "60");
-    clef.setAttribute("font-family", "serif");
-
-    clef.textContent =
-        klucz === "wiolinowy" ? "𝄞" : "𝄢";
-
-    svg.appendChild(clef);
-
-
-    // Rodzaje sekund
-    const dane = {
-
-        mala: {
-            nazwa: "Sekunda mała",
-            znak: "♭",
-            przesuniecie: 1
-        },
-
-        wielka: {
-            nazwa: "Sekunda wielka",
-            znak: "",
-            przesuniecie: 1
-        },
-
-        zwiekszona: {
-            nazwa: "Sekunda zwiększona",
-            znak: "♯",
-            przesuniecie: 1
-        },
-
-        zmniejszona: {
-            nazwa: "Sekunda zmniejszona",
-            znak: "♭♭",
-            przesuniecie: 1
-        }
-    };
-
-
-    const info = dane[rodzaj] || dane.mala;
-
-
-    // Pozycje nut
-    let y1;
-    let y2;
-
-    if (klucz === "wiolinowy") {
-
-        y1 = 130;
-        y2 = 118;
-
-    } else {
-
-        y1 = 130;
-        y2 = 118;
-
-    }
-
-
-    rysujNute(
-        svg,
-        svgNS,
-        220,
-        y1,
-        "C"
-    );
-
-    rysujNute(
-        svg,
-        svgNS,
-        350,
-        y2,
-        info.znak + "D"
-    );
-
-
-    // podpis
-    const label = document.createElementNS(svgNS, "text");
-
-    label.setAttribute("x", "285");
-    label.setAttribute("y", "195");
-    label.setAttribute("text-anchor", "middle");
-    label.setAttribute("font-size", "17");
-    label.setAttribute("font-family", "Arial");
-    label.setAttribute("fill", "#6b6680");
-
-    label.textContent = info.nazwa;
-
-    svg.appendChild(label);
-
-    div.appendChild(svg);
 }
 
 
-function rysujNute(svg, svgNS, x, y, nazwa) {
+/* =========================
+   DANE INTERWAŁÓW
+========================= */
 
-    const note = document.createElementNS(svgNS, "ellipse");
+const intervals = {
 
-    note.setAttribute("cx", x);
-    note.setAttribute("cy", y);
+    mala: {
+        label: "Sekunda mała",
+        treble: ["C/4", "Db/4"],
+        bass: ["C/3", "Db/3"],
+        piano: ["C4", "C#4"]
+    },
 
-    note.setAttribute("rx", "10");
-    note.setAttribute("ry", "7");
+    wielka: {
+        label: "Sekunda wielka",
+        treble: ["C/4", "D/4"],
+        bass: ["C/3", "D/3"],
+        piano: ["C4", "D4"]
+    },
 
-    note.setAttribute("fill", "#252238");
+    zwiekszona: {
+        label: "Sekunda zwiększona",
+        treble: ["C/4", "D#/4"],
+        bass: ["C/3", "D#/3"],
+        piano: ["C4", "D#4"]
+    },
 
-    svg.appendChild(note);
+    zmniejszona: {
+        label: "Sekunda zmniejszona",
+        treble: ["C/4", "C/4"],
+        bass: ["C/3", "C/3"],
+        piano: ["C4", "C4"]
+    }
 
-
-    const stem = document.createElementNS(svgNS, "line");
-
-    stem.setAttribute("x1", x + 9);
-    stem.setAttribute("x2", x + 9);
-
-    stem.setAttribute("y1", y);
-    stem.setAttribute("y2", y - 45);
-
-    stem.setAttribute("stroke", "#252238");
-    stem.setAttribute("stroke-width", "2");
-
-    svg.appendChild(stem);
+};
 
 
-    // znak przy nucie
-    if (nazwa.includes("♭") || nazwa.includes("♯")) {
+/* =========================
+   PIĘCIOLINIA
+========================= */
 
-        const accidental = document.createElementNS(
-            svgNS,
-            "text"
+function drawInterval(type) {
+
+    const data = intervals[type];
+
+    drawStaff(
+        `${type}-treble`,
+        "treble",
+        data.treble
+    );
+
+    drawStaff(
+        `${type}-bass`,
+        "bass",
+        data.bass
+    );
+}
+
+
+/* =========================
+   RYSOWANIE NUT
+========================= */
+
+function drawStaff(containerId, clef, notes) {
+
+    const container =
+        document.getElementById(containerId);
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    try {
+
+        const VF = VexFlow;
+
+        const renderer =
+            new VF.Renderer(
+                container,
+                VF.Renderer.Backends.SVG
+            );
+
+        renderer.resize(700, 180);
+
+        const context =
+            renderer.getContext();
+
+        context.setFont(
+            "Arial",
+            12,
+            ""
         );
 
-        accidental.setAttribute("x", x - 25);
-        accidental.setAttribute("y", y + 6);
+        const stave =
+            new VF.Stave(
+                60,
+                35,
+                570
+            );
 
-        accidental.setAttribute("font-size", "24");
-        accidental.setAttribute("font-family", "Arial");
+        stave.addClef(clef);
+        stave.addTimeSignature("2/4");
 
-        accidental.textContent =
-            nazwa.includes("♯") ? "♯" : "♭";
+        stave.setContext(context);
+        stave.draw();
 
-        svg.appendChild(accidental);
+
+        const voice =
+            new VF.Voice({
+                num_beats: 2,
+                beat_value: 4
+            });
+
+
+        const notesForVoice =
+            notes.map(noteName => {
+
+                const note =
+                    new VF.StaveNote({
+                        clef: clef,
+                        keys: [noteName],
+                        duration: "q"
+                    });
+
+                return note;
+
+            });
+
+
+        voice.addTickables(notesForVoice);
+
+
+        new VF.Formatter()
+            .joinVoices([voice])
+            .format([voice], 350);
+
+
+        voice.draw(context, stave);
+
     }
+
+    catch (error) {
+
+        console.error(
+            "Błąd VexFlow:",
+            error
+        );
+
+        container.innerHTML =
+            "<p style='padding:30px;text-align:center;color:#777187'>Nie udało się narysować pięciolinii.</p>";
+    }
+}
+
+
+/* =========================
+   PRAWDZIWE PIANINO
+========================= */
+
+async function createPiano() {
+
+    if (pianoLoaded) return;
+
+    try {
+
+        piano = new Tone.Sampler({
+
+            urls: {
+
+                A0: "A0.mp3",
+
+                C1: "C1.mp3",
+
+                "D#1": "Ds1.mp3",
+
+                "F#1": "Fs1.mp3",
+
+                A1: "A1.mp3",
+
+                C2: "C2.mp3",
+
+                "D#2": "Ds2.mp3",
+
+                "F#2": "Fs2.mp3",
+
+                A2: "A2.mp3",
+
+                C3: "C3.mp3",
+
+                "D#3": "Ds3.mp3",
+
+                "F#3": "Fs3.mp3",
+
+                A3: "A3.mp3",
+
+                C4: "C4.mp3",
+
+                "D#4": "Ds4.mp3",
+
+                "F#4": "Fs4.mp3",
+
+                A4: "A4.mp3",
+
+                C5: "C5.mp3",
+
+                "D#5": "Ds5.mp3",
+
+                "F#5": "Fs5.mp3",
+
+                A5: "A5.mp3",
+
+                C6: "C6.mp3",
+
+                "D#6": "Ds6.mp3",
+
+                "F#6": "Fs6.mp3",
+
+                A6: "A6.mp3",
+
+                C7: "C7.mp3"
+
+            },
+
+            release: 1,
+
+            baseUrl:
+                "https://tonejs.github.io/audio/salamander/"
+
+        }).toDestination();
+
+
+        await Tone.loaded();
+
+        pianoLoaded = true;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Nie udało się załadować pianina:",
+            error
+        );
+    }
+}
+
+
+/* =========================
+   ODTWARZANIE INTERWAŁU
+========================= */
+
+async function playInterval(type) {
+
+    const data =
+        intervals[type];
+
+    const status =
+        document.getElementById(
+            `${type}-status`
+        );
+
+    if (status) {
+
+        status.textContent =
+            "Ładowanie pianina…";
+    }
+
+
+    await Tone.start();
+
+    await createPiano();
+
+
+    if (!piano) {
+
+        if (status) {
+
+            status.textContent =
+                "Nie udało się załadować dźwięku.";
+        }
+
+        return;
+    }
+
+
+    if (status) {
+
+        status.textContent =
+            "▶ Odtwarzanie…";
+    }
+
+
+    const first =
+        data.piano[0];
+
+    const second =
+        data.piano[1];
+
+
+    // pierwszy dźwięk
+    piano.triggerAttackRelease(
+        first,
+        "1n"
+    );
+
+
+    // drugi po chwili
+    setTimeout(() => {
+
+        piano.triggerAttackRelease(
+            second,
+            "1n"
+        );
+
+    }, 850);
+
+
+    setTimeout(() => {
+
+        if (status) {
+
+            status.textContent =
+                "Gotowe";
+
+        }
+
+    }, 2200);
+
 }
