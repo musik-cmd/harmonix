@@ -1,12 +1,15 @@
-const VF = Vex.Flow;
-
 function pokazInterwal(klucz) {
     const kontener = klucz === "wiolinowy"
         ? "interwal-wiolinowy"
         : "interwal-basowy";
 
     const div = document.getElementById(kontener);
+
+    if (!div) return;
+
     div.innerHTML = "";
+
+    const VF = Vex.Flow;
 
     const renderer = new VF.Renderer(
         div,
@@ -19,23 +22,17 @@ function pokazInterwal(klucz) {
 
     const stave = new VF.Stave(20, 30, 430);
 
-    stave.addClef(
-        klucz === "wiolinowy" ? "treble" : "bass"
-    );
+    stave.addClef(klucz === "wiolinowy" ? "treble" : "bass");
 
     stave.setContext(context).draw();
 
     const nuta1 = new VF.StaveNote({
-        keys: klucz === "wiolinowy"
-            ? ["c/4"]
-            : ["e/2"],
+        keys: klucz === "wiolinowy" ? ["c/4"] : ["e/2"],
         duration: "q"
     });
 
     const nuta2 = new VF.StaveNote({
-        keys: klucz === "wiolinowy"
-            ? ["db/4"]
-            : ["f/2"],
+        keys: klucz === "wiolinowy" ? ["db/4"] : ["f/2"],
         duration: "q"
     });
 
