@@ -8,7 +8,10 @@
 <title>Tercje — Harmonix</title>
 
 <style>
-* { box-sizing: border-box; }
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
@@ -29,6 +32,10 @@ body {
     color: #6b6680;
     text-decoration: none;
     font-size: 15px;
+}
+
+.back:hover {
+    color: #252238;
 }
 
 h1 {
@@ -63,81 +70,97 @@ h1 {
     background: white;
     padding: 22px 25px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     cursor: pointer;
     color: #252238;
     font-size: 18px;
     font-weight: 700;
+    text-align: left;
 }
 
-.interval-button:hover { background:#faf9ff; }
+.interval-button:hover {
+    background: #faf9ff;
+}
 
 .arrow {
-    font-size:20px;
-    transition:.25s;
+    font-size: 20px;
+    transition: transform .25s;
 }
 
 .interval-item.open .arrow {
-    transform:rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .interval-content {
-    display:none;
-    padding:0 25px 30px;
+    display: none;
+    padding: 0 25px 30px;
 }
 
 .interval-item.open .interval-content {
-    display:block;
+    display: block;
 }
 
 .staff-title {
-    font-size:15px;
-    color:#6b6680;
-    margin:20px 0 5px;
-    font-weight:600;
+    font-size: 15px;
+    color: #6b6680;
+    margin: 20px 0 5px;
+    font-weight: 600;
 }
 
 .staff-box {
-    width:100%;
-    overflow:hidden;
+    width: 100%;
+    overflow: hidden;
 }
 
 .listen-area {
-    text-align:center;
-    margin-top:25px;
+    text-align: center;
+    margin-top: 25px;
 }
 
 .listen-button {
-    border:none;
-    border-radius:12px;
-    padding:13px 24px;
-    background:#252238;
-    color:white;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
+    border: none;
+    border-radius: 12px;
+    padding: 13px 24px;
+    background: #252238;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.listen-button:hover {
+    opacity: .9;
 }
 
 .listen-button:disabled {
-    opacity:.6;
+    opacity: .6;
+    cursor: default;
 }
 
 .status {
-    margin-top:10px;
-    font-size:13px;
-    color:#777187;
-    min-height:18px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #777187;
+    min-height: 18px;
 }
 
 @media(max-width:650px) {
-    .page { padding:30px 12px 60px; }
-    h1 { font-size:34px; }
+
+    .page {
+        padding: 30px 12px 60px;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
     .interval-content {
-        padding-left:10px;
-        padding-right:10px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
+
 </style>
 </head>
 
@@ -145,196 +168,257 @@ h1 {
 
 <div class="page">
 
-<a href="interwaly.html" class="back">← Wróć do interwałów</a>
+<a href="interwaly.html" class="back">
+← Wróć do interwałów
+</a>
 
 <h1>Tercje</h1>
 
 <div class="subtitle">
-Zmniejszone, małe, wielkie i zwiększone
+Małe, wielkie, zwiększone i zmniejszone
 </div>
 
-<div id="interval-list" class="interval-list"></div>
+<div class="interval-list">
+
+
+<!-- TERCJA MAŁA -->
+
+<div class="interval-item">
+
+<button class="interval-button"
+onclick="toggleInterval('mala', this)">
+<span>♩ Tercja mała</span>
+<span class="arrow">⌄</span>
+</button>
+
+<div class="interval-content">
+
+<div class="staff-title">Klucz wiolinowy</div>
+<div id="mala-treble" class="staff-box"></div>
+
+<div class="staff-title">Klucz basowy</div>
+<div id="mala-bass" class="staff-box"></div>
+
+<div class="listen-area">
+
+<button class="listen-button"
+onclick="playInterval('mala', this)">
+▶ Posłuchaj
+</button>
+
+<div id="mala-status" class="status"></div>
 
 </div>
+</div>
+</div>
+
+
+<!-- TERCJA WIELKA -->
+
+<div class="interval-item">
+
+<button class="interval-button"
+onclick="toggleInterval('wielka', this)">
+<span>♩ Tercja wielka</span>
+<span class="arrow">⌄</span>
+</button>
+
+<div class="interval-content">
+
+<div class="staff-title">Klucz wiolinowy</div>
+<div id="wielka-treble" class="staff-box"></div>
+
+<div class="staff-title">Klucz basowy</div>
+<div id="wielka-bass" class="staff-box"></div>
+
+<div class="listen-area">
+
+<button class="listen-button"
+onclick="playInterval('wielka', this)">
+▶ Posłuchaj
+</button>
+
+<div id="wielka-status" class="status"></div>
+
+</div>
+</div>
+</div>
+
+
+<!-- TERCJA ZWIĘKSZONA -->
+
+<div class="interval-item">
+
+<button class="interval-button"
+onclick="toggleInterval('zwiekszona', this)">
+<span>♩ Tercja zwiększona</span>
+<span class="arrow">⌄</span>
+</button>
+
+<div class="interval-content">
+
+<div class="staff-title">Klucz wiolinowy</div>
+<div id="zwiekszona-treble" class="staff-box"></div>
+
+<div class="staff-title">Klucz basowy</div>
+<div id="zwiekszona-bass" class="staff-box"></div>
+
+<div class="listen-area">
+
+<button class="listen-button"
+onclick="playInterval('zwiekszona', this)">
+▶ Posłuchaj
+</button>
+
+<div id="zwiekszona-status" class="status"></div>
+
+</div>
+</div>
+</div>
+
+
+<!-- TERCJA ZMNIEJSZONA -->
+
+<div class="interval-item">
+
+<button class="interval-button"
+onclick="toggleInterval('zmniejszona', this)">
+<span>♩ Tercja zmniejszona</span>
+<span class="arrow">⌄</span>
+</button>
+
+<div class="interval-content">
+
+<div class="staff-title">Klucz wiolinowy</div>
+<div id="zmniejszona-treble" class="staff-box"></div>
+
+<div class="staff-title">Klucz basowy</div>
+<div id="zmniejszona-bass" class="staff-box"></div>
+
+<div class="listen-area">
+
+<button class="listen-button"
+onclick="playInterval('zmniejszona', this)">
+▶ Posłuchaj
+</button>
+
+<div id="zmniejszona-status" class="status"></div>
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
 <script>
 
 /* =========================================================
-   TERCJE
+   DANE TERCJI
 ========================================================= */
 
 const intervals = {
 
-    zmniejszona: {
-        name: "Tercja zmniejszona",
-
-        treble: [
-            {letter:"c",octave:4,accidental:""},
-            {letter:"e",octave:4,accidental:"bb"}
-        ],
-
-        bass: [
-            {letter:"c",octave:3,accidental:""},
-            {letter:"e",octave:3,accidental:"bb"}
-        ],
-
-        /* E𝄫 = D */
-        piano:["C4","D4"]
-    },
-
     mala: {
-        name:"Tercja mała",
 
         treble: [
-            {letter:"c",octave:4,accidental:""},
-            {letter:"e",octave:4,accidental:"b"}
+            {letter:"c", octave:4, accidental:""},
+            {letter:"e", octave:4, accidental:"b"}
         ],
 
         bass: [
-            {letter:"c",octave:3,accidental:""},
-            {letter:"e",octave:3,accidental:"b"}
+            {letter:"c", octave:3, accidental:""},
+            {letter:"e", octave:3, accidental:"b"}
         ],
 
         piano:["C4","D#4"]
     },
 
+
     wielka: {
-        name:"Tercja wielka",
 
         treble: [
-            {letter:"c",octave:4,accidental:""},
-            {letter:"e",octave:4,accidental:""}
+            {letter:"c", octave:4, accidental:""},
+            {letter:"e", octave:4, accidental:""}
         ],
 
         bass: [
-            {letter:"c",octave:3,accidental:""},
-            {letter:"e",octave:3,accidental:""}
+            {letter:"c", octave:3, accidental:""},
+            {letter:"e", octave:3, accidental:""}
         ],
 
         piano:["C4","E4"]
     },
 
+
     zwiekszona: {
-        name:"Tercja zwiększona",
 
         treble: [
-            {letter:"c",octave:4,accidental:""},
-            {letter:"e",octave:4,accidental:"#"}
+            {letter:"c", octave:4, accidental:""},
+            {letter:"e", octave:4, accidental:"#"}
         ],
 
         bass: [
-            {letter:"c",octave:3,accidental:""},
-            {letter:"e",octave:3,accidental:"#"}
+            {letter:"c", octave:3, accidental:""},
+            {letter:"e", octave:3, accidental:"#"}
         ],
 
-        /* E# = F */
         piano:["C4","F4"]
+    },
+
+
+    zmniejszona: {
+
+        treble: [
+            {letter:"c", octave:4, accidental:""},
+            {letter:"e", octave:4, accidental:"bb"}
+        ],
+
+        bass: [
+            {letter:"c", octave:3, accidental:""},
+            {letter:"e", octave:3, accidental:"bb"}
+        ],
+
+        piano:["C4","D4"]
     }
 
 };
 
 
 /* =========================================================
-   GENEROWANIE KART
-========================================================= */
-
-const list =
-document.getElementById("interval-list");
-
-Object.entries(intervals).forEach(([type,data]) => {
-
-    const item =
-    document.createElement("div");
-
-    item.className="interval-item";
-
-    item.innerHTML=`
-
-    <button
-    class="interval-button"
-    onclick="toggleInterval('${type}',this)">
-
-        <span>♩ ${data.name}</span>
-        <span class="arrow">⌄</span>
-
-    </button>
-
-    <div class="interval-content">
-
-        <div class="staff-title">
-        Klucz wiolinowy
-        </div>
-
-        <div
-        id="${type}-treble"
-        class="staff-box">
-        </div>
-
-        <div class="staff-title">
-        Klucz basowy
-        </div>
-
-        <div
-        id="${type}-bass"
-        class="staff-box">
-        </div>
-
-        <div class="listen-area">
-
-            <button
-            class="listen-button"
-            onclick="playInterval('${type}',this)">
-            ▶ Posłuchaj
-            </button>
-
-            <div
-            id="${type}-status"
-            class="status">
-            </div>
-
-        </div>
-
-    </div>
-
-    `;
-
-    list.appendChild(item);
-});
-
-
-/* =========================================================
    OTWIERANIE
 ========================================================= */
 
-function toggleInterval(type,button) {
+function toggleInterval(type, button) {
 
-    const item=button.parentElement;
-
-    const open=
-    item.classList.contains("open");
+    const item = button.parentElement;
+    const wasOpen = item.classList.contains("open");
 
     document
-    .querySelectorAll(".interval-item")
-    .forEach(el=>el.classList.remove("open"));
+        .querySelectorAll(".interval-item")
+        .forEach(function(element) {
+            element.classList.remove("open");
+        });
 
-    if(!open) {
+    if (!wasOpen) {
 
         item.classList.add("open");
 
-        setTimeout(()=>{
+        setTimeout(function() {
             drawInterval(type);
-        },50);
+        },100);
     }
 }
 
 
 /* =========================================================
-   PIĘCIOLINIA
+   POZYCJE NUT
 ========================================================= */
 
-const letters={
+const letterNumber = {
     c:0,
     d:1,
     e:2,
@@ -344,34 +428,39 @@ const letters={
     b:6
 };
 
+
 function getStep(note,clef) {
 
-    const absolute=
-    note.octave*7+
-    letters[note.letter];
+    const absolute =
+        note.octave * 7 +
+        letterNumber[note.letter];
 
     let reference;
 
-    if(clef==="treble") {
+    if (clef === "treble") {
 
-        reference=
-        4*7+
-        letters.e;
+        reference =
+            4 * 7 +
+            letterNumber.e;
 
     } else {
 
-        reference=
-        2*7+
-        letters.g;
+        reference =
+            2 * 7 +
+            letterNumber.g;
     }
 
     return absolute-reference;
 }
 
 
+/* =========================================================
+   RYSOWANIE
+========================================================= */
+
 function drawInterval(type) {
 
-    const data=intervals[type];
+    const data = intervals[type];
 
     drawStaff(
         type+"-treble",
@@ -389,21 +478,21 @@ function drawInterval(type) {
 
 function drawStaff(containerId,clef,notes) {
 
-    const container=
-    document.getElementById(containerId);
+    const container =
+        document.getElementById(containerId);
 
-    if(!container) return;
+    if (!container) return;
 
-    const width=700;
-    const height=210;
+    const width = 700;
+    const height = 210;
 
-    const left=105;
-    const right=650;
+    const left = 105;
+    const right = 650;
 
-    const top=75;
-    const gap=14;
+    const top = 75;
+    const gap = 14;
 
-    let svg=`
+    let svg = `
 
     <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -418,13 +507,13 @@ function drawStaff(containerId,clef,notes) {
     `;
 
 
-    /* 5 LINII */
+    /* PIĘCIOLINIA */
 
     for(let i=0;i<5;i++) {
 
-        const y=top+i*gap;
+        const y = top+i*gap;
 
-        svg+=`
+        svg += `
 
         <line
         x1="${left}"
@@ -442,7 +531,7 @@ function drawStaff(containerId,clef,notes) {
 
     if(clef==="treble") {
 
-        svg+=`
+        svg += `
 
         <text
         x="25"
@@ -455,7 +544,7 @@ function drawStaff(containerId,clef,notes) {
 
     } else {
 
-        svg+=`
+        svg += `
 
         <text
         x="25"
@@ -468,20 +557,20 @@ function drawStaff(containerId,clef,notes) {
     }
 
 
-    const positions=[330,480];
+    const positions = [330,480];
 
 
-    notes.forEach((note,index)=>{
+    notes.forEach(function(note,index) {
 
-        const x=positions[index];
+        const x = positions[index];
 
-        const step=
-        getStep(note,clef);
+        const step =
+            getStep(note,clef);
 
-        const y=
-        top+
-        4*gap-
-        step*(gap/2);
+        const y =
+            top +
+            4*gap -
+            step*(gap/2);
 
 
         /* LINIE DODANE POD */
@@ -494,12 +583,12 @@ function drawStaff(containerId,clef,notes) {
                 s-=2
             ) {
 
-                const ledgerY=
-                top+
-                4*gap-
-                s*(gap/2);
+                const ledgerY =
+                    top +
+                    4*gap -
+                    s*(gap/2);
 
-                svg+=`
+                svg += `
 
                 <line
                 x1="${x-20}"
@@ -524,12 +613,12 @@ function drawStaff(containerId,clef,notes) {
                 s+=2
             ) {
 
-                const ledgerY=
-                top+
-                4*gap-
-                s*(gap/2);
+                const ledgerY =
+                    top +
+                    4*gap -
+                    s*(gap/2);
 
-                svg+=`
+                svg += `
 
                 <line
                 x1="${x-20}"
@@ -546,21 +635,24 @@ function drawStaff(containerId,clef,notes) {
 
         /* ZNAKI */
 
-        let accidental="";
+        let accidental = "";
 
-        if(note.accidental==="bb")
+        if(note.accidental==="bb") {
             accidental="𝄫";
+        }
 
-        else if(note.accidental==="b")
+        else if(note.accidental==="b") {
             accidental="♭";
+        }
 
-        else if(note.accidental==="#")
+        else if(note.accidental==="#") {
             accidental="♯";
+        }
 
 
-        if(accidental) {
+        if(accidental!=="") {
 
-            svg+=`
+            svg += `
 
             <text
             x="${x-38}"
@@ -573,9 +665,9 @@ function drawStaff(containerId,clef,notes) {
         }
 
 
-        /* NUTA */
+        /* GŁÓWKA */
 
-        svg+=`
+        svg += `
 
         <ellipse
         cx="${x}"
@@ -584,6 +676,13 @@ function drawStaff(containerId,clef,notes) {
         ry="7"
         transform="rotate(-18 ${x} ${y})"
         fill="#252238"/>
+
+        `;
+
+
+        /* LASECZKA */
+
+        svg += `
 
         <line
         x1="${x+8}"
@@ -594,33 +693,33 @@ function drawStaff(containerId,clef,notes) {
         stroke-width="2"/>
 
         `;
-
     });
 
 
-    svg+="</svg>";
+    svg += `</svg>`;
 
-    container.innerHTML=svg;
+    container.innerHTML = svg;
 }
 
 
 /* =========================================================
-   PIANINO
+   PIANINO GŁÓWNE
 ========================================================= */
 
-let piano=null;
-let pianoLoaded=false;
+let piano = null;
+let pianoLoaded = false;
 
 
 async function createPiano() {
 
-    if(pianoLoaded && piano)
+    if(pianoLoaded && piano) {
         return piano;
+    }
 
 
-    piano=new Tone.Sampler({
+    piano = new Tone.Sampler({
 
-        urls:{
+        urls: {
 
             A0:"A0.mp3",
             C1:"C1.mp3",
@@ -679,57 +778,69 @@ async function createPiano() {
 }
 
 
+/* =========================================================
+   CZEKANIE
+========================================================= */
+
 function wait(ms) {
 
-    return new Promise(
-        resolve=>setTimeout(resolve,ms)
-    );
+    return new Promise(function(resolve) {
+        setTimeout(resolve,ms);
+    });
 }
 
 
 /* =========================================================
    ODTWARZANIE
+   IDENTYCZNY MECHANIZM JAK W DZIAŁAJĄCYCH SEKUNDACH
 ========================================================= */
 
 async function playInterval(type,button) {
 
-    const data=intervals[type];
+    const data = intervals[type];
 
-    const status=
-    document.getElementById(
-        type+"-status"
-    );
+    const status =
+        document.getElementById(
+            type+"-status"
+        );
 
 
-    button.disabled=true;
+    if(button) {
+        button.disabled=true;
+    }
 
 
     try {
 
-        status.textContent=
-        "Ładowanie pianina…";
+        if(status) {
+
+            status.textContent =
+                "Ładowanie pianina…";
+        }
 
 
         await Tone.start();
 
 
-        const instrument=
-        await createPiano();
+        const instrument =
+            await createPiano();
 
 
-        const first=
-        data.piano[0];
+        const first =
+            data.piano[0];
 
-        const second=
-        data.piano[1];
+        const second =
+            data.piano[1];
 
 
-        /* =============================================
+        /* ================================
            MELODYCZNIE
-        ============================================= */
+        ================================ */
 
-        status.textContent=
-        "🎵 Melodycznie";
+        if(status) {
+            status.textContent =
+                "🎵 Melodycznie";
+        }
 
 
         instrument.triggerAttackRelease(
@@ -750,48 +861,45 @@ async function playInterval(type,button) {
         await wait(1100);
 
 
-        /* =============================================
+        /* ================================
            HARMONICZNIE
-        ============================================= */
+        ================================ */
 
-        status.textContent=
-        "🎶 Harmonicznie";
+        if(status) {
+            status.textContent =
+                "🎶 Harmonicznie";
+        }
 
 
-        /*
-        Osobny sampler dla drugiego dźwięku —
-        dokładnie tak jak w działających sekundach.
-        */
+        const harmonyPiano =
+            new Tone.Sampler({
 
-        const harmonyPiano=
-        new Tone.Sampler({
+                urls: {
 
-            urls:{
+                    C4:"C4.mp3",
+                    "D#4":"Ds4.mp3",
+                    "F#4":"Fs4.mp3",
+                    A4:"A4.mp3",
+                    C5:"C5.mp3"
 
-                C4:"C4.mp3",
-                "D#4":"Ds4.mp3",
-                "F#4":"Fs4.mp3",
-                A4:"A4.mp3",
-                C5:"C5.mp3"
+                },
 
-            },
+                release:1.2,
 
-            release:1.2,
+                baseUrl:
+                "https://tonejs.github.io/audio/salamander/"
 
-            baseUrl:
-            "https://tonejs.github.io/audio/salamander/"
-
-        }).toDestination();
+            }).toDestination();
 
 
         await Tone.loaded();
 
 
-        const together=
-        Tone.now()+0.1;
+        const together =
+            Tone.now()+0.1;
 
 
-        /* PIERWSZA NUTA */
+        /* PIERWSZY DŹWIĘK */
 
         instrument.triggerAttackRelease(
             first,
@@ -800,7 +908,7 @@ async function playInterval(type,button) {
         );
 
 
-        /* DRUGA NUTA */
+        /* DRUGI DŹWIĘK */
 
         harmonyPiano.triggerAttackRelease(
             second,
@@ -815,28 +923,41 @@ async function playInterval(type,button) {
         harmonyPiano.dispose();
 
 
-        status.textContent=
-        "✓ Melodycznie + harmonicznie";
+        if(status) {
+
+            status.textContent =
+                "✓ Melodycznie + harmonicznie";
+        }
 
 
         await wait(700);
 
 
-        status.textContent="";
+        if(status) {
+            status.textContent="";
+        }
 
     }
 
     catch(error) {
 
-        console.error(error);
+        console.error(
+            "Harmonix:",
+            error
+        );
 
-        status.textContent=
-        "Nie udało się odtworzyć dźwięku.";
 
+        if(status) {
+
+            status.textContent =
+                "Nie udało się odtworzyć dźwięku.";
+        }
     }
 
 
-    button.disabled=false;
+    if(button) {
+        button.disabled=false;
+    }
 }
 
 </script>
