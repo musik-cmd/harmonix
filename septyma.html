@@ -8,22 +8,20 @@
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#f7f5ff;color:#252238}
-.page{max-width:950px;margin:0 auto;padding:50px 20px 80px}
-.back{display:inline-block;margin-bottom:30px;color:#6b6680;text-decoration:none;font-size:15px}
+.page{max-width:950px;margin:auto;padding:50px 20px 80px}
+.back{display:inline-block;margin-bottom:30px;color:#6b6680;text-decoration:none}
 h1{text-align:center;font-size:42px;margin:0 0 10px}
 .subtitle{text-align:center;color:#6b6680;font-size:18px;margin-bottom:40px}
 .interval-list{display:flex;flex-direction:column;gap:14px}
 .interval-item{background:white;border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(40,30,80,.08)}
-.interval-button{width:100%;border:0;background:white;padding:22px 25px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:#252238;font-size:18px;font-weight:700}
+.interval-button{width:100%;border:0;background:white;padding:22px 25px;display:flex;justify-content:space-between;cursor:pointer;color:#252238;font-size:18px;font-weight:700}
 .interval-content{display:none;padding:0 25px 30px}
 .interval-item.open .interval-content{display:block}
-.arrow{font-size:20px}
-.interval-item.open .arrow{transform:rotate(180deg)}
 .staff-title{font-size:15px;color:#6b6680;margin:20px 0 5px;font-weight:600}
 .staff-box{width:100%;overflow:hidden}
 .listen-area{text-align:center;margin-top:25px}
 .listen-button{border:0;border-radius:12px;padding:13px 24px;background:#252238;color:white;font-size:15px;font-weight:600;cursor:pointer}
-.listen-button:disabled{opacity:.6}
+.listen-button:disabled{opacity:.5}
 .status{margin-top:10px;font-size:13px;color:#777187;min-height:18px}
 </style>
 </head>
@@ -44,6 +42,10 @@ h1{text-align:center;font-size:42px;margin:0 0 10px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
 <script>
+
+/* =========================
+   SEPTymy
+========================= */
 
 const intervals={
 
@@ -102,7 +104,9 @@ piano:["C4","C5"]
 };
 
 
-/* KARTY */
+/* =========================
+   KARTY
+========================= */
 
 const list=document.getElementById("list");
 
@@ -116,7 +120,7 @@ list.innerHTML+=`
 onclick="toggleInterval('${type}',this)">
 
 <span>♩ ${data.name}</span>
-<span class="arrow">⌄</span>
+<span>⌄</span>
 
 </button>
 
@@ -138,6 +142,7 @@ onclick="playInterval('${type}',this)">
 <div id="${type}-status" class="status"></div>
 
 </div>
+
 </div>
 </div>
 
@@ -149,12 +154,12 @@ onclick="playInterval('${type}',this)">
 function toggleInterval(type,button){
 
 const item=button.parentElement;
-const open=item.classList.contains("open");
+const wasOpen=item.classList.contains("open");
 
 document.querySelectorAll(".interval-item")
 .forEach(x=>x.classList.remove("open"));
 
-if(!open){
+if(!wasOpen){
 
 item.classList.add("open");
 
@@ -167,7 +172,9 @@ drawInterval(type);
 }
 
 
-/* PIĘCIOLINIA */
+/* =========================
+   PIĘCIOLINIA
+========================= */
 
 const letterNumber={
 c:0,d:1,e:2,f:3,g:4,a:5,b:6
@@ -220,15 +227,14 @@ const top=75;
 const gap=14;
 
 let svg=`
-<svg
-xmlns="http://www.w3.org/2000/svg"
+<svg xmlns="http://www.w3.org/2000/svg"
 viewBox="0 0 ${width} ${height}"
 width="100%"
 style="display:block;max-width:700px;margin:auto">
 `;
 
 
-/* 5 LINII */
+/* PIĘCIOLINIA */
 
 for(let i=0;i<5;i++){
 
@@ -252,9 +258,7 @@ stroke-width="1.5"/>
 if(clef==="treble"){
 
 svg+=`
-<text
-x="25"
-y="140"
+<text x="25" y="140"
 font-family="serif"
 font-size="86"
 fill="#252238">𝄞</text>
@@ -263,9 +267,7 @@ fill="#252238">𝄞</text>
 }else{
 
 svg+=`
-<text
-x="25"
-y="125"
+<text x="25" y="125"
 font-family="serif"
 font-size="64"
 fill="#252238">𝄢</text>
@@ -275,6 +277,7 @@ fill="#252238">𝄢</text>
 
 
 const positions=[330,480];
+
 
 notes.forEach((note,index)=>{
 
@@ -358,7 +361,7 @@ fill="#252238">${accidental}</text>
 }
 
 
-/* NUTA */
+/* GŁÓWKA */
 
 svg+=`
 <ellipse
@@ -380,6 +383,7 @@ stroke-width="2"/>
 
 });
 
+
 svg+="</svg>";
 
 container.innerHTML=svg;
@@ -387,11 +391,13 @@ container.innerHTML=svg;
 }
 
 
-/* ==========================================
-   PIANINO — DWA NIEZALEŻNE GŁOSY
-========================================== */
+/* =====================================================
+   PIANINO
 
-const pianoUrls={
+   DWA CAŁKOWICIE NIEZALEŻNE SAMPLERY.
+===================================================== */
+
+const samples={
 
 A0:"A0.mp3",
 C1:"C1.mp3",
@@ -428,34 +434,38 @@ C7:"C7.mp3"
 
 };
 
-let piano1=null;
-let piano2=null;
+
+let lowPiano=null;
+let highPiano=null;
 
 
-async function createPianos(){
+async function loadPianos(){
 
-if(piano1 && piano2){
+if(lowPiano && highPiano){
 return;
 }
 
-piano1=new Tone.Sampler({
 
-urls:pianoUrls,
-release:1.4,
+lowPiano=new Tone.Sampler({
+
+urls:samples,
 
 baseUrl:
-"https://tonejs.github.io/audio/salamander/"
+"https://tonejs.github.io/audio/salamander/",
+
+release:1.5
 
 }).toDestination();
 
 
-piano2=new Tone.Sampler({
+highPiano=new Tone.Sampler({
 
-urls:pianoUrls,
-release:1.4,
+urls:samples,
 
 baseUrl:
-"https://tonejs.github.io/audio/salamander/"
+"https://tonejs.github.io/audio/salamander/",
+
+release:1.5
 
 }).toDestination();
 
@@ -467,32 +477,35 @@ await Tone.loaded();
 
 function wait(ms){
 
-return new Promise(
-resolve=>setTimeout(resolve,ms)
-);
+return new Promise(resolve=>{
+setTimeout(resolve,ms);
+});
 
 }
 
 
-/* ODTWARZANIE */
+/* =====================================================
+   ODTWARZANIE
+===================================================== */
 
 async function playInterval(type,button){
 
+const status=
+document.getElementById(type+"-status");
+
 button.disabled=true;
 
-const status=
-document.getElementById(
-type+"-status"
-);
 
 try{
 
 status.textContent=
 "Ładowanie pianina…";
 
+
 await Tone.start();
 
-await createPianos();
+await loadPianos();
+
 
 const first=
 intervals[type].piano[0];
@@ -501,66 +514,91 @@ const second=
 intervals[type].piano[1];
 
 
-/* MELODYCZNIE */
+/* -------------------------
+   MELODYCZNIE
+------------------------- */
 
 status.textContent=
 "🎵 Melodycznie";
 
-piano1.triggerAttackRelease(
+
+lowPiano.triggerAttackRelease(
 first,
-0.7
+0.75
 );
 
-await wait(850);
 
-piano1.triggerAttackRelease(
+await wait(900);
+
+
+highPiano.triggerAttackRelease(
 second,
-0.7
+0.75
 );
+
 
 await wait(1200);
 
 
-/* HARMONICZNIE */
+/* -------------------------
+   HARMONICZNIE
+------------------------- */
 
 status.textContent=
 "🎶 Harmonicznie";
 
-const together=
-Tone.now()+0.15;
 
-piano1.triggerAttackRelease(
+/*
+Jedna wspólna chwila rozpoczęcia.
+*/
+
+const start=
+Tone.now()+0.25;
+
+
+/*
+Pierwsze pianino = dolny dźwięk
+*/
+
+lowPiano.triggerAttackRelease(
 first,
-1.8,
-together
+2,
+start
 );
 
-piano2.triggerAttackRelease(
+
+/*
+Drugie pianino = górny dźwięk
+*/
+
+highPiano.triggerAttackRelease(
 second,
-1.8,
-together
+2,
+start
 );
 
-await wait(2100);
+
+await wait(2300);
+
 
 status.textContent=
 "✓ Melodycznie + harmonicznie";
 
-await wait(500);
+
+await wait(600);
 
 status.textContent="";
 
+
 }catch(error){
 
-console.error(
-"Harmonix:",
-error
-);
+console.error(error);
 
 status.textContent=
 "Nie udało się odtworzyć dźwięku.";
 
 }
+
 
 button.disabled=false;
 
