@@ -1,7 +1,6 @@
 /* =========================================================
    HARMONIX — APP.JS
    INTERWAŁY PROSTE
-   zapis + pianino + melodycznie + harmonicznie
 ========================================================= */
 
 let piano = null;
@@ -17,86 +16,38 @@ const intervals = {
     mala: {
         label: "Sekunda mała",
 
-        treble: [
-            "c/4",
-            "db/4"
-        ],
+        treble: ["c/4", "db/4"],
+        bass: ["c/3", "db/3"],
 
-        bass: [
-            "c/3",
-            "db/3"
-        ],
-
-        piano: [
-            "C4",
-            "C#4"
-        ]
+        piano: ["C4", "C#4"]
     },
-
 
     wielka: {
         label: "Sekunda wielka",
 
-        treble: [
-            "c/4",
-            "d/4"
-        ],
+        treble: ["c/4", "d/4"],
+        bass: ["c/3", "d/3"],
 
-        bass: [
-            "c/3",
-            "d/3"
-        ],
-
-        piano: [
-            "C4",
-            "D4"
-        ]
+        piano: ["C4", "D4"]
     },
-
 
     zwiekszona: {
         label: "Sekunda zwiększona",
 
-        treble: [
-            "c/4",
-            "d#/4"
-        ],
+        treble: ["c/4", "d#/4"],
+        bass: ["c/3", "d#/3"],
 
-        bass: [
-            "c/3",
-            "d#/3"
-        ],
-
-        piano: [
-            "C4",
-            "D#4"
-        ]
+        piano: ["C4", "D#4"]
     },
-
 
     zmniejszona: {
         label: "Sekunda zmniejszona",
 
-        treble: [
-            "c/4",
-            "dbb/4"
-        ],
+        treble: ["c/4", "dbb/4"],
+        bass: ["c/3", "dbb/3"],
 
-        bass: [
-            "c/3",
-            "dbb/3"
-        ],
-
-        /*
-        D𝄫 brzmi tak samo jak C.
-        */
-
-        piano: [
-            "C4",
-            "C4"
-        ]
+        piano: ["C4", "C4"]
     }
-
 };
 
 
@@ -106,8 +57,7 @@ const intervals = {
 
 function toggleInterval(type, button) {
 
-    const item =
-        button.parentElement;
+    const item = button.parentElement;
 
     const isOpen =
         item.classList.contains("open");
@@ -126,7 +76,6 @@ function toggleInterval(type, button) {
 
         item.classList.add("open");
 
-
         setTimeout(() => {
 
             drawInterval(type);
@@ -143,13 +92,9 @@ function toggleInterval(type, button) {
 
 function drawInterval(type) {
 
-    const data =
-        intervals[type];
+    const data = intervals[type];
 
-
-    if (!data) {
-        return;
-    }
+    if (!data) return;
 
 
     drawStaff(
@@ -190,9 +135,7 @@ function getStep(note, clef) {
         note.toLowerCase().split("/");
 
 
-    const pitch =
-        parts[0];
-
+    const pitch = parts[0];
 
     const octave =
         Number(parts[1]);
@@ -210,12 +153,9 @@ function getStep(note, clef) {
     let reference;
 
 
-    /*
-       KLUCZ WIOLINOWY:
-       E4 = dolna linia
-    */
-
     if (clef === "treble") {
+
+        /* E4 = dolna linia */
 
         reference =
             4 * 7 +
@@ -223,13 +163,9 @@ function getStep(note, clef) {
 
     }
 
-
-    /*
-       KLUCZ BASOWY:
-       G2 = dolna linia
-    */
-
     else {
+
+        /* G2 = dolna linia */
 
         reference =
             2 * 7 +
@@ -243,7 +179,7 @@ function getStep(note, clef) {
 
 
 /* =========================================================
-   RYSOWANIE PIĘCIOLINII
+   PIĘCIOLINIA
 ========================================================= */
 
 function drawStaff(
@@ -253,14 +189,10 @@ function drawStaff(
 ) {
 
     const container =
-        document.getElementById(
-            containerId
-        );
+        document.getElementById(containerId);
 
 
-    if (!container) {
-        return;
-    }
+    if (!container) return;
 
 
     const width = 700;
@@ -270,7 +202,6 @@ function drawStaff(
     const staffRight = 650;
 
     const staffTop = 65;
-
     const gap = 14;
 
 
@@ -290,19 +221,12 @@ function drawStaff(
     `;
 
 
-    /* =====================================================
-       5 LINII
-    ===================================================== */
+    /* 5 linii */
 
-    for (
-        let i = 0;
-        i < 5;
-        i++
-    ) {
+    for (let i = 0; i < 5; i++) {
 
         const y =
-            staffTop +
-            i * gap;
+            staffTop + i * gap;
 
 
         svg += `
@@ -310,10 +234,8 @@ function drawStaff(
         <line
             x1="${staffLeft}"
             y1="${y}"
-
             x2="${staffRight}"
             y2="${y}"
-
             stroke="#252238"
             stroke-width="1.5"
         />
@@ -323,9 +245,7 @@ function drawStaff(
     }
 
 
-    /* =====================================================
-       KLUCZ WIOLINOWY
-    ===================================================== */
+    /* klucz */
 
     if (clef === "treble") {
 
@@ -334,21 +254,14 @@ function drawStaff(
         <text
             x="25"
             y="128"
-
             font-size="82"
             font-family="serif"
-
             fill="#252238"
         >𝄞</text>
 
         `;
 
     }
-
-
-    /* =====================================================
-       KLUCZ BASOWY
-    ===================================================== */
 
     else {
 
@@ -357,10 +270,8 @@ function drawStaff(
         <text
             x="25"
             y="116"
-
             font-size="62"
             font-family="serif"
-
             fill="#252238"
         >𝄢</text>
 
@@ -369,234 +280,179 @@ function drawStaff(
     }
 
 
-    /* =====================================================
-       NUTY
-    ===================================================== */
+    /* nuty */
 
-    const positions = [
-        330,
-        480
-    ];
+    const positions = [330, 480];
 
 
-    notes.forEach(
-        (note, index) => {
+    notes.forEach((note, index) => {
 
-            const parts =
-                note
-                    .toLowerCase()
-                    .split("/");
-
-
-            const rawPitch =
-                parts[0];
+        const rawPitch =
+            note
+                .toLowerCase()
+                .split("/")[0];
 
 
-            const x =
-                positions[index];
+        const x =
+            positions[index];
 
 
-            const step =
-                getStep(
-                    note,
-                    clef
-                );
+        const step =
+            getStep(note, clef);
 
 
-            const bottomLine =
-                staffTop +
-                4 * gap;
+        const bottomLine =
+            staffTop + 4 * gap;
 
 
-            const y =
-                bottomLine -
-                step * (gap / 2);
+        const y =
+            bottomLine -
+            step * (gap / 2);
 
 
-            /* =============================================
-               LINIE DODANE POD PIĘCIOLINIĄ
-            ============================================= */
+        /* linie dodane pod */
 
-            if (step < 0) {
+        if (step < 0) {
 
-                for (
-                    let ledger = -2;
-                    ledger >= step;
-                    ledger -= 2
-                ) {
-
-                    const ledgerY =
-                        bottomLine -
-                        ledger * (gap / 2);
-
-
-                    svg += `
-
-                    <line
-                        x1="${x - 18}"
-                        y1="${ledgerY}"
-
-                        x2="${x + 18}"
-                        y2="${ledgerY}"
-
-                        stroke="#252238"
-                        stroke-width="1.5"
-                    />
-
-                    `;
-
-                }
-
-            }
-
-
-            /* =============================================
-               LINIE DODANE NAD PIĘCIOLINIĄ
-            ============================================= */
-
-            if (step > 8) {
-
-                for (
-                    let ledger = 10;
-                    ledger <= step;
-                    ledger += 2
-                ) {
-
-                    const ledgerY =
-                        bottomLine -
-                        ledger * (gap / 2);
-
-
-                    svg += `
-
-                    <line
-                        x1="${x - 18}"
-                        y1="${ledgerY}"
-
-                        x2="${x + 18}"
-                        y2="${ledgerY}"
-
-                        stroke="#252238"
-                        stroke-width="1.5"
-                    />
-
-                    `;
-
-                }
-
-            }
-
-
-            /* =============================================
-               ZNAKI CHROMATYCZNE
-            ============================================= */
-
-            let accidental = "";
-
-
-            if (
-                rawPitch.includes("bb")
+            for (
+                let ledger = -2;
+                ledger >= step;
+                ledger -= 2
             ) {
 
-                accidental = "𝄫";
+                const ledgerY =
+                    bottomLine -
+                    ledger * (gap / 2);
 
-            }
-
-            else if (
-                rawPitch.includes("b")
-            ) {
-
-                accidental = "♭";
-
-            }
-
-            else if (
-                rawPitch.includes("#")
-            ) {
-
-                accidental = "♯";
-
-            }
-
-
-            if (accidental) {
 
                 svg += `
 
-                <text
-                    x="${x - 34}"
-                    y="${y + 8}"
-
-                    font-size="25"
-                    font-family="serif"
-
-                    fill="#252238"
-                >${accidental}</text>
+                <line
+                    x1="${x - 18}"
+                    y1="${ledgerY}"
+                    x2="${x + 18}"
+                    y2="${ledgerY}"
+                    stroke="#252238"
+                    stroke-width="1.5"
+                />
 
                 `;
 
             }
+        }
 
 
-            /* =============================================
-               GŁÓWKA
-            ============================================= */
+        /* linie dodane nad */
+
+        if (step > 8) {
+
+            for (
+                let ledger = 10;
+                ledger <= step;
+                ledger += 2
+            ) {
+
+                const ledgerY =
+                    bottomLine -
+                    ledger * (gap / 2);
+
+
+                svg += `
+
+                <line
+                    x1="${x - 18}"
+                    y1="${ledgerY}"
+                    x2="${x + 18}"
+                    y2="${ledgerY}"
+                    stroke="#252238"
+                    stroke-width="1.5"
+                />
+
+                `;
+
+            }
+        }
+
+
+        /* znak chromatyczny */
+
+        let accidental = "";
+
+
+        if (rawPitch.includes("bb")) {
+
+            accidental = "𝄫";
+
+        }
+
+        else if (rawPitch.includes("b")) {
+
+            accidental = "♭";
+
+        }
+
+        else if (rawPitch.includes("#")) {
+
+            accidental = "♯";
+
+        }
+
+
+        if (accidental) {
 
             svg += `
 
-            <ellipse
-                cx="${x}"
-                cy="${y}"
-
-                rx="9"
-                ry="6.5"
-
-                transform="
-                    rotate(
-                        -18
-                        ${x}
-                        ${y}
-                    )
-                "
-
+            <text
+                x="${x - 34}"
+                y="${y + 8}"
+                font-size="25"
+                font-family="serif"
                 fill="#252238"
-            />
-
-            `;
-
-
-            /* =============================================
-               LASECZKA
-            ============================================= */
-
-            svg += `
-
-            <line
-                x1="${x + 7}"
-                y1="${y}"
-
-                x2="${x + 7}"
-                y2="${y - 42}"
-
-                stroke="#252238"
-                stroke-width="2"
-            />
+            >${accidental}</text>
 
             `;
 
         }
-    );
 
 
-    svg += `
+        /* główka */
 
-    </svg>
+        svg += `
 
-    `;
+        <ellipse
+            cx="${x}"
+            cy="${y}"
+            rx="9"
+            ry="6.5"
+            transform="rotate(-18 ${x} ${y})"
+            fill="#252238"
+        />
+
+        `;
 
 
-    container.innerHTML =
-        svg;
+        /* laseczka */
+
+        svg += `
+
+        <line
+            x1="${x + 7}"
+            y1="${y}"
+            x2="${x + 7}"
+            y2="${y - 42}"
+            stroke="#252238"
+            stroke-width="2"
+        />
+
+        `;
+
+    });
+
+
+    svg += `</svg>`;
+
+
+    container.innerHTML = svg;
 }
 
 
@@ -605,11 +461,6 @@ function drawStaff(
 ========================================================= */
 
 async function createPiano() {
-
-    /*
-       Jeżeli pianino już jest gotowe,
-       nie ładujemy go ponownie.
-    */
 
     if (
         piano &&
@@ -621,105 +472,99 @@ async function createPiano() {
     }
 
 
-    try {
+    piano = new Tone.Sampler({
 
-        piano =
-            new Tone.Sampler({
+        urls: {
 
-                urls: {
+            A0: "A0.mp3",
 
-                    A0: "A0.mp3",
+            C1: "C1.mp3",
+            "D#1": "Ds1.mp3",
+            "F#1": "Fs1.mp3",
 
-                    C1: "C1.mp3",
-                    "D#1": "Ds1.mp3",
-                    "F#1": "Fs1.mp3",
+            A1: "A1.mp3",
 
-                    A1: "A1.mp3",
+            C2: "C2.mp3",
+            "D#2": "Ds2.mp3",
+            "F#2": "Fs2.mp3",
 
-                    C2: "C2.mp3",
-                    "D#2": "Ds2.mp3",
-                    "F#2": "Fs2.mp3",
+            A2: "A2.mp3",
 
-                    A2: "A2.mp3",
+            C3: "C3.mp3",
+            "D#3": "Ds3.mp3",
+            "F#3": "Fs3.mp3",
 
-                    C3: "C3.mp3",
-                    "D#3": "Ds3.mp3",
-                    "F#3": "Fs3.mp3",
+            A3: "A3.mp3",
 
-                    A3: "A3.mp3",
+            C4: "C4.mp3",
+            "D#4": "Ds4.mp3",
+            "F#4": "Fs4.mp3",
 
-                    C4: "C4.mp3",
-                    "D#4": "Ds4.mp3",
-                    "F#4": "Fs4.mp3",
+            A4: "A4.mp3",
 
-                    A4: "A4.mp3",
+            C5: "C5.mp3",
+            "D#5": "Ds5.mp3",
+            "F#5": "Fs5.mp3",
 
-                    C5: "C5.mp3",
-                    "D#5": "Ds5.mp3",
-                    "F#5": "Fs5.mp3",
+            A5: "A5.mp3",
 
-                    A5: "A5.mp3",
+            C6: "C6.mp3",
+            "D#6": "Ds6.mp3",
+            "F#6": "Fs6.mp3",
 
-                    C6: "C6.mp3",
-                    "D#6": "Ds6.mp3",
-                    "F#6": "Fs6.mp3",
+            A6: "A6.mp3",
 
-                    A6: "A6.mp3",
+            C7: "C7.mp3"
 
-                    C7: "C7.mp3"
-
-                },
+        },
 
 
-                baseUrl:
-                    "https://tonejs.github.io/audio/salamander/",
+        baseUrl:
+            "https://tonejs.github.io/audio/salamander/",
 
 
-                release: 1.5
+        release: 1
 
 
-            }).toDestination();
+    }).toDestination();
 
 
-        await Tone.loaded();
+    await Tone.loaded();
 
 
-        pianoLoaded = true;
+    pianoLoaded = true;
 
 
-        return piano;
-
-    }
-
-
-    catch(error) {
-
-        console.error(
-            "Harmonix — błąd pianina:",
-            error
-        );
+    return piano;
+}
 
 
-        pianoLoaded = false;
+/* =========================================================
+   CZEKANIE
 
+   Dzięki temu nie planujemy harmonicznego
+   dźwięku przez Tone.now().
+========================================================= */
 
-        return null;
+function wait(ms) {
 
-    }
+    return new Promise(resolve => {
+
+        setTimeout(resolve, ms);
+
+    });
+
 }
 
 
 /* =========================================================
    ODTWARZANIE
 
-   WAŻNE:
+   MELODYCZNIE:
+   C → D
 
-   1. MELODYCZNIE
-      C → drugi dźwięk
-
-   2. HARMONICZNIE
-      C + drugi dźwięk
-      uruchamiane JEDNOCZEŚNIE
+   HARMONICZNIE:
+   C + D RAZEM
 ========================================================= */
 
 async function playInterval(type) {
@@ -728,19 +573,7 @@ async function playInterval(type) {
         intervals[type];
 
 
-    if (
-        !data ||
-        !data.piano
-    ) {
-
-        console.error(
-            "Brak interwału:",
-            type
-        );
-
-        return;
-
-    }
+    if (!data) return;
 
 
     const status =
@@ -750,10 +583,6 @@ async function playInterval(type) {
 
 
     try {
-
-        /* =============================================
-           START AUDIO
-        ============================================= */
 
         await Tone.start();
 
@@ -770,34 +599,17 @@ async function playInterval(type) {
             await createPiano();
 
 
-        if (!instrument) {
-
-            throw new Error(
-                "Pianino nie zostało załadowane."
-            );
-
-        }
-
-
-        const firstNote =
+        const first =
             data.piano[0];
 
 
-        const secondNote =
+        const second =
             data.piano[1];
 
 
-        /*
-           Dodajemy minimalny zapas czasu.
-        */
-
-        const start =
-            Tone.now() + 0.1;
-
-
-        /* =============================================
+        /* =================================================
            1. MELODYCZNIE
-        ============================================= */
+        ================================================= */
 
         if (status) {
 
@@ -808,105 +620,96 @@ async function playInterval(type) {
 
 
         instrument.triggerAttackRelease(
-
-            firstNote,
-
-            0.65,
-
-            start
-
+            first,
+            "8n"
         );
+
+
+        await wait(700);
 
 
         instrument.triggerAttackRelease(
-
-            secondNote,
-
-            0.65,
-
-            start + 0.85
-
+            second,
+            "8n"
         );
 
 
-        /* =============================================
+        /*
+           Czekamy aż melodyczna część
+           naprawdę się skończy.
+        */
+
+        await wait(1100);
+
+
+        /* =================================================
            2. HARMONICZNIE
 
-           KLUCZOWA POPRAWKA:
+           TERAZ NIE UŻYWAMY CZASU PRZYSZŁEGO.
 
-           NIE:
-           triggerAttackRelease([C4,D4])
+           JavaScript dochodzi do tego miejsca
+           dopiero po zakończeniu melodii.
 
-           TYLKO:
+           triggerAttack uruchamia obie nuty.
+        ================================================= */
 
-           C4 i D4 jako DWA osobne dźwięki,
-           ale z IDENTYCZNYM czasem startu.
-        ============================================= */
+        if (status) {
 
-        const harmonicStart =
-            start + 2.1;
+            status.textContent =
+                "🎶 Harmonicznie";
 
-
-        instrument.triggerAttackRelease(
-
-            firstNote,
-
-            1.4,
-
-            harmonicStart
-
-        );
+        }
 
 
-        instrument.triggerAttackRelease(
+        /*
+           Najpierw wciskamy PIERWSZY klawisz.
+        */
 
-            secondNote,
-
-            1.4,
-
-            harmonicStart
-
-        );
+        instrument.triggerAttack(first);
 
 
-        /* =============================================
-           KOMUNIKAT HARMONICZNIE
-        ============================================= */
+        /*
+           Natychmiast wciskamy DRUGI klawisz.
 
-        setTimeout(
-            () => {
+           Między nimi nie ma żadnego wait(),
+           więc brzmią razem.
+        */
 
-                if (status) {
-
-                    status.textContent =
-                        "🎶 Harmonicznie";
-
-                }
-
-            },
-
-            2050
-        );
+        instrument.triggerAttack(second);
 
 
-        /* =============================================
-           KONIEC
-        ============================================= */
+        /*
+           Trzymamy oba dźwięki przez 1,5 sekundy.
+        */
 
-        setTimeout(
-            () => {
+        await wait(1500);
 
-                if (status) {
 
-                    status.textContent =
-                        "";
+        /*
+           Puszczamy oba klawisze.
+        */
 
-                }
+        instrument.triggerRelease(first);
 
-            },
+        instrument.triggerRelease(second);
 
-            3900
-        );
+
+        if (status) {
+
+            status.textContent =
+                "✓ Melodycznie i harmonicznie";
+
+        }
+
+
+        await wait(1000);
+
+
+        if (status) {
+
+            status.textContent = "";
+
+        }
 
     }
 
@@ -914,7 +717,7 @@ async function playInterval(type) {
     catch(error) {
 
         console.error(
-            "Harmonix — błąd odtwarzania:",
+            "Harmonix — błąd:",
             error
         );
 
@@ -931,5 +734,5 @@ async function playInterval(type) {
 
 
 /* =========================================================
-   KONIEC APP.JS
+   KONIEC
 ========================================================= */
