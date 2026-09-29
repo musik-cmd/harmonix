@@ -6,13 +6,10 @@
 
 <title>Harmonix — Interwały złożone</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+<script src="https://unpkg.com/tone@14.8.49/build/Tone.js"></script>
 
 <style>
-
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -24,14 +21,14 @@ body {
 .page {
     max-width: 1000px;
     margin: auto;
-    padding: 40px 20px 80px;
+    padding: 40px 20px 70px;
 }
 
 .back {
     display: inline-block;
-    margin-bottom: 25px;
-    color: #6256a8;
+    margin-bottom: 20px;
     text-decoration: none;
+    color: #6256a8;
     font-weight: 700;
 }
 
@@ -50,14 +47,14 @@ h1 {
     background: white;
     padding: 24px;
     border-radius: 20px;
-    margin-bottom: 35px;
     line-height: 1.7;
+    margin-bottom: 35px;
     box-shadow: 0 8px 30px rgba(40,30,80,.08);
 }
 
 .section-title {
-    margin: 42px 0 18px;
     font-size: 28px;
+    margin: 40px 0 17px;
 }
 
 .card {
@@ -85,10 +82,11 @@ h1 {
     margin-bottom: 15px;
 }
 
-.staff-box svg {
+.staff {
     display: block;
+    width: 100%;
     min-width: 720px;
-    margin: auto;
+    height: 300px;
 }
 
 .tags {
@@ -106,8 +104,8 @@ h1 {
     font-weight: 700;
 }
 
-.listen {
-    border: 0;
+button {
+    border: none;
     border-radius: 12px;
     padding: 12px 20px;
     background: #252238;
@@ -117,13 +115,8 @@ h1 {
     cursor: pointer;
 }
 
-.listen:hover {
-    opacity: .9;
-}
-
-.listen:disabled {
-    opacity: .6;
-}
+button:hover { opacity: .9; }
+button:disabled { opacity: .6; }
 
 .status {
     margin-left: 12px;
@@ -132,26 +125,15 @@ h1 {
 }
 
 @media(max-width:650px) {
-
-    .page {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
-    h1 {
-        font-size: 33px;
-    }
-
-    .card {
-        padding: 17px;
-    }
+    h1 { font-size: 33px; }
+    .page { padding-left: 12px; padding-right: 12px; }
+    .card { padding: 17px; }
 
     .status {
         display: block;
         margin: 10px 0 0;
     }
 }
-
 </style>
 </head>
 
@@ -159,19 +141,17 @@ h1 {
 
 <div class="page">
 
-<a href="interwaly.html" class="back">
-← Wróć do interwałów
-</a>
+<a href="interwaly.html" class="back">← Wróć do interwałów</a>
 
 <h1>Interwały złożone</h1>
 
 <div class="subtitle">
-Interwały większe od oktawy — od nony do kwintdecymy.
+Od nony do kwintdecymy.
 </div>
 
 <div class="intro">
-
-<strong>Interwał złożony</strong> jest większy od oktawy.
+<strong>Interwały złożone</strong> są większe od oktawy.
+Powstają przez połączenie oktawy z interwałem prostym.
 
 <br><br>
 
@@ -182,285 +162,95 @@ Duodecyma = oktawa + kwinta<br>
 Tercdecyma = oktawa + seksta<br>
 Kwartdecyma = oktawa + septyma<br>
 Kwintdecyma = dwie oktawy
-
 </div>
 
 <div id="content"></div>
 
 </div>
 
-
 <script>
 
-/* =====================================================
+/* =========================================================
    DANE
-===================================================== */
+========================================================= */
 
-const sections = [
+const groups = [
 
 {
 title: "Nony",
 items: [
-
-{
-name: "Nona zmniejszona",
-bottom: "C4",
-top: "Dbb5",
-soundTop: "C5",
-semitones: 12
-},
-
-{
-name: "Nona mała",
-bottom: "C4",
-top: "Db5",
-soundTop: "Db5",
-semitones: 13
-},
-
-{
-name: "Nona wielka",
-bottom: "C4",
-top: "D5",
-soundTop: "D5",
-semitones: 14
-},
-
-{
-name: "Nona zwiększona",
-bottom: "C4",
-top: "D#5",
-soundTop: "D#5",
-semitones: 15
-}
-
+["Nona zmniejszona","Dbb5","C5",12],
+["Nona mała","Db5","Db5",13],
+["Nona wielka","D5","D5",14],
+["Nona zwiększona","D#5","D#5",15]
 ]
 },
-
 
 {
 title: "Decymy",
 items: [
-
-{
-name: "Decyma zmniejszona",
-bottom: "C4",
-top: "Ebb5",
-soundTop: "D5",
-semitones: 14
-},
-
-{
-name: "Decyma mała",
-bottom: "C4",
-top: "Eb5",
-soundTop: "Eb5",
-semitones: 15
-},
-
-{
-name: "Decyma wielka",
-bottom: "C4",
-top: "E5",
-soundTop: "E5",
-semitones: 16
-},
-
-{
-name: "Decyma zwiększona",
-bottom: "C4",
-top: "E#5",
-soundTop: "F5",
-semitones: 17
-}
-
+["Decyma zmniejszona","Ebb5","D5",14],
+["Decyma mała","Eb5","Eb5",15],
+["Decyma wielka","E5","E5",16],
+["Decyma zwiększona","E#5","F5",17]
 ]
 },
-
 
 {
 title: "Undecymy",
 items: [
-
-{
-name: "Undecyma zmniejszona",
-bottom: "C4",
-top: "Fb5",
-soundTop: "E5",
-semitones: 16
-},
-
-{
-name: "Undecyma czysta",
-bottom: "C4",
-top: "F5",
-soundTop: "F5",
-semitones: 17
-},
-
-{
-name: "Undecyma zwiększona",
-bottom: "C4",
-top: "F#5",
-soundTop: "F#5",
-semitones: 18
-}
-
+["Undecyma zmniejszona","Fb5","E5",16],
+["Undecyma czysta","F5","F5",17],
+["Undecyma zwiększona","F#5","F#5",18]
 ]
 },
-
 
 {
 title: "Duodecymy",
 items: [
-
-{
-name: "Duodecyma zmniejszona",
-bottom: "C4",
-top: "Gb5",
-soundTop: "Gb5",
-semitones: 18
-},
-
-{
-name: "Duodecyma czysta",
-bottom: "C4",
-top: "G5",
-soundTop: "G5",
-semitones: 19
-},
-
-{
-name: "Duodecyma zwiększona",
-bottom: "C4",
-top: "G#5",
-soundTop: "G#5",
-semitones: 20
-}
-
+["Duodecyma zmniejszona","Gb5","Gb5",18],
+["Duodecyma czysta","G5","G5",19],
+["Duodecyma zwiększona","G#5","G#5",20]
 ]
 },
-
 
 {
 title: "Tercdecymy",
 items: [
-
-{
-name: "Tercdecyma zmniejszona",
-bottom: "C4",
-top: "Abb5",
-soundTop: "G5",
-semitones: 19
-},
-
-{
-name: "Tercdecyma mała",
-bottom: "C4",
-top: "Ab5",
-soundTop: "Ab5",
-semitones: 20
-},
-
-{
-name: "Tercdecyma wielka",
-bottom: "C4",
-top: "A5",
-soundTop: "A5",
-semitones: 21
-},
-
-{
-name: "Tercdecyma zwiększona",
-bottom: "C4",
-top: "A#5",
-soundTop: "A#5",
-semitones: 22
-}
-
+["Tercdecyma zmniejszona","Abb5","G5",19],
+["Tercdecyma mała","Ab5","Ab5",20],
+["Tercdecyma wielka","A5","A5",21],
+["Tercdecyma zwiększona","A#5","A#5",22]
 ]
 },
-
 
 {
 title: "Kwartdecymy",
 items: [
-
-{
-name: "Kwartdecyma zmniejszona",
-bottom: "C4",
-top: "Bbb5",
-soundTop: "A5",
-semitones: 21
-},
-
-{
-name: "Kwartdecyma mała",
-bottom: "C4",
-top: "Bb5",
-soundTop: "Bb5",
-semitones: 22
-},
-
-{
-name: "Kwartdecyma wielka",
-bottom: "C4",
-top: "B5",
-soundTop: "B5",
-semitones: 23
-},
-
-{
-name: "Kwartdecyma zwiększona",
-bottom: "C4",
-top: "B#5",
-soundTop: "C6",
-semitones: 24
-}
-
+["Kwartdecyma zmniejszona","Bbb5","A5",21],
+["Kwartdecyma mała","Bb5","Bb5",22],
+["Kwartdecyma wielka","B5","B5",23],
+["Kwartdecyma zwiększona","B#5","C6",24]
 ]
 },
-
 
 {
 title: "Kwintdecymy",
 items: [
-
-{
-name: "Kwintdecyma zmniejszona",
-bottom: "C4",
-top: "Cb6",
-soundTop: "B5",
-semitones: 23
-},
-
-{
-name: "Kwintdecyma czysta",
-bottom: "C4",
-top: "C6",
-soundTop: "C6",
-semitones: 24
-},
-
-{
-name: "Kwintdecyma zwiększona",
-bottom: "C4",
-top: "C#6",
-soundTop: "C#6",
-semitones: 25
-}
-
+["Kwintdecyma zmniejszona","Cb6","B5",23],
+["Kwintdecyma czysta","C6","C6",24],
+["Kwintdecyma zwiększona","C#6","C#6",25]
 ]
 }
 
 ];
 
 
-/* =====================================================
-   NUTY
-===================================================== */
+/* =========================================================
+   ODCZYT NUT
+========================================================= */
 
-const letterNumber = {
+const letters = {
 C:0,
 D:1,
 E:2,
@@ -470,283 +260,109 @@ A:5,
 B:6
 };
 
-
 function parseNote(note) {
 
-const match =
-note.match(/^([A-G])(bb|b|#)?(\d)$/);
+const match = note.match(/^([A-G])(bb|b|#)?(\d)$/);
 
 if (!match) return null;
 
 return {
-
 letter: match[1],
-
-accidental:
-match[2] || "",
-
-octave:
-Number(match[3])
-
+accidental: match[2] || "",
+octave: Number(match[3])
 };
 
 }
 
 
 /*
-E4 = dolna linia klucza wiolinowego.
+E4 = dolna linia pięciolinii.
 
-C4 znajduje się więc
-na pierwszej linii dodanej pod pięciolinią.
+C4 = -2 stopnie względem E4,
+czyli pierwsza linia dodana pod pięciolinią.
+
+F5 = +8,
+czyli górna linia pięciolinii.
+
+C6 = +12,
+czyli druga linia dodana nad pięciolinią.
 */
 
-function diatonicStep(note) {
+function getStep(note) {
 
-const n =
-parseNote(note);
+const n = parseNote(note);
 
-const absolute =
+const noteNumber =
 n.octave * 7 +
-letterNumber[n.letter];
+letters[n.letter];
 
-const referenceE4 =
+const E4 =
 4 * 7 +
-letterNumber.E;
+letters.E;
 
-return absolute - referenceE4;
+return noteNumber - E4;
 
 }
 
 
-/* =====================================================
+/* =========================================================
    PIĘCIOLINIA
-===================================================== */
+========================================================= */
 
-function createStaff(bottom, top) {
+function staffSVG(topNote) {
 
-const WIDTH = 760;
-const HEIGHT = 310;
+const top = parseNote(topNote);
+const step = getStep(topNote);
 
-const STAFF_LEFT = 100;
-const STAFF_RIGHT = 710;
+/*
+Pięciolinia:
 
-const TOP_LINE = 115;
-const GAP = 16;
+F5 = y 90
+D5 = y 110
+B4 = y 130
+G4 = y 150
+E4 = y 170
 
-const BOTTOM_LINE =
-TOP_LINE + GAP * 4;
+Każdy stopień = 10 px.
+*/
 
+const bottomLineY = 170;
 
-const svgNS =
-"http://www.w3.org/2000/svg";
+const firstY = 190; // C4
 
+const secondY =
+bottomLineY - step * 10;
 
-const svg =
-document.createElementNS(
-svgNS,
-"svg"
-);
-
-svg.setAttribute(
-"viewBox",
-`0 0 ${WIDTH} ${HEIGHT}`
-);
-
-svg.setAttribute(
-"width",
-"100%"
-);
-
-svg.setAttribute(
-"height",
-HEIGHT
-);
+const accidental =
+getAccidentalSymbol(top.accidental);
 
 
-/* -------------------
-   5 LINII
-------------------- */
-
-for (
-let i = 0;
-i < 5;
-i++
-) {
-
-const y =
-TOP_LINE + i * GAP;
-
-const line =
-document.createElementNS(
-svgNS,
-"line"
-);
-
-line.setAttribute(
-"x1",
-STAFF_LEFT
-);
-
-line.setAttribute(
-"x2",
-STAFF_RIGHT
-);
-
-line.setAttribute(
-"y1",
-y
-);
-
-line.setAttribute(
-"y2",
-y
-);
-
-line.setAttribute(
-"stroke",
-"#252238"
-);
-
-line.setAttribute(
-"stroke-width",
-"1.6"
-);
-
-svg.appendChild(line);
-
-}
-
-
-/* -------------------
-   KLUCZ
-------------------- */
-
-const clef =
-document.createElementNS(
-svgNS,
-"text"
-);
-
-clef.textContent = "𝄞";
-
-clef.setAttribute(
-"x",
-35
-);
-
-clef.setAttribute(
-"y",
-180
-);
-
-clef.setAttribute(
-"font-size",
-"92"
-);
-
-clef.setAttribute(
-"font-family",
-"serif"
-);
-
-svg.appendChild(clef);
-
-
-/* -------------------
-   NUTY
-------------------- */
-
-drawNote(
-svg,
-bottom,
-285,
-BOTTOM_LINE,
-GAP
-);
-
-drawNote(
-svg,
-top,
-570,
-BOTTOM_LINE,
-GAP
-);
-
-
-return svg;
-
-}
-
-
-/* =====================================================
-   RYSOWANIE JEDNEJ NUTY
-===================================================== */
-
-function drawNote(
-svg,
-note,
-x,
-bottomLine,
-gap
-) {
-
-const svgNS =
-"http://www.w3.org/2000/svg";
-
-
-const parsed =
-parseNote(note);
-
-
-const step =
-diatonicStep(note);
+let ledgerLines = "";
 
 
 /*
-Każdy kolejny stopień:
-połowa odległości między liniami.
+C4 — pierwsza linia dodana pod pięciolinią.
 */
 
-const y =
-bottomLine -
-step * (gap / 2);
+ledgerLines += `
+<line
+x1="235"
+y1="190"
+x2="285"
+y2="190"
+stroke="#252238"
+stroke-width="2"
+/>
+`;
 
 
-/* =================================================
-   LINIE DODANE
+/*
+Linie dodane NAD pięciolinią.
 
-   E4 = step 0
-   C4 = step -2
-
-   F5 = step 8
-   A5 = step 10
-   C6 = step 12
-================================================= */
-
-
-/* pod pięciolinią */
-
-if (step <= -2) {
-
-for (
-let ledgerStep = -2;
-ledgerStep >= step;
-ledgerStep -= 2
-) {
-
-drawLedger(
-svg,
-x,
-bottomLine -
-ledgerStep * (gap / 2)
-);
-
-}
-
-}
-
-
-/* nad pięciolinią */
+F5 = step 8 = górna linia.
+A5 = step 10 = pierwsza dodana.
+C6 = step 12 = druga dodana.
+*/
 
 if (step >= 10) {
 
@@ -756,551 +372,388 @@ ledgerStep <= step;
 ledgerStep += 2
 ) {
 
-drawLedger(
-svg,
-x,
-bottomLine -
-ledgerStep * (gap / 2)
-);
+const y =
+bottomLineY -
+ledgerStep * 10;
+
+ledgerLines += `
+<line
+x1="500"
+y1="${y}"
+x2="550"
+y2="${y}"
+stroke="#252238"
+stroke-width="2"
+/>
+`;
 
 }
 
 }
 
 
-/* =================================================
-   ZNAK CHROMATYCZNY
-================================================= */
+return `
 
-if (
-parsed.accidental !== ""
-) {
+<svg
+class="staff"
+viewBox="0 0 760 300"
+xmlns="http://www.w3.org/2000/svg"
+>
 
-const accidental =
-document.createElementNS(
-svgNS,
-"text"
-);
+<!-- pięciolinia -->
 
+<line x1="90" y1="90" x2="690" y2="90"
+stroke="#252238" stroke-width="2"/>
 
-let symbol = "";
+<line x1="90" y1="110" x2="690" y2="110"
+stroke="#252238" stroke-width="2"/>
 
+<line x1="90" y1="130" x2="690" y2="130"
+stroke="#252238" stroke-width="2"/>
 
-if (
-parsed.accidental === "b"
-) {
+<line x1="90" y1="150" x2="690" y2="150"
+stroke="#252238" stroke-width="2"/>
 
-symbol = "♭";
-
-}
-
-
-if (
-parsed.accidental === "bb"
-) {
-
-symbol = "𝄫";
-
-}
+<line x1="90" y1="170" x2="690" y2="170"
+stroke="#252238" stroke-width="2"/>
 
 
-if (
-parsed.accidental === "#"
-) {
+<!-- klucz wiolinowy -->
 
-symbol = "♯";
-
-}
-
-
-accidental.textContent =
-symbol;
+<text
+x="105"
+y="174"
+font-size="92"
+font-family="serif"
+>𝄞</text>
 
 
-accidental.setAttribute(
-"x",
-x - 38
-);
+${ledgerLines}
 
 
-accidental.setAttribute(
-"y",
-y + 9
-);
+<!-- C4 -->
+
+<ellipse
+cx="260"
+cy="${firstY}"
+rx="12"
+ry="8"
+fill="#252238"
+transform="rotate(-18 260 ${firstY})"
+/>
+
+<line
+x1="270"
+y1="${firstY}"
+x2="270"
+y2="${firstY - 55}"
+stroke="#252238"
+stroke-width="2.5"
+/>
 
 
-accidental.setAttribute(
-"font-size",
-"29"
-);
+<!-- znak chromatyczny drugiej nuty -->
+
+${accidental ? `
+<text
+x="485"
+y="${secondY + 10}"
+font-size="31"
+font-family="serif"
+>${accidental}</text>
+` : ""}
 
 
-accidental.setAttribute(
-"font-family",
-"serif"
-);
+<!-- druga nuta -->
+
+<ellipse
+cx="525"
+cy="${secondY}"
+rx="12"
+ry="8"
+fill="#252238"
+transform="rotate(-18 525 ${secondY})"
+/>
 
 
-svg.appendChild(
-accidental
-);
+<!-- laseczka -->
 
-}
+<line
+x1="515"
+y1="${secondY}"
+x2="515"
+y2="${secondY + 55}"
+stroke="#252238"
+stroke-width="2.5"
+/>
 
+</svg>
 
-/* =================================================
-   GŁÓWKA NUTY
-================================================= */
-
-const head =
-document.createElementNS(
-svgNS,
-"ellipse"
-);
-
-
-head.setAttribute(
-"cx",
-x
-);
-
-head.setAttribute(
-"cy",
-y
-);
-
-head.setAttribute(
-"rx",
-11
-);
-
-head.setAttribute(
-"ry",
-7.5
-);
-
-head.setAttribute(
-"fill",
-"#252238"
-);
-
-head.setAttribute(
-"transform",
-`rotate(-18 ${x} ${y})`
-);
-
-svg.appendChild(head);
-
-
-/* =================================================
-   LASECZKA
-
-   Przy wysokich nutach kierujemy ją w dół,
-   żeby zapis wyglądał naturalniej.
-================================================= */
-
-const stem =
-document.createElementNS(
-svgNS,
-"line"
-);
-
-
-if (step >= 4) {
-
-stem.setAttribute(
-"x1",
-x - 9
-);
-
-stem.setAttribute(
-"x2",
-x - 9
-);
-
-stem.setAttribute(
-"y1",
-y
-);
-
-stem.setAttribute(
-"y2",
-y + 48
-);
-
-}
-
-else {
-
-stem.setAttribute(
-"x1",
-x + 9
-);
-
-stem.setAttribute(
-"x2",
-x + 9
-);
-
-stem.setAttribute(
-"y1",
-y
-);
-
-stem.setAttribute(
-"y2",
-y - 48
-);
+`;
 
 }
 
 
-stem.setAttribute(
-"stroke",
-"#252238"
-);
+function getAccidentalSymbol(accidental) {
 
-stem.setAttribute(
-"stroke-width",
-"2"
-);
+if (accidental === "b") return "♭";
+if (accidental === "bb") return "𝄫";
+if (accidental === "#") return "♯";
 
-svg.appendChild(stem);
+return "";
 
 }
 
 
-/* =====================================================
-   LINIA DODANA
-===================================================== */
-
-function drawLedger(
-svg,
-x,
-y
-) {
-
-const svgNS =
-"http://www.w3.org/2000/svg";
-
-
-const line =
-document.createElementNS(
-svgNS,
-"line"
-);
-
-
-line.setAttribute(
-"x1",
-x - 22
-);
-
-line.setAttribute(
-"x2",
-x + 22
-);
-
-line.setAttribute(
-"y1",
-y
-);
-
-line.setAttribute(
-"y2",
-y
-);
-
-line.setAttribute(
-"stroke",
-"#252238"
-);
-
-line.setAttribute(
-"stroke-width",
-"1.7"
-);
-
-
-svg.appendChild(line);
-
-}
-
-
-/* =====================================================
-   WYŚWIETLANA NAZWA NUTY
-===================================================== */
-
-function prettyNote(note) {
+function pretty(note) {
 
 return note
-
-.replace(
-"bb",
-"𝄫"
-)
-
-.replace(
-"b",
-"♭"
-)
-
-.replace(
-"#",
-"♯"
-);
+.replace("bb","𝄫")
+.replace("b","♭")
+.replace("#","♯");
 
 }
 
 
-/* =====================================================
-   TWORZENIE STRONY
-===================================================== */
+/* =========================================================
+   GENEROWANIE STRONY
+========================================================= */
 
 const content =
-document.getElementById(
-"content"
-);
+document.getElementById("content");
 
 
-sections.forEach(
-section => {
+groups.forEach(group => {
 
 const heading =
-document.createElement(
-"h2"
-);
+document.createElement("h2");
 
 heading.className =
 "section-title";
 
 heading.textContent =
-section.title;
+group.title;
 
-content.appendChild(
-heading
-);
+content.appendChild(heading);
 
 
-section.items.forEach(
-interval => {
+group.items.forEach(item => {
+
+const [
+name,
+writtenTop,
+soundTop,
+semitones
+] = item;
+
 
 const card =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-card.className =
-"card";
+card.className = "card";
 
 
-/* tytuł */
+card.innerHTML = `
 
-const h3 =
-document.createElement(
-"h3"
-);
+<h3>${name}</h3>
 
-h3.textContent =
-interval.name;
+<div class="description">
+${pretty("C4")} – ${pretty(writtenTop)}
+</div>
 
-card.appendChild(h3);
+<div class="staff-box">
+${staffSVG(writtenTop)}
+</div>
 
+<div class="tags">
 
-/* opis */
+<div class="tag">
+Zapis: ${pretty("C4")} – ${pretty(writtenTop)}
+</div>
 
-const description =
-document.createElement(
-"div"
-);
+<div class="tag">
+${semitones} półtonów
+</div>
 
-description.className =
-"description";
+</div>
 
-description.textContent =
-`${prettyNote(interval.bottom)} – ${prettyNote(interval.top)} • ${interval.semitones} półtonów`;
+`;
 
-card.appendChild(
-description
-);
-
-
-/* pięciolinia */
-
-const staffBox =
-document.createElement(
-"div"
-);
-
-staffBox.className =
-"staff-box";
-
-
-staffBox.appendChild(
-
-createStaff(
-interval.bottom,
-interval.top
-)
-
-);
-
-
-card.appendChild(
-staffBox
-);
-
-
-/* informacje */
-
-const tags =
-document.createElement(
-"div"
-);
-
-tags.className =
-"tags";
-
-
-const tag1 =
-document.createElement(
-"div"
-);
-
-tag1.className =
-"tag";
-
-tag1.textContent =
-`Zapis: ${prettyNote(interval.bottom)} – ${prettyNote(interval.top)}`;
-
-
-const tag2 =
-document.createElement(
-"div"
-);
-
-tag2.className =
-"tag";
-
-tag2.textContent =
-`${interval.semitones} półtonów`;
-
-
-tags.appendChild(tag1);
-tags.appendChild(tag2);
-
-card.appendChild(tags);
-
-
-/* przycisk */
 
 const button =
-document.createElement(
-"button"
-);
-
-button.className =
-"listen";
+document.createElement("button");
 
 button.textContent =
 "▶ Posłuchaj";
 
 
 const status =
-document.createElement(
-"span"
-);
+document.createElement("span");
 
 status.className =
 "status";
 
 
-button.addEventListener(
-"click",
-() => {
-
-playInterval(
-interval.bottom,
-interval.soundTop,
+button.onclick =
+() => playInterval(
+soundTop,
 button,
 status
 );
 
-}
-);
 
+card.appendChild(button);
+card.appendChild(status);
 
-card.appendChild(
-button
-);
-
-card.appendChild(
-status
-);
-
-
-content.appendChild(
-card
-);
+content.appendChild(card);
 
 });
 
 });
 
 
-/* =====================================================
+/* =========================================================
    PIANINO
-===================================================== */
+========================================================= */
 
-let piano = null;
-let pianoReady = false;
-
-
-async function preparePiano() {
-
-if (
-piano &&
-pianoReady
-) {
-
-return piano;
-
-}
+let piano;
 
 
-if (!piano) {
+function createPiano() {
+
+if (piano) return piano;
+
 
 piano =
 new Tone.Sampler({
 
 urls: {
 
-A0: "A0.mp3",
-
-C1: "C1.mp3",
-
-"D#1": "Ds1.mp3",
-
-"F#1": "Fs1.mp3",
-
-A1: "A1.mp3",
-
-C2: "C2.mp3",
-
-"D#2": "Ds2.mp3",
-
-"F#2": "Fs2.mp3",
-
-A2: "A2.mp3",
-
-C3: "C3.mp3",
-
-"D#3": "Ds3.mp3",
-
-"F#3": "Fs3.mp3",
-
-A3: "A3.mp3",
-
 C4: "C4.mp3",
+"D#4": "Ds4.mp3",
+"F#4": "Fs4.mp3",
+A4: "A4.mp3",
 
-"D
+C5: "C5.mp3",
+"D#5": "Ds5.mp3",
+"F#5": "Fs5.mp3",
+A5: "A5.mp3",
+
+C6: "C6.mp3",
+"D#6": "Ds6.mp3"
+
+},
+
+baseUrl:
+"https://tonejs.github.io/audio/salamander/",
+
+release: 1
+
+}).toDestination();
+
+
+return piano;
+
+}
+
+
+/* =========================================================
+   DŹWIĘK
+========================================================= */
+
+async function playInterval(
+top,
+button,
+status
+) {
+
+try {
+
+button.disabled = true;
+
+status.textContent =
+"Ładowanie pianina…";
+
+
+await Tone.start();
+
+
+const instrument =
+createPiano();
+
+
+await Tone.loaded();
+
+
+const now =
+Tone.now();
+
+
+/*
+Najpierw C4
+*/
+
+instrument.triggerAttackRelease(
+"C4",
+"2n",
+now
+);
+
+
+/*
+Potem właściwa górna nuta
+*/
+
+instrument.triggerAttackRelease(
+top,
+"2n",
+now + 0.9
+);
+
+
+/*
+Na końcu oba razem
+*/
+
+instrument.triggerAttackRelease(
+["C4", top],
+"2n",
+now + 2
+);
+
+
+status.textContent =
+"♪ Odtwarzanie";
+
+
+setTimeout(
+() => {
+
+status.textContent = "";
+
+button.disabled = false;
+
+},
+3500
+);
+
+
+}
+
+catch(error) {
+
+console.error(error);
+
+status.textContent =
+"Błąd odtwarzania.";
+
+button.disabled = false;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
