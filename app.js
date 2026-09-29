@@ -3,7 +3,7 @@ let pianoLoaded = false;
 
 
 /* =====================================================
-   ROZWIJANIE SEKCJI
+   OTWIERANIE SEKCJI
 ===================================================== */
 
 function toggleInterval(type, button) {
@@ -16,7 +16,6 @@ function toggleInterval(type, button) {
     });
 
     if (!wasOpen) {
-
         item.classList.add("open");
 
         setTimeout(() => {
@@ -34,43 +33,33 @@ const intervals = {
 
     mala: {
         label: "Sekunda mała",
-
         treble: ["c/4", "db/4"],
         bass: ["c/3", "db/3"],
-
         piano: ["C4", "C#4"]
     },
 
     wielka: {
         label: "Sekunda wielka",
-
         treble: ["c/4", "d/4"],
         bass: ["c/3", "d/3"],
-
         piano: ["C4", "D4"]
     },
 
     zwiekszona: {
         label: "Sekunda zwiększona",
-
         treble: ["c/4", "d#/4"],
         bass: ["c/3", "d#/3"],
-
         piano: ["C4", "D#4"]
     },
 
     zmniejszona: {
         label: "Sekunda zmniejszona",
 
-        /* C - D podwójnie obniżone */
+        // MUSI BYĆ C - D PODWÓJNIE OBNIŻONE
         treble: ["c/4", "dbb/4"],
         bass: ["c/3", "dbb/3"],
 
-        /*
-           Sekunda zmniejszona ma 0 półtonów,
-           więc brzmieniowo druga nuta jest tym samym
-           dźwiękiem co C.
-        */
+        // Dbb brzmi enharmonicznie jak C
         piano: ["C4", "C4"]
     }
 
@@ -100,12 +89,65 @@ function drawInterval(type) {
 
 
 /* =====================================================
+   POMOCNICZE
+===================================================== */
+
+const letterValue = {
+    c: 0,
+    d: 1,
+    e: 2,
+    f: 3,
+    g: 4,
+    a: 5,
+    b: 6
+};
+
+
+/*
+   Zwraca pozycję nuty względem dolnej linii pięciolinii.
+
+   Klucz wiolinowy:
+   E4 = dolna linia
+
+   Klucz basowy:
+   G2 = dolna linia
+*/
+
+function getStep(note, clef) {
+
+    const [rawPitch, octaveText] = note.toLowerCase().split("/");
+
+    const letter = rawPitch.charAt(0);
+    const octave = Number(octaveText);
+
+    const absolute =
+        octave * 7 + letterValue[letter];
+
+    let reference;
+
+    if (clef === "treble") {
+
+        reference =
+            4 * 7 + letterValue.e;
+
+    } else {
+
+        reference =
+            2 * 7 + letterValue.g;
+    }
+
+    return absolute - reference;
+}
+
+
+/* =====================================================
    RYSOWANIE PIĘCIOLINII
 ===================================================== */
 
 function drawStaff(containerId, clef, notes) {
 
-    const container = document.getElementById(containerId);
+    const container =
+        document.getElementById(containerId);
 
     if (!container) {
         return;
@@ -115,13 +157,13 @@ function drawStaff(containerId, clef, notes) {
 
 
     const width = 700;
-    const height = 180;
+    const height = 200;
 
-    const startX = 90;
-    const endX = 640;
+    const staffLeft = 100;
+    const staffRight = 650;
 
-    const staffTop = 55;
-    const lineGap = 14;
+    const staffTop = 65;
+    const gap = 14;
 
 
     let svg = `
@@ -139,18 +181,19 @@ function drawStaff(containerId, clef, notes) {
 
 
     /* =================================================
-       PIĘĆ LINII
+       PIĘCIOLINIA
     ================================================= */
 
     for (let i = 0; i < 5; i++) {
 
-        const y = staffTop + i * lineGap;
+        const y =
+            staffTop + i * gap;
 
         svg += `
             <line
-                x1="${startX}"
+                x1="${staffLeft}"
                 y1="${y}"
-                x2="${endX}"
+                x2="${staffRight}"
                 y2="${y}"
                 stroke="#252238"
                 stroke-width="1.5"
@@ -168,8 +211,8 @@ function drawStaff(containerId, clef, notes) {
         svg += `
             <text
                 x="25"
-                y="115"
-                font-size="75"
+                y="128"
+                font-size="82"
                 font-family="serif"
                 fill="#252238"
             >𝄞</text>
@@ -180,8 +223,8 @@ function drawStaff(containerId, clef, notes) {
         svg += `
             <text
                 x="25"
-                y="106"
-                font-size="58"
+                y="116"
+                font-size="62"
                 font-family="serif"
                 fill="#252238"
             >𝄢</text>
@@ -190,168 +233,137 @@ function drawStaff(containerId, clef, notes) {
 
 
     /* =================================================
-       POZYCJE NUT
+       NUTY
     ================================================= */
 
-    const notePositions = [320, 470];
+    const positions = [330, 480];
 
 
-    notes.forEach((noteName, index) => {
+    notes.forEach((note, index) => {
 
-        const parts = noteName.split("/");
+        const [rawPitch] =
+            note.toLowerCase().split("/");
 
-        const pitch = parts[0].toLowerCase();
-        const octave = Number(parts[1]);
+        const x =
+            positions[index];
 
-        const letter = pitch.charAt(0);
+        const step =
+            getStep(note, clef);
 
 
-        /* ---------------------------------------------
-           ZNAK CHROMATYCZNY
-        --------------------------------------------- */
+        /*
+           Dolna linia pięciolinii:
+           step = 0
+
+           Pierwsza przestrzeń:
+           step = 1
+
+           Pierwsza linia:
+           step = 2
+
+           itd.
+        */
+
+        const y =
+            staffTop +
+            4 * gap -
+            step * (gap / 2);
+
+
+        /* =================================================
+           LINIE DODATKOWE POD PIĘCIOLINIĄ
+        ================================================= */
+
+        if (step < 0) {
+
+            /*
+               Linie dodatkowe występują na pozycjach:
+               -2, -4, -6...
+            */
+
+            for (
+                let ledgerStep = -2;
+                ledgerStep >= step;
+                ledgerStep -= 2
+            ) {
+
+                const ledgerY =
+                    staffTop +
+                    4 * gap -
+                    ledgerStep * (gap / 2);
+
+                svg += `
+                    <line
+                        x1="${x - 18}"
+                        y1="${ledgerY}"
+                        x2="${x + 18}"
+                        y2="${ledgerY}"
+                        stroke="#252238"
+                        stroke-width="1.5"
+                    />
+                `;
+            }
+        }
+
+
+        /* =================================================
+           LINIE DODATKOWE NAD PIĘCIOLINIĄ
+        ================================================= */
+
+        if (step > 8) {
+
+            for (
+                let ledgerStep = 10;
+                ledgerStep <= step;
+                ledgerStep += 2
+            ) {
+
+                const ledgerY =
+                    staffTop +
+                    4 * gap -
+                    ledgerStep * (gap / 2);
+
+                svg += `
+                    <line
+                        x1="${x - 18}"
+                        y1="${ledgerY}"
+                        x2="${x + 18}"
+                        y2="${ledgerY}"
+                        stroke="#252238"
+                        stroke-width="1.5"
+                    />
+                `;
+            }
+        }
+
+
+        /* =================================================
+           ZNAKI CHROMATYCZNE
+        ================================================= */
 
         let accidental = "";
 
-        if (pitch.includes("bb")) {
+
+        if (rawPitch.includes("bb")) {
 
             accidental = "𝄫";
 
-        } else if (pitch.includes("b")) {
+        } else if (rawPitch.includes("b")) {
 
             accidental = "♭";
 
-        } else if (pitch.includes("#")) {
+        } else if (rawPitch.includes("#")) {
 
             accidental = "♯";
         }
 
 
-        /* ---------------------------------------------
-           POZYCJE LITER
-        --------------------------------------------- */
-
-        const diatonic = {
-
-            c: 0,
-            d: 1,
-            e: 2,
-            f: 3,
-            g: 4,
-            a: 5,
-            b: 6
-
-        };
-
-
-        const base = diatonic[letter];
-
-        const absolutePosition =
-            octave * 7 + base;
-
-
-        let reference;
-
-
-        if (clef === "treble") {
-
-            /*
-               E4 = dolna linia pięciolinii
-            */
-
-            reference =
-                4 * 7 + diatonic.e;
-
-        } else {
-
-            /*
-               G2 = dolna linia pięciolinii
-            */
-
-            reference =
-                2 * 7 + diatonic.g;
-        }
-
-
-        const step =
-            absolutePosition - reference;
-
-
-        const x =
-            notePositions[index];
-
-
-        const y =
-            staffTop +
-            4 * lineGap -
-            step * (lineGap / 2);
-
-
-        /* =================================================
-           LINIE DODATKOWE
-        ================================================= */
-
-        /*
-           Jeśli nuta wychodzi poza pięciolinię,
-           rysujemy odpowiednie linie dodatkowe.
-        */
-
-        if (step < 0) {
-
-            for (let s = -2; s >= step; s -= 2) {
-
-                const ledgerY =
-                    staffTop +
-                    4 * lineGap -
-                    s * (lineGap / 2);
-
-                svg += `
-                    <line
-                        x1="${x - 16}"
-                        y1="${ledgerY}"
-                        x2="${x + 16}"
-                        y2="${ledgerY}"
-                        stroke="#252238"
-                        stroke-width="1.5"
-                    />
-                `;
-            }
-
-        }
-
-
-        if (step > 8) {
-
-            for (let s = 10; s <= step; s += 2) {
-
-                const ledgerY =
-                    staffTop +
-                    4 * lineGap -
-                    s * (lineGap / 2);
-
-                svg += `
-                    <line
-                        x1="${x - 16}"
-                        y1="${ledgerY}"
-                        x2="${x + 16}"
-                        y2="${ledgerY}"
-                        stroke="#252238"
-                        stroke-width="1.5"
-                    />
-                `;
-            }
-        }
-
-
-        /* =================================================
-           ZNAK PRZY NUCIE
-        ================================================= */
-
         if (accidental) {
 
             svg += `
                 <text
-                    x="${x - 32}"
-                    y="${y + 7}"
+                    x="${x - 34}"
+                    y="${y + 8}"
                     font-size="25"
                     font-family="serif"
                     fill="#252238"
@@ -390,7 +402,6 @@ function drawStaff(containerId, clef, notes) {
                 stroke-width="2"
             />
         `;
-
     });
 
 
@@ -404,7 +415,7 @@ function drawStaff(containerId, clef, notes) {
 
 
 /* =====================================================
-   PRAWDZIWE PIANINO
+   PIANINO
 ===================================================== */
 
 async function createPiano() {
@@ -412,7 +423,6 @@ async function createPiano() {
     if (pianoLoaded) {
         return;
     }
-
 
     try {
 
@@ -452,7 +462,6 @@ async function createPiano() {
 
                 A6: "A6.mp3",
                 C7: "C7.mp3"
-
             },
 
             release: 1,
@@ -485,14 +494,16 @@ async function createPiano() {
 
 async function playInterval(type) {
 
-    const data = intervals[type];
+    const data =
+        intervals[type];
 
     const status =
-        document.getElementById(`${type}-status`);
+        document.getElementById(
+            `${type}-status`
+        );
 
 
     if (status) {
-
         status.textContent =
             "Ładowanie pianina…";
     }
@@ -506,7 +517,6 @@ async function playInterval(type) {
     if (!piano) {
 
         if (status) {
-
             status.textContent =
                 "Nie udało się załadować dźwięku.";
         }
@@ -516,7 +526,6 @@ async function playInterval(type) {
 
 
     if (status) {
-
         status.textContent =
             "▶ Odtwarzanie…";
     }
@@ -541,11 +550,9 @@ async function playInterval(type) {
     setTimeout(() => {
 
         if (status) {
-
             status.textContent =
                 "Gotowe";
         }
 
     }, 2200);
-
 }
