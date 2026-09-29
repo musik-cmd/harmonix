@@ -3,104 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmonix — Sekundy</title>
+    <title>Sekundy — Harmonix</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <main class="hero">
-        <div class="container">
+<section class="hero">
 
-            <div class="logo">Sekundy</div>
+    <div class="container">
 
-            <div class="subtitle">
-                Drugi stopień interwału — poznaj jego rodzaje i brzmienie.
-            </div>
+        <div class="logo">Sekundy</div>
 
-            <div class="cards">
+        <div class="subtitle">
+            Drugi stopień interwału — poznaj wszystkie jego rodzaje.
+        </div>
 
-                <div class="card">
-                    <div class="icon">♬</div>
-                    <h2>Sekunda mała</h2>
-                    <p>
-                        Obejmuje dwa kolejne stopnie diatoniczne.
-                        Ma odległość jednego półtonu.
-                    </p>
-                </div>
 
-                <div class="card">
-                    <div class="icon">♬</div>
-                    <h2>Sekunda wielka</h2>
-                    <p>
-                        Obejmuje dwa kolejne stopnie diatoniczne.
-                        Ma odległość dwóch półtonów, czyli całego tonu.
-                    </p>
-                </div>
+        <!-- SEKUNDA MAŁA -->
 
-                <div class="card">
-                    <div class="icon">♬</div>
-                    <h2>Sekunda zwiększona</h2>
-                    <p>
-                        Powstaje przez zwiększenie sekundy wielkiej
-                        o półton.
-                    </p>
-                </div>
+        <div class="card">
 
-                <div class="card">
-                    <div class="icon">♬</div>
-                    <h2>Sekunda zmniejszona</h2>
-                    <p>
-                        Powstaje przez zmniejszenie sekundy małej
-                        o półton.
-                    </p>
-                </div>
+            <div class="icon">♭</div>
 
-            </div>
-<div class="card" style="margin-top: 25px;">
-    <div class="icon">🎼</div>
-    <h2>Przykład na pięciolinii</h2>
-    <p>Sekunda mała — przykład w kluczu wiolinowym.</p>
+            <h2>Sekunda mała</h2>
 
-    <div id="interwal-wiolinowy"></div>
+            <p>
+                Odległość jednego stopnia diatonicznego,
+                obejmująca 1 półton.
+            </p>
 
-    <button onclick="pokazInterwal('wiolinowy')">
-        Pokaż przykład
-    </button>
-</div>
+            <button onclick="pokazInterwal('wiolinowy', 'mala')">
+                Pokaż na pięciolinii
+            </button>
 
-<div class="card" style="margin-top: 25px;">
-    <div class="icon">🎼</div>
-    <h2>Przykład na pięciolinii</h2>
-    <p>Sekunda mała — przykład w kluczu basowym.</p>
-
-    <div id="interwal-basowy"></div>
-
-    <button onclick="pokazInterwal('basowy')">
-        Pokaż przykład
-    </button>
-</div>            <div class="card" style="margin-top: 25px;">
-                <div class="icon">🎧</div>
-                <h2>Posłuchaj</h2>
-                <p>
-                    W tej części Harmonix będziemy mogli odtwarzać
-                    poszczególne rodzaje sekund i porównywać ich brzmienie.
-                </p>
-            </div>
-
-            <div class="card" style="margin-top: 25px;">
-                <div class="icon">✏️</div>
-                <h2>Ćwiczenie</h2>
-                <p>
-                    Później pojawią się zadania, w których rozpoznasz
-                    rodzaj sekundy na pięciolinii i ze słuchu.
-                </p>
-            </div>
+            <div id="interwal-wiolinowy"></div>
 
         </div>
-    </main>
-<script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.3/build/vexflow.js"></script>
-    
-  <script src="https://musik-cmd.github.io/harmonix/app.js"></script>
+
+
+        <!-- SEKUNDA WIELKA -->
+
+        <div class="card" style="margin-top: 20px;">
+
+            <div class="icon">2</div>
+
+            <h2>Sekunda wielka</h2>
+
+            <p>
+                Odległość jednego stopnia diatonicznego,
+                obejmująca 2 półtony.
+            </p>
+
+            <button onclick="pokazInterwal('wiolinowy', 'wielka')">
+                Pokaż na pięciolinii
+            </button>
+
+            <div id="sekunda-wielka"></div>
+
+        </div>
+
+
+        <!-- SEKUNDA ZWIĘKSZONA -->
+
+        <div class="card" style="margin-top: 20px;">
+
+            <div class="icon">♯</div>
+
+            <h2>Sekunda zwiększona</h2>
+
+            <p>
+                Sekunda wielka powiększona o półton.
+                Obejmuje 3 półtony.
+            </p>
+
+            <button onclick="pokazInterwal('wiolinowy', 'zwiekszona')">
+                Pokaż na pięciolinii
+            </button>
+
+            <div id="sekunda-zwiekszona"></div>
+
+        </div>
+
+
+        <!-- SEKUNDA ZMNIEJSZONA -->
+
+        <div class="card" style="margin-top: 20px;">
+
+            <div class="icon">♭♭</div>
+
+            <h2>Sekunda zmniejszona</h2>
+
+            <p>
+                Sekunda mała zmniejszona o półton.
+                W stroju równomiernie temperowanym
+                brzmi jak pryma.
+            </p>
+
+            <button onclick="pokazInterwal('wiolinowy', 'zmniejszona')">
+                Pokaż na pięciolinii
+            </button>
+
+            <div id="sekunda-zmniejszona"></div>
+
+        </div>
+
+
+        <!-- KLUCZ BASOWY -->
+
+        <div class="card" style="margin-top: 30px;">
+
+            <div class="icon">🎼</div>
+
+            <h2>Klucz basowy</h2>
+
+            <p>
+                Te same rodzaje sekund możemy zapisywać
+                również w kluczu basowym.
+            </p>
+
+            <button onclick="pokazInterwal('basowy', 'mala')">
+                Pokaż sekundę małą
+            </button>
+
+            <button onclick="pokazInterwal('basowy', 'wielka')">
+                Pokaż sekundę wielką
+            </button>
+
+        </div>
+
+
+        <!-- ODSŁUCH -->
+
+        <div class="card" style="margin-top: 30px;">
+
+            <div class="icon">🎧</div>
+
+            <h2>Posłuchaj</h2>
+
+            <p>
+                Posłuchaj brzmienia sekundy małej.
+            </p>
+
+            <button onclick="zagrajSekundeMala()">
+                ▶ Odtwórz
+            </button>
+
+        </div>
+
+
+        <div style="margin-top: 35px;">
+
+            <a href="interwaly.html">
+                ← Wróć do interwałów
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script src="https://musik-cmd.github.io/harmonix/app.js"></script>
+
 </body>
 </html>
