@@ -2,9 +2,9 @@ let piano = null;
 let pianoLoaded = false;
 
 
-/* =========================
+/* =====================================================
    ROZWIJANIE SEKCJI
-========================= */
+===================================================== */
 
 function toggleInterval(type, button) {
 
@@ -16,6 +16,7 @@ function toggleInterval(type, button) {
     });
 
     if (!wasOpen) {
+
         item.classList.add("open");
 
         setTimeout(() => {
@@ -25,46 +26,54 @@ function toggleInterval(type, button) {
 }
 
 
-/* =========================
+/* =====================================================
    DANE INTERWAŁÓW
-========================= */
+===================================================== */
 
 const intervals = {
 
     mala: {
         label: "Sekunda mała",
-        treble: ["C/4", "Db/4"],
-        bass: ["C/3", "Db/3"],
+
+        treble: ["c/4", "db/4"],
+        bass: ["c/3", "db/3"],
+
         piano: ["C4", "C#4"]
     },
 
     wielka: {
         label: "Sekunda wielka",
-        treble: ["C/4", "D/4"],
-        bass: ["C/3", "D/3"],
+
+        treble: ["c/4", "d/4"],
+        bass: ["c/3", "d/3"],
+
         piano: ["C4", "D4"]
     },
 
     zwiekszona: {
         label: "Sekunda zwiększona",
-        treble: ["C/4", "D#/4"],
-        bass: ["C/3", "D#/3"],
+
+        treble: ["c/4", "d#/4"],
+        bass: ["c/3", "d#/3"],
+
         piano: ["C4", "D#4"]
     },
 
     zmniejszona: {
         label: "Sekunda zmniejszona",
-        treble: ["C/4", "C/4"],
-        bass: ["C/3", "C/3"],
-        piano: ["C4", "C4"]
+
+        treble: ["c/4", "db/4"],
+        bass: ["c/3", "db/3"],
+
+        piano: ["C4", "C#4"]
     }
 
 };
 
 
-/* =========================
-   RYSOWANIE OBU KLUCZY
-========================= */
+/* =====================================================
+   RYSOWANIE INTERWAŁU
+===================================================== */
 
 function drawInterval(type) {
 
@@ -84,127 +93,259 @@ function drawInterval(type) {
 }
 
 
-/* =========================
-   PIĘCIOLINIA — VEXFLOW
-========================= */
+/* =====================================================
+   RYSOWANIE PIĘCIOLINII
+   WŁASNE SVG — BEZ VEXFLOW
+===================================================== */
 
 function drawStaff(containerId, clef, notes) {
 
     const container = document.getElementById(containerId);
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
     container.innerHTML = "";
 
-    try {
 
-        // VexFlow 5
-        const VF = window.VexFlow;
+    const width = 700;
+    const height = 180;
 
-        if (!VF) {
-            throw new Error("VexFlow nie został załadowany.");
-        }
+    const startX = 90;
+    const endX = 640;
 
-        const renderer = new VF.Renderer(
-            container,
-            VF.Renderer.Backends.SVG
-        );
-
-        renderer.resize(700, 180);
-
-        const context = renderer.getContext();
-
-        const stave = new VF.Stave(
-            60,
-            40,
-            570
-        );
-
-        stave
-            .addClef(clef)
-            .addTimeSignature("2/4");
-
-        stave
-            .setContext(context)
-            .draw();
+    const staffTop = 55;
+    const lineGap = 14;
 
 
-        /* -------------------------
-           NUTY
-        ------------------------- */
-
-        const staveNotes = notes.map(noteName => {
-
-            return new VF.StaveNote({
-                clef: clef,
-                keys: [noteName],
-                duration: "q",
-                auto_stem: true
-            });
-
-        });
+    let svg = `
+        <svg
+            width="100%"
+            viewBox="0 0 ${width} ${height}"
+            xmlns="http://www.w3.org/2000/svg"
+            style="
+                display:block;
+                max-width:700px;
+                margin:0 auto;
+            "
+        >
+    `;
 
 
-        /* -------------------------
-           GŁOS
-        ------------------------- */
+    /* -------------------------------------------------
+       PIĘĆ LINII
+    ------------------------------------------------- */
 
-        const voice = new VF.Voice({
-            num_beats: 2,
-            beat_value: 4
-        });
+    for (let i = 0; i < 5; i++) {
 
-        voice.addTickables(staveNotes);
+        const y = staffTop + i * lineGap;
 
-
-        /* -------------------------
-           FORMATOWANIE
-        ------------------------- */
-
-        new VF.Formatter()
-            .joinVoices([voice])
-            .format([voice], 400);
-
-
-        /* -------------------------
-           RYSOWANIE
-        ------------------------- */
-
-        voice.draw(
-            context,
-            stave
-        );
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Błąd VexFlow:",
-            error
-        );
-
-        container.innerHTML = `
-            <p style="
-                padding: 35px;
-                text-align: center;
-                color: #777187;
-                font-size: 14px;
-            ">
-                Nie udało się narysować pięciolinii.
-            </p>
+        svg += `
+            <line
+                x1="${startX}"
+                y1="${y}"
+                x2="${endX}"
+                y2="${y}"
+                stroke="#252238"
+                stroke-width="1.5"
+            />
         `;
     }
+
+
+    /* -------------------------------------------------
+       KLUCZ
+    ------------------------------------------------- */
+
+    if (clef === "treble") {
+
+        svg += `
+            <text
+                x="25"
+                y="115"
+                font-size="75"
+                font-family="serif"
+                fill="#252238"
+            >𝄞</text>
+        `;
+
+    } else {
+
+        svg += `
+            <text
+                x="25"
+                y="106"
+                font-size="58"
+                font-family="serif"
+                fill="#252238"
+            >𝄢</text>
+        `;
+    }
+
+
+    /* -------------------------------------------------
+       POZYCJE NUT
+    ------------------------------------------------- */
+
+    const notePositions = [320, 470];
+
+
+    notes.forEach((noteName, index) => {
+
+        const parts = noteName.split("/");
+
+        const pitch = parts[0].toLowerCase();
+        const octave = Number(parts[1]);
+
+        const letter = pitch.charAt(0);
+
+
+        /* -----------------------------
+           ZNAK CHROMATYCZNY
+        ----------------------------- */
+
+        let accidental = "";
+
+        if (pitch.includes("bb")) {
+            accidental = "𝄫";
+        }
+        else if (pitch.includes("b")) {
+            accidental = "♭";
+        }
+        else if (pitch.includes("#")) {
+            accidental = "♯";
+        }
+
+
+        /* -----------------------------
+           POZYCJA DIATONICZNA
+        ----------------------------- */
+
+        const diatonic = {
+
+            c: 0,
+            d: 1,
+            e: 2,
+            f: 3,
+            g: 4,
+            a: 5,
+            b: 6
+
+        };
+
+
+        const base = diatonic[letter];
+
+        const absolutePosition =
+            octave * 7 + base;
+
+
+        let reference;
+
+
+        if (clef === "treble") {
+
+            // E4 = dolna linia klucza wiolinowego
+
+            reference =
+                4 * 7 + diatonic.e;
+
+        } else {
+
+            // G2 = dolna linia klucza basowego
+
+            reference =
+                2 * 7 + diatonic.g;
+        }
+
+
+        const step =
+            absolutePosition - reference;
+
+
+        const x =
+            notePositions[index];
+
+
+        const y =
+            staffTop +
+            4 * lineGap -
+            step * (lineGap / 2);
+
+
+        /* -------------------------------------------------
+           ZNAK PRZY NUCIE
+        ------------------------------------------------- */
+
+        if (accidental) {
+
+            svg += `
+                <text
+                    x="${x - 30}"
+                    y="${y + 7}"
+                    font-size="25"
+                    font-family="serif"
+                    fill="#252238"
+                >${accidental}</text>
+            `;
+        }
+
+
+        /* -------------------------------------------------
+           GŁÓWKA NUTY
+        ------------------------------------------------- */
+
+        svg += `
+            <ellipse
+                cx="${x}"
+                cy="${y}"
+                rx="9"
+                ry="6.5"
+                transform="rotate(-18 ${x} ${y})"
+                fill="#252238"
+            />
+        `;
+
+
+        /* -------------------------------------------------
+           LASECZKA
+        ------------------------------------------------- */
+
+        svg += `
+            <line
+                x1="${x + 7}"
+                y1="${y}"
+                x2="${x + 7}"
+                y2="${y - 42}"
+                stroke="#252238"
+                stroke-width="2"
+            />
+        `;
+
+    });
+
+
+    svg += `
+        </svg>
+    `;
+
+
+    container.innerHTML = svg;
 }
 
 
-/* =========================
+/* =====================================================
    PRAWDZIWE PIANINO
-========================= */
+   TEGO NIE ZMIENIAMY
+===================================================== */
 
 async function createPiano() {
 
-    if (pianoLoaded) return;
+    if (pianoLoaded) {
+        return;
+    }
+
 
     try {
 
@@ -244,6 +385,7 @@ async function createPiano() {
 
                 A6: "A6.mp3",
                 C7: "C7.mp3"
+
             },
 
             release: 1,
@@ -252,6 +394,7 @@ async function createPiano() {
                 "https://tonejs.github.io/audio/salamander/"
 
         }).toDestination();
+
 
         await Tone.loaded();
 
@@ -269,9 +412,9 @@ async function createPiano() {
 }
 
 
-/* =========================
-   ODTWARZANIE
-========================= */
+/* =====================================================
+   ODTWARZANIE INTERWAŁU
+===================================================== */
 
 async function playInterval(type) {
 
@@ -280,17 +423,22 @@ async function playInterval(type) {
     const status =
         document.getElementById(`${type}-status`);
 
+
     if (status) {
-        status.textContent = "Ładowanie pianina…";
+        status.textContent =
+            "Ładowanie pianina…";
     }
+
 
     await Tone.start();
 
     await createPiano();
 
+
     if (!piano) {
 
         if (status) {
+
             status.textContent =
                 "Nie udało się załadować dźwięku.";
         }
@@ -298,14 +446,27 @@ async function playInterval(type) {
         return;
     }
 
+
     if (status) {
-        status.textContent = "▶ Odtwarzanie…";
+
+        status.textContent =
+            "▶ Odtwarzanie…";
     }
+
+
+    /* -----------------------------
+       PIERWSZA NUTA
+    ----------------------------- */
 
     piano.triggerAttackRelease(
         data.piano[0],
         "1n"
     );
+
+
+    /* -----------------------------
+       DRUGA NUTA
+    ----------------------------- */
 
     setTimeout(() => {
 
@@ -316,11 +477,19 @@ async function playInterval(type) {
 
     }, 850);
 
+
+    /* -----------------------------
+       KONIEC
+    ----------------------------- */
+
     setTimeout(() => {
 
         if (status) {
-            status.textContent = "Gotowe";
+
+            status.textContent =
+                "Gotowe";
         }
 
     }, 2200);
+
 }
