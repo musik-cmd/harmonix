@@ -16,6 +16,7 @@ function toggleInterval(type, button) {
     });
 
     if (!wasOpen) {
+
         item.classList.add("open");
 
         setTimeout(() => {
@@ -32,35 +33,95 @@ function toggleInterval(type, button) {
 const intervals = {
 
     mala: {
+
         label: "Sekunda mała",
-        treble: ["c/4", "db/4"],
-        bass: ["c/3", "db/3"],
-        piano: ["C4", "C#4"]
+
+        treble: [
+            "c/4",
+            "db/4"
+        ],
+
+        bass: [
+            "c/3",
+            "db/3"
+        ],
+
+        piano: [
+            "C4",
+            "C#4"
+        ]
     },
+
 
     wielka: {
+
         label: "Sekunda wielka",
-        treble: ["c/4", "d/4"],
-        bass: ["c/3", "d/3"],
-        piano: ["C4", "D4"]
+
+        treble: [
+            "c/4",
+            "d/4"
+        ],
+
+        bass: [
+            "c/3",
+            "d/3"
+        ],
+
+        piano: [
+            "C4",
+            "D4"
+        ]
     },
+
 
     zwiekszona: {
+
         label: "Sekunda zwiększona",
-        treble: ["c/4", "d#/4"],
-        bass: ["c/3", "d#/3"],
-        piano: ["C4", "D#4"]
+
+        treble: [
+            "c/4",
+            "d#/4"
+        ],
+
+        bass: [
+            "c/3",
+            "d#/3"
+        ],
+
+        piano: [
+            "C4",
+            "D#4"
+        ]
     },
 
+
     zmniejszona: {
+
         label: "Sekunda zmniejszona",
 
-        // MUSI BYĆ C - D PODWÓJNIE OBNIŻONE
-        treble: ["c/4", "dbb/4"],
-        bass: ["c/3", "dbb/3"],
+        /*
+           Zapis:
+           C – D podwójnie obniżone
+        */
 
-        // Dbb brzmi enharmonicznie jak C
-        piano: ["C4", "C4"]
+        treble: [
+            "c/4",
+            "dbb/4"
+        ],
+
+        bass: [
+            "c/3",
+            "dbb/3"
+        ],
+
+        /*
+           Dbb brzmi enharmonicznie jak C.
+        */
+
+        piano: [
+            "C4",
+            "C4"
+        ]
     }
 
 };
@@ -73,6 +134,10 @@ const intervals = {
 function drawInterval(type) {
 
     const data = intervals[type];
+
+    if (!data) {
+        return;
+    }
 
     drawStaff(
         `${type}-treble`,
@@ -93,6 +158,7 @@ function drawInterval(type) {
 ===================================================== */
 
 const letterValue = {
+
     c: 0,
     d: 1,
     e: 2,
@@ -100,41 +166,54 @@ const letterValue = {
     g: 4,
     a: 5,
     b: 6
+
 };
 
 
 /*
-   Zwraca pozycję nuty względem dolnej linii pięciolinii.
+   Pozycja nuty względem dolnej linii pięciolinii.
 
-   Klucz wiolinowy:
-   E4 = dolna linia
+   KLUCZ WIOLINOWY:
+   E4 = dolna linia.
 
-   Klucz basowy:
-   G2 = dolna linia
+   KLUCZ BASOWY:
+   G2 = dolna linia.
 */
 
 function getStep(note, clef) {
 
-    const [rawPitch, octaveText] = note.toLowerCase().split("/");
+    const [rawPitch, octaveText] =
+        note.toLowerCase().split("/");
 
-    const letter = rawPitch.charAt(0);
-    const octave = Number(octaveText);
+    const letter =
+        rawPitch.charAt(0);
+
+    const octave =
+        Number(octaveText);
 
     const absolute =
-        octave * 7 + letterValue[letter];
+        octave * 7 +
+        letterValue[letter];
 
     let reference;
+
 
     if (clef === "treble") {
 
         reference =
-            4 * 7 + letterValue.e;
+            4 * 7 +
+            letterValue.e;
 
-    } else {
+    }
+
+    else {
 
         reference =
-            2 * 7 + letterValue.g;
+            2 * 7 +
+            letterValue.g;
+
     }
+
 
     return absolute - reference;
 }
@@ -153,6 +232,7 @@ function drawStaff(containerId, clef, notes) {
         return;
     }
 
+
     container.innerHTML = "";
 
 
@@ -167,6 +247,7 @@ function drawStaff(containerId, clef, notes) {
 
 
     let svg = `
+
         <svg
             width="100%"
             viewBox="0 0 ${width} ${height}"
@@ -177,6 +258,7 @@ function drawStaff(containerId, clef, notes) {
                 margin:0 auto;
             "
         >
+
     `;
 
 
@@ -190,6 +272,7 @@ function drawStaff(containerId, clef, notes) {
             staffTop + i * gap;
 
         svg += `
+
             <line
                 x1="${staffLeft}"
                 y1="${y}"
@@ -198,6 +281,7 @@ function drawStaff(containerId, clef, notes) {
                 stroke="#252238"
                 stroke-width="1.5"
             />
+
         `;
     }
 
@@ -209,6 +293,7 @@ function drawStaff(containerId, clef, notes) {
     if (clef === "treble") {
 
         svg += `
+
             <text
                 x="25"
                 y="128"
@@ -216,11 +301,15 @@ function drawStaff(containerId, clef, notes) {
                 font-family="serif"
                 fill="#252238"
             >𝄞</text>
+
         `;
 
-    } else {
+    }
+
+    else {
 
         svg += `
+
             <text
                 x="25"
                 y="116"
@@ -228,6 +317,7 @@ function drawStaff(containerId, clef, notes) {
                 font-family="serif"
                 fill="#252238"
             >𝄢</text>
+
         `;
     }
 
@@ -236,7 +326,10 @@ function drawStaff(containerId, clef, notes) {
        NUTY
     ================================================= */
 
-    const positions = [330, 480];
+    const positions = [
+        330,
+        480
+    ];
 
 
     notes.forEach((note, index) => {
@@ -252,16 +345,14 @@ function drawStaff(containerId, clef, notes) {
 
 
         /*
-           Dolna linia pięciolinii:
+           Dolna linia:
            step = 0
 
-           Pierwsza przestrzeń:
+           Pierwsze pole:
            step = 1
 
-           Pierwsza linia:
+           Następna linia:
            step = 2
-
-           itd.
         */
 
         const y =
@@ -271,15 +362,10 @@ function drawStaff(containerId, clef, notes) {
 
 
         /* =================================================
-           LINIE DODATKOWE POD PIĘCIOLINIĄ
+           LINIE DODANE POD PIĘCIOLINIĄ
         ================================================= */
 
         if (step < 0) {
-
-            /*
-               Linie dodatkowe występują na pozycjach:
-               -2, -4, -6...
-            */
 
             for (
                 let ledgerStep = -2;
@@ -292,7 +378,9 @@ function drawStaff(containerId, clef, notes) {
                     4 * gap -
                     ledgerStep * (gap / 2);
 
+
                 svg += `
+
                     <line
                         x1="${x - 18}"
                         y1="${ledgerY}"
@@ -301,13 +389,14 @@ function drawStaff(containerId, clef, notes) {
                         stroke="#252238"
                         stroke-width="1.5"
                     />
+
                 `;
             }
         }
 
 
         /* =================================================
-           LINIE DODATKOWE NAD PIĘCIOLINIĄ
+           LINIE DODANE NAD PIĘCIOLINIĄ
         ================================================= */
 
         if (step > 8) {
@@ -323,7 +412,9 @@ function drawStaff(containerId, clef, notes) {
                     4 * gap -
                     ledgerStep * (gap / 2);
 
+
                 svg += `
+
                     <line
                         x1="${x - 18}"
                         y1="${ledgerY}"
@@ -332,6 +423,7 @@ function drawStaff(containerId, clef, notes) {
                         stroke="#252238"
                         stroke-width="1.5"
                     />
+
                 `;
             }
         }
@@ -348,19 +440,25 @@ function drawStaff(containerId, clef, notes) {
 
             accidental = "𝄫";
 
-        } else if (rawPitch.includes("b")) {
+        }
+
+        else if (rawPitch.includes("b")) {
 
             accidental = "♭";
 
-        } else if (rawPitch.includes("#")) {
+        }
+
+        else if (rawPitch.includes("#")) {
 
             accidental = "♯";
+
         }
 
 
         if (accidental) {
 
             svg += `
+
                 <text
                     x="${x - 34}"
                     y="${y + 8}"
@@ -368,6 +466,7 @@ function drawStaff(containerId, clef, notes) {
                     font-family="serif"
                     fill="#252238"
                 >${accidental}</text>
+
             `;
         }
 
@@ -377,6 +476,7 @@ function drawStaff(containerId, clef, notes) {
         ================================================= */
 
         svg += `
+
             <ellipse
                 cx="${x}"
                 cy="${y}"
@@ -385,6 +485,7 @@ function drawStaff(containerId, clef, notes) {
                 transform="rotate(-18 ${x} ${y})"
                 fill="#252238"
             />
+
         `;
 
 
@@ -393,6 +494,7 @@ function drawStaff(containerId, clef, notes) {
         ================================================= */
 
         svg += `
+
             <line
                 x1="${x + 7}"
                 y1="${y}"
@@ -401,7 +503,9 @@ function drawStaff(containerId, clef, notes) {
                 stroke="#252238"
                 stroke-width="2"
             />
+
         `;
+
     });
 
 
@@ -420,9 +524,10 @@ function drawStaff(containerId, clef, notes) {
 
 async function createPiano() {
 
-    if (pianoLoaded) {
+    if (pianoLoaded && piano) {
         return;
     }
+
 
     try {
 
@@ -462,6 +567,7 @@ async function createPiano() {
 
                 A6: "A6.mp3",
                 C7: "C7.mp3"
+
             },
 
             release: 1,
@@ -484,18 +590,32 @@ async function createPiano() {
             "Błąd ładowania pianina:",
             error
         );
+
+        pianoLoaded = false;
     }
 }
 
 
 /* =====================================================
-   ODTWARZANIE
+   ODTWARZANIE INTERWAŁU
+
+   1. MELODYCZNIE:
+      pierwszy dźwięk → drugi dźwięk
+
+   2. HARMONICZNIE:
+      oba dźwięki jednocześnie
 ===================================================== */
 
 async function playInterval(type) {
 
     const data =
         intervals[type];
+
+
+    if (!data) {
+        return;
+    }
+
 
     const status =
         document.getElementById(
@@ -504,8 +624,10 @@ async function playInterval(type) {
 
 
     if (status) {
+
         status.textContent =
             "Ładowanie pianina…";
+
     }
 
 
@@ -517,42 +639,90 @@ async function playInterval(type) {
     if (!piano) {
 
         if (status) {
+
             status.textContent =
                 "Nie udało się załadować dźwięku.";
+
         }
 
         return;
     }
 
 
+    const firstNote =
+        data.piano[0];
+
+    const secondNote =
+        data.piano[1];
+
+    const now =
+        Tone.now();
+
+
+    /* =================================================
+       MELODYCZNIE
+    ================================================= */
+
     if (status) {
+
         status.textContent =
-            "▶ Odtwarzanie…";
+            "🎵 Melodycznie…";
+
     }
 
 
     piano.triggerAttackRelease(
-        data.piano[0],
-        "1n"
+        firstNote,
+        "2n",
+        now
     );
 
 
-    setTimeout(() => {
+    piano.triggerAttackRelease(
+        secondNote,
+        "2n",
+        now + 0.9
+    );
 
-        piano.triggerAttackRelease(
-            data.piano[1],
-            "1n"
-        );
 
-    }, 850);
-
+    /* =================================================
+       HARMONICZNIE
+    ================================================= */
 
     setTimeout(() => {
 
         if (status) {
+
             status.textContent =
-                "Gotowe";
+                "🎶 Harmonicznie…";
+
         }
 
-    }, 2200);
+
+        piano.triggerAttackRelease(
+            [
+                firstNote,
+                secondNote
+            ],
+            "1n"
+        );
+
+    }, 2000);
+
+
+    /* =================================================
+       KONIEC
+    ================================================= */
+
+    setTimeout(() => {
+
+        if (status) {
+
+            status.textContent =
+                "Gotowe ✓";
+
+        }
+
+    }, 3500);
+
 }
