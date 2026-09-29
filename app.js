@@ -62,10 +62,16 @@ const intervals = {
     zmniejszona: {
         label: "Sekunda zmniejszona",
 
-        treble: ["c/4", "db/4"],
-        bass: ["c/3", "db/3"],
+        /* C - D podwójnie obniżone */
+        treble: ["c/4", "dbb/4"],
+        bass: ["c/3", "dbb/3"],
 
-        piano: ["C4", "C#4"]
+        /*
+           Sekunda zmniejszona ma 0 półtonów,
+           więc brzmieniowo druga nuta jest tym samym
+           dźwiękiem co C.
+        */
+        piano: ["C4", "C4"]
     }
 
 };
@@ -95,7 +101,6 @@ function drawInterval(type) {
 
 /* =====================================================
    RYSOWANIE PIĘCIOLINII
-   WŁASNE SVG — BEZ VEXFLOW
 ===================================================== */
 
 function drawStaff(containerId, clef, notes) {
@@ -133,9 +138,9 @@ function drawStaff(containerId, clef, notes) {
     `;
 
 
-    /* -------------------------------------------------
+    /* =================================================
        PIĘĆ LINII
-    ------------------------------------------------- */
+    ================================================= */
 
     for (let i = 0; i < 5; i++) {
 
@@ -154,9 +159,9 @@ function drawStaff(containerId, clef, notes) {
     }
 
 
-    /* -------------------------------------------------
+    /* =================================================
        KLUCZ
-    ------------------------------------------------- */
+    ================================================= */
 
     if (clef === "treble") {
 
@@ -184,9 +189,9 @@ function drawStaff(containerId, clef, notes) {
     }
 
 
-    /* -------------------------------------------------
+    /* =================================================
        POZYCJE NUT
-    ------------------------------------------------- */
+    ================================================= */
 
     const notePositions = [320, 470];
 
@@ -201,26 +206,29 @@ function drawStaff(containerId, clef, notes) {
         const letter = pitch.charAt(0);
 
 
-        /* -----------------------------
+        /* ---------------------------------------------
            ZNAK CHROMATYCZNY
-        ----------------------------- */
+        --------------------------------------------- */
 
         let accidental = "";
 
         if (pitch.includes("bb")) {
+
             accidental = "𝄫";
-        }
-        else if (pitch.includes("b")) {
+
+        } else if (pitch.includes("b")) {
+
             accidental = "♭";
-        }
-        else if (pitch.includes("#")) {
+
+        } else if (pitch.includes("#")) {
+
             accidental = "♯";
         }
 
 
-        /* -----------------------------
-           POZYCJA DIATONICZNA
-        ----------------------------- */
+        /* ---------------------------------------------
+           POZYCJE LITER
+        --------------------------------------------- */
 
         const diatonic = {
 
@@ -246,14 +254,18 @@ function drawStaff(containerId, clef, notes) {
 
         if (clef === "treble") {
 
-            // E4 = dolna linia klucza wiolinowego
+            /*
+               E4 = dolna linia pięciolinii
+            */
 
             reference =
                 4 * 7 + diatonic.e;
 
         } else {
 
-            // G2 = dolna linia klucza basowego
+            /*
+               G2 = dolna linia pięciolinii
+            */
 
             reference =
                 2 * 7 + diatonic.g;
@@ -274,15 +286,71 @@ function drawStaff(containerId, clef, notes) {
             step * (lineGap / 2);
 
 
-        /* -------------------------------------------------
+        /* =================================================
+           LINIE DODATKOWE
+        ================================================= */
+
+        /*
+           Jeśli nuta wychodzi poza pięciolinię,
+           rysujemy odpowiednie linie dodatkowe.
+        */
+
+        if (step < 0) {
+
+            for (let s = -2; s >= step; s -= 2) {
+
+                const ledgerY =
+                    staffTop +
+                    4 * lineGap -
+                    s * (lineGap / 2);
+
+                svg += `
+                    <line
+                        x1="${x - 16}"
+                        y1="${ledgerY}"
+                        x2="${x + 16}"
+                        y2="${ledgerY}"
+                        stroke="#252238"
+                        stroke-width="1.5"
+                    />
+                `;
+            }
+
+        }
+
+
+        if (step > 8) {
+
+            for (let s = 10; s <= step; s += 2) {
+
+                const ledgerY =
+                    staffTop +
+                    4 * lineGap -
+                    s * (lineGap / 2);
+
+                svg += `
+                    <line
+                        x1="${x - 16}"
+                        y1="${ledgerY}"
+                        x2="${x + 16}"
+                        y2="${ledgerY}"
+                        stroke="#252238"
+                        stroke-width="1.5"
+                    />
+                `;
+            }
+        }
+
+
+        /* =================================================
            ZNAK PRZY NUCIE
-        ------------------------------------------------- */
+        ================================================= */
 
         if (accidental) {
 
             svg += `
                 <text
-                    x="${x - 30}"
+                    x="${x - 32}"
                     y="${y + 7}"
                     font-size="25"
                     font-family="serif"
@@ -292,9 +360,9 @@ function drawStaff(containerId, clef, notes) {
         }
 
 
-        /* -------------------------------------------------
+        /* =================================================
            GŁÓWKA NUTY
-        ------------------------------------------------- */
+        ================================================= */
 
         svg += `
             <ellipse
@@ -308,9 +376,9 @@ function drawStaff(containerId, clef, notes) {
         `;
 
 
-        /* -------------------------------------------------
+        /* =================================================
            LASECZKA
-        ------------------------------------------------- */
+        ================================================= */
 
         svg += `
             <line
@@ -337,7 +405,6 @@ function drawStaff(containerId, clef, notes) {
 
 /* =====================================================
    PRAWDZIWE PIANINO
-   TEGO NIE ZMIENIAMY
 ===================================================== */
 
 async function createPiano() {
@@ -413,7 +480,7 @@ async function createPiano() {
 
 
 /* =====================================================
-   ODTWARZANIE INTERWAŁU
+   ODTWARZANIE
 ===================================================== */
 
 async function playInterval(type) {
@@ -425,6 +492,7 @@ async function playInterval(type) {
 
 
     if (status) {
+
         status.textContent =
             "Ładowanie pianina…";
     }
@@ -454,19 +522,11 @@ async function playInterval(type) {
     }
 
 
-    /* -----------------------------
-       PIERWSZA NUTA
-    ----------------------------- */
-
     piano.triggerAttackRelease(
         data.piano[0],
         "1n"
     );
 
-
-    /* -----------------------------
-       DRUGA NUTA
-    ----------------------------- */
 
     setTimeout(() => {
 
@@ -477,10 +537,6 @@ async function playInterval(type) {
 
     }, 850);
 
-
-    /* -----------------------------
-       KONIEC
-    ----------------------------- */
 
     setTimeout(() => {
 
