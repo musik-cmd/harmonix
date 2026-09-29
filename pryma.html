@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Harmonix — Pryma</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+    .lesson {
+        text-align: left;
+        margin-top: 35px;
+    }
+
+    .lesson-card {
+        background: white;
+        border-radius: 22px;
+        padding: 28px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 30px rgba(40, 30, 80, 0.08);
+    }
+
+    .lesson-card h2 {
+        margin-top: 0;
+        font-size: 23px;
+    }
+
+    .lesson-card p {
+        color: #5f5a70;
+        line-height: 1.6;
+    }
+
+    .example {
+        margin-top: 18px;
+        padding: 18px;
+        background: #f7f5ff;
+        border-radius: 16px;
+        text-align: center;
+    }
+
+    .staff {
+        width: 100%;
+        max-width: 600px;
+        height: 180px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .note {
+        cursor: pointer;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 25px;
+        color: #5d4fc7;
+        text-decoration: none;
+        font-weight: 700;
+    }
+
+    .back:hover {
+        text-decoration: underline;
+    }
+
+    .listen {
+        margin-top: 18px;
+        padding: 11px 18px;
+        border: none;
+        border-radius: 12px;
+        background: #252238;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .listen:hover {
+        opacity: 0.9;
+    }
+
+    .status {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #777187;
+        min-height: 20px;
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<main class="hero">
+
+```
+<div class="container">
+
+    <div class="logo">
+        Pryma
+    </div>
+
+    <div class="subtitle">
+        Najmniejszy interwał — odległość między dwoma dźwiękami o tej samej nazwie.
+    </div>
+
+
+    <div class="lesson">
+
+
+        <!-- DEFINICJA -->
+
+        <div class="lesson-card">
+
+            <h2>
+                🎼 Czym jest pryma?
+            </h2>
+
+            <p>
+                Pryma to interwał obejmujący tylko jeden stopień
+                nazwowy. Oznacza to, że oba dźwięki mają tę samą nazwę,
+                np. C–C albo F–F.
+            </p>
+
+            <p>
+                W praktyce może być to ten sam dźwięk albo dwa dźwięki
+                o tej samej nazwie, ale oddalone od siebie o oktawę
+                lub więcej.
+            </p>
+
+        </div>
+
+
+        <!-- RODZAJE -->
+
+        <div class="lesson-card">
+
+            <h2>
+                📚 Rodzaje prymy
+            </h2>
+
+            <p>
+                Pryma może być:
+            </p>
+
+            <ul>
+                <li><strong>czysta</strong> — C–C</li>
+                <li><strong>zwiększona</strong> — C–C♯</li>
+                <li><strong>zmniejszona</strong> — C–C♭</li>
+            </ul>
+
+        </div>
+
+
+        <!-- PRYMA CZYSTA -->
+
+        <div class="lesson-card">
+
+            <h2>
+                1. Pryma czysta
+            </h2>
+
+            <p>
+                Pryma czysta powstaje wtedy, gdy drugi dźwięk ma dokładnie
+                tę samą wysokość co pierwszy.
+            </p>
+
+            <div class="example">
+
+                <svg class="staff"
+                     viewBox="0 0 600 180"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <!-- pięciolinia -->
+
+                    <line x1="80" y1="55" x2="520" y2="55"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="70" x2="520" y2="70"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="85" x2="520" y2="85"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="100" x2="520" y2="100"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="115" x2="520" y2="115"
+                          stroke="black" stroke-width="2"/>
+
+
+                    <!-- klucz wiolinowy -->
+
+                    <text x="90" y="105"
+                          font-size="55">
+                        𝄞
+                    </text>
+
+
+                    <!-- pierwsza nuta C -->
+
+                    <ellipse cx="260" cy="130"
+                             rx="10" ry="7"
+                             fill="black"/>
+
+                    <line x1="270" y1="130"
+                          x2="270" y2="75"
+                          stroke="black"
+                          stroke-width="2"/>
+
+
+                    <!-- druga nuta C -->
+
+                    <ellipse cx="350" cy="130"
+                             rx="10" ry="7"
+                             fill="black"/>
+
+                    <line x1="360" y1="130"
+                          x2="360" y2="75"
+                          stroke="black"
+                          stroke-width="2"/>
+
+
+                    <!-- linia dodana -->
+
+                    <line x1="235" y1="130"
+                          x2="375" y2="130"
+                          stroke="black"
+                          stroke-width="2"/>
+
+                </svg>
+
+
+                <strong>
+                    C – C
+                </strong>
+
+
+                <br>
+
+
+                <button class="listen"
+                        onclick="playNotes(['C4','C4'])">
+
+                    ▶ Posłuchaj
+
+                </button>
+
+
+                <div class="status"
+                     id="status1">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRYMA ZWIĘKSZONA -->
+
+        <div class="lesson-card">
+
+            <h2>
+                2. Pryma zwiększona
+            </h2>
+
+            <p>
+                Pryma zwiększona powstaje, gdy drugi dźwięk zostaje
+                podwyższony o półton, np. C–C♯.
+            </p>
+
+            <div class="example">
+
+                <svg class="staff"
+                     viewBox="0 0 600 180"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <line x1="80" y1="55" x2="520" y2="55"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="70" x2="520" y2="70"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="85" x2="520" y2="85"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="100" x2="520" y2="100"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="115" x2="520" y2="115"
+                          stroke="black" stroke-width="2"/>
+
+
+                    <text x="90" y="105"
+                          font-size="55">
+                        𝄞
+                    </text>
+
+
+                    <!-- C -->
+
+                    <ellipse cx="260" cy="130"
+                             rx="10" ry="7"
+                             fill="black"/>
+
+                    <line x1="270" y1="130"
+                          x2="270" y2="75"
+                          stroke="black"
+                          stroke-width="2"/>
+
+
+                    <!-- C# -->
+
+                    <text x="325" y="135"
+                          font-size="25">
+                        ♯
+                    </text>
+
+                    <ellipse cx="365" cy="130"
+                             rx="10" ry="7"
+                             fill="black"/>
+
+                    <line x1="375" y1="130"
+                          x2="375" y2="75"
+                          stroke="black"
+                          stroke-width="2"/>
+
+
+                    <line x1="235" y1="130"
+                          x2="390" y2="130"
+                          stroke="black"
+                          stroke-width="2"/>
+
+                </svg>
+
+
+                <strong>
+                    C – C♯
+                </strong>
+
+
+                <br>
+
+
+                <button class="listen"
+                        onclick="playNotes(['C4','C#4'])">
+
+                    ▶ Posłuchaj
+
+                </button>
+
+
+                <div class="status"
+                     id="status2">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRYMA ZMNIEJSZONA -->
+
+        <div class="lesson-card">
+
+            <h2>
+                3. Pryma zmniejszona
+            </h2>
+
+            <p>
+                Pryma zmniejszona powstaje, gdy drugi dźwięk zostaje
+                obniżony o półton, np. C–C♭.
+            </p>
+
+            <div class="example">
+
+                <svg class="staff"
+                     viewBox="0 0 600 180"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <line x1="80" y1="55" x2="520" y2="55"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="70" x2="520" y2="70"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="85" x2="520" y2="85"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="100" x2="520" y2="100"
+                          stroke="black" stroke-width="2"/>
+
+                    <line x1="80" y1="115" x2="520" y2="115"
+                          stroke="black" stroke-width="2"/>
+
+
+                    <text x="90" y="105"
+                          font-size="55">
+                        𝄞
+                    </text>
+
+
+                    <!-- C -->
+
+                    <ellipse cx="260" cy="130"
+                             rx="10" ry="7"
+                             fill="black"/>
+
+                    <line x1="270" y1="130"
+                          x2="270" y2="75"
+                          stroke="black"
+                          stroke-width="2"/>
+
+
+                    <!-- Cb -->
+
+                    <text x="325" y="135"
+                          font-size="25">
+                        ♭
+                    </text>
+
+                    <ellipse cx="365" cy="130"
+                             rx="10" ry="7"
+                             fill="black"/>
+
+                    <line x1="375" y1="130"
+                          x2="375" y2="75"
+                          stroke="black"
+                          stroke-width="2"/>
+
+
+                    <line x1="235" y1="130"
+                          x2="390" y2="130"
+                          stroke="black"
+                          stroke-width="2"/>
+
+                </svg>
+
+
+                <strong>
+                    C – C♭
+                </strong>
+
+
+                <br>
+
+
+                <button class="listen"
+                        onclick="playNotes(['C4','Cb4'])">
+
+                    ▶ Posłuchaj
+
+                </button>
+
+
+                <div class="status"
+                     id="status3">
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <a class="back"
+       href="interwaly.html">
+
+        ← Wróć do interwałów
+
+    </a>
+
+</div>
+```
+
+</main>
+
+<!-- TONE.JS -->
+
+<script src="https://unpkg.com/tone@14.8.49/build/Tone.js"></script>
+
+<script>
+
+const piano = new Tone.Sampler({
+
+    urls: {
+        C4: "C4.mp3",
+        "D#4": "Ds4.mp3",
+        F4: "F4.mp3",
+        "G#4": "Gs4.mp3",
+        A4: "A4.mp3",
+        C5: "C5.mp3"
+    },
+
+    release: 1,
+
+    baseUrl:
+        "https://tonejs.github.io/audio/salamander/"
+
+}).toDestination();
+
+
+async function playNotes(notes) {
+
+    await Tone.start();
+
+    const now = Tone.now();
+
+    notes.forEach((note, index) => {
+
+        piano.triggerAttackRelease(
+            note,
+            "1n",
+            now + index * 0.9
+        );
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>
