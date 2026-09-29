@@ -35,7 +35,10 @@ h1{text-align:center;font-size:42px;margin:0 0 10px}
 <a href="interwaly.html" class="back">← Wróć do interwałów</a>
 
 <h1>Kwinty</h1>
-<div class="subtitle">Zmniejszone, czyste i zwiększone</div>
+
+<div class="subtitle">
+Zmniejszone, czyste i zwiększone
+</div>
 
 <div class="interval-list" id="list"></div>
 
@@ -89,7 +92,9 @@ piano:["C4","G#4"]
 };
 
 
-/* KARTY */
+/* =========================
+   KARTY
+========================= */
 
 const list=document.getElementById("list");
 
@@ -133,6 +138,10 @@ onclick="playInterval('${type}',this)">
 });
 
 
+/* =========================
+   OTWIERANIE
+========================= */
+
 function toggleInterval(type,button){
 
 const item=button.parentElement;
@@ -142,14 +151,21 @@ document.querySelectorAll(".interval-item")
 .forEach(x=>x.classList.remove("open"));
 
 if(!open){
+
 item.classList.add("open");
-setTimeout(()=>drawInterval(type),50);
-}
+
+setTimeout(()=>{
+drawInterval(type);
+},50);
 
 }
 
+}
 
-/* PIĘCIOLINIA */
+
+/* =========================
+   PIĘCIOLINIA
+========================= */
 
 const letterNumber={
 c:0,d:1,e:2,f:3,g:4,a:5,b:6
@@ -173,8 +189,17 @@ return absolute-reference;
 
 function drawInterval(type){
 
-drawStaff(type+"-treble","treble",intervals[type].treble);
-drawStaff(type+"-bass","bass",intervals[type].bass);
+drawStaff(
+type+"-treble",
+"treble",
+intervals[type].treble
+);
+
+drawStaff(
+type+"-bass",
+"bass",
+intervals[type].bass
+);
 
 }
 
@@ -185,34 +210,49 @@ const container=document.getElementById(id);
 
 const width=700;
 const height=210;
+
 const left=105;
 const right=650;
+
 const top=75;
 const gap=14;
 
 let svg=`
-<svg xmlns="http://www.w3.org/2000/svg"
+<svg
+xmlns="http://www.w3.org/2000/svg"
 viewBox="0 0 ${width} ${height}"
 width="100%"
 style="display:block;max-width:700px;margin:auto">
 `;
+
+
+/* 5 LINII */
 
 for(let i=0;i<5;i++){
 
 const y=top+i*gap;
 
 svg+=`
-<line x1="${left}" y1="${y}"
-x2="${right}" y2="${y}"
-stroke="#252238" stroke-width="1.5"/>
+<line
+x1="${left}"
+y1="${y}"
+x2="${right}"
+y2="${y}"
+stroke="#252238"
+stroke-width="1.5"/>
 `;
 
 }
 
+
+/* KLUCZE */
+
 if(clef==="treble"){
 
 svg+=`
-<text x="25" y="140"
+<text
+x="25"
+y="140"
 font-family="serif"
 font-size="86"
 fill="#252238">𝄞</text>
@@ -221,7 +261,9 @@ fill="#252238">𝄞</text>
 }else{
 
 svg+=`
-<text x="25" y="125"
+<text
+x="25"
+y="125"
 font-family="serif"
 font-size="64"
 fill="#252238">𝄢</text>
@@ -229,47 +271,67 @@ fill="#252238">𝄢</text>
 
 }
 
+
 const positions=[330,480];
 
 notes.forEach((note,index)=>{
 
 const x=positions[index];
-const step=getStep(note,clef);
+
+const step=
+getStep(note,clef);
 
 const y=
-top+4*gap-step*(gap/2);
+top+
+4*gap-
+step*(gap/2);
 
 
-/* LINIE DODANE */
+/* LINIE DODANE POD */
 
 if(step<=-2){
 
 for(let s=-2;s>=step;s-=2){
 
 const ly=
-top+4*gap-s*(gap/2);
+top+
+4*gap-
+s*(gap/2);
 
 svg+=`
-<line x1="${x-20}" y1="${ly}"
-x2="${x+20}" y2="${ly}"
-stroke="#252238" stroke-width="1.5"/>
+<line
+x1="${x-20}"
+y1="${ly}"
+x2="${x+20}"
+y2="${ly}"
+stroke="#252238"
+stroke-width="1.5"/>
 `;
 
 }
 
 }
 
+
+/* LINIE DODANE NAD */
+
 if(step>=10){
 
 for(let s=10;s<=step;s+=2){
 
 const ly=
-top+4*gap-s*(gap/2);
+top+
+4*gap-
+s*(gap/2);
 
 svg+=`
-<line x1="${x-20}" y1="${ly}"
-x2="${x+20}" y2="${ly}"
-stroke="#252238" stroke-width="1.5"/>
+<line
+x1="${x-20}"
+y1="${ly}"
+x2="${x+20}"
+y2="${ly}"
+stroke="#252238"
+stroke-width="1.5"/>
 `;
 
 }
@@ -281,14 +343,21 @@ stroke="#252238" stroke-width="1.5"/>
 
 let accidental="";
 
-if(note.accidental==="b") accidental="♭";
-if(note.accidental==="#") accidental="♯";
-if(note.accidental==="bb") accidental="𝄫";
+if(note.accidental==="b")
+accidental="♭";
+
+if(note.accidental==="#")
+accidental="♯";
+
+if(note.accidental==="bb")
+accidental="𝄫";
 
 if(accidental){
 
 svg+=`
-<text x="${x-38}" y="${y+8}"
+<text
+x="${x-38}"
+y="${y+8}"
 font-family="serif"
 font-size="27"
 fill="#252238">${accidental}</text>
@@ -301,19 +370,24 @@ fill="#252238">${accidental}</text>
 
 svg+=`
 <ellipse
-cx="${x}" cy="${y}"
-rx="10" ry="7"
+cx="${x}"
+cy="${y}"
+rx="10"
+ry="7"
 transform="rotate(-18 ${x} ${y})"
 fill="#252238"/>
 
 <line
-x1="${x+8}" y1="${y}"
-x2="${x+8}" y2="${y-43}"
+x1="${x+8}"
+y1="${y}"
+x2="${x+8}"
+y2="${y-43}"
 stroke="#252238"
 stroke-width="2"/>
 `;
 
 });
+
 
 svg+="</svg>";
 
@@ -322,13 +396,17 @@ container.innerHTML=svg;
 }
 
 
-/* PIANINO */
+/* =========================
+   PIANINO
+========================= */
 
 let piano=null;
 
 async function createPiano(){
 
-if(piano) return piano;
+if(piano)
+return piano;
+
 
 piano=new Tone.Sampler({
 
@@ -371,9 +449,11 @@ C7:"C7.mp3"
 
 release:1.2,
 
-baseUrl:"https://tonejs.github.io/audio/salamander/"
+baseUrl:
+"https://tonejs.github.io/audio/salamander/"
 
 }).toDestination();
+
 
 await Tone.loaded();
 
@@ -383,65 +463,111 @@ return piano;
 
 
 function wait(ms){
-return new Promise(resolve=>setTimeout(resolve,ms));
+
+return new Promise(
+resolve=>setTimeout(resolve,ms)
+);
+
 }
 
 
-/* ODTWARZANIE */
+/* =========================
+   ODTWARZANIE
+========================= */
 
 async function playInterval(type,button){
 
 button.disabled=true;
 
 const status=
-document.getElementById(type+"-status");
+document.getElementById(
+type+"-status"
+);
 
 try{
 
-status.textContent="Ładowanie pianina…";
+status.textContent=
+"Ładowanie pianina…";
 
 await Tone.start();
 
-const instrument=await createPiano();
+const instrument=
+await createPiano();
 
-const first=intervals[type].piano[0];
-const second=intervals[type].piano[1];
+const first=
+intervals[type].piano[0];
+
+const second=
+intervals[type].piano[1];
 
 
-/* MELODYCZNIE */
+/* =========================
+   MELODYCZNIE
+========================= */
 
-status.textContent="🎵 Melodycznie";
+status.textContent=
+"🎵 Melodycznie";
 
-instrument.triggerAttackRelease(first,0.7);
+instrument.triggerAttackRelease(
+first,
+0.7
+);
 
 await wait(850);
 
-instrument.triggerAttackRelease(second,0.7);
+instrument.triggerAttackRelease(
+second,
+0.7
+);
 
 await wait(1200);
 
 
-/* HARMONICZNIE */
+/* =========================
+   HARMONICZNIE
+========================= */
 
-status.textContent="🎶 Harmonicznie";
+status.textContent=
+"🎶 Harmonicznie";
+
+/*
+KLUCZOWA POPRAWKA:
+oba dźwięki dostają DOKŁADNIE
+ten sam czas rozpoczęcia.
+*/
+
+const together=
+Tone.now()+0.1;
 
 instrument.triggerAttackRelease(
-[first,second],
+first,
 1.7,
-Tone.now()+0.05
+together
 );
 
-await wait(1900);
+instrument.triggerAttackRelease(
+second,
+1.7,
+together
+);
 
-status.textContent="✓ Melodycznie + harmonicznie";
+await wait(2000);
+
+
+status.textContent=
+"✓ Melodycznie + harmonicznie";
 
 await wait(600);
 
 status.textContent="";
 
+
 }catch(error){
 
-console.error(error);
+console.error(
+"Harmonix:",
+error
+);
 
 status.textContent=
 "Nie udało się odtworzyć dźwięku.";
@@ -453,5 +579,6 @@ button.disabled=false;
 }
 
 </script>
+
 </body>
 </html>
