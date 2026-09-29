@@ -1,39 +1,20 @@
+/* =========================================================
+   HARMONIX — APP.JS
+   INTERWAŁY PROSTE
+   zapis + pianino + melodycznie + harmonicznie
+========================================================= */
+
 let piano = null;
 let pianoLoaded = false;
 
 
-/* =====================================================
-   OTWIERANIE SEKCJI
-===================================================== */
-
-function toggleInterval(type, button) {
-
-    const item = button.parentElement;
-    const wasOpen = item.classList.contains("open");
-
-    document.querySelectorAll(".interval-item").forEach(element => {
-        element.classList.remove("open");
-    });
-
-    if (!wasOpen) {
-
-        item.classList.add("open");
-
-        setTimeout(() => {
-            drawInterval(type);
-        }, 100);
-    }
-}
-
-
-/* =====================================================
+/* =========================================================
    DANE INTERWAŁÓW
-===================================================== */
+========================================================= */
 
 const intervals = {
 
     mala: {
-
         label: "Sekunda mała",
 
         treble: [
@@ -54,7 +35,6 @@ const intervals = {
 
 
     wielka: {
-
         label: "Sekunda wielka",
 
         treble: [
@@ -75,7 +55,6 @@ const intervals = {
 
 
     zwiekszona: {
-
         label: "Sekunda zwiększona",
 
         treble: [
@@ -96,13 +75,7 @@ const intervals = {
 
 
     zmniejszona: {
-
         label: "Sekunda zmniejszona",
-
-        /*
-           Zapis:
-           C – D podwójnie obniżone
-        */
 
         treble: [
             "c/4",
@@ -115,7 +88,7 @@ const intervals = {
         ],
 
         /*
-           Dbb brzmi enharmonicznie jak C.
+        D𝄫 brzmi tak samo jak C.
         */
 
         piano: [
@@ -127,23 +100,64 @@ const intervals = {
 };
 
 
-/* =====================================================
-   RYSOWANIE INTERWAŁU
-===================================================== */
+/* =========================================================
+   OTWIERANIE INTERWAŁU
+========================================================= */
+
+function toggleInterval(type, button) {
+
+    const item =
+        button.parentElement;
+
+    const isOpen =
+        item.classList.contains("open");
+
+
+    document
+        .querySelectorAll(".interval-item")
+        .forEach(element => {
+
+            element.classList.remove("open");
+
+        });
+
+
+    if (!isOpen) {
+
+        item.classList.add("open");
+
+
+        setTimeout(() => {
+
+            drawInterval(type);
+
+        }, 50);
+
+    }
+}
+
+
+/* =========================================================
+   RYSOWANIE OBU KLUCZY
+========================================================= */
 
 function drawInterval(type) {
 
-    const data = intervals[type];
+    const data =
+        intervals[type];
+
 
     if (!data) {
         return;
     }
+
 
     drawStaff(
         `${type}-treble`,
         "treble",
         data.treble
     );
+
 
     drawStaff(
         `${type}-bass`,
@@ -153,9 +167,9 @@ function drawInterval(type) {
 }
 
 
-/* =====================================================
-   POMOCNICZE
-===================================================== */
+/* =========================================================
+   POZYCJE NUT
+========================================================= */
 
 const letterValue = {
 
@@ -170,33 +184,36 @@ const letterValue = {
 };
 
 
-/*
-   Pozycja nuty względem dolnej linii pięciolinii.
-
-   KLUCZ WIOLINOWY:
-   E4 = dolna linia.
-
-   KLUCZ BASOWY:
-   G2 = dolna linia.
-*/
-
 function getStep(note, clef) {
 
-    const [rawPitch, octaveText] =
+    const parts =
         note.toLowerCase().split("/");
 
-    const letter =
-        rawPitch.charAt(0);
+
+    const pitch =
+        parts[0];
+
 
     const octave =
-        Number(octaveText);
+        Number(parts[1]);
+
+
+    const letter =
+        pitch.charAt(0);
+
 
     const absolute =
         octave * 7 +
         letterValue[letter];
 
+
     let reference;
 
+
+    /*
+       KLUCZ WIOLINOWY:
+       E4 = dolna linia
+    */
 
     if (clef === "treble") {
 
@@ -205,6 +222,12 @@ function getStep(note, clef) {
             letterValue.e;
 
     }
+
+
+    /*
+       KLUCZ BASOWY:
+       G2 = dolna linia
+    */
 
     else {
 
@@ -219,21 +242,25 @@ function getStep(note, clef) {
 }
 
 
-/* =====================================================
+/* =========================================================
    RYSOWANIE PIĘCIOLINII
-===================================================== */
+========================================================= */
 
-function drawStaff(containerId, clef, notes) {
+function drawStaff(
+    containerId,
+    clef,
+    notes
+) {
 
     const container =
-        document.getElementById(containerId);
+        document.getElementById(
+            containerId
+        );
+
 
     if (!container) {
         return;
     }
-
-
-    container.innerHTML = "";
 
 
     const width = 700;
@@ -243,88 +270,108 @@ function drawStaff(containerId, clef, notes) {
     const staffRight = 650;
 
     const staffTop = 65;
+
     const gap = 14;
 
 
     let svg = `
 
-        <svg
-            width="100%"
-            viewBox="0 0 ${width} ${height}"
-            xmlns="http://www.w3.org/2000/svg"
-            style="
-                display:block;
-                max-width:700px;
-                margin:0 auto;
-            "
-        >
+    <svg
+        width="100%"
+        viewBox="0 0 ${width} ${height}"
+        xmlns="http://www.w3.org/2000/svg"
+        style="
+            display:block;
+            max-width:700px;
+            margin:0 auto;
+        "
+    >
 
     `;
 
 
-    /* =================================================
-       PIĘCIOLINIA
-    ================================================= */
+    /* =====================================================
+       5 LINII
+    ===================================================== */
 
-    for (let i = 0; i < 5; i++) {
+    for (
+        let i = 0;
+        i < 5;
+        i++
+    ) {
 
         const y =
-            staffTop + i * gap;
+            staffTop +
+            i * gap;
+
 
         svg += `
 
-            <line
-                x1="${staffLeft}"
-                y1="${y}"
-                x2="${staffRight}"
-                y2="${y}"
-                stroke="#252238"
-                stroke-width="1.5"
-            />
+        <line
+            x1="${staffLeft}"
+            y1="${y}"
+
+            x2="${staffRight}"
+            y2="${y}"
+
+            stroke="#252238"
+            stroke-width="1.5"
+        />
 
         `;
+
     }
 
 
-    /* =================================================
-       KLUCZ
-    ================================================= */
+    /* =====================================================
+       KLUCZ WIOLINOWY
+    ===================================================== */
 
     if (clef === "treble") {
 
         svg += `
 
-            <text
-                x="25"
-                y="128"
-                font-size="82"
-                font-family="serif"
-                fill="#252238"
-            >𝄞</text>
+        <text
+            x="25"
+            y="128"
+
+            font-size="82"
+            font-family="serif"
+
+            fill="#252238"
+        >𝄞</text>
 
         `;
 
     }
+
+
+    /* =====================================================
+       KLUCZ BASOWY
+    ===================================================== */
 
     else {
 
         svg += `
 
-            <text
-                x="25"
-                y="116"
-                font-size="62"
-                font-family="serif"
-                fill="#252238"
-            >𝄢</text>
+        <text
+            x="25"
+            y="116"
+
+            font-size="62"
+            font-family="serif"
+
+            fill="#252238"
+        >𝄢</text>
 
         `;
+
     }
 
 
-    /* =================================================
+    /* =====================================================
        NUTY
-    ================================================= */
+    ===================================================== */
 
     const positions = [
         330,
@@ -332,279 +379,348 @@ function drawStaff(containerId, clef, notes) {
     ];
 
 
-    notes.forEach((note, index) => {
+    notes.forEach(
+        (note, index) => {
 
-        const [rawPitch] =
-            note.toLowerCase().split("/");
-
-        const x =
-            positions[index];
-
-        const step =
-            getStep(note, clef);
+            const parts =
+                note
+                    .toLowerCase()
+                    .split("/");
 
 
-        /*
-           Dolna linia:
-           step = 0
-
-           Pierwsze pole:
-           step = 1
-
-           Następna linia:
-           step = 2
-        */
-
-        const y =
-            staffTop +
-            4 * gap -
-            step * (gap / 2);
+            const rawPitch =
+                parts[0];
 
 
-        /* =================================================
-           LINIE DODANE POD PIĘCIOLINIĄ
-        ================================================= */
-
-        if (step < 0) {
-
-            for (
-                let ledgerStep = -2;
-                ledgerStep >= step;
-                ledgerStep -= 2
-            ) {
-
-                const ledgerY =
-                    staffTop +
-                    4 * gap -
-                    ledgerStep * (gap / 2);
+            const x =
+                positions[index];
 
 
-                svg += `
-
-                    <line
-                        x1="${x - 18}"
-                        y1="${ledgerY}"
-                        x2="${x + 18}"
-                        y2="${ledgerY}"
-                        stroke="#252238"
-                        stroke-width="1.5"
-                    />
-
-                `;
-            }
-        }
+            const step =
+                getStep(
+                    note,
+                    clef
+                );
 
 
-        /* =================================================
-           LINIE DODANE NAD PIĘCIOLINIĄ
-        ================================================= */
-
-        if (step > 8) {
-
-            for (
-                let ledgerStep = 10;
-                ledgerStep <= step;
-                ledgerStep += 2
-            ) {
-
-                const ledgerY =
-                    staffTop +
-                    4 * gap -
-                    ledgerStep * (gap / 2);
+            const bottomLine =
+                staffTop +
+                4 * gap;
 
 
-                svg += `
+            const y =
+                bottomLine -
+                step * (gap / 2);
+
+
+            /* =============================================
+               LINIE DODANE POD PIĘCIOLINIĄ
+            ============================================= */
+
+            if (step < 0) {
+
+                for (
+                    let ledger = -2;
+                    ledger >= step;
+                    ledger -= 2
+                ) {
+
+                    const ledgerY =
+                        bottomLine -
+                        ledger * (gap / 2);
+
+
+                    svg += `
 
                     <line
                         x1="${x - 18}"
                         y1="${ledgerY}"
+
                         x2="${x + 18}"
                         y2="${ledgerY}"
+
                         stroke="#252238"
                         stroke-width="1.5"
                     />
 
-                `;
+                    `;
+
+                }
+
             }
-        }
 
 
-        /* =================================================
-           ZNAKI CHROMATYCZNE
-        ================================================= */
+            /* =============================================
+               LINIE DODANE NAD PIĘCIOLINIĄ
+            ============================================= */
 
-        let accidental = "";
+            if (step > 8) {
 
+                for (
+                    let ledger = 10;
+                    ledger <= step;
+                    ledger += 2
+                ) {
 
-        if (rawPitch.includes("bb")) {
-
-            accidental = "𝄫";
-
-        }
-
-        else if (rawPitch.includes("b")) {
-
-            accidental = "♭";
-
-        }
-
-        else if (rawPitch.includes("#")) {
-
-            accidental = "♯";
-
-        }
+                    const ledgerY =
+                        bottomLine -
+                        ledger * (gap / 2);
 
 
-        if (accidental) {
+                    svg += `
 
-            svg += `
+                    <line
+                        x1="${x - 18}"
+                        y1="${ledgerY}"
+
+                        x2="${x + 18}"
+                        y2="${ledgerY}"
+
+                        stroke="#252238"
+                        stroke-width="1.5"
+                    />
+
+                    `;
+
+                }
+
+            }
+
+
+            /* =============================================
+               ZNAKI CHROMATYCZNE
+            ============================================= */
+
+            let accidental = "";
+
+
+            if (
+                rawPitch.includes("bb")
+            ) {
+
+                accidental = "𝄫";
+
+            }
+
+            else if (
+                rawPitch.includes("b")
+            ) {
+
+                accidental = "♭";
+
+            }
+
+            else if (
+                rawPitch.includes("#")
+            ) {
+
+                accidental = "♯";
+
+            }
+
+
+            if (accidental) {
+
+                svg += `
 
                 <text
                     x="${x - 34}"
                     y="${y + 8}"
+
                     font-size="25"
                     font-family="serif"
+
                     fill="#252238"
                 >${accidental}</text>
 
-            `;
-        }
+                `;
+
+            }
 
 
-        /* =================================================
-           GŁÓWKA NUTY
-        ================================================= */
+            /* =============================================
+               GŁÓWKA
+            ============================================= */
 
-        svg += `
+            svg += `
 
             <ellipse
                 cx="${x}"
                 cy="${y}"
+
                 rx="9"
                 ry="6.5"
-                transform="rotate(-18 ${x} ${y})"
+
+                transform="
+                    rotate(
+                        -18
+                        ${x}
+                        ${y}
+                    )
+                "
+
                 fill="#252238"
             />
 
-        `;
+            `;
 
 
-        /* =================================================
-           LASECZKA
-        ================================================= */
+            /* =============================================
+               LASECZKA
+            ============================================= */
 
-        svg += `
+            svg += `
 
             <line
                 x1="${x + 7}"
                 y1="${y}"
+
                 x2="${x + 7}"
                 y2="${y - 42}"
+
                 stroke="#252238"
                 stroke-width="2"
             />
 
-        `;
+            `;
 
-    });
+        }
+    );
 
 
     svg += `
-        </svg>
+
+    </svg>
+
     `;
 
 
-    container.innerHTML = svg;
+    container.innerHTML =
+        svg;
 }
 
 
-/* =====================================================
+/* =========================================================
    PIANINO
-===================================================== */
+========================================================= */
 
 async function createPiano() {
 
-    if (pianoLoaded && piano) {
-        return;
+    /*
+       Jeżeli pianino już jest gotowe,
+       nie ładujemy go ponownie.
+    */
+
+    if (
+        piano &&
+        pianoLoaded
+    ) {
+
+        return piano;
+
     }
 
 
     try {
 
-        piano = new Tone.Sampler({
+        piano =
+            new Tone.Sampler({
 
-            urls: {
+                urls: {
 
-                A0: "A0.mp3",
-                C1: "C1.mp3",
-                "D#1": "Ds1.mp3",
-                "F#1": "Fs1.mp3",
+                    A0: "A0.mp3",
 
-                A1: "A1.mp3",
-                C2: "C2.mp3",
-                "D#2": "Ds2.mp3",
-                "F#2": "Fs2.mp3",
+                    C1: "C1.mp3",
+                    "D#1": "Ds1.mp3",
+                    "F#1": "Fs1.mp3",
 
-                A2: "A2.mp3",
-                C3: "C3.mp3",
-                "D#3": "Ds3.mp3",
-                "F#3": "Fs3.mp3",
+                    A1: "A1.mp3",
 
-                A3: "A3.mp3",
-                C4: "C4.mp3",
-                "D#4": "Ds4.mp3",
-                "F#4": "Fs4.mp3",
+                    C2: "C2.mp3",
+                    "D#2": "Ds2.mp3",
+                    "F#2": "Fs2.mp3",
 
-                A4: "A4.mp3",
-                C5: "C5.mp3",
-                "D#5": "Ds5.mp3",
-                "F#5": "Fs5.mp3",
+                    A2: "A2.mp3",
 
-                A5: "A5.mp3",
-                C6: "C6.mp3",
-                "D#6": "Ds6.mp3",
-                "F#6": "Fs6.mp3",
+                    C3: "C3.mp3",
+                    "D#3": "Ds3.mp3",
+                    "F#3": "Fs3.mp3",
 
-                A6: "A6.mp3",
-                C7: "C7.mp3"
+                    A3: "A3.mp3",
 
-            },
+                    C4: "C4.mp3",
+                    "D#4": "Ds4.mp3",
+                    "F#4": "Fs4.mp3",
 
-            release: 1,
+                    A4: "A4.mp3",
 
-            baseUrl:
-                "https://tonejs.github.io/audio/salamander/"
+                    C5: "C5.mp3",
+                    "D#5": "Ds5.mp3",
+                    "F#5": "Fs5.mp3",
 
-        }).toDestination();
+                    A5: "A5.mp3",
+
+                    C6: "C6.mp3",
+                    "D#6": "Ds6.mp3",
+                    "F#6": "Fs6.mp3",
+
+                    A6: "A6.mp3",
+
+                    C7: "C7.mp3"
+
+                },
+
+
+                baseUrl:
+                    "https://tonejs.github.io/audio/salamander/",
+
+
+                release: 1.5
+
+
+            }).toDestination();
 
 
         await Tone.loaded();
 
+
         pianoLoaded = true;
+
+
+        return piano;
 
     }
 
-    catch (error) {
+
+    catch(error) {
 
         console.error(
-            "Błąd ładowania pianina:",
+            "Harmonix — błąd pianina:",
             error
         );
 
+
         pianoLoaded = false;
+
+
+        return null;
+
     }
 }
 
 
-/* =====================================================
-   ODTWARZANIE INTERWAŁU
+/* =========================================================
+   ODTWARZANIE
 
-   1. MELODYCZNIE:
-      pierwszy dźwięk → drugi dźwięk
+   WAŻNE:
 
-   2. HARMONICZNIE:
-      oba dźwięki jednocześnie
-===================================================== */
+   1. MELODYCZNIE
+      C → drugi dźwięk
+
+   2. HARMONICZNIE
+      C + drugi dźwięk
+      uruchamiane JEDNOCZEŚNIE
+========================================================= */
 
 async function playInterval(type) {
 
@@ -612,8 +728,18 @@ async function playInterval(type) {
         intervals[type];
 
 
-    if (!data) {
+    if (
+        !data ||
+        !data.piano
+    ) {
+
+        console.error(
+            "Brak interwału:",
+            type
+        );
+
         return;
+
     }
 
 
@@ -623,106 +749,187 @@ async function playInterval(type) {
         );
 
 
-    if (status) {
+    try {
 
-        status.textContent =
-            "Ładowanie pianina…";
+        /* =============================================
+           START AUDIO
+        ============================================= */
 
-    }
+        await Tone.start();
 
-
-    await Tone.start();
-
-    await createPiano();
-
-
-    if (!piano) {
 
         if (status) {
 
             status.textContent =
-                "Nie udało się załadować dźwięku.";
+                "Ładowanie pianina…";
 
         }
 
-        return;
-    }
+
+        const instrument =
+            await createPiano();
 
 
-    const firstNote =
-        data.piano[0];
+        if (!instrument) {
 
-    const secondNote =
-        data.piano[1];
+            throw new Error(
+                "Pianino nie zostało załadowane."
+            );
 
-    const now =
-        Tone.now();
-
-
-    /* =================================================
-       MELODYCZNIE
-    ================================================= */
-
-    if (status) {
-
-        status.textContent =
-            "🎵 Melodycznie…";
-
-    }
+        }
 
 
-    piano.triggerAttackRelease(
-        firstNote,
-        "2n",
-        now
-    );
+        const firstNote =
+            data.piano[0];
 
 
-    piano.triggerAttackRelease(
-        secondNote,
-        "2n",
-        now + 0.9
-    );
+        const secondNote =
+            data.piano[1];
 
 
-    /* =================================================
-       HARMONICZNIE
-    ================================================= */
+        /*
+           Dodajemy minimalny zapas czasu.
+        */
 
-    setTimeout(() => {
+        const start =
+            Tone.now() + 0.1;
+
+
+        /* =============================================
+           1. MELODYCZNIE
+        ============================================= */
 
         if (status) {
 
             status.textContent =
-                "🎶 Harmonicznie…";
+                "🎵 Melodycznie";
 
         }
 
 
-        piano.triggerAttackRelease(
-            [
-                firstNote,
-                secondNote
-            ],
-            "1n"
+        instrument.triggerAttackRelease(
+
+            firstNote,
+
+            0.65,
+
+            start
+
         );
 
-    }, 2000);
+
+        instrument.triggerAttackRelease(
+
+            secondNote,
+
+            0.65,
+
+            start + 0.85
+
+        );
 
 
-    /* =================================================
-       KONIEC
-    ================================================= */
+        /* =============================================
+           2. HARMONICZNIE
 
-    setTimeout(() => {
+           KLUCZOWA POPRAWKA:
+
+           NIE:
+           triggerAttackRelease([C4,D4])
+
+           TYLKO:
+
+           C4 i D4 jako DWA osobne dźwięki,
+           ale z IDENTYCZNYM czasem startu.
+        ============================================= */
+
+        const harmonicStart =
+            start + 2.1;
+
+
+        instrument.triggerAttackRelease(
+
+            firstNote,
+
+            1.4,
+
+            harmonicStart
+
+        );
+
+
+        instrument.triggerAttackRelease(
+
+            secondNote,
+
+            1.4,
+
+            harmonicStart
+
+        );
+
+
+        /* =============================================
+           KOMUNIKAT HARMONICZNIE
+        ============================================= */
+
+        setTimeout(
+            () => {
+
+                if (status) {
+
+                    status.textContent =
+                        "🎶 Harmonicznie";
+
+                }
+
+            },
+
+            2050
+        );
+
+
+        /* =============================================
+           KONIEC
+        ============================================= */
+
+        setTimeout(
+            () => {
+
+                if (status) {
+
+                    status.textContent =
+                        "";
+
+                }
+
+            },
+
+            3900
+        );
+
+    }
+
+
+    catch(error) {
+
+        console.error(
+            "Harmonix — błąd odtwarzania:",
+            error
+        );
+
 
         if (status) {
 
             status.textContent =
-                "Gotowe ✓";
+                "Nie udało się odtworzyć dźwięku.";
 
         }
 
-    }, 3500);
-
+    }
 }
+
+
+/* =========================================================
+   KONIEC APP.JS
+========================================================= */
