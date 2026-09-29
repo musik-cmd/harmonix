@@ -473,3 +473,373 @@ function renderStaff(notes) {
     /* pięciolinia */
 
     linesY.forEach(y => {
+
+        const line = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "line"
+        );
+
+        line.setAttribute("x1", 80);
+        line.setAttribute("x2", 670);
+        line.setAttribute("y1", y);
+        line.setAttribute("y2", y);
+        line.setAttribute("stroke", "#252238");
+        line.setAttribute("stroke-width", "1.5");
+
+        svg.appendChild(line);
+    });
+
+
+    /* klucz wiolinowy */
+
+    const clef = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "text"
+    );
+
+    clef.textContent = "𝄞";
+    clef.setAttribute("x", 25);
+    clef.setAttribute("y", 120);
+    clef.setAttribute("font-size", "70");
+
+    svg.appendChild(clef);
+
+
+    /*
+       E4 = dolna linia pięciolinii.
+
+       Każdy kolejny stopień diatoniczny
+       przesuwa nutę o 6 px.
+    */
+
+    const baseStep = 4 * 7 + letterIndex.E;
+
+    notes.forEach((note, index) => {
+
+        const parsed = parseWrittenNote(note);
+
+        const x = 230 + index * 220;
+
+        const octave = 4;
+
+        const step =
+            octave * 7 + letterIndex[parsed.letter];
+
+        const y =
+            118 - (step - baseStep) * 6;
+
+
+        /* dodatkowe linie */
+
+        if (y < 70) {
+
+            for (
+                let lineY = 70 - 12;
+                lineY >= y;
+                lineY -= 12
+            ) {
+
+                const ledger =
+                    document.createElementNS(
+                        "http://www.w3.org/2000/svg",
+                        "line"
+                    );
+
+                ledger.setAttribute("x1", x - 17);
+                ledger.setAttribute("x2", x + 17);
+                ledger.setAttribute("y1", lineY);
+                ledger.setAttribute("y2", lineY);
+                ledger.setAttribute("stroke", "#252238");
+                ledger.setAttribute("stroke-width", "1.5");
+
+                svg.appendChild(ledger);
+            }
+        }
+
+
+        if (y > 118) {
+
+            for (
+                let lineY = 130;
+                lineY <= y;
+                lineY += 12
+            ) {
+
+                const ledger =
+                    document.createElementNS(
+                        "http://www.w3.org/2000/svg",
+                        "line"
+                    );
+
+                ledger.setAttribute("x1", x - 17);
+                ledger.setAttribute("x2", x + 17);
+                ledger.setAttribute("y1", lineY);
+                ledger.setAttribute("y2", lineY);
+                ledger.setAttribute("stroke", "#252238");
+                ledger.setAttribute("stroke-width", "1.5");
+
+                svg.appendChild(ledger);
+            }
+        }
+
+
+        /* nuta */
+
+        const noteHead =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "ellipse"
+            );
+
+        noteHead.setAttribute("cx", x);
+        noteHead.setAttribute("cy", y);
+        noteHead.setAttribute("rx", 10);
+        noteHead.setAttribute("ry", 7);
+        noteHead.setAttribute("fill", "#252238");
+
+        svg.appendChild(noteHead);
+
+
+        /* laseczka */
+
+        const stem =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "line"
+            );
+
+        stem.setAttribute("x1", x + 9);
+        stem.setAttribute("x2", x + 9);
+        stem.setAttribute("y1", y);
+        stem.setAttribute("y2", y - 42);
+        stem.setAttribute("stroke", "#252238");
+        stem.setAttribute("stroke-width", "2");
+
+        svg.appendChild(stem);
+
+
+        /* znak chromatyczny */
+
+        if (parsed.accidental) {
+
+            const accidental =
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "text"
+                );
+
+            let symbol = "";
+
+            if (parsed.accidental === "b") {
+                symbol = "♭";
+            }
+
+            if (parsed.accidental === "bb") {
+                symbol = "𝄫";
+            }
+
+            if (parsed.accidental === "#") {
+                symbol = "♯";
+            }
+
+            accidental.textContent = symbol;
+
+            accidental.setAttribute("x", x - 28);
+            accidental.setAttribute("y", y + 7);
+            accidental.setAttribute("font-size", "27");
+
+            svg.appendChild(accidental);
+        }
+    });
+
+    return svg;
+}
+
+
+/* -----------------------------
+   ODTWARZANIE
+----------------------------- */
+
+let sampler = null;
+
+async function getSampler() {
+
+    if (!sampler) {
+
+        sampler = new Tone.Sampler({
+
+            urls: {
+                C4: "C4.mp3",
+                C5: "C5.mp3",
+                C6: "C6.mp3"
+            },
+
+            baseUrl:
+                "https://tonejs.github.io/audio/salamander/",
+
+            release: 1
+        }).toDestination();
+    }
+
+    await Tone.loaded();
+
+    return sampler;
+}
+
+
+async function playInterval(pitches, button, status) {
+
+    try {
+
+        button.disabled = true;
+        status.textContent = "Ładowanie dźwięków…";
+
+        await Tone.start();
+
+        const piano = await getSampler();
+
+        const now = Tone.now();
+
+        piano.triggerAttackRelease(
+            pitches[0],
+            "1n",
+            now
+        );
+
+        piano.triggerAttackRelease(
+            pitches[1],
+            "1n",
+            now + 0.9
+        );
+
+        status.textContent = "▶ Odtwarzanie";
+
+        setTimeout(() => {
+            status.textContent = "";
+            button.disabled = false;
+        }, 2200);
+
+    } catch (error) {
+
+        console.error(error);
+
+        status.textContent =
+            "Nie udało się uruchomić dźwięku.";
+
+        button.disabled = false;
+    }
+}
+
+
+/* -----------------------------
+   TWORZENIE KART
+----------------------------- */
+
+function createCard(interval) {
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+
+    const title = document.createElement("h3");
+    title.textContent = interval.name;
+
+    card.appendChild(title);
+
+
+    const description = document.createElement("div");
+    description.className = "description";
+    description.textContent = interval.description;
+
+    card.appendChild(description);
+
+
+    const staffBox = document.createElement("div");
+    staffBox.className = "staff-box";
+
+    staffBox.appendChild(
+        renderStaff(interval.notes)
+    );
+
+    card.appendChild(staffBox);
+
+
+    const info = document.createElement("div");
+    info.className = "info";
+
+
+    const written = document.createElement("div");
+    written.className = "tag";
+    written.textContent =
+        "Zapis: " + interval.symbol;
+
+    info.appendChild(written);
+
+
+    const piano = document.createElement("div");
+    piano.className = "tag";
+    piano.textContent =
+        "Dźwięki: " +
+        interval.pitches.join(" → ");
+
+    info.appendChild(piano);
+
+
+    card.appendChild(info);
+
+
+    const button = document.createElement("button");
+    button.textContent = "🎧 Posłuchaj";
+
+    const status = document.createElement("span");
+    status.className = "status";
+
+
+    button.addEventListener(
+        "click",
+        () => playInterval(
+            interval.pitches,
+            button,
+            status
+        )
+    );
+
+
+    card.appendChild(button);
+    card.appendChild(status);
+
+    return card;
+}
+
+
+/* -----------------------------
+   WSTAWIENIE KART
+----------------------------- */
+
+function renderSection(id, data) {
+
+    const container =
+        document.getElementById(id);
+
+    data.forEach(interval => {
+
+        container.appendChild(
+            createCard(interval)
+        );
+
+    });
+}
+
+
+renderSection("nony", intervals.nony);
+renderSection("decymy", intervals.decymy);
+renderSection("undecymy", intervals.undecymy);
+renderSection("duodecymy", intervals.duodecymy);
+renderSection("tercdecyma", intervals.tercdecyma);
+renderSection("kwartdecyma", intervals.kwartdecyma);
+renderSection("kwintdecyma", intervals.kwintdecyma);
+
+</script>
+
+</body>
+</html>
