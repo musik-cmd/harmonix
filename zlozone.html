@@ -10,183 +10,121 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>Interwały złożone — Harmonix</title>
+<title>Harmonix — Interwały złożone</title>
 
+<link rel="stylesheet" href="style.css">
 
 <style>
 
-    * {
-        box-sizing: border-box;
+    .lesson {
+        text-align: left;
+        margin-top: 35px;
     }
 
-
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f7f5ff;
-        color: #252238;
-    }
-
-
-    .page {
-        max-width: 950px;
-        margin: 0 auto;
-        padding: 50px 20px 80px;
-    }
-
-
-    .back {
-        display: inline-block;
-        margin-bottom: 30px;
-        color: #6b6680;
-        text-decoration: none;
-        font-size: 15px;
-    }
-
-
-    h1 {
-        text-align: center;
-        font-size: 42px;
-        margin: 0 0 10px;
-    }
-
-
-    .subtitle {
-        text-align: center;
-        color: #6b6680;
-        font-size: 18px;
-        line-height: 1.5;
-        margin-bottom: 40px;
-    }
-
-
-    .interval-list {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-    }
-
-
-    .interval-item {
+    .lesson-card {
         background: white;
-        border-radius: 20px;
-        overflow: hidden;
+        border-radius: 22px;
+        padding: 28px;
+        margin-bottom: 20px;
         box-shadow: 0 8px 30px rgba(40, 30, 80, 0.08);
     }
 
+    .lesson-card h2 {
+        margin-top: 0;
+        font-size: 23px;
+    }
 
-    .interval-button {
-        width: 100%;
-        border: none;
-        background: white;
-        padding: 22px 25px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        cursor: pointer;
-        color: #252238;
+    .lesson-card p {
+        color: #5f5a70;
+        line-height: 1.6;
+    }
+
+    .intro {
+        margin-bottom: 25px;
+    }
+
+    .interval-group {
+        margin-bottom: 30px;
+    }
+
+    .interval-group h2 {
+        margin-bottom: 8px;
+    }
+
+    .interval-description {
+        margin-bottom: 20px;
+    }
+
+    .example {
+        margin-top: 18px;
+        padding: 20px;
+        background: #f7f5ff;
+        border-radius: 18px;
+        text-align: center;
+    }
+
+    .example-title {
         font-size: 18px;
         font-weight: 700;
-        text-align: left;
+        margin-bottom: 5px;
     }
 
-
-    .interval-button:hover {
-        background: #faf9ff;
+    .example-subtitle {
+        color: #777187;
+        font-size: 14px;
+        margin-bottom: 12px;
     }
 
-
-    .arrow {
-        font-size: 20px;
-        transition: transform 0.25s;
-    }
-
-
-    .interval-item.open .arrow {
-        transform: rotate(180deg);
-    }
-
-
-    .interval-content {
-        display: none;
-        padding: 0 25px 30px;
-    }
-
-
-    .interval-item.open .interval-content {
+    .staff {
+        width: 100%;
+        max-width: 650px;
+        height: 180px;
+        margin: 0 auto;
         display: block;
     }
 
-
-    .description {
-        color: #6b6680;
-        line-height: 1.6;
-        margin: 5px 0 20px;
-    }
-
-
-    .staff-title {
-        font-size: 15px;
-        color: #6b6680;
-        margin: 20px 0 5px;
-        font-weight: 600;
-    }
-
-
-    .staff-box {
-        width: 100%;
-        overflow: hidden;
-    }
-
-
-    .listen-area {
-        text-align: center;
-        margin-top: 25px;
-    }
-
-
-    .listen-button {
+    .listen {
+        margin-top: 12px;
+        padding: 11px 18px;
         border: none;
         border-radius: 12px;
-        padding: 13px 24px;
         background: #252238;
         color: white;
         font-size: 15px;
-        font-weight: 600;
         cursor: pointer;
     }
 
-
-    .listen-button:hover {
+    .listen:hover {
         opacity: 0.9;
     }
 
-
     .status {
-        margin-top: 10px;
-        font-size: 13px;
+        margin-top: 9px;
+        font-size: 14px;
         color: #777187;
-        min-height: 18px;
+        min-height: 20px;
     }
 
+    .formula {
+        display: inline-block;
+        padding: 8px 13px;
+        background: white;
+        border-radius: 10px;
+        margin-top: 8px;
+        font-weight: 700;
+    }
 
-    @media (max-width: 650px) {
+    .back {
+        display: inline-block;
+        margin-top: 5px;
+        margin-bottom: 30px;
+        color: #5d4fc7;
+        text-decoration: none;
+        font-weight: 700;
+    }
 
-        .page {
-            padding: 30px 12px 60px;
-        }
-
-
-        h1 {
-            font-size: 34px;
-        }
-
-
-        .interval-content {
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
+    .back:hover {
+        text-decoration: underline;
     }
 
 </style>
@@ -196,1176 +134,844 @@
 
 <body>
 
-<div class="page">
+<main class="hero">
 
 ```
-<a href="interwaly.html" class="back">
-    ← Wróć do interwałów
-</a>
+<div class="container">
+
+    <div class="logo">
+        Interwały złożone
+    </div>
+
+    <div class="subtitle">
+        Interwały większe od oktawy — wszystkie podstawowe rodzaje jakości.
+    </div>
 
 
-<h1>Interwały złożone</h1>
+    <div class="lesson">
 
 
-<div class="subtitle">
-    Interwały większe od oktawy — od nony do kwintdecymy
-</div>
+        <!-- WPROWADZENIE -->
 
+        <div class="lesson-card intro">
 
-<div class="interval-list">
+            <h2>
+                🎼 Czym są interwały złożone?
+            </h2>
 
+            <p>
+                Interwał złożony to interwał większy od oktawy.
+                Powstaje przez połączenie oktawy z interwałem prostym.
+            </p>
 
-    <!-- NONA -->
+            <p>
+                Przykładowo:
+            </p>
 
-    <div class="interval-item">
+            <ul>
 
-        <button
-            class="interval-button"
-            onclick="toggleInterval('nona', this)"
-        >
+                <li>
+                    <strong>nona</strong> = oktawa + sekunda
+                </li>
 
-            <span>♩ Nona wielka</span>
+                <li>
+                    <strong>decymа</strong> = oktawa + tercja
+                </li>
 
-            <span class="arrow">⌄</span>
+                <li>
+                    <strong>undecyma</strong> = oktawa + kwarta
+                </li>
 
-        </button>
+                <li>
+                    <strong>duodecyma</strong> = oktawa + kwinta
+                </li>
 
+                <li>
+                    <strong>tercdecyma</strong> = oktawa + seksta
+                </li>
 
-        <div class="interval-content">
+                <li>
+                    <strong>kwartdecyma</strong> = oktawa + septyma
+                </li>
 
-            <div class="description">
-                Nona to sekunda powiększona o oktawę.
-                Przykład: C–D w następnej oktawie.
-            </div>
+                <li>
+                    <strong>kwintdecyma</strong> = oktawa + oktawa
+                </li>
 
+            </ul>
 
-            <div class="staff-title">
-                Klucz wiolinowy
-            </div>
-
-
-            <div
-                id="nona-treble"
-                class="staff-box"
-            ></div>
-
-
-            <div class="staff-title">
-                Klucz basowy
-            </div>
-
-
-            <div
-                id="nona-bass"
-                class="staff-box"
-            ></div>
-
-
-            <div class="listen-area">
-
-                <button
-                    class="listen-button"
-                    onclick="playInterval('nona')"
-                >
-                    ▶ Posłuchaj
-                </button>
-
-
-                <div
-                    id="nona-status"
-                    class="status"
-                ></div>
-
+            <div class="formula">
+                Interwał złożony = oktawa + interwał prosty
             </div>
 
         </div>
 
-    </div>
 
+        <!-- NONA -->
 
+        <div class="lesson-card interval-group">
 
-    <!-- DECYMA -->
+            <h2>9️⃣ Nona</h2>
 
-    <div class="interval-item">
+            <p class="interval-description">
+                Nona jest odpowiednikiem sekundy powiększonej o oktawę.
+                Może być mała, wielka, zwiększona lub zmniejszona.
+            </p>
 
-        <button
-            class="interval-button"
-            onclick="toggleInterval('decyma', this)"
-        >
-
-            <span>♩ Decyma wielka</span>
-
-            <span class="arrow">⌄</span>
-
-        </button>
-
-
-        <div class="interval-content">
-
-            <div class="description">
-                Decyma to tercja powiększona o oktawę.
-                Przykład: C–E w następnej oktawie.
-            </div>
-
-
-            <div class="staff-title">
-                Klucz wiolinowy
-            </div>
-
-
-            <div
-                id="decyma-treble"
-                class="staff-box"
-            ></div>
-
-
-            <div class="staff-title">
-                Klucz basowy
-            </div>
-
-
-            <div
-                id="decyma-bass"
-                class="staff-box"
-            ></div>
-
-
-            <div class="listen-area">
-
-                <button
-                    class="listen-button"
-                    onclick="playInterval('decyma')"
-                >
-                    ▶ Posłuchaj
-                </button>
-
-
-                <div
-                    id="decyma-status"
-                    class="status"
-                ></div>
-
-            </div>
+            <div id="nona"></div>
 
         </div>
 
-    </div>
 
+        <!-- DECYMA -->
 
+        <div class="lesson-card interval-group">
 
-    <!-- UNDECYMA -->
+            <h2>🔟 Decyma</h2>
 
-    <div class="interval-item">
+            <p class="interval-description">
+                Decyma odpowiada tercji powiększonej o oktawę.
+                Może być mała, wielka, zwiększona lub zmniejszona.
+            </p>
 
-        <button
-            class="interval-button"
-            onclick="toggleInterval('undecyma', this)"
-        >
-
-            <span>♩ Undecyma czysta</span>
-
-            <span class="arrow">⌄</span>
-
-        </button>
-
-
-        <div class="interval-content">
-
-            <div class="description">
-                Undecyma to kwarta powiększona o oktawę.
-                Przykład: C–F w następnej oktawie.
-            </div>
-
-
-            <div class="staff-title">
-                Klucz wiolinowy
-            </div>
-
-
-            <div
-                id="undecyma-treble"
-                class="staff-box"
-            ></div>
-
-
-            <div class="staff-title">
-                Klucz basowy
-            </div>
-
-
-            <div
-                id="undecyma-bass"
-                class="staff-box"
-            ></div>
-
-
-            <div class="listen-area">
-
-                <button
-                    class="listen-button"
-                    onclick="playInterval('undecyma')"
-                >
-                    ▶ Posłuchaj
-                </button>
-
-
-                <div
-                    id="undecyma-status"
-                    class="status"
-                ></div>
-
-            </div>
+            <div id="decyma"></div>
 
         </div>
 
-    </div>
 
+        <!-- UNDECYMA -->
 
+        <div class="lesson-card interval-group">
 
-    <!-- DUODECYMA -->
+            <h2>1️⃣1️⃣ Undecyma</h2>
 
-    <div class="interval-item">
+            <p class="interval-description">
+                Undecyma odpowiada kwarcie powiększonej o oktawę.
+                Jako odpowiednik kwarty występuje jako czysta,
+                zwiększona lub zmniejszona.
+            </p>
 
-        <button
-            class="interval-button"
-            onclick="toggleInterval('duodecyma', this)"
-        >
-
-            <span>♩ Duodecyma czysta</span>
-
-            <span class="arrow">⌄</span>
-
-        </button>
-
-
-        <div class="interval-content">
-
-            <div class="description">
-                Duodecyma to kwinta powiększona o oktawę.
-                Przykład: C–G w następnej oktawie.
-            </div>
-
-
-            <div class="staff-title">
-                Klucz wiolinowy
-            </div>
-
-
-            <div
-                id="duodecyma-treble"
-                class="staff-box"
-            ></div>
-
-
-            <div class="staff-title">
-                Klucz basowy
-            </div>
-
-
-            <div
-                id="duodecyma-bass"
-                class="staff-box"
-            ></div>
-
-
-            <div class="listen-area">
-
-                <button
-                    class="listen-button"
-                    onclick="playInterval('duodecyma')"
-                >
-                    ▶ Posłuchaj
-                </button>
-
-
-                <div
-                    id="duodecyma-status"
-                    class="status"
-                ></div>
-
-            </div>
+            <div id="undecyma"></div>
 
         </div>
 
-    </div>
 
+        <!-- DUODECYMA -->
 
+        <div class="lesson-card interval-group">
 
-    <!-- TERCDECYMA -->
+            <h2>1️⃣2️⃣ Duodecyma</h2>
 
-    <div class="interval-item">
+            <p class="interval-description">
+                Duodecyma odpowiada kwincie powiększonej o oktawę.
+                Może być czysta, zwiększona lub zmniejszona.
+            </p>
 
-        <button
-            class="interval-button"
-            onclick="toggleInterval('tercdecyma', this)"
-        >
-
-            <span>♩ Tercdecyma wielka</span>
-
-            <span class="arrow">⌄</span>
-
-        </button>
-
-
-        <div class="interval-content">
-
-            <div class="description">
-                Tercdecyma to seksta powiększona o oktawę.
-                Przykład: C–A w następnej oktawie.
-            </div>
-
-
-            <div class="staff-title">
-                Klucz wiolinowy
-            </div>
-
-
-            <div
-                id="tercdecyma-treble"
-                class="staff-box"
-            ></div>
-
-
-            <div class="staff-title">
-                Klucz basowy
-            </div>
-
-
-            <div
-                id="tercdecyma-bass"
-                class="staff-box"
-            ></div>
-
-
-            <div class="listen-area">
-
-                <button
-                    class="listen-button"
-                    onclick="playInterval('tercdecyma')"
-                >
-                    ▶ Posłuchaj
-                </button>
-
-
-                <div
-                    id="tercdecyma-status"
-                    class="status"
-                ></div>
-
-            </div>
+            <div id="duodecyma"></div>
 
         </div>
 
-    </div>
 
+        <!-- TER CDE CYMA -->
 
+        <div class="lesson-card interval-group">
 
-    <!-- KWARTDECYMA -->
+            <h2>1️⃣3️⃣ Tercdecyma</h2>
 
-    <div class="interval-item">
+            <p class="interval-description">
+                Tercdecyma odpowiada sekście powiększonej o oktawę.
+                Może być mała, wielka, zwiększona lub zmniejszona.
+            </p>
 
-        <button
-            class="interval-button"
-            onclick="toggleInterval('kwartdecyma', this)"
-        >
-
-            <span>♩ Kwartdecyma wielka</span>
-
-            <span class="arrow">⌄</span>
-
-        </button>
-
-
-        <div class="interval-content">
-
-            <div class="description">
-                Kwartdecyma to septyma wielka powiększona o oktawę.
-                Przykład: C–B w następnej oktawie.
-            </div>
-
-
-            <div class="staff-title">
-                Klucz wiolinowy
-            </div>
-
-
-            <div
-                id="kwartdecyma-treble"
-                class="staff-box"
-            ></div>
-
-
-            <div class="staff-title">
-                Klucz basowy
-            </div>
-
-
-            <div
-                id="kwartdecyma-bass"
-                class="staff-box"
-            ></div>
-
-
-            <div class="listen-area">
-
-                <button
-                    class="listen-button"
-                    onclick="playInterval('kwartdecyma')"
-                >
-                    ▶ Posłuchaj
-                </button>
-
-
-                <div
-                    id="kwartdecyma-status"
-                    class="status"
-                ></div>
-
-            </div>
+            <div id="tercdecyma"></div>
 
         </div>
 
-    </div>
 
+        <!-- KWARTDECYMA -->
 
+        <div class="lesson-card interval-group">
 
-    <!-- KWINTDECYMA -->
+            <h2>1️⃣4️⃣ Kwartdecyma</h2>
 
-    <div class="interval-item">
+            <p class="interval-description">
+                Kwartdecyma odpowiada septymie powiększonej o oktawę.
+                Może być mała, wielka, zwiększona lub zmniejszona.
+            </p>
 
-        <button
-            class="interval-button"
-            onclick="toggleInterval('kwintdecyma', this)"
-        >
-
-            <span>♩ Kwintdecyma czysta</span>
-
-            <span class="arrow">⌄</span>
-
-        </button>
-
-
-        <div class="interval-content">
-
-            <div class="description">
-                Kwintdecyma to dwie oktawy.
-                Przykład: C–C dwie oktawy wyżej.
-            </div>
-
-
-            <div class="staff-title">
-                Klucz wiolinowy
-            </div>
-
-
-            <div
-                id="kwintdecyma-treble"
-                class="staff-box"
-            ></div>
-
-
-            <div class="staff-title">
-                Klucz basowy
-            </div>
-
-
-            <div
-                id="kwintdecyma-bass"
-                class="staff-box"
-            ></div>
-
-
-            <div class="listen-area">
-
-                <button
-                    class="listen-button"
-                    onclick="playInterval('kwintdecyma')"
-                >
-                    ▶ Posłuchaj
-                </button>
-
-
-                <div
-                    id="kwintdecyma-status"
-                    class="status"
-                ></div>
-
-            </div>
+            <div id="kwartdecyma"></div>
 
         </div>
 
+
+        <!-- KWINTDECYMA -->
+
+        <div class="lesson-card interval-group">
+
+            <h2>1️⃣5️⃣ Kwintdecyma</h2>
+
+            <p class="interval-description">
+                Kwintdecyma odpowiada podwójnej oktawie.
+                Może być czysta, zwiększona lub zmniejszona.
+            </p>
+
+            <div id="kwintdecyma"></div>
+
+        </div>
+
+
     </div>
 
+
+    <a class="back"
+       href="interwaly.html">
+
+        ← Wróć do interwałów
+
+    </a>
 
 </div>
 ```
 
-</div>
+</main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+<script src="https://unpkg.com/tone@14.8.49/build/Tone.js"></script>
 
 <script>
 
 
+/* =========================================================
+   FORMY INTERWAŁÓW
+   ========================================================= */
+
+
 const intervals = {
 
+    nona: [
 
-    nona: {
+        {
+            name: "Nona zmniejszona",
+            notes: "C – D♭♭",
+            piano: ["C4", "D4"],
+            description: "Odpowiada sekundzie zmniejszonej + oktawie."
+        },
 
-        treble: [
-            { letter: "c", octave: 4, accidental: "" },
-            { letter: "d", octave: 5, accidental: "" }
-        ],
+        {
+            name: "Nona mała",
+            notes: "C – D♭",
+            piano: ["C4", "Db4"],
+            description: "Odpowiada sekundzie małej + oktawie."
+        },
 
-        bass: [
-            { letter: "c", octave: 3, accidental: "" },
-            { letter: "d", octave: 4, accidental: "" }
-        ],
+        {
+            name: "Nona wielka",
+            notes: "C – D",
+            piano: ["C4", "D4"],
+            description: "Odpowiada sekundzie wielkiej + oktawie."
+        },
 
-        piano: ["C4", "D5"]
+        {
+            name: "Nona zwiększona",
+            notes: "C – D♯",
+            piano: ["C4", "D#4"],
+            description: "Odpowiada sekundzie zwiększonej + oktawie."
+        }
 
-    },
-
-
-    decyma: {
-
-        treble: [
-            { letter: "c", octave: 4, accidental: "" },
-            { letter: "e", octave: 5, accidental: "" }
-        ],
-
-        bass: [
-            { letter: "c", octave: 3, accidental: "" },
-            { letter: "e", octave: 4, accidental: "" }
-        ],
-
-        piano: ["C4", "E5"]
-
-    },
+    ],
 
 
-    undecyma: {
+    decyma: [
 
-        treble: [
-            { letter: "c", octave: 4, accidental: "" },
-            { letter: "f", octave: 5, accidental: "" }
-        ],
+        {
+            name: "Decyma zmniejszona",
+            notes: "C – E♭♭",
+            piano: ["C4", "D4"],
+            description: "Odpowiada tercji zmniejszonej + oktawie."
+        },
 
-        bass: [
-            { letter: "c", octave: 3, accidental: "" },
-            { letter: "f", octave: 4, accidental: "" }
-        ],
+        {
+            name: "Decyma mała",
+            notes: "C – E♭",
+            piano: ["C4", "Eb4"],
+            description: "Odpowiada tercji małej + oktawie."
+        },
 
-        piano: ["C4", "F5"]
+        {
+            name: "Decyma wielka",
+            notes: "C – E",
+            piano: ["C4", "E4"],
+            description: "Odpowiada tercji wielkiej + oktawie."
+        },
 
-    },
+        {
+            name: "Decyma zwiększona",
+            notes: "C – E♯",
+            piano: ["C4", "E4"],
+            description: "Odpowiada tercji zwiększonej + oktawie."
+        }
 
-
-    duodecyma: {
-
-        treble: [
-            { letter: "c", octave: 4, accidental: "" },
-            { letter: "g", octave: 5, accidental: "" }
-        ],
-
-        bass: [
-            { letter: "c", octave: 3, accidental: "" },
-            { letter: "g", octave: 4, accidental: "" }
-        ],
-
-        piano: ["C4", "G5"]
-
-    },
-
-
-    tercdecyma: {
-
-        treble: [
-            { letter: "c", octave: 4, accidental: "" },
-            { letter: "a", octave: 5, accidental: "" }
-        ],
-
-        bass: [
-            { letter: "c", octave: 3, accidental: "" },
-            { letter: "a", octave: 4, accidental: "" }
-        ],
-
-        piano: ["C4", "A5"]
-
-    },
+    ],
 
 
-    kwartdecyma: {
+    undecyma: [
 
-        treble: [
-            { letter: "c", octave: 4, accidental: "" },
-            { letter: "b", octave: 5, accidental: "" }
-        ],
+        {
+            name: "Undecyma zmniejszona",
+            notes: "C – F♭",
+            piano: ["C4", "E4"],
+            description: "Odpowiada kwarcie zmniejszonej + oktawie."
+        },
 
-        bass: [
-            { letter: "c", octave: 3, accidental: "" },
-            { letter: "b", octave: 4, accidental: "" }
-        ],
+        {
+            name: "Undecyma czysta",
+            notes: "C – F",
+            piano: ["C4", "F4"],
+            description: "Odpowiada kwarcie czystej + oktawie."
+        },
 
-        piano: ["C4", "B5"]
+        {
+            name: "Undecyma zwiększona",
+            notes: "C – F♯",
+            piano: ["C4", "F#4"],
+            description: "Odpowiada kwarcie zwiększonej + oktawie."
+        }
 
-    },
+    ],
 
 
-    kwintdecyma: {
+    duodecyma: [
 
-        treble: [
-            { letter: "c", octave: 4, accidental: "" },
-            { letter: "c", octave: 6, accidental: "" }
-        ],
+        {
+            name: "Duodecyma zmniejszona",
+            notes: "C – G♭",
+            piano: ["C4", "F#4"],
+            description: "Odpowiada kwincie zmniejszonej + oktawie."
+        },
 
-        bass: [
-            { letter: "c", octave: 3, accidental: "" },
-            { letter: "c", octave: 5, accidental: "" }
-        ],
+        {
+            name: "Duodecyma czysta",
+            notes: "C – G",
+            piano: ["C4", "G4"],
+            description: "Odpowiada kwincie czystej + oktawie."
+        },
 
-        piano: ["C4", "C6"]
+        {
+            name: "Duodecyma zwiększona",
+            notes: "C – G♯",
+            piano: ["C4", "G#4"],
+            description: "Odpowiada kwincie zwiększonej + oktawie."
+        }
 
-    }
+    ],
+
+
+    tercdecyma: [
+
+        {
+            name: "Tercdecyma zmniejszona",
+            notes: "C – A♭♭",
+            piano: ["C4", "G4"],
+            description: "Odpowiada sekście zmniejszonej + oktawie."
+        },
+
+        {
+            name: "Tercdecyma mała",
+            notes: "C – A♭",
+            piano: ["C4", "G#4"],
+            description: "Odpowiada sekście małej + oktawie."
+        },
+
+        {
+            name: "Tercdecyma wielka",
+            notes: "C – A",
+            piano: ["C4", "A4"],
+            description: "Odpowiada sekście wielkiej + oktawie."
+        },
+
+        {
+            name: "Tercdecyma zwiększona",
+            notes: "C – A♯",
+            piano: ["C4", "A#4"],
+            description: "Odpowiada sekście zwiększonej + oktawie."
+        }
+
+    ],
+
+
+    kwartdecyma: [
+
+        {
+            name: "Kwartdecyma zmniejszona",
+            notes: "C – B♭♭",
+            piano: ["C4", "A4"],
+            description: "Odpowiada septymie zmniejszonej + oktawie."
+        },
+
+        {
+            name: "Kwartdecyma mała",
+            notes: "C – B♭",
+            piano: ["C4", "A#4"],
+            description: "Odpowiada septymie małej + oktawie."
+        },
+
+        {
+            name: "Kwartdecyma wielka",
+            notes: "C – B",
+            piano: ["C4", "B4"],
+            description: "Odpowiada septymie wielkiej + oktawie."
+        },
+
+        {
+            name: "Kwartdecyma zwiększona",
+            notes: "C – B♯",
+            piano: ["C4", "C5"],
+            description: "Odpowiada septymie zwiększonej + oktawie."
+        }
+
+    ],
+
+
+    kwintdecyma: [
+
+        {
+            name: "Kwintdecyma zmniejszona",
+            notes: "C – C♭",
+            piano: ["C4", "B4"],
+            description: "Odpowiada oktawie zmniejszonej."
+        },
+
+        {
+            name: "Kwintdecyma czysta",
+            notes: "C – C",
+            piano: ["C4", "C5"],
+            description: "Odpowiada podwójnej oktawie."
+        },
+
+        {
+            name: "Kwintdecyma zwiększona",
+            notes: "C – C♯",
+            piano: ["C4", "C#5"],
+            description: "Odpowiada oktawie zwiększonej."
+        }
+
+    ]
 
 };
 
 
-
-function toggleInterval(type, button) {
-
-    const item =
-        button.parentElement;
+/* =========================================================
+   PIANINO
+   ========================================================= */
 
 
-    const wasOpen =
-        item.classList.contains("open");
+const piano = new Tone.Sampler({
+
+    urls: {
+
+        C4: "C4.mp3",
+        "C#4": "Cs4.mp3",
+        D4: "D4.mp3",
+        "D#4": "Ds4.mp3",
+        E4: "E4.mp3",
+        F4: "F4.mp3",
+        "F#4": "Fs4.mp3",
+        G4: "G4.mp3",
+        "G#4": "Gs4.mp3",
+        A4: "A4.mp3",
+        "A#4": "As4.mp3",
+        B4: "B4.mp3",
+        C5: "C5.mp3",
+        "C#5": "Cs5.mp3"
+
+    },
+
+    release: 1,
+
+    baseUrl:
+        "https://tonejs.github.io/audio/salamander/"
+
+}).toDestination();
 
 
-    document
-        .querySelectorAll(".interval-item")
-        .forEach(function(element) {
-
-            element.classList.remove("open");
-
-        });
+/* =========================================================
+   ZAMIANA OZNACZEŃ NA DŹWIĘKI DO PIANINA
+   ========================================================= */
 
 
-    if (!wasOpen) {
+function playbackNotes(notes) {
 
-        item.classList.add("open");
+    return notes.map(note => {
+
+        const replacements = {
+
+            "Db4": "C#4",
+            "D#4": "D#4",
+
+            "Eb4": "D#4",
+
+            "Fb4": "E4",
+
+            "E#4": "F4",
+
+            "F#4": "F#4",
+
+            "Gb4": "F#4",
+
+            "Ab4": "G#4",
+
+            "A#4": "A#4",
+
+            "Bb4": "A#4",
+
+            "Cb4": "B3",
+
+            "B#4": "C5",
+
+            "D4": "D4",
+
+            "E4": "E4",
+
+            "G4": "G4",
+
+            "A4": "A4",
+
+            "B4": "B4",
+
+            "C5": "C5",
+
+            "C#5": "C#5"
+
+        };
+
+        return replacements[note] || note;
+
+    });
+
+}
 
 
-        setTimeout(function() {
+/* =========================================================
+   ODTWARZANIE
+   ========================================================= */
 
-            drawInterval(type);
 
-        }, 100);
+async function playNotes(notes, statusId) {
+
+    await Tone.start();
+
+    const playable = playbackNotes(notes);
+
+    const now = Tone.now();
+
+    playable.forEach((note, index) => {
+
+        piano.triggerAttackRelease(
+            note,
+            "1n",
+            now + index * 0.9
+        );
+
+    });
+
+    const status =
+        document.getElementById(statusId);
+
+    if (status) {
+
+        status.textContent =
+            "▶ Odtwarzanie interwału…";
+
+        setTimeout(() => {
+
+            status.textContent = "";
+
+        }, 2200);
 
     }
 
 }
 
 
-
-const letterNumber = {
-
-    c: 0,
-    d: 1,
-    e: 2,
-    f: 3,
-    g: 4,
-    a: 5,
-    b: 6
-
-};
+/* =========================================================
+   RYSOWANIE PIĘCIOLINII
+   ========================================================= */
 
 
+function createStaff(clef, notes) {
 
-function getStep(note, clef) {
+    const yPositions = {
 
-    const absolute =
-        note.octave * 7 +
-        letterNumber[note.letter];
+        C: 130,
+        D: 122,
+        E: 115,
+        F: 107,
+        G: 100,
+        A: 92,
+        B: 85
 
+    };
 
-    let reference;
+    function getLetter(note) {
 
-
-    if (clef === "treble") {
-
-        reference =
-            4 * 7 +
-            letterNumber.e;
-
-    }
-    else {
-
-        reference =
-            2 * 7 +
-            letterNumber.g;
+        return note.charAt(0);
 
     }
 
 
-    return absolute - reference;
+    function noteY(note, isBass) {
 
-}
+        const letter = getLetter(note);
 
-
-
-function drawInterval(type) {
-
-    const data =
-        intervals[type];
+        let base = yPositions[letter];
 
 
-    drawStaff(
-        type + "-treble",
-        "treble",
-        data.treble
-    );
+        if (isBass) {
 
+            const bassPositions = {
 
-    drawStaff(
-        type + "-bass",
-        "bass",
-        data.bass
-    );
+                C: 100,
+                D: 92,
+                E: 85,
+                F: 77,
+                G: 70,
+                A: 62,
+                B: 55
 
-}
+            };
 
+            base = bassPositions[letter];
 
+        }
 
-function drawStaff(
-    containerId,
-    clef,
-    notes
-) {
+        return base;
 
-    const container =
-        document.getElementById(containerId);
-
-
-    if (!container) {
-        return;
     }
 
 
-    container.innerHTML = "";
+    function accidental(note) {
+
+        if (note.includes("bb")) {
+            return "♭♭";
+        }
+
+        if (note.includes("#")) {
+            return "♯";
+        }
+
+        if (note.includes("b")) {
+            return "♭";
+        }
+
+        return "";
+
+    }
 
 
-    const width = 700;
-    const height = 250;
+    const isBass = clef === "bass";
 
-    const left = 105;
-    const right = 650;
+    const firstX = 255;
+    const secondX = 385;
 
-    const top = 90;
-    const gap = 14;
+    const firstY = noteY(notes[0], isBass);
+    const secondY = noteY(notes[1], isBass);
 
 
     let svg = `
 
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 ${width} ${height}"
-            width="100%"
-            style="
-                display:block;
-                max-width:700px;
-                margin:0 auto;
-            "
-        >
+        <svg class="staff"
+             viewBox="0 0 650 180"
+             xmlns="http://www.w3.org/2000/svg">
+
+            <line x1="80" y1="55" x2="570" y2="55"
+                  stroke="black" stroke-width="2"/>
+
+            <line x1="80" y1="70" x2="570" y2="70"
+                  stroke="black" stroke-width="2"/>
+
+            <line x1="80" y1="85" x2="570" y2="85"
+                  stroke="black" stroke-width="2"/>
+
+            <line x1="80" y1="100" x2="570" y2="100"
+                  stroke="black" stroke-width="2"/>
+
+            <line x1="80" y1="115" x2="570" y2="115"
+                  stroke="black" stroke-width="2"/>
+
+            <text x="88" y="105"
+                  font-size="55">
+
+                ${isBass ? "𝄢" : "𝄞"}
+
+            </text>
 
     `;
 
 
-    for (let i = 0; i < 5; i++) {
+    /* linie dodane */
 
-        const y =
-            top + i * gap;
-
+    if (firstY > 115) {
 
         svg += `
-
-            <line
-                x1="${left}"
-                y1="${y}"
-                x2="${right}"
-                y2="${y}"
-                stroke="#252238"
-                stroke-width="1.5"
-            />
-
+            <line x1="${firstX - 25}" y1="${firstY}"
+                  x2="${firstX + 25}" y2="${firstY}"
+                  stroke="black" stroke-width="2"/>
         `;
 
     }
 
 
-    if (clef === "treble") {
+    if (secondY > 115) {
 
         svg += `
-
-            <text
-                x="25"
-                y="155"
-                font-family="serif"
-                font-size="86"
-                fill="#252238"
-            >𝄞</text>
-
+            <line x1="${secondX - 25}" y1="${secondY}"
+                  x2="${secondX + 25}" y2="${secondY}"
+                  stroke="black" stroke-width="2"/>
         `;
 
     }
-    else {
-
-        svg += `
-
-            <text
-                x="25"
-                y="140"
-                font-family="serif"
-                font-size="64"
-                fill="#252238"
-            >𝄢</text>
-
-        `;
-
-    }
-
-
-    const positions = [330, 480];
-
-
-    notes.forEach(function(note, index) {
-
-        const x =
-            positions[index];
-
-
-        const step =
-            getStep(note, clef);
-
-
-        const y =
-            top +
-            4 * gap -
-            step * (gap / 2);
-
-
-        if (step <= -2) {
-
-            for (
-                let s = -2;
-                s >= step;
-                s -= 2
-            ) {
-
-                const ledgerY =
-                    top +
-                    4 * gap -
-                    s * (gap / 2);
-
-
-                svg += `
-
-                    <line
-                        x1="${x - 20}"
-                        y1="${ledgerY}"
-                        x2="${x + 20}"
-                        y2="${ledgerY}"
-                        stroke="#252238"
-                        stroke-width="1.5"
-                    />
-
-                `;
-
-            }
-
-        }
-
-
-        if (step >= 10) {
-
-            for (
-                let s = 10;
-                s <= step;
-                s += 2
-            ) {
-
-                const ledgerY =
-                    top +
-                    4 * gap -
-                    s * (gap / 2);
-
-
-                svg += `
-
-                    <line
-                        x1="${x - 20}"
-                        y1="${ledgerY}"
-                        x2="${x + 20}"
-                        y2="${ledgerY}"
-                        stroke="#252238"
-                        stroke-width="1.5"
-                    />
-
-                `;
-
-            }
-
-        }
-
-
-        let accidental = "";
-
-
-        if (note.accidental === "bb") {
-
-            accidental = "𝄫";
-
-        }
-        else if (note.accidental === "b") {
-
-            accidental = "♭";
-
-        }
-        else if (note.accidental === "#") {
-
-            accidental = "♯";
-
-        }
-
-
-        if (accidental !== "") {
-
-            svg += `
-
-                <text
-                    x="${x - 38}"
-                    y="${y + 8}"
-                    font-family="serif"
-                    font-size="27"
-                    fill="#252238"
-                >${accidental}</text>
-
-            `;
-
-        }
-
-
-        svg += `
-
-            <ellipse
-                cx="${x}"
-                cy="${y}"
-                rx="10"
-                ry="7"
-                transform="
-                    rotate(-18 ${x} ${y})
-                "
-                fill="#252238"
-            />
-
-        `;
-
-
-        svg += `
-
-            <line
-                x1="${x + 8}"
-                y1="${y}"
-                x2="${x + 8}"
-                y2="${y - 43}"
-                stroke="#252238"
-                stroke-width="2"
-            />
-
-        `;
-
-    });
 
 
     svg += `
 
-        </svg>
+        <ellipse cx="${firstX}" cy="${firstY}"
+                 rx="11" ry="8"
+                 fill="black"/>
+
+        <line x1="${firstX + 10}"
+              y1="${firstY}"
+              x2="${firstX + 10}"
+              y2="${firstY - 55}"
+              stroke="black"
+              stroke-width="2"/>
+
+
+        <ellipse cx="${secondX}" cy="${secondY}"
+                 rx="11" ry="8"
+                 fill="black"/>
+
+        <line x1="${secondX + 10}"
+              y1="${secondY}"
+              x2="${secondX + 10}"
+              y2="${secondY - 55}"
+              stroke="black"
+              stroke-width="2"/>
 
     `;
 
 
-    container.innerHTML =
-        svg;
+    const acc1 = accidental(notes[0]);
+    const acc2 = accidental(notes[1]);
+
+
+    if (acc1) {
+
+        svg += `
+            <text x="${firstX - 38}"
+                  y="${firstY + 8}"
+                  font-size="25">
+                ${acc1}
+            </text>
+        `;
+
+    }
+
+
+    if (acc2) {
+
+        svg += `
+            <text x="${secondX - 38}"
+                  y="${secondY + 8}"
+                  font-size="25">
+                ${acc2}
+            </text>
+        `;
+
+    }
+
+
+    svg += `</svg>`;
+
+    return svg;
 
 }
 
 
-
-let piano = null;
-let pianoLoaded = false;
-
-
-
-async function createPiano() {
-
-    if (pianoLoaded) {
-        return;
-    }
+/* =========================================================
+   TWORZENIE PRZYKŁADÓW
+   ========================================================= */
 
 
-    try {
+function renderInterval(type, data, index) {
 
-        piano =
-            new Tone.Sampler({
-
-                urls: {
-
-                    A0: "A0.mp3",
-                    C1: "C1.mp3",
-
-                    "D#1": "Ds1.mp3",
-                    "F#1": "Fs1.mp3",
-
-                    A1: "A1.mp3",
-                    C2: "C2.mp3",
-
-                    "D#2": "Ds2.mp3",
-                    "F#2": "Fs2.mp3",
-
-                    A2: "A2.mp3",
-                    C3: "C3.mp3",
-
-                    "D#3": "Ds3.mp3",
-                    "F#3": "Fs3.mp3",
-
-                    A3: "A3.mp3",
-                    C4: "C4.mp3",
-
-                    "D#4": "Ds4.mp3",
-                    "F#4": "Fs4.mp3",
-
-                    A4: "A4.mp3",
-                    C5: "C5.mp3",
-
-                    "D#5": "Ds5.mp3",
-                    "F#5": "Fs5.mp3",
-
-                    A5: "A5.mp3",
-                    C6: "C6.mp3",
-
-                    "D#6": "Ds6.mp3",
-                    "F#6": "Fs6.mp3",
-
-                    A6: "A6.mp3",
-                    C7: "C7.mp3"
-
-                },
-
-                release: 1,
-
-                baseUrl:
-                    "https://tonejs.github.io/audio/salamander/"
-
-            }).toDestination();
+    const id =
+        `${type}-${index}`;
 
 
-        await Tone.loaded();
+    return `
+
+        <div class="example">
+
+            <div class="example-title">
+                ${data.name}
+            </div>
+
+            <div class="example-subtitle">
+                ${data.description}
+            </div>
 
 
-        pianoLoaded = true;
-
-    }
+            ${createStaff("treble", data.notes.split(" – "))}
 
 
-    catch (error) {
+            <strong>
+                ${data.notes}
+            </strong>
 
-        console.error(
-            "Błąd pianina:",
-            error
-        );
 
-    }
+            <br>
+
+
+            <button class="listen"
+                    onclick="playNotes(
+                        ${JSON.stringify(data.piano)},
+                        '${id}'
+                    )">
+
+                ▶ Posłuchaj
+
+            </button>
+
+
+            <div class="status"
+                 id="${id}">
+            </div>
+
+        </div>
+
+    `;
 
 }
 
 
-
-async function playInterval(type) {
-
-    const data =
-        intervals[type];
+/* =========================================================
+   WSTAWIANIE WSZYSTKICH PRZYKŁADÓW
+   ========================================================= */
 
 
-    const status =
-        document.getElementById(
-            type + "-status"
-        );
+Object.keys(intervals).forEach(type => {
 
+    const container =
+        document.getElementById(type);
 
-    if (status) {
+    intervals[type].forEach((data, index) => {
 
-        status.textContent =
-            "Ładowanie pianina…";
+        container.innerHTML +=
+            renderInterval(type, data, index);
 
-    }
+    });
 
+});
 
-    await Tone.start();
-
-
-    await createPiano();
-
-
-    if (!piano) {
-
-        if (status) {
-
-            status.textContent =
-                "Nie udało się załadować dźwięku.";
-
-        }
-
-        return;
-
-    }
-
-
-    if (status) {
-
-        status.textContent =
-            "▶ Odtwarzanie…";
-
-    }
-
-
-    piano.triggerAttackRelease(
-        data.piano[0],
-        "1n"
-    );
-
-
-    setTimeout(function() {
-
-        piano.triggerAttackRelease(
-            data.piano[1],
-            "1n"
-        );
-
-    }, 850);
-
-
-    setTimeout(function() {
-
-        if (status) {
-
-            status.textContent =
-                "Gotowe";
-
-        }
-
-    }, 2500);
-
-}
 
 </script>
 
