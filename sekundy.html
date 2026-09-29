@@ -3,8 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sekundy — Harmonix</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .interval-list {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .interval-item {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 25px rgba(40, 30, 80, 0.07);
+            overflow: hidden;
+        }
+
+        .interval-button {
+            width: 100%;
+            border: none;
+            background: white;
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            color: #252238;
+            text-align: left;
+            font-family: Arial, sans-serif;
+        }
+
+        .interval-button:hover {
+            background: #faf9ff;
+        }
+
+        .interval-title {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .interval-number {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: #f0edff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .interval-name {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .interval-desc {
+            font-size: 14px;
+            color: #777187;
+            margin-top: 4px;
+        }
+
+        .arrow {
+            font-size: 20px;
+            transition: transform 0.25s;
+        }
+
+        .interval-item.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .interval-content {
+            display: none;
+            padding: 0 28px 30px;
+            border-top: 1px solid #eeeaf8;
+        }
+
+        .interval-item.open .interval-content {
+            display: block;
+        }
+
+        .staff-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #6b6680;
+            margin: 24px 0 5px;
+        }
+
+        .staff {
+            width: 100%;
+            min-height: 190px;
+            background: #faf9ff;
+            border-radius: 16px;
+            overflow-x: auto;
+        }
+
+        .listen-button {
+            display: block;
+            margin: 25px auto 0;
+            border: none;
+            border-radius: 14px;
+            padding: 13px 25px;
+            background: #252238;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .listen-button:hover {
+            opacity: 0.88;
+        }
+
+        .status {
+            text-align: center;
+            font-size: 13px;
+            color: #777187;
+            margin-top: 10px;
+            min-height: 18px;
+        }
+
+        @media (max-width: 650px) {
+            .interval-button {
+                padding: 20px;
+            }
+
+            .interval-content {
+                padding: 0 15px 25px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -19,151 +151,263 @@
             Drugi stopień interwału — poznaj wszystkie jego rodzaje.
         </div>
 
+        <div class="interval-list">
 
-        <!-- SEKUNDA MAŁA -->
+            <!-- SEKUNDA MAŁA -->
+            <div class="interval-item">
 
-        <div class="card">
+                <button class="interval-button"
+                        onclick="toggleInterval('mala', this)">
 
-            <div class="icon">♭</div>
+                    <div class="interval-title">
+                        <div class="interval-number">♭</div>
 
-            <h2>Sekunda mała</h2>
+                        <div>
+                            <div class="interval-name">
+                                Sekunda mała
+                            </div>
 
-            <p>
-                Odległość jednego stopnia diatonicznego,
-                obejmująca 1 półton.
-            </p>
+                            <div class="interval-desc">
+                                1 półton
+                            </div>
+                        </div>
+                    </div>
 
-            <button onclick="pokazInterwal('wiolinowy', 'mala')">
-                Pokaż na pięciolinii
-            </button>
+                    <div class="arrow">⌄</div>
 
-            <div id="interwal-wiolinowy"></div>
+                </button>
 
-        </div>
+                <div class="interval-content">
 
+                    <div class="staff-title">
+                        Klucz wiolinowy
+                    </div>
 
-        <!-- SEKUNDA WIELKA -->
-
-        <div class="card" style="margin-top: 20px;">
-
-            <div class="icon">2</div>
-
-            <h2>Sekunda wielka</h2>
-
-            <p>
-                Odległość jednego stopnia diatonicznego,
-                obejmująca 2 półtony.
-            </p>
-
-            <button onclick="pokazInterwal('wiolinowy', 'wielka')">
-                Pokaż na pięciolinii
-            </button>
-
-            <div id="sekunda-wielka"></div>
-
-        </div>
+                    <div id="mala-treble"
+                         class="staff"></div>
 
 
-        <!-- SEKUNDA ZWIĘKSZONA -->
+                    <div class="staff-title">
+                        Klucz basowy
+                    </div>
 
-        <div class="card" style="margin-top: 20px;">
-
-            <div class="icon">♯</div>
-
-            <h2>Sekunda zwiększona</h2>
-
-            <p>
-                Sekunda wielka powiększona o półton.
-                Obejmuje 3 półtony.
-            </p>
-
-            <button onclick="pokazInterwal('wiolinowy', 'zwiekszona')">
-                Pokaż na pięciolinii
-            </button>
-
-            <div id="sekunda-zwiekszona"></div>
-
-        </div>
+                    <div id="mala-bass"
+                         class="staff"></div>
 
 
-        <!-- SEKUNDA ZMNIEJSZONA -->
+                    <button class="listen-button"
+                            onclick="playInterval('mala')">
 
-        <div class="card" style="margin-top: 20px;">
+                        ▶ Posłuchaj sekundy małej
 
-            <div class="icon">♭♭</div>
+                    </button>
 
-            <h2>Sekunda zmniejszona</h2>
+                    <div id="mala-status"
+                         class="status"></div>
 
-            <p>
-                Sekunda mała zmniejszona o półton.
-                W stroju równomiernie temperowanym
-                brzmi jak pryma.
-            </p>
+                </div>
 
-            <button onclick="pokazInterwal('wiolinowy', 'zmniejszona')">
-                Pokaż na pięciolinii
-            </button>
-
-            <div id="sekunda-zmniejszona"></div>
-
-        </div>
+            </div>
 
 
-        <!-- KLUCZ BASOWY -->
+            <!-- SEKUNDA WIELKA -->
+            <div class="interval-item">
 
-        <div class="card" style="margin-top: 30px;">
+                <button class="interval-button"
+                        onclick="toggleInterval('wielka', this)">
 
-            <div class="icon">🎼</div>
+                    <div class="interval-title">
 
-            <h2>Klucz basowy</h2>
+                        <div class="interval-number">2</div>
 
-            <p>
-                Te same rodzaje sekund możemy zapisywać
-                również w kluczu basowym.
-            </p>
+                        <div>
+                            <div class="interval-name">
+                                Sekunda wielka
+                            </div>
 
-            <button onclick="pokazInterwal('basowy', 'mala')">
-                Pokaż sekundę małą
-            </button>
+                            <div class="interval-desc">
+                                2 półtony
+                            </div>
+                        </div>
 
-            <button onclick="pokazInterwal('basowy', 'wielka')">
-                Pokaż sekundę wielką
-            </button>
+                    </div>
 
-        </div>
+                    <div class="arrow">⌄</div>
+
+                </button>
 
 
-        <!-- ODSŁUCH -->
+                <div class="interval-content">
 
-        <div class="card" style="margin-top: 30px;">
+                    <div class="staff-title">
+                        Klucz wiolinowy
+                    </div>
 
-            <div class="icon">🎧</div>
+                    <div id="wielka-treble"
+                         class="staff"></div>
 
-            <h2>Posłuchaj</h2>
 
-            <p>
-                Posłuchaj brzmienia sekundy małej.
-            </p>
+                    <div class="staff-title">
+                        Klucz basowy
+                    </div>
 
-            <button onclick="zagrajSekundeMala()">
-                ▶ Odtwórz
-            </button>
+                    <div id="wielka-bass"
+                         class="staff"></div>
+
+
+                    <button class="listen-button"
+                            onclick="playInterval('wielka')">
+
+                        ▶ Posłuchaj sekundy wielkiej
+
+                    </button>
+
+                    <div id="wielka-status"
+                         class="status"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEKUNDA ZWIĘKSZONA -->
+            <div class="interval-item">
+
+                <button class="interval-button"
+                        onclick="toggleInterval('zwiekszona', this)">
+
+                    <div class="interval-title">
+
+                        <div class="interval-number">♯</div>
+
+                        <div>
+                            <div class="interval-name">
+                                Sekunda zwiększona
+                            </div>
+
+                            <div class="interval-desc">
+                                3 półtony
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="arrow">⌄</div>
+
+                </button>
+
+
+                <div class="interval-content">
+
+                    <div class="staff-title">
+                        Klucz wiolinowy
+                    </div>
+
+                    <div id="zwiekszona-treble"
+                         class="staff"></div>
+
+
+                    <div class="staff-title">
+                        Klucz basowy
+                    </div>
+
+                    <div id="zwiekszona-bass"
+                         class="staff"></div>
+
+
+                    <button class="listen-button"
+                            onclick="playInterval('zwiekszona')">
+
+                        ▶ Posłuchaj sekundy zwiększonej
+
+                    </button>
+
+                    <div id="zwiekszona-status"
+                         class="status"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEKUNDA ZMNIEJSZONA -->
+            <div class="interval-item">
+
+                <button class="interval-button"
+                        onclick="toggleInterval('zmniejszona', this)">
+
+                    <div class="interval-title">
+
+                        <div class="interval-number">♭♭</div>
+
+                        <div>
+                            <div class="interval-name">
+                                Sekunda zmniejszona
+                            </div>
+
+                            <div class="interval-desc">
+                                0 półtonów
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="arrow">⌄</div>
+
+                </button>
+
+
+                <div class="interval-content">
+
+                    <div class="staff-title">
+                        Klucz wiolinowy
+                    </div>
+
+                    <div id="zmniejszona-treble"
+                         class="staff"></div>
+
+
+                    <div class="staff-title">
+                        Klucz basowy
+                    </div>
+
+                    <div id="zmniejszona-bass"
+                         class="staff"></div>
+
+
+                    <button class="listen-button"
+                            onclick="playInterval('zmniejszona')">
+
+                        ▶ Posłuchaj sekundy zmniejszonej
+
+                    </button>
+
+                    <div id="zmniejszona-status"
+                            class="status"></div>
+
+                </div>
+
+            </div>
 
         </div>
 
 
         <div style="margin-top: 35px;">
-
             <a href="interwaly.html">
                 ← Wróć do interwałów
             </a>
-
         </div>
 
     </div>
 
 </section>
 
+
+<!-- VEXFLOW -->
+<script src="https://cdn.jsdelivr.net/npm/vexflow@5.0.0/build/cjs/vexflow.js"></script>
+
+<!-- TONE.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
 <script src="https://musik-cmd.github.io/harmonix/app.js"></script>
 
