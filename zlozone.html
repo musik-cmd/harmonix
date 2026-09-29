@@ -1,206 +1,201 @@
 <!DOCTYPE html>
-
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interwały złożone — Harmonix</title>
 
-```
-<script src="https://unpkg.com/tone@14.8.49/build/Tone.js"></script>
+    <script src="https://unpkg.com/tone@14.8.49/build/Tone.js"></script>
 
-<style>
-    * {
-        box-sizing: border-box;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f7f5ff;
-        color: #252238;
-    }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f5ff;
+            color: #252238;
+        }
 
-    .page {
-        max-width: 1050px;
-        margin: 0 auto;
-        padding: 35px 20px 60px;
-    }
+        .page {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 35px 20px 60px;
+        }
 
-    .back {
-        display: inline-block;
-        margin-bottom: 20px;
-        color: #6256a8;
-        text-decoration: none;
-        font-weight: 700;
-    }
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #6256a8;
+            text-decoration: none;
+            font-weight: 700;
+        }
 
-    h1 {
-        font-size: 42px;
-        margin: 10px 0;
-    }
-
-    .intro {
-        background: white;
-        padding: 22px;
-        border-radius: 20px;
-        box-shadow: 0 8px 30px rgba(40, 30, 80, 0.07);
-        line-height: 1.6;
-        margin-bottom: 30px;
-    }
-
-    .intro strong {
-        color: #6256a8;
-    }
-
-    .section-title {
-        margin: 38px 0 18px;
-        font-size: 28px;
-    }
-
-    .card {
-        background: white;
-        border-radius: 22px;
-        padding: 25px;
-        margin-bottom: 20px;
-        box-shadow: 0 8px 30px rgba(40, 30, 80, 0.08);
-    }
-
-    .card h3 {
-        margin-top: 0;
-        font-size: 23px;
-    }
-
-    .description {
-        color: #6f6a80;
-        line-height: 1.5;
-        margin-bottom: 18px;
-    }
-
-    .staff-box {
-        background: #faf9ff;
-        border-radius: 16px;
-        padding: 15px;
-        overflow-x: auto;
-        margin-bottom: 18px;
-    }
-
-    svg {
-        display: block;
-        margin: auto;
-        min-width: 650px;
-    }
-
-    .info {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 18px;
-    }
-
-    .tag {
-        background: #eeeaff;
-        padding: 8px 12px;
-        border-radius: 10px;
-        font-weight: 700;
-        font-size: 14px;
-    }
-
-    button {
-        border: none;
-        background: #6256a8;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 12px;
-        font-size: 15px;
-        font-weight: 700;
-        cursor: pointer;
-    }
-
-    button:hover {
-        opacity: 0.9;
-    }
-
-    button:disabled {
-        opacity: 0.6;
-        cursor: default;
-    }
-
-    .status {
-        display: inline-block;
-        margin-left: 12px;
-        color: #777187;
-        font-size: 14px;
-    }
-
-    @media (max-width: 700px) {
         h1 {
-            font-size: 32px;
+            font-size: 42px;
+            margin: 10px 0;
+        }
+
+        .intro {
+            background: white;
+            padding: 22px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(40, 30, 80, 0.07);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .intro strong {
+            color: #6256a8;
+        }
+
+        .section-title {
+            margin: 38px 0 18px;
+            font-size: 28px;
         }
 
         .card {
-            padding: 18px;
+            background: white;
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 30px rgba(40, 30, 80, 0.08);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 23px;
+        }
+
+        .description {
+            color: #6f6a80;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .staff-box {
+            background: #faf9ff;
+            border-radius: 16px;
+            padding: 15px;
+            overflow-x: auto;
+            margin-bottom: 18px;
+        }
+
+        svg {
+            display: block;
+            margin: auto;
+            min-width: 650px;
+        }
+
+        .info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .tag {
+            background: #eeeaff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        button {
+            border: none;
+            background: #6256a8;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: default;
         }
 
         .status {
-            display: block;
-            margin: 10px 0 0;
+            display: inline-block;
+            margin-left: 12px;
+            color: #777187;
+            font-size: 14px;
         }
-    }
-</style>
-```
 
+        @media (max-width: 700px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .status {
+                display: block;
+                margin: 10px 0 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="page">
 
-```
-<a class="back" href="interwaly.html">← Wróć do interwałów</a>
+    <a class="back" href="interwaly.html">← Wróć do interwałów</a>
 
-<h1>Interwały złożone</h1>
+    <h1>Interwały złożone</h1>
 
-<div class="intro">
-    <strong>Interwał złożony</strong> to interwał większy od oktawy.
-    Powstaje przez połączenie oktawy z odpowiednim interwałem prostym.
-    <br><br>
+    <div class="intro">
+        <strong>Interwał złożony</strong> to interwał większy od oktawy.
+        Powstaje przez połączenie oktawy z odpowiednim interwałem prostym.
+        <br><br>
 
-    Przykładowo:
-    <strong>nona = oktawa + sekunda</strong>,
-    <strong>decyma = oktawa + tercja</strong>,
-    <strong>undecyma = oktawa + kwarta</strong>.
-    <br><br>
+        Przykładowo:
+        <strong>nona = oktawa + sekunda</strong>,
+        <strong>decyma = oktawa + tercja</strong>,
+        <strong>undecyma = oktawa + kwarta</strong>.
+        <br><br>
 
-    Na pięciolinii odległość między nutami jest tutaj pokazana
-    <strong>rzeczywiście</strong> — druga nuta znajduje się w wyższej
-    oktawie, więc interwał wygląda znacznie szerzej niż jego odpowiednik prosty.
-</div>
+        Na pięciolinii odległość między nutami jest tutaj pokazana
+        <strong>rzeczywiście</strong> — druga nuta znajduje się w wyższej
+        oktawie, więc interwał wygląda znacznie szerzej niż jego odpowiednik prosty.
+    </div>
 
 
-<h2 class="section-title">Nony</h2>
-<div id="nony"></div>
+    <h2 class="section-title">Nony</h2>
+    <div id="nony"></div>
 
-<h2 class="section-title">Decymy</h2>
-<div id="decymy"></div>
+    <h2 class="section-title">Decymy</h2>
+    <div id="decymy"></div>
 
-<h2 class="section-title">Undecymy</h2>
-<div id="undecymy"></div>
+    <h2 class="section-title">Undecymy</h2>
+    <div id="undecymy"></div>
 
-<h2 class="section-title">Duodecymy</h2>
-<div id="duodecymy"></div>
+    <h2 class="section-title">Duodecymy</h2>
+    <div id="duodecymy"></div>
 
-<h2 class="section-title">Tercdecyma</h2>
-<div id="tercdecyma"></div>
+    <h2 class="section-title">Tercdecyma</h2>
+    <div id="tercdecyma"></div>
 
-<h2 class="section-title">Kwartdecymy</h2>
-<div id="kwartdecyma"></div>
+    <h2 class="section-title">Kwartdecymy</h2>
+    <div id="kwartdecyma"></div>
 
-<h2 class="section-title">Kwintdecymy</h2>
-<div id="kwintdecyma"></div>
-```
+    <h2 class="section-title">Kwintdecymy</h2>
+    <div id="kwintdecyma"></div>
 
 </div>
+
 
 <script>
 
