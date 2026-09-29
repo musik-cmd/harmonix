@@ -2,166 +2,166 @@
 <html lang="pl">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Sekundy — Harmonix</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<style>
 
-    <title>Sekundy — Harmonix</title>
+* {
+    box-sizing: border-box;
+}
 
-    <style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f5ff;
+    color: #252238;
+}
 
-        * {
-            box-sizing: border-box;
-        }
+.page {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 50px 20px 80px;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f7f5ff;
-            color: #252238;
-        }
+.back {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #6b6680;
+    text-decoration: none;
+    font-size: 15px;
+}
 
-        .page {
-            max-width: 950px;
-            margin: 0 auto;
-            padding: 50px 20px 80px;
-        }
+.back:hover {
+    color: #252238;
+}
 
-        .back {
-            display: inline-block;
-            margin-bottom: 30px;
-            color: #6b6680;
-            text-decoration: none;
-            font-size: 15px;
-        }
+h1 {
+    text-align: center;
+    font-size: 42px;
+    margin: 0 0 10px;
+}
 
-        .back:hover {
-            color: #252238;
-        }
+.subtitle {
+    text-align: center;
+    color: #6b6680;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
 
-        h1 {
-            text-align: center;
-            font-size: 42px;
-            margin: 0 0 10px;
-        }
+.interval-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
 
-        .subtitle {
-            text-align: center;
-            color: #6b6680;
-            font-size: 18px;
-            margin-bottom: 40px;
-        }
+.interval-item {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(40,30,80,.08);
+}
 
-        .interval-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
+.interval-button {
+    width: 100%;
+    border: none;
+    background: white;
+    padding: 22px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    color: #252238;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: left;
+}
 
-        .interval-item {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 30px rgba(40, 30, 80, 0.08);
-        }
+.interval-button:hover {
+    background: #faf9ff;
+}
 
-        .interval-button {
-            width: 100%;
-            border: none;
-            background: white;
-            padding: 22px 25px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            color: #252238;
-            font-size: 18px;
-            font-weight: 700;
-            text-align: left;
-        }
+.arrow {
+    font-size: 20px;
+    transition: transform .25s;
+}
 
-        .interval-button:hover {
-            background: #faf9ff;
-        }
+.interval-item.open .arrow {
+    transform: rotate(180deg);
+}
 
-        .arrow {
-            font-size: 20px;
-            transition: transform 0.25s;
-        }
+.interval-content {
+    display: none;
+    padding: 0 25px 30px;
+}
 
-        .interval-item.open .arrow {
-            transform: rotate(180deg);
-        }
+.interval-item.open .interval-content {
+    display: block;
+}
 
-        .interval-content {
-            display: none;
-            padding: 0 25px 30px;
-        }
+.staff-title {
+    font-size: 15px;
+    color: #6b6680;
+    margin: 20px 0 5px;
+    font-weight: 600;
+}
 
-        .interval-item.open .interval-content {
-            display: block;
-        }
+.staff-box {
+    width: 100%;
+    overflow: hidden;
+}
 
-        .staff-title {
-            font-size: 15px;
-            color: #6b6680;
-            margin: 20px 0 5px;
-            font-weight: 600;
-        }
+.listen-area {
+    text-align: center;
+    margin-top: 25px;
+}
 
-        .staff-box {
-            width: 100%;
-            overflow: hidden;
-        }
+.listen-button {
+    border: none;
+    border-radius: 12px;
+    padding: 13px 24px;
+    background: #252238;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
 
-        .listen-area {
-            text-align: center;
-            margin-top: 25px;
-        }
+.listen-button:hover {
+    opacity: .9;
+}
 
-        .listen-button {
-            border: none;
-            border-radius: 12px;
-            padding: 13px 24px;
-            background: #252238;
-            color: white;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-        }
+.listen-button:disabled {
+    opacity: .6;
+    cursor: default;
+}
 
-        .listen-button:hover {
-            opacity: 0.9;
-        }
+.status {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #777187;
+    min-height: 18px;
+}
 
-        .status {
-            margin-top: 10px;
-            font-size: 13px;
-            color: #777187;
-            min-height: 18px;
-        }
+@media(max-width:650px) {
 
-        @media (max-width: 650px) {
+    .page {
+        padding: 30px 12px 60px;
+    }
 
-            .page {
-                padding: 30px 12px 60px;
-            }
+    h1 {
+        font-size: 34px;
+    }
 
-            h1 {
-                font-size: 34px;
-            }
+    .interval-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
 
-            .interval-content {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-        }
-
-    </style>
-
+</style>
 </head>
 
 
@@ -169,286 +169,238 @@
 
 <div class="page">
 
-    <a href="interwaly.html" class="back">
-        ← Wróć do interwałów
-    </a>
+<a href="interwaly.html" class="back">
+← Wróć do interwałów
+</a>
 
+<h1>Sekundy</h1>
 
-    <h1>Sekundy</h1>
-
-    <div class="subtitle">
-        Małe, wielkie, zwiększone i zmniejszone
-    </div>
-
-
-    <div class="interval-list">
-
-
-        <!-- =================================================
-             SEKUNDA MAŁA
-        ================================================== -->
-
-        <div class="interval-item">
-
-            <button
-                class="interval-button"
-                onclick="toggleInterval('mala', this)"
-            >
-
-                <span>♩ Sekunda mała</span>
-
-                <span class="arrow">⌄</span>
-
-            </button>
-
-
-            <div class="interval-content">
-
-                <div class="staff-title">
-                    Klucz wiolinowy
-                </div>
-
-                <div
-                    id="mala-treble"
-                    class="staff-box"
-                ></div>
-
-
-                <div class="staff-title">
-                    Klucz basowy
-                </div>
-
-                <div
-                    id="mala-bass"
-                    class="staff-box"
-                ></div>
-
-
-                <div class="listen-area">
-
-                    <button
-                        class="listen-button"
-                        onclick="playInterval('mala')"
-                    >
-                        ▶ Posłuchaj
-                    </button>
-
-                    <div
-                        id="mala-status"
-                        class="status"
-                    ></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =================================================
-             SEKUNDA WIELKA
-        ================================================== -->
-
-        <div class="interval-item">
-
-            <button
-                class="interval-button"
-                onclick="toggleInterval('wielka', this)"
-            >
-
-                <span>♩ Sekunda wielka</span>
-
-                <span class="arrow">⌄</span>
-
-            </button>
-
-
-            <div class="interval-content">
-
-                <div class="staff-title">
-                    Klucz wiolinowy
-                </div>
-
-                <div
-                    id="wielka-treble"
-                    class="staff-box"
-                ></div>
-
-
-                <div class="staff-title">
-                    Klucz basowy
-                </div>
-
-                <div
-                    id="wielka-bass"
-                    class="staff-box"
-                ></div>
-
-
-                <div class="listen-area">
-
-                    <button
-                        class="listen-button"
-                        onclick="playInterval('wielka')"
-                    >
-                        ▶ Posłuchaj
-                    </button>
-
-                    <div
-                        id="wielka-status"
-                        class="status"
-                    ></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =================================================
-             SEKUNDA ZWIĘKSZONA
-        ================================================== -->
-
-        <div class="interval-item">
-
-            <button
-                class="interval-button"
-                onclick="toggleInterval('zwiekszona', this)"
-            >
-
-                <span>♩ Sekunda zwiększona</span>
-
-                <span class="arrow">⌄</span>
-
-            </button>
-
-
-            <div class="interval-content">
-
-                <div class="staff-title">
-                    Klucz wiolinowy
-                </div>
-
-                <div
-                    id="zwiekszona-treble"
-                    class="staff-box"
-                ></div>
-
-
-                <div class="staff-title">
-                    Klucz basowy
-                </div>
-
-                <div
-                    id="zwiekszona-bass"
-                    class="staff-box"
-                ></div>
-
-
-                <div class="listen-area">
-
-                    <button
-                        class="listen-button"
-                        onclick="playInterval('zwiekszona')"
-                    >
-                        ▶ Posłuchaj
-                    </button>
-
-                    <div
-                        id="zwiekszona-status"
-                        class="status"
-                    ></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =================================================
-             SEKUNDA ZMNIEJSZONA
-        ================================================== -->
-
-        <div class="interval-item">
-
-            <button
-                class="interval-button"
-                onclick="toggleInterval('zmniejszona', this)"
-            >
-
-                <span>♩ Sekunda zmniejszona</span>
-
-                <span class="arrow">⌄</span>
-
-            </button>
-
-
-            <div class="interval-content">
-
-                <div class="staff-title">
-                    Klucz wiolinowy
-                </div>
-
-                <div
-                    id="zmniejszona-treble"
-                    class="staff-box"
-                ></div>
-
-
-                <div class="staff-title">
-                    Klucz basowy
-                </div>
-
-                <div
-                    id="zmniejszona-bass"
-                    class="staff-box"
-                ></div>
-
-
-                <div class="listen-area">
-
-                    <button
-                        class="listen-button"
-                        onclick="playInterval('zmniejszona')"
-                    >
-                        ▶ Posłuchaj
-                    </button>
-
-                    <div
-                        id="zmniejszona-status"
-                        class="status"
-                    ></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
+<div class="subtitle">
+Małe, wielkie, zwiększone i zmniejszone
 </div>
 
 
+<div class="interval-list">
 
-<!-- =====================================================
-     TONE.JS
-===================================================== -->
+
+<!-- SEKUNDA MAŁA -->
+
+<div class="interval-item">
+
+<button
+class="interval-button"
+onclick="toggleInterval('mala', this)"
+>
+<span>♩ Sekunda mała</span>
+<span class="arrow">⌄</span>
+</button>
+
+<div class="interval-content">
+
+<div class="staff-title">
+Klucz wiolinowy
+</div>
+
+<div
+id="mala-treble"
+class="staff-box">
+</div>
+
+<div class="staff-title">
+Klucz basowy
+</div>
+
+<div
+id="mala-bass"
+class="staff-box">
+</div>
+
+<div class="listen-area">
+
+<button
+class="listen-button"
+onclick="playInterval('mala', this)">
+▶ Posłuchaj
+</button>
+
+<div
+id="mala-status"
+class="status">
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- SEKUNDA WIELKA -->
+
+<div class="interval-item">
+
+<button
+class="interval-button"
+onclick="toggleInterval('wielka', this)"
+>
+<span>♩ Sekunda wielka</span>
+<span class="arrow">⌄</span>
+</button>
+
+<div class="interval-content">
+
+<div class="staff-title">
+Klucz wiolinowy
+</div>
+
+<div
+id="wielka-treble"
+class="staff-box">
+</div>
+
+<div class="staff-title">
+Klucz basowy
+</div>
+
+<div
+id="wielka-bass"
+class="staff-box">
+</div>
+
+<div class="listen-area">
+
+<button
+class="listen-button"
+onclick="playInterval('wielka', this)">
+▶ Posłuchaj
+</button>
+
+<div
+id="wielka-status"
+class="status">
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- SEKUNDA ZWIĘKSZONA -->
+
+<div class="interval-item">
+
+<button
+class="interval-button"
+onclick="toggleInterval('zwiekszona', this)"
+>
+<span>♩ Sekunda zwiększona</span>
+<span class="arrow">⌄</span>
+</button>
+
+<div class="interval-content">
+
+<div class="staff-title">
+Klucz wiolinowy
+</div>
+
+<div
+id="zwiekszona-treble"
+class="staff-box">
+</div>
+
+<div class="staff-title">
+Klucz basowy
+</div>
+
+<div
+id="zwiekszona-bass"
+class="staff-box">
+</div>
+
+<div class="listen-area">
+
+<button
+class="listen-button"
+onclick="playInterval('zwiekszona', this)">
+▶ Posłuchaj
+</button>
+
+<div
+id="zwiekszona-status"
+class="status">
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- SEKUNDA ZMNIEJSZONA -->
+
+<div class="interval-item">
+
+<button
+class="interval-button"
+onclick="toggleInterval('zmniejszona', this)"
+>
+<span>♩ Sekunda zmniejszona</span>
+<span class="arrow">⌄</span>
+</button>
+
+<div class="interval-content">
+
+<div class="staff-title">
+Klucz wiolinowy
+</div>
+
+<div
+id="zmniejszona-treble"
+class="staff-box">
+</div>
+
+<div class="staff-title">
+Klucz basowy
+</div>
+
+<div
+id="zmniejszona-bass"
+class="staff-box">
+</div>
+
+<div class="listen-area">
+
+<button
+class="listen-button"
+onclick="playInterval('zmniejszona', this)">
+▶ Posłuchaj
+</button>
+
+<div
+id="zmniejszona-status"
+class="status">
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+</div>
+</div>
+
+
+<!-- TONE.JS -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
 
 <script>
 
-/* =====================================================
+/* =========================================================
    DANE
-===================================================== */
+========================================================= */
 
 const intervals = {
 
@@ -480,8 +432,7 @@ const intervals = {
             }
         ],
 
-        piano: ["C4", "C#4"]
-
+        piano: ["C4","C#4"]
     },
 
 
@@ -513,8 +464,7 @@ const intervals = {
             }
         ],
 
-        piano: ["C4", "D4"]
-
+        piano: ["C4","D4"]
     },
 
 
@@ -546,24 +496,11 @@ const intervals = {
             }
         ],
 
-        piano: ["C4", "D#4"]
-
+        piano: ["C4","D#4"]
     },
 
 
     zmniejszona: {
-
-        /*
-         * WAŻNE:
-         *
-         * C → D𝄫
-         *
-         * Jest to SEKUNDA, bo:
-         * C → D = dwie nazwy dźwięków.
-         *
-         * D𝄫 brzmi jak C,
-         * dlatego piano gra C → C.
-         */
 
         treble: [
             {
@@ -591,16 +528,15 @@ const intervals = {
             }
         ],
 
-        piano: ["C4", "C4"]
-
+        piano: ["C4","C4"]
     }
 
 };
 
 
-/* =====================================================
+/* =========================================================
    OTWIERANIE
-===================================================== */
+========================================================= */
 
 function toggleInterval(type, button) {
 
@@ -628,35 +564,29 @@ function toggleInterval(type, button) {
 
             drawInterval(type);
 
-        }, 100);
-
+        },100);
     }
-
 }
 
 
-/* =====================================================
-   POZYCJE LITER
-===================================================== */
+/* =========================================================
+   POZYCJE NUT
+========================================================= */
 
 const letterNumber = {
 
-    c: 0,
-    d: 1,
-    e: 2,
-    f: 3,
-    g: 4,
-    a: 5,
-    b: 6
+    c:0,
+    d:1,
+    e:2,
+    f:3,
+    g:4,
+    a:5,
+    b:6
 
 };
 
 
-/* =====================================================
-   POZYCJA NUTY
-===================================================== */
-
-function getStep(note, clef) {
+function getStep(note,clef) {
 
     const absolute =
         note.octave * 7 +
@@ -668,19 +598,13 @@ function getStep(note, clef) {
 
     if (clef === "treble") {
 
-        /*
-         * E4 = dolna linia
-         */
-
         reference =
             4 * 7 +
             letterNumber.e;
 
-    } else {
+    }
 
-        /*
-         * G2 = dolna linia
-         */
+    else {
 
         reference =
             2 * 7 +
@@ -689,14 +613,13 @@ function getStep(note, clef) {
     }
 
 
-    return absolute - reference;
-
+    return absolute-reference;
 }
 
 
-/* =====================================================
+/* =========================================================
    RYSOWANIE
-===================================================== */
+========================================================= */
 
 function drawInterval(type) {
 
@@ -705,41 +628,27 @@ function drawInterval(type) {
 
 
     drawStaff(
-        type + "-treble",
+        type+"-treble",
         "treble",
         data.treble
     );
 
 
     drawStaff(
-        type + "-bass",
+        type+"-bass",
         "bass",
         data.bass
     );
-
 }
 
 
-/* =====================================================
-   PIĘCIOLINIA
-===================================================== */
-
-function drawStaff(
-    containerId,
-    clef,
-    notes
-) {
+function drawStaff(containerId,clef,notes) {
 
     const container =
         document.getElementById(containerId);
 
 
-    if (!container) {
-        return;
-    }
-
-
-    container.innerHTML = "";
+    if (!container) return;
 
 
     const width = 700;
@@ -754,374 +663,345 @@ function drawStaff(
 
     let svg = `
 
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 ${width} ${height}"
-            width="100%"
-            style="
-                display:block;
-                max-width:700px;
-                margin:0 auto;
-            "
-        >
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 ${width} ${height}"
+    width="100%"
+    style="
+    display:block;
+    max-width:700px;
+    margin:0 auto;
+    ">
 
     `;
 
 
-    /* =================================================
-       PIĘĆ LINII
-    ================================================= */
+    /* PIĘCIOLINIA */
 
-    for (let i = 0; i < 5; i++) {
+    for(let i=0;i<5;i++) {
 
         const y =
-            top + i * gap;
+            top+i*gap;
 
 
         svg += `
 
-            <line
-                x1="${left}"
-                y1="${y}"
-                x2="${right}"
-                y2="${y}"
-                stroke="#252238"
-                stroke-width="1.5"
-            />
+        <line
+        x1="${left}"
+        y1="${y}"
+        x2="${right}"
+        y2="${y}"
+        stroke="#252238"
+        stroke-width="1.5"/>
+
+        `;
+    }
+
+
+    /* KLUCZ */
+
+    if(clef==="treble") {
+
+        svg += `
+
+        <text
+        x="25"
+        y="140"
+        font-family="serif"
+        font-size="86"
+        fill="#252238">𝄞</text>
 
         `;
 
     }
 
-
-    /* =================================================
-       KLUCZ
-    ================================================= */
-
-    if (clef === "treble") {
+    else {
 
         svg += `
 
-            <text
-                x="25"
-                y="140"
-                font-family="serif"
-                font-size="86"
-                fill="#252238"
-            >𝄞</text>
+        <text
+        x="25"
+        y="125"
+        font-family="serif"
+        font-size="64"
+        fill="#252238">𝄢</text>
 
         `;
-
-    } else {
-
-        svg += `
-
-            <text
-                x="25"
-                y="125"
-                font-family="serif"
-                font-size="64"
-                fill="#252238"
-            >𝄢</text>
-
-        `;
-
     }
 
 
-    /* =================================================
-       NUTY
-    ================================================= */
-
-    const positions = [330, 480];
+    const positions =
+        [330,480];
 
 
-    notes.forEach(function(note, index) {
+    notes.forEach(function(note,index) {
 
         const x =
             positions[index];
 
 
         const step =
-            getStep(note, clef);
+            getStep(note,clef);
 
-
-        /*
-         * 0 = dolna linia
-         *
-         * -1 = przestrzeń pod pięciolinią
-         *
-         * -2 = C4 w kluczu wiolinowym
-         *      czyli linia dodatkowa
-         */
 
         const y =
-            top +
-            4 * gap -
-            step * (gap / 2);
+            top+
+            4*gap-
+            step*(gap/2);
 
 
-        /* =================================================
-           LINIE DODATKOWE POD
-        ================================================= */
+        /* LINIE DODANE POD */
 
-        if (step <= -2) {
+        if(step<=-2) {
 
-            for (
-                let s = -2;
-                s >= step;
-                s -= 2
+            for(
+                let s=-2;
+                s>=step;
+                s-=2
             ) {
 
                 const ledgerY =
-                    top +
-                    4 * gap -
-                    s * (gap / 2);
+                    top+
+                    4*gap-
+                    s*(gap/2);
 
 
                 svg += `
 
-                    <line
-                        x1="${x - 20}"
-                        y1="${ledgerY}"
-                        x2="${x + 20}"
-                        y2="${ledgerY}"
-                        stroke="#252238"
-                        stroke-width="1.5"
-                    />
+                <line
+                x1="${x-20}"
+                y1="${ledgerY}"
+                x2="${x+20}"
+                y2="${ledgerY}"
+                stroke="#252238"
+                stroke-width="1.5"/>
 
                 `;
-
             }
-
         }
 
 
-        /* =================================================
-           LINIE DODATKOWE NAD
-        ================================================= */
+        /* LINIE DODANE NAD */
 
-        if (step >= 10) {
+        if(step>=10) {
 
-            for (
-                let s = 10;
-                s <= step;
-                s += 2
+            for(
+                let s=10;
+                s<=step;
+                s+=2
             ) {
 
                 const ledgerY =
-                    top +
-                    4 * gap -
-                    s * (gap / 2);
+                    top+
+                    4*gap-
+                    s*(gap/2);
 
 
                 svg += `
 
-                    <line
-                        x1="${x - 20}"
-                        y1="${ledgerY}"
-                        x2="${x + 20}"
-                        y2="${ledgerY}"
-                        stroke="#252238"
-                        stroke-width="1.5"
-                    />
+                <line
+                x1="${x-20}"
+                y1="${ledgerY}"
+                x2="${x+20}"
+                y2="${ledgerY}"
+                stroke="#252238"
+                stroke-width="1.5"/>
 
                 `;
-
             }
-
         }
 
 
-        /* =================================================
-           ZNAK
-        ================================================= */
+        /* ZNAKI */
 
         let accidental = "";
 
 
-        if (note.accidental === "bb") {
+        if(note.accidental==="bb") {
 
-            accidental = "𝄫";
-
-        }
-        else if (note.accidental === "b") {
-
-            accidental = "♭";
-
-        }
-        else if (note.accidental === "#") {
-
-            accidental = "♯";
+            accidental="𝄫";
 
         }
 
+        else if(note.accidental==="b") {
 
-        if (accidental !== "") {
+            accidental="♭";
+
+        }
+
+        else if(note.accidental==="#") {
+
+            accidental="♯";
+
+        }
+
+
+        if(accidental!=="") {
 
             svg += `
 
-                <text
-                    x="${x - 38}"
-                    y="${y + 8}"
-                    font-family="serif"
-                    font-size="27"
-                    fill="#252238"
-                >${accidental}</text>
+            <text
+            x="${x-38}"
+            y="${y+8}"
+            font-family="serif"
+            font-size="27"
+            fill="#252238">${accidental}</text>
 
             `;
-
         }
 
 
-        /* =================================================
-           GŁÓWKA
-        ================================================= */
+        /* GŁÓWKA */
 
         svg += `
 
-            <ellipse
-                cx="${x}"
-                cy="${y}"
-                rx="10"
-                ry="7"
-                transform="
-                    rotate(-18 ${x} ${y})
-                "
-                fill="#252238"
-            />
+        <ellipse
+        cx="${x}"
+        cy="${y}"
+        rx="10"
+        ry="7"
+        transform="rotate(-18 ${x} ${y})"
+        fill="#252238"/>
 
         `;
 
 
-        /* =================================================
-           LASECZKA
-        ================================================= */
+        /* LASECZKA */
 
         svg += `
 
-            <line
-                x1="${x + 8}"
-                y1="${y}"
-                x2="${x + 8}"
-                y2="${y - 43}"
-                stroke="#252238"
-                stroke-width="2"
-            />
+        <line
+        x1="${x+8}"
+        y1="${y}"
+        x2="${x+8}"
+        y2="${y-43}"
+        stroke="#252238"
+        stroke-width="2"/>
 
         `;
 
     });
 
 
-    svg += `
-
-        </svg>
-
-    `;
+    svg += `</svg>`;
 
 
     container.innerHTML =
         svg;
-
 }
 
 
-/* =====================================================
+/* =========================================================
    PIANINO
-===================================================== */
+========================================================= */
 
 let piano = null;
+
 let pianoLoaded = false;
 
 
 async function createPiano() {
 
-    if (pianoLoaded) {
-        return;
-    }
+    if(pianoLoaded && piano) {
 
-
-    try {
-
-        piano =
-            new Tone.Sampler({
-
-                urls: {
-
-                    A0: "A0.mp3",
-                    C1: "C1.mp3",
-
-                    "D#1": "Ds1.mp3",
-                    "F#1": "Fs1.mp3",
-
-                    A1: "A1.mp3",
-                    C2: "C2.mp3",
-
-                    "D#2": "Ds2.mp3",
-                    "F#2": "Fs2.mp3",
-
-                    A2: "A2.mp3",
-                    C3: "C3.mp3",
-
-                    "D#3": "Ds3.mp3",
-                    "F#3": "Fs3.mp3",
-
-                    A3: "A3.mp3",
-                    C4: "C4.mp3",
-
-                    "D#4": "Ds4.mp3",
-                    "F#4": "Fs4.mp3",
-
-                    A4: "A4.mp3",
-                    C5: "C5.mp3",
-
-                    "D#5": "Ds5.mp3",
-                    "F#5": "Fs5.mp3",
-
-                    A5: "A5.mp3",
-                    C6: "C6.mp3",
-
-                    "D#6": "Ds6.mp3",
-                    "F#6": "Fs6.mp3",
-
-                    A6: "A6.mp3",
-                    C7: "C7.mp3"
-
-                },
-
-                release: 1,
-
-                baseUrl:
-                    "https://tonejs.github.io/audio/salamander/"
-
-            }).toDestination();
-
-
-        await Tone.loaded();
-
-
-        pianoLoaded = true;
+        return piano;
 
     }
 
-    catch (error) {
 
-        console.error(
-            "Błąd pianina:",
-            error
-        );
+    piano =
+        new Tone.Sampler({
 
-    }
+            urls: {
 
+                A0:"A0.mp3",
+                C1:"C1.mp3",
+
+                "D#1":"Ds1.mp3",
+                "F#1":"Fs1.mp3",
+
+                A1:"A1.mp3",
+                C2:"C2.mp3",
+
+                "D#2":"Ds2.mp3",
+                "F#2":"Fs2.mp3",
+
+                A2:"A2.mp3",
+                C3:"C3.mp3",
+
+                "D#3":"Ds3.mp3",
+                "F#3":"Fs3.mp3",
+
+                A3:"A3.mp3",
+                C4:"C4.mp3",
+
+                "D#4":"Ds4.mp3",
+                "F#4":"Fs4.mp3",
+
+                A4:"A4.mp3",
+                C5:"C5.mp3",
+
+                "D#5":"Ds5.mp3",
+                "F#5":"Fs5.mp3",
+
+                A5:"A5.mp3",
+                C6:"C6.mp3",
+
+                "D#6":"Ds6.mp3",
+                "F#6":"Fs6.mp3",
+
+                A6:"A6.mp3",
+                C7:"C7.mp3"
+
+            },
+
+            release:1.2,
+
+            baseUrl:
+            "https://tonejs.github.io/audio/salamander/"
+
+        }).toDestination();
+
+
+    await Tone.loaded();
+
+
+    pianoLoaded=true;
+
+
+    return piano;
 }
 
 
-/* =====================================================
-   ODTWARZANIE
-===================================================== */
+/* =========================================================
+   CZEKANIE
+========================================================= */
 
-async function playInterval(type) {
+function wait(ms) {
+
+    return new Promise(function(resolve) {
+
+        setTimeout(resolve,ms);
+
+    });
+}
+
+
+/* =========================================================
+   ODTWARZANIE
+
+   1. MELODYCZNIE
+   2. HARMONICZNIE
+
+   WAŻNE:
+   harmonicznie używamy dwóch osobnych
+   Samplerów.
+
+   Dzięki temu dwie próbki nie walczą ze sobą
+   w jednym samplerze.
+========================================================= */
+
+async function playInterval(type,button) {
 
     const data =
         intervals[type];
@@ -1129,77 +1009,196 @@ async function playInterval(type) {
 
     const status =
         document.getElementById(
-            type + "-status"
+            type+"-status"
         );
 
 
-    if (status) {
+    if(button) {
 
-        status.textContent =
-            "Ładowanie pianina…";
+        button.disabled=true;
 
     }
 
 
-    await Tone.start();
+    try {
 
-
-    await createPiano();
-
-
-    if (!piano) {
-
-        if (status) {
+        if(status) {
 
             status.textContent =
-                "Nie udało się załadować dźwięku.";
+                "Ładowanie pianina…";
 
         }
 
-        return;
 
-    }
-
-
-    if (status) {
-
-        status.textContent =
-            "▶ Odtwarzanie…";
-
-    }
+        await Tone.start();
 
 
-    piano.triggerAttackRelease(
-        data.piano[0],
-        "1n"
-    );
+        const instrument =
+            await createPiano();
 
 
-    setTimeout(function() {
+        const first =
+            data.piano[0];
 
-        piano.triggerAttackRelease(
-            data.piano[1],
-            "1n"
+
+        const second =
+            data.piano[1];
+
+
+        /* =========================================
+           MELODYCZNIE
+        ========================================= */
+
+        if(status) {
+
+            status.textContent =
+                "🎵 Melodycznie";
+
+        }
+
+
+        instrument.triggerAttackRelease(
+            first,
+            0.6
         );
 
-    }, 850);
+
+        await wait(800);
 
 
-    setTimeout(function() {
+        instrument.triggerAttackRelease(
+            second,
+            0.6
+        );
 
-        if (status) {
+
+        await wait(1100);
+
+
+        /* =========================================
+           HARMONICZNIE
+
+           TWORZYMY DRUGIE PIANINO.
+
+           Pierwsza nuta = piano
+           Druga nuta = harmonyPiano
+
+           Oba są uruchamiane w tym samym momencie.
+        ========================================= */
+
+        if(status) {
 
             status.textContent =
-                "Gotowe";
+                "🎶 Harmonicznie";
 
         }
 
-    }, 2200);
 
+        const harmonyPiano =
+            new Tone.Sampler({
+
+                urls: {
+
+                    C4:"C4.mp3",
+                    "D#4":"Ds4.mp3",
+                    "F#4":"Fs4.mp3",
+                    A4:"A4.mp3",
+                    C5:"C5.mp3"
+
+                },
+
+                release:1.2,
+
+                baseUrl:
+                "https://tonejs.github.io/audio/salamander/"
+
+            }).toDestination();
+
+
+        await Tone.loaded();
+
+
+        /*
+        Ustawiamy dokładnie ten sam moment.
+        */
+
+        const together =
+            Tone.now()+0.1;
+
+
+        /*
+        PIERWSZE PIANINO
+        */
+
+        instrument.triggerAttackRelease(
+            first,
+            1.5,
+            together
+        );
+
+
+        /*
+        DRUGIE PIANINO
+        */
+
+        harmonyPiano.triggerAttackRelease(
+            second,
+            1.5,
+            together
+        );
+
+
+        await wait(1900);
+
+
+        harmonyPiano.dispose();
+
+
+        if(status) {
+
+            status.textContent =
+                "✓ Melodycznie + harmonicznie";
+
+        }
+
+
+        await wait(700);
+
+
+        if(status) {
+
+            status.textContent="";
+
+        }
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Harmonix:",
+            error
+        );
+
+
+        if(status) {
+
+            status.textContent =
+                "Nie udało się odtworzyć dźwięku.";
+
+        }
+
+    }
+
+
+    if(button) {
+
+        button.disabled=false;
+
+    }
 }
 
 </script>
 
 </body>
-
 </html>
