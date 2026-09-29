@@ -1,154 +1,116 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Kwarty — Harmonix</title>
 
 <style>
+*{box-sizing:border-box}
 
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f7f5ff;
-    color: #252238;
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f7f5ff;
+color:#252238;
 }
 
-.page {
-    max-width: 950px;
-    margin: 0 auto;
-    padding: 50px 20px 80px;
+.page{
+max-width:950px;
+margin:0 auto;
+padding:50px 20px 80px;
 }
 
-.back {
-    display: inline-block;
-    margin-bottom: 30px;
-    color: #6b6680;
-    text-decoration: none;
-    font-size: 15px;
+.back{
+display:inline-block;
+margin-bottom:30px;
+color:#6b6680;
+text-decoration:none;
+font-size:15px;
 }
 
-.back:hover { color: #252238; }
-
-h1 {
-    text-align: center;
-    font-size: 42px;
-    margin: 0 0 10px;
+h1{
+text-align:center;
+font-size:42px;
+margin:0 0 10px;
 }
 
-.subtitle {
-    text-align: center;
-    color: #6b6680;
-    font-size: 18px;
-    margin-bottom: 40px;
+.subtitle{
+text-align:center;
+color:#6b6680;
+font-size:18px;
+margin-bottom:40px;
 }
 
-.interval-list {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+.interval-list{
+display:flex;
+flex-direction:column;
+gap:14px;
 }
 
-.interval-item {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(40,30,80,.08);
+.interval-item{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 8px 30px rgba(40,30,80,.08);
 }
 
-.interval-button {
-    width: 100%;
-    border: none;
-    background: white;
-    padding: 22px 25px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    color: #252238;
-    font-size: 18px;
-    font-weight: 700;
-    text-align: left;
+.interval-button{
+width:100%;
+border:none;
+background:white;
+padding:22px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+cursor:pointer;
+color:#252238;
+font-size:18px;
+font-weight:700;
 }
 
-.interval-button:hover { background: #faf9ff; }
-
-.arrow {
-    font-size: 20px;
-    transition: transform .25s;
+.interval-content{
+display:none;
+padding:0 25px 30px;
 }
 
-.interval-item.open .arrow {
-    transform: rotate(180deg);
+.interval-item.open .interval-content{
+display:block;
 }
 
-.interval-content {
-    display: none;
-    padding: 0 25px 30px;
+.arrow{font-size:20px}
+.interval-item.open .arrow{transform:rotate(180deg)}
+
+.staff-title{
+font-size:15px;
+color:#6b6680;
+margin:20px 0 5px;
+font-weight:600;
 }
 
-.interval-item.open .interval-content {
-    display: block;
+.staff-box{width:100%;overflow:hidden}
+
+.listen-area{text-align:center;margin-top:25px}
+
+.listen-button{
+border:none;
+border-radius:12px;
+padding:13px 24px;
+background:#252238;
+color:white;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
 }
 
-.staff-title {
-    font-size: 15px;
-    color: #6b6680;
-    margin: 20px 0 5px;
-    font-weight: 600;
+.listen-button:disabled{opacity:.6}
+
+.status{
+margin-top:10px;
+font-size:13px;
+color:#777187;
+min-height:18px;
 }
-
-.staff-box {
-    width: 100%;
-    overflow: hidden;
-}
-
-.listen-area {
-    text-align: center;
-    margin-top: 25px;
-}
-
-.listen-button {
-    border: none;
-    border-radius: 12px;
-    padding: 13px 24px;
-    background: #252238;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.listen-button:hover { opacity: .9; }
-
-.listen-button:disabled {
-    opacity: .6;
-    cursor: default;
-}
-
-.status {
-    margin-top: 10px;
-    font-size: 13px;
-    color: #777187;
-    min-height: 18px;
-}
-
-@media(max-width:650px) {
-
-    .page { padding: 30px 12px 60px; }
-
-    h1 { font-size: 34px; }
-
-    .interval-content {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-}
-
 </style>
 </head>
 
@@ -156,769 +118,480 @@ h1 {
 
 <div class="page">
 
-<a href="interwaly.html" class="back">
-← Wróć do interwałów
-</a>
+<a href="interwaly.html" class="back">← Wróć do interwałów</a>
 
 <h1>Kwarty</h1>
+<div class="subtitle">Zmniejszone, czyste i zwiększone</div>
 
-<div class="subtitle">
-Zmniejszone, czyste i zwiększone
-</div>
-
-<div class="interval-list">
-
-
-<!-- KWARTA ZMNIEJSZONA -->
-
-<div class="interval-item">
-
-<button class="interval-button"
-onclick="toggleInterval('zmniejszona', this)">
-<span>♩ Kwarta zmniejszona</span>
-<span class="arrow">⌄</span>
-</button>
-
-<div class="interval-content">
-
-<div class="staff-title">Klucz wiolinowy</div>
-<div id="zmniejszona-treble" class="staff-box"></div>
-
-<div class="staff-title">Klucz basowy</div>
-<div id="zmniejszona-bass" class="staff-box"></div>
-
-<div class="listen-area">
-
-<button class="listen-button"
-onclick="playInterval('zmniejszona', this)">
-▶ Posłuchaj
-</button>
-
-<div id="zmniejszona-status" class="status"></div>
+<div class="interval-list" id="list"></div>
 
 </div>
-</div>
-</div>
-
-
-<!-- KWARTA CZYSTA -->
-
-<div class="interval-item">
-
-<button class="interval-button"
-onclick="toggleInterval('czysta', this)">
-<span>♩ Kwarta czysta</span>
-<span class="arrow">⌄</span>
-</button>
-
-<div class="interval-content">
-
-<div class="staff-title">Klucz wiolinowy</div>
-<div id="czysta-treble" class="staff-box"></div>
-
-<div class="staff-title">Klucz basowy</div>
-<div id="czysta-bass" class="staff-box"></div>
-
-<div class="listen-area">
-
-<button class="listen-button"
-onclick="playInterval('czysta', this)">
-▶ Posłuchaj
-</button>
-
-<div id="czysta-status" class="status"></div>
-
-</div>
-</div>
-</div>
-
-
-<!-- KWARTA ZWIĘKSZONA -->
-
-<div class="interval-item">
-
-<button class="interval-button"
-onclick="toggleInterval('zwiekszona', this)">
-<span>♩ Kwarta zwiększona</span>
-<span class="arrow">⌄</span>
-</button>
-
-<div class="interval-content">
-
-<div class="staff-title">Klucz wiolinowy</div>
-<div id="zwiekszona-treble" class="staff-box"></div>
-
-<div class="staff-title">Klucz basowy</div>
-<div id="zwiekszona-bass" class="staff-box"></div>
-
-<div class="listen-area">
-
-<button class="listen-button"
-onclick="playInterval('zwiekszona', this)">
-▶ Posłuchaj
-</button>
-
-<div id="zwiekszona-status" class="status"></div>
-
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
 <script>
 
-/* =========================================================
-   DANE KWART
-========================================================= */
+const intervals={
 
-const intervals = {
+zmniejszona:{
+name:"Kwarta zmniejszona",
+treble:[
+{letter:"c",octave:4,accidental:""},
+{letter:"f",octave:4,accidental:"b"}
+],
+bass:[
+{letter:"c",octave:3,accidental:""},
+{letter:"f",octave:3,accidental:"b"}
+],
+piano:["C4","E4"]
+},
 
-    zmniejszona: {
+czysta:{
+name:"Kwarta czysta",
+treble:[
+{letter:"c",octave:4,accidental:""},
+{letter:"f",octave:4,accidental:""}
+],
+bass:[
+{letter:"c",octave:3,accidental:""},
+{letter:"f",octave:3,accidental:""}
+],
+piano:["C4","F4"]
+},
 
-        treble: [
-            {letter:"c", octave:4, accidental:""},
-            {letter:"f", octave:4, accidental:"b"}
-        ],
-
-        bass: [
-            {letter:"c", octave:3, accidental:""},
-            {letter:"f", octave:3, accidental:"b"}
-        ],
-
-        /* C-F♭ = 4 półtony */
-        piano:["C4","E4"]
-    },
-
-
-    czysta: {
-
-        treble: [
-            {letter:"c", octave:4, accidental:""},
-            {letter:"f", octave:4, accidental:""}
-        ],
-
-        bass: [
-            {letter:"c", octave:3, accidental:""},
-            {letter:"f", octave:3, accidental:""}
-        ],
-
-        /* C-F = 5 półtonów */
-        piano:["C4","F4"]
-    },
-
-
-    zwiekszona: {
-
-        treble: [
-            {letter:"c", octave:4, accidental:""},
-            {letter:"f", octave:4, accidental:"#"}
-        ],
-
-        bass: [
-            {letter:"c", octave:3, accidental:""},
-            {letter:"f", octave:3, accidental:"#"}
-        ],
-
-        /* C-F# = 6 półtonów */
-        piano:["C4","F#4"]
-    }
+zwiekszona:{
+name:"Kwarta zwiększona",
+treble:[
+{letter:"c",octave:4,accidental:""},
+{letter:"f",octave:4,accidental:"#"}
+],
+bass:[
+{letter:"c",octave:3,accidental:""},
+{letter:"f",octave:3,accidental:"#"}
+],
+piano:["C4","F#4"]
+}
 
 };
 
 
-/* =========================================================
-   OTWIERANIE
-========================================================= */
+/* KARTY */
 
-function toggleInterval(type, button) {
+const list=document.getElementById("list");
 
-    const item = button.parentElement;
+Object.entries(intervals).forEach(([type,data])=>{
 
-    const wasOpen =
-        item.classList.contains("open");
+list.innerHTML+=`
 
-    document
-        .querySelectorAll(".interval-item")
-        .forEach(function(element) {
+<div class="interval-item">
 
-            element.classList.remove("open");
+<button class="interval-button"
+onclick="toggleInterval('${type}',this)">
 
-        });
+<span>♩ ${data.name}</span>
+<span class="arrow">⌄</span>
 
-    if (!wasOpen) {
+</button>
 
-        item.classList.add("open");
+<div class="interval-content">
 
-        setTimeout(function() {
+<div class="staff-title">Klucz wiolinowy</div>
+<div id="${type}-treble" class="staff-box"></div>
 
-            drawInterval(type);
+<div class="staff-title">Klucz basowy</div>
+<div id="${type}-bass" class="staff-box"></div>
 
-        },100);
-    }
+<div class="listen-area">
+
+<button class="listen-button"
+onclick="playInterval('${type}',this)">
+▶ Posłuchaj
+</button>
+
+<div id="${type}-status" class="status"></div>
+
+</div>
+</div>
+</div>
+
+`;
+
+});
+
+
+function toggleInterval(type,button){
+
+const item=button.parentElement;
+const open=item.classList.contains("open");
+
+document.querySelectorAll(".interval-item")
+.forEach(x=>x.classList.remove("open"));
+
+if(!open){
+item.classList.add("open");
+setTimeout(()=>drawInterval(type),50);
+}
+
 }
 
 
-/* =========================================================
-   POZYCJE NUT
-========================================================= */
+/* PIĘCIOLINIA */
 
-const letterNumber = {
-
-    c:0,
-    d:1,
-    e:2,
-    f:3,
-    g:4,
-    a:5,
-    b:6
-
+const letterNumber={
+c:0,d:1,e:2,f:3,g:4,a:5,b:6
 };
 
+function getStep(note,clef){
 
-function getStep(note,clef) {
+const absolute=
+note.octave*7+
+letterNumber[note.letter];
 
-    const absolute =
-        note.octave * 7 +
-        letterNumber[note.letter];
+const reference=
+clef==="treble"
+?4*7+letterNumber.e
+:2*7+letterNumber.g;
 
-    let reference;
+return absolute-reference;
 
-    if (clef === "treble") {
-
-        reference =
-            4 * 7 +
-            letterNumber.e;
-
-    } else {
-
-        reference =
-            2 * 7 +
-            letterNumber.g;
-    }
-
-    return absolute-reference;
 }
 
 
-/* =========================================================
-   RYSOWANIE
-========================================================= */
+function drawInterval(type){
 
-function drawInterval(type) {
+drawStaff(
+type+"-treble",
+"treble",
+intervals[type].treble
+);
 
-    const data = intervals[type];
+drawStaff(
+type+"-bass",
+"bass",
+intervals[type].bass
+);
 
-    drawStaff(
-        type+"-treble",
-        "treble",
-        data.treble
-    );
-
-    drawStaff(
-        type+"-bass",
-        "bass",
-        data.bass
-    );
 }
 
 
-function drawStaff(containerId,clef,notes) {
+function drawStaff(id,clef,notes){
 
-    const container =
-        document.getElementById(containerId);
+const container=document.getElementById(id);
 
-    if (!container) return;
+const width=700;
+const height=210;
 
-    const width = 700;
-    const height = 210;
+const left=105;
+const right=650;
 
-    const left = 105;
-    const right = 650;
+const top=75;
+const gap=14;
 
-    const top = 75;
-    const gap = 14;
+let svg=`
+<svg xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 ${width} ${height}"
+width="100%"
+style="display:block;max-width:700px;margin:auto">
+`;
 
-    let svg = `
 
-    <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 ${width} ${height}"
-    width="100%"
-    style="
-    display:block;
-    max-width:700px;
-    margin:0 auto;
-    ">
+/* LINIE */
 
-    `;
+for(let i=0;i<5;i++){
 
+const y=top+i*gap;
 
-    /* PIĘCIOLINIA */
+svg+=`
+<line
+x1="${left}"
+y1="${y}"
+x2="${right}"
+y2="${y}"
+stroke="#252238"
+stroke-width="1.5"/>
+`;
 
-    for(let i=0;i<5;i++) {
-
-        const y = top+i*gap;
-
-        svg += `
-
-        <line
-        x1="${left}"
-        y1="${y}"
-        x2="${right}"
-        y2="${y}"
-        stroke="#252238"
-        stroke-width="1.5"/>
-
-        `;
-    }
-
-
-    /* KLUCZ */
-
-    if(clef==="treble") {
-
-        svg += `
-
-        <text
-        x="25"
-        y="140"
-        font-family="serif"
-        font-size="86"
-        fill="#252238">𝄞</text>
-
-        `;
-
-    } else {
-
-        svg += `
-
-        <text
-        x="25"
-        y="125"
-        font-family="serif"
-        font-size="64"
-        fill="#252238">𝄢</text>
-
-        `;
-    }
-
-
-    const positions = [330,480];
-
-
-    notes.forEach(function(note,index) {
-
-        const x = positions[index];
-
-        const step =
-            getStep(note,clef);
-
-        const y =
-            top +
-            4*gap -
-            step*(gap/2);
-
-
-        /* LINIE DODANE POD */
-
-        if(step<=-2) {
-
-            for(
-                let s=-2;
-                s>=step;
-                s-=2
-            ) {
-
-                const ledgerY =
-                    top +
-                    4*gap -
-                    s*(gap/2);
-
-                svg += `
-
-                <line
-                x1="${x-20}"
-                y1="${ledgerY}"
-                x2="${x+20}"
-                y2="${ledgerY}"
-                stroke="#252238"
-                stroke-width="1.5"/>
-
-                `;
-            }
-        }
-
-
-        /* LINIE DODANE NAD */
-
-        if(step>=10) {
-
-            for(
-                let s=10;
-                s<=step;
-                s+=2
-            ) {
-
-                const ledgerY =
-                    top +
-                    4*gap -
-                    s*(gap/2);
-
-                svg += `
-
-                <line
-                x1="${x-20}"
-                y1="${ledgerY}"
-                x2="${x+20}"
-                y2="${ledgerY}"
-                stroke="#252238"
-                stroke-width="1.5"/>
-
-                `;
-            }
-        }
-
-
-        /* ZNAKI CHROMATYCZNE */
-
-        let accidental = "";
-
-        if(note.accidental==="bb") {
-
-            accidental="𝄫";
-
-        }
-
-        else if(note.accidental==="b") {
-
-            accidental="♭";
-
-        }
-
-        else if(note.accidental==="#") {
-
-            accidental="♯";
-
-        }
-
-
-        if(accidental!=="") {
-
-            svg += `
-
-            <text
-            x="${x-38}"
-            y="${y+8}"
-            font-family="serif"
-            font-size="27"
-            fill="#252238">${accidental}</text>
-
-            `;
-        }
-
-
-        /* GŁÓWKA */
-
-        svg += `
-
-        <ellipse
-        cx="${x}"
-        cy="${y}"
-        rx="10"
-        ry="7"
-        transform="rotate(-18 ${x} ${y})"
-        fill="#252238"/>
-
-        `;
-
-
-        /* LASECZKA */
-
-        svg += `
-
-        <line
-        x1="${x+8}"
-        y1="${y}"
-        x2="${x+8}"
-        y2="${y-43}"
-        stroke="#252238"
-        stroke-width="2"/>
-
-        `;
-    });
-
-
-    svg += `</svg>`;
-
-    container.innerHTML = svg;
 }
 
 
-/* =========================================================
-   PIANINO
-========================================================= */
+/* KLUCZE */
 
-let piano = null;
-let pianoLoaded = false;
+if(clef==="treble"){
 
+svg+=`
+<text
+x="25"
+y="140"
+font-family="serif"
+font-size="86"
+fill="#252238">𝄞</text>
+`;
 
-async function createPiano() {
+}else{
 
-    if(pianoLoaded && piano) {
+svg+=`
+<text
+x="25"
+y="125"
+font-family="serif"
+font-size="64"
+fill="#252238">𝄢</text>
+`;
 
-        return piano;
-    }
-
-
-    piano = new Tone.Sampler({
-
-        urls: {
-
-            A0:"A0.mp3",
-            C1:"C1.mp3",
-
-            "D#1":"Ds1.mp3",
-            "F#1":"Fs1.mp3",
-
-            A1:"A1.mp3",
-            C2:"C2.mp3",
-
-            "D#2":"Ds2.mp3",
-            "F#2":"Fs2.mp3",
-
-            A2:"A2.mp3",
-            C3:"C3.mp3",
-
-            "D#3":"Ds3.mp3",
-            "F#3":"Fs3.mp3",
-
-            A3:"A3.mp3",
-            C4:"C4.mp3",
-
-            "D#4":"Ds4.mp3",
-            "F#4":"Fs4.mp3",
-
-            A4:"A4.mp3",
-            C5:"C5.mp3",
-
-            "D#5":"Ds5.mp3",
-            "F#5":"Fs5.mp3",
-
-            A5:"A5.mp3",
-            C6:"C6.mp3",
-
-            "D#6":"Ds6.mp3",
-            "F#6":"Fs6.mp3",
-
-            A6:"A6.mp3",
-            C7:"C7.mp3"
-
-        },
-
-        release:1.2,
-
-        baseUrl:
-        "https://tonejs.github.io/audio/salamander/"
-
-    }).toDestination();
-
-
-    await Tone.loaded();
-
-    pianoLoaded=true;
-
-    return piano;
 }
 
 
-function wait(ms) {
+const positions=[330,480];
 
-    return new Promise(function(resolve) {
 
-        setTimeout(resolve,ms);
+notes.forEach((note,index)=>{
 
-    });
+const x=positions[index];
+
+const step=getStep(note,clef);
+
+const y=
+top+
+4*gap-
+step*(gap/2);
+
+
+/* LINIE DODANE */
+
+if(step<=-2){
+
+for(let s=-2;s>=step;s-=2){
+
+const ly=
+top+
+4*gap-
+s*(gap/2);
+
+svg+=`
+<line
+x1="${x-20}"
+y1="${ly}"
+x2="${x+20}"
+y2="${ly}"
+stroke="#252238"
+stroke-width="1.5"/>
+`;
+
+}
+
 }
 
 
-/* =========================================================
-   ODTWARZANIE
-   TEN SAM MECHANIZM CO W DZIAŁAJĄCYCH TERCJACH
-========================================================= */
+if(step>=10){
 
-async function playInterval(type,button) {
+for(let s=10;s<=step;s+=2){
 
-    const data = intervals[type];
+const ly=
+top+
+4*gap-
+s*(gap/2);
 
-    const status =
-        document.getElementById(
-            type+"-status"
-        );
+svg+=`
+<line
+x1="${x-20}"
+y1="${ly}"
+x2="${x+20}"
+y2="${ly}"
+stroke="#252238"
+stroke-width="1.5"/>
+`;
 
+}
 
-    if(button) {
+}
 
-        button.disabled=true;
-    }
 
+/* ZNAKI */
 
-    try {
+let accidental="";
 
-        if(status) {
+if(note.accidental==="b") accidental="♭";
+if(note.accidental==="#") accidental="♯";
+if(note.accidental==="bb") accidental="𝄫";
 
-            status.textContent =
-                "Ładowanie pianina…";
-        }
+if(accidental){
 
+svg+=`
+<text
+x="${x-38}"
+y="${y+8}"
+font-family="serif"
+font-size="27"
+fill="#252238">${accidental}</text>
+`;
 
-        await Tone.start();
+}
 
 
-        const instrument =
-            await createPiano();
+/* NUTA */
 
+svg+=`
+<ellipse
+cx="${x}"
+cy="${y}"
+rx="10"
+ry="7"
+transform="rotate(-18 ${x} ${y})"
+fill="#252238"/>
 
-        const first =
-            data.piano[0];
+<line
+x1="${x+8}"
+y1="${y}"
+x2="${x+8}"
+y2="${y-43}"
+stroke="#252238"
+stroke-width="2"/>
+`;
 
-        const second =
-            data.piano[1];
+});
 
 
-        /* =============================================
-           MELODYCZNIE
-        ============================================= */
+svg+="</svg>";
 
-        if(status) {
+container.innerHTML=svg;
 
-            status.textContent =
-                "🎵 Melodycznie";
-        }
+}
 
 
-        instrument.triggerAttackRelease(
-            first,
-            0.6
-        );
+/* PIANINO */
 
+let piano=null;
 
-        await wait(800);
+async function createPiano(){
 
+if(piano) return piano;
 
-        instrument.triggerAttackRelease(
-            second,
-            0.6
-        );
+piano=new Tone.Sampler({
 
+urls:{
 
-        await wait(1100);
+A0:"A0.mp3",
+C1:"C1.mp3",
+"D#1":"Ds1.mp3",
+"F#1":"Fs1.mp3",
 
+A1:"A1.mp3",
+C2:"C2.mp3",
+"D#2":"Ds2.mp3",
+"F#2":"Fs2.mp3",
 
-        /* =============================================
-           HARMONICZNIE
-        ============================================= */
+A2:"A2.mp3",
+C3:"C3.mp3",
+"D#3":"Ds3.mp3",
+"F#3":"Fs3.mp3",
 
-        if(status) {
+A3:"A3.mp3",
+C4:"C4.mp3",
+"D#4":"Ds4.mp3",
+"F#4":"Fs4.mp3",
 
-            status.textContent =
-                "🎶 Harmonicznie";
-        }
+A4:"A4.mp3",
+C5:"C5.mp3",
+"D#5":"Ds5.mp3",
+"F#5":"Fs5.mp3",
 
+A5:"A5.mp3",
+C6:"C6.mp3",
+"D#6":"Ds6.mp3",
+"F#6":"Fs6.mp3",
 
-        const harmonyPiano =
-            new Tone.Sampler({
+A6:"A6.mp3",
+C7:"C7.mp3"
 
-                urls: {
+},
 
-                    C4:"C4.mp3",
-                    "D#4":"Ds4.mp3",
-                    "F#4":"Fs4.mp3",
-                    A4:"A4.mp3",
-                    C5:"C5.mp3"
+release:1.2,
 
-                },
+baseUrl:
+"https://tonejs.github.io/audio/salamander/"
 
-                release:1.2,
+}).toDestination();
 
-                baseUrl:
-                "https://tonejs.github.io/audio/salamander/"
+await Tone.loaded();
 
-            }).toDestination();
+return piano;
 
+}
 
-        await Tone.loaded();
 
+function wait(ms){
+return new Promise(resolve=>setTimeout(resolve,ms));
+}
 
-        const together =
-            Tone.now()+0.1;
 
+/* DŹWIĘK */
 
-        /* PIERWSZA NUTA */
+async function playInterval(type,button){
 
-        instrument.triggerAttackRelease(
-            first,
-            1.5,
-            together
-        );
+button.disabled=true;
 
+const status=
+document.getElementById(type+"-status");
 
-        /* DRUGA NUTA */
+try{
 
-        harmonyPiano.triggerAttackRelease(
-            second,
-            1.5,
-            together
-        );
+status.textContent="Ładowanie pianina…";
 
+await Tone.start();
 
-        await wait(1900);
+const instrument=await createPiano();
 
+const first=intervals[type].piano[0];
+const second=intervals[type].piano[1];
 
-        harmonyPiano.dispose();
 
+/* MELODYCZNIE */
 
-        if(status) {
+status.textContent="🎵 Melodycznie";
 
-            status.textContent =
-                "✓ Melodycznie + harmonicznie";
-        }
+instrument.triggerAttackRelease(first,0.7);
 
+await wait(850);
 
-        await wait(700);
+instrument.triggerAttackRelease(second,0.7);
 
+await wait(1200);
 
-        if(status) {
 
-            status.textContent="";
-        }
+/* HARMONICZNIE */
 
-    }
+status.textContent="🎶 Harmonicznie";
 
-    catch(error) {
+/*
+NAJWAŻNIEJSZA POPRAWKA:
+DWIE NUTY W TYM SAMYM SAMPLERZE
+*/
 
-        console.error(
-            "Harmonix:",
-            error
-        );
+instrument.triggerAttackRelease(
+[first,second],
+1.7,
+Tone.now()+0.05
+);
 
+await wait(1900);
 
-        if(status) {
+status.textContent="✓ Melodycznie + harmonicznie";
 
-            status.textContent =
-                "Nie udało się odtworzyć dźwięku.";
-        }
-    }
+await wait(600);
 
+status.textContent="";
 
-    if(button) {
+}catch(error){
 
-        button.disabled=false;
-    }
+console.error(error);
+
+status.textContent=
+"Nie udało się odtworzyć dźwięku.";
+
+}
+
+button.disabled=false;
+
 }
 
 </script>
