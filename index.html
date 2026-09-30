@@ -2,251 +2,321 @@
 <html lang="pl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Harmonix</title>
+<title>Harmonix</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    <style>
+<style>
 
-        * {
-            box-sizing: border-box;
-        }
+*{
+    box-sizing:border-box;
+}
 
-        body {
-            margin: 0;
-        }
+body{
+    margin:0;
+}
 
-        /* ================================
-           GŁÓWNY EKRAN
-        ================================= */
 
-        .home {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 55px 20px 70px;
-        }
+/* =========================================
+   STRONA GŁÓWNA
+========================================= */
 
-        .home-container {
-            width: 100%;
-            max-width: 1050px;
-            margin: 0 auto;
-        }
+.home{
+    min-height:100vh;
+    padding:55px 22px 80px;
+}
 
-        /* ================================
-           NAGŁÓWEK
-        ================================= */
+.home-container{
+    width:100%;
+    max-width:1120px;
+    margin:0 auto;
+}
 
-        .home-header {
-            text-align: center;
-            margin-bottom: 42px;
-        }
 
-        .home-logo {
-            font-size: clamp(46px, 7vw, 76px);
-            font-weight: 800;
-            letter-spacing: -3px;
-            color: #252238;
-            line-height: 1;
-        }
+/* =========================================
+   NAGŁÓWEK
+========================================= */
 
-        .home-subtitle {
-            margin-top: 15px;
-            font-size: 17px;
-            color: #777187;
-            line-height: 1.5;
-        }
+.home-header{
+    text-align:center;
+    margin-bottom:42px;
+}
 
-        .home-label {
-            margin-top: 27px;
+.home-logo{
+    font-size:clamp(48px,7vw,78px);
+    font-weight:800;
+    letter-spacing:-3px;
+    line-height:1;
+    color:#252238;
+}
 
-            font-size: 11px;
-            font-weight: 800;
+.home-subtitle{
+    margin-top:15px;
+    color:#777187;
+    font-size:17px;
+    line-height:1.5;
+}
 
-            letter-spacing: 2px;
-            text-transform: uppercase;
+.home-label{
+    margin-top:28px;
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:#aaa5b5;
+}
 
-            color: #aaa5b5;
-        }
 
-        /* ================================
-           KAFELKI
-        ================================= */
+/* =========================================
+   SIATKA
+========================================= */
 
-        .home-grid {
-            display: grid;
+.home-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:17px;
+}
 
-            grid-template-columns:
-                repeat(3, minmax(0, 1fr));
 
-            gap: 16px;
-        }
+/* =========================================
+   KAFEL
+========================================= */
 
-        .home-card {
-            position: relative;
+.home-card{
+    position:relative;
+    min-height:245px;
 
-            min-height: 205px;
+    background:white;
 
-            background: white;
+    border:1px solid rgba(70,60,100,.08);
+    border-radius:24px;
 
-            border: 1px solid rgba(70, 60, 100, .08);
-            border-radius: 23px;
+    box-shadow:
+        0 9px 32px rgba(40,30,80,.065);
 
-            box-shadow:
-                0 8px 30px rgba(40, 30, 80, .065);
+    overflow:hidden;
 
-            overflow: hidden;
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
+}
 
-            transition:
-                transform .22s ease,
-                box-shadow .22s ease,
-                border-color .22s ease;
-        }
+.home-card:hover{
+    transform:translateY(-5px);
 
-        .home-card:hover {
-            transform: translateY(-5px);
+    box-shadow:
+        0 18px 48px rgba(40,30,80,.11);
 
-            box-shadow:
-                0 17px 45px rgba(40, 30, 80, .11);
+    border-color:
+        rgba(70,60,100,.16);
+}
 
-            border-color:
-                rgba(70, 60, 100, .16);
-        }
+.home-card a,
+.card-content{
+    width:100%;
+    height:100%;
+    min-height:245px;
 
-        .home-card a {
-            display: flex;
-            flex-direction: column;
+    display:flex;
+    flex-direction:column;
 
-            width: 100%;
-            height: 100%;
+    padding:25px;
 
-            min-height: 205px;
+    color:inherit;
+    text-decoration:none;
+}
 
-            padding: 24px;
 
-            color: inherit;
-            text-decoration: none;
-        }
+/* =========================================
+   GÓRNA CZĘŚĆ KAFELKA
+========================================= */
 
-        /* kafelki jeszcze nieaktywne */
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+}
 
-        .home-card.locked {
-            cursor: default;
-        }
+.home-icon{
+    width:52px;
+    height:52px;
 
-        /* ================================
-           IKONY
-        ================================= */
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-        .home-icon {
-            width: 49px;
-            height: 49px;
+    border-radius:16px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    background:#f1eff8;
 
-            margin-bottom: 21px;
+    font-size:25px;
+}
 
-            border-radius: 15px;
+.status{
+    padding:6px 9px;
 
-            background: #f1eff8;
+    border-radius:20px;
 
-            font-size: 24px;
-        }
+    background:#f4f2f8;
 
-        /* ================================
-           TEKST
-        ================================= */
+    color:#9690a3;
 
-        .home-card h2 {
-            margin: 0 0 9px;
+    font-size:9px;
+    font-weight:800;
 
-            font-size: 20px;
-            font-weight: 800;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+}
 
-            color: #252238;
-        }
+.status.ready{
+    background:#ece9f6;
+    color:#514b68;
+}
 
-        .home-card p {
-            margin: 0;
 
-            color: #777187;
+/* =========================================
+   TEKST
+========================================= */
 
-            font-size: 13px;
-            line-height: 1.55;
-        }
+.home-card h2{
+    margin:21px 0 8px;
 
-        /* ================================
-           DOLNY NAPIS
-        ================================= */
+    font-size:21px;
+    font-weight:800;
 
-        .card-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+    color:#252238;
+}
 
-            margin-top: auto;
-            padding-top: 20px;
+.home-card p{
+    margin:0;
 
-            font-size: 11px;
-            font-weight: 700;
+    color:#777187;
 
-            color: #aaa5b5;
-        }
+    font-size:13px;
+    line-height:1.5;
+}
 
-        .open-text {
-            color: #59536d;
-        }
 
-        .arrow {
-            font-size: 17px;
-            transition: transform .2s ease;
-        }
+/* =========================================
+   MAŁE TEMATY POD OPISEM
+========================================= */
 
-        .home-card:hover .arrow {
-            transform: translateX(4px);
-        }
+.topics{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
 
-        /* ================================
-           RESPONSYWNOŚĆ
-        ================================= */
+    margin-top:15px;
+}
 
-        @media (max-width: 800px) {
+.topic{
+    padding:5px 8px;
 
-            .home-grid {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-            }
+    background:#f7f6fb;
 
-        }
+    border-radius:8px;
 
-        @media (max-width: 520px) {
+    color:#777187;
 
-            .home {
-                align-items: flex-start;
-                padding-top: 40px;
-            }
+    font-size:9px;
+    font-weight:700;
+}
 
-            .home-grid {
-                grid-template-columns: 1fr;
-            }
 
-            .home-card,
-            .home-card a {
-                min-height: 175px;
-            }
+/* =========================================
+   DÓŁ KARTY
+========================================= */
 
-            .home-logo {
-                letter-spacing: -2px;
-            }
+.card-bottom{
+    margin-top:auto;
+    padding-top:19px;
 
-        }
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-    </style>
+    color:#aaa5b5;
+
+    font-size:11px;
+    font-weight:700;
+}
+
+.open{
+    color:#514b68;
+}
+
+.arrow{
+    font-size:18px;
+    transition:.2s;
+}
+
+.home-card:hover .arrow{
+    transform:translateX(4px);
+}
+
+
+/* =========================================
+   INFORMACJA NA DOLE
+========================================= */
+
+.home-note{
+    max-width:700px;
+    margin:34px auto 0;
+
+    text-align:center;
+
+    color:#aaa5b5;
+
+    font-size:12px;
+    line-height:1.6;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media(max-width:850px){
+
+    .home-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+
+/* =========================================
+   TELEFON
+========================================= */
+
+@media(max-width:550px){
+
+    .home{
+        padding:40px 16px 60px;
+    }
+
+    .home-grid{
+        grid-template-columns:1fr;
+    }
+
+    .home-card,
+    .home-card a,
+    .card-content{
+        min-height:215px;
+    }
+
+    .home-logo{
+        letter-spacing:-2px;
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -258,231 +328,426 @@
 <div class="home-container">
 
 
-    <!-- ============================
-         LOGO
-    ============================= -->
+<!-- =========================================
+     HEADER
+========================================= -->
 
-    <header class="home-header">
+<header class="home-header">
 
-        <div class="home-logo">
-            Harmonix
+    <div class="home-logo">
+        Harmonix
+    </div>
+
+    <div class="home-subtitle">
+        Zrozum teorię. Usłysz ją. Zastosuj w praktyce.
+    </div>
+
+    <div class="home-label">
+        Wybierz dział
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     DZIAŁY
+========================================= -->
+
+<div class="home-grid">
+
+
+<!-- =========================================
+     1. INTERWAŁY
+========================================= -->
+
+<div class="home-card">
+
+<a href="interwaly.html">
+
+    <div class="card-top">
+
+        <div class="home-icon">
+            🎵
         </div>
 
-        <div class="home-subtitle">
-            Teoria, słuch i praktyka muzyczna w jednym miejscu.
+        <div class="status ready">
+            Gotowe
         </div>
-
-        <div class="home-label">
-            Wybierz dział
-        </div>
-
-    </header>
-
-
-    <!-- ============================
-         DZIAŁY
-    ============================= -->
-
-    <div class="home-grid">
-
-
-        <!-- INTERWAŁY -->
-
-        <div class="home-card">
-
-            <a href="interwaly.html">
-
-                <div class="home-icon">
-                    🎵
-                </div>
-
-                <h2>
-                    Interwały
-                </h2>
-
-                <p>
-                    Od prymy po interwały złożone.
-                    Nauka, odsłuch, budowanie i rozpoznawanie.
-                </p>
-
-                <div class="card-bottom">
-
-                    <span class="open-text">
-                        Otwórz dział
-                    </span>
-
-                    <span class="arrow">
-                        →
-                    </span>
-
-                </div>
-
-            </a>
-
-        </div>
-
-
-        <!-- GAMY I TONACJE -->
-
-        <div class="home-card locked">
-
-            <div style="padding:24px; height:100%; min-height:205px; display:flex; flex-direction:column;">
-
-                <div class="home-icon">
-                    ♯
-                </div>
-
-                <h2>
-                    Gamy i tonacje
-                </h2>
-
-                <p>
-                    Dur i moll, znaki przykluczowe,
-                    koło kwintowe oraz pokrewieństwo tonacji.
-                </p>
-
-                <div class="card-bottom">
-
-                    <span>
-                        Następny dział
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- AKORDY -->
-
-        <div class="home-card locked">
-
-            <div style="padding:24px; height:100%; min-height:205px; display:flex; flex-direction:column;">
-
-                <div class="home-icon">
-                    🎹
-                </div>
-
-                <h2>
-                    Akordy
-                </h2>
-
-                <p>
-                    Trójdźwięki, rodzaje akordów,
-                    przewroty, budowanie i rozpoznawanie.
-                </p>
-
-                <div class="card-bottom">
-
-                    <span>
-                        W przygotowaniu
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- HARMONIA -->
-
-        <div class="home-card locked">
-
-            <div style="padding:24px; height:100%; min-height:205px; display:flex; flex-direction:column;">
-
-                <div class="home-icon">
-                    △
-                </div>
-
-                <h2>
-                    Harmonia
-                </h2>
-
-                <p>
-                    Tonika, subdominanta, dominanta,
-                    funkcje harmoniczne i ich łączenie.
-                </p>
-
-                <div class="card-bottom">
-
-                    <span>
-                        W przygotowaniu
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- HARMONIZACJA -->
-
-        <div class="home-card locked">
-
-            <div style="padding:24px; height:100%; min-height:205px; display:flex; flex-direction:column;">
-
-                <div class="home-icon">
-                    ✍️
-                </div>
-
-                <h2>
-                    Harmonizacja
-                </h2>
-
-                <p>
-                    Harmonizowanie sopranu i basu,
-                    prowadzenie głosów oraz zadania harmoniczne.
-                </p>
-
-                <div class="card-bottom">
-
-                    <span>
-                        W przygotowaniu
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- KSZTAŁCENIE SŁUCHU -->
-
-        <div class="home-card locked">
-
-            <div style="padding:24px; height:100%; min-height:205px; display:flex; flex-direction:column;">
-
-                <div class="home-icon">
-                    🎧
-                </div>
-
-                <h2>
-                    Kształcenie słuchu
-                </h2>
-
-                <p>
-                    Dyktanda, rozpoznawanie brzmień,
-                    melodii, rytmu i struktur muzycznych.
-                </p>
-
-                <div class="card-bottom">
-
-                    <span>
-                        W przygotowaniu
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
 
     </div>
+
+
+    <h2>
+        Interwały
+    </h2>
+
+    <p>
+        Poznaj budowę interwałów, ich zapis i brzmienie,
+        a potem przećwicz rozpoznawanie i budowanie.
+    </p>
+
+
+    <div class="topics">
+
+        <span class="topic">proste</span>
+
+        <span class="topic">złożone</span>
+
+        <span class="topic">słuch</span>
+
+        <span class="topic">budowanie</span>
+
+    </div>
+
+
+    <div class="card-bottom">
+
+        <span class="open">
+            Otwórz dział
+        </span>
+
+        <span class="arrow">
+            →
+        </span>
+
+    </div>
+
+</a>
+
+</div>
+
+
+
+<!-- =========================================
+     2. GAMY I TONACJE
+========================================= -->
+
+<div class="home-card">
+
+<a href="tonacje.html">
+
+    <div class="card-top">
+
+        <div class="home-icon">
+            ♯
+        </div>
+
+        <div class="status">
+            Następne
+        </div>
+
+    </div>
+
+
+    <h2>
+        Gamy i tonacje
+    </h2>
+
+    <p>
+        Wszystko, czego potrzebujesz do swobodnego
+        poruszania się po tonacjach durowych i molowych.
+    </p>
+
+
+    <div class="topics">
+
+        <span class="topic">dur i moll</span>
+
+        <span class="topic">odmiany gam</span>
+
+        <span class="topic">znaki</span>
+
+        <span class="topic">koło kwintowe</span>
+
+        <span class="topic">pokrewieństwa</span>
+
+    </div>
+
+
+    <div class="card-bottom">
+
+        <span>
+            W przygotowaniu
+        </span>
+
+        <span class="arrow">
+            →
+        </span>
+
+    </div>
+
+</a>
+
+</div>
+
+
+
+<!-- =========================================
+     3. AKORDY
+========================================= -->
+
+<div class="home-card">
+
+<div class="card-content">
+
+    <div class="card-top">
+
+        <div class="home-icon">
+            🎹
+        </div>
+
+        <div class="status">
+            Wkrótce
+        </div>
+
+    </div>
+
+
+    <h2>
+        Akordy
+    </h2>
+
+    <p>
+        Od podstawowych trójdźwięków aż po
+        bardziej rozbudowane struktury harmoniczne.
+    </p>
+
+
+    <div class="topics">
+
+        <span class="topic">trójdźwięki</span>
+
+        <span class="topic">przewroty</span>
+
+        <span class="topic">septymowe</span>
+
+        <span class="topic">nonowe</span>
+
+        <span class="topic">akordy złożone</span>
+
+        <span class="topic">słuch</span>
+
+    </div>
+
+
+    <div class="card-bottom">
+
+        <span>
+            Teoria + budowanie + słuch
+        </span>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================
+     4. HARMONIA
+========================================= -->
+
+<div class="home-card">
+
+<div class="card-content">
+
+    <div class="card-top">
+
+        <div class="home-icon">
+            🎼
+        </div>
+
+        <div class="status">
+            Wkrótce
+        </div>
+
+    </div>
+
+
+    <h2>
+        Harmonia
+    </h2>
+
+    <p>
+        Pełny dział zasad harmonii — tak, żeby naprawdę
+        rozumieć, jak budować i łączyć akordy.
+    </p>
+
+
+    <div class="topics">
+
+        <span class="topic">T · S · D</span>
+
+        <span class="topic">SATB</span>
+
+        <span class="topic">dwojenia</span>
+
+        <span class="topic">łączenie akordów</span>
+
+        <span class="topic">prowadzenie głosów</span>
+
+        <span class="topic">kadencje</span>
+
+        <span class="topic">modulacje</span>
+
+    </div>
+
+
+    <div class="card-bottom">
+
+        <span>
+            Zasady + przykłady + odsłuch
+        </span>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================
+     5. HARMONIZACJA
+========================================= -->
+
+<div class="home-card">
+
+<div class="card-content">
+
+    <div class="card-top">
+
+        <div class="home-icon">
+            ✍️
+        </div>
+
+        <div class="status">
+            Wkrótce
+        </div>
+
+    </div>
+
+
+    <h2>
+        Harmonizacja
+    </h2>
+
+    <p>
+        Praktyczne zadania jak na harmonii:
+        od wyboru funkcji aż po pełny czterogłos.
+    </p>
+
+
+    <div class="topics">
+
+        <span class="topic">harmonizacja sopranu</span>
+
+        <span class="topic">harmonizacja basu</span>
+
+        <span class="topic">dobór funkcji</span>
+
+        <span class="topic">uzupełnianie głosów</span>
+
+        <span class="topic">szukanie błędów</span>
+
+        <span class="topic">SATB</span>
+
+    </div>
+
+
+    <div class="card-bottom">
+
+        <span>
+            Zadania krok po kroku
+        </span>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================
+     6. KSZTAŁCENIE SŁUCHU
+========================================= -->
+
+<div class="home-card">
+
+<div class="card-content">
+
+    <div class="card-top">
+
+        <div class="home-icon">
+            🎧
+        </div>
+
+        <div class="status">
+            Wkrótce
+        </div>
+
+    </div>
+
+
+    <h2>
+        Kształcenie słuchu
+    </h2>
+
+    <p>
+        Trening słuchowy od pojedynczych struktur
+        aż po bardziej rozbudowane zadania muzyczne.
+    </p>
+
+
+    <div class="topics">
+
+        <span class="topic">dyktanda</span>
+
+        <span class="topic">melodia</span>
+
+        <span class="topic">rytm</span>
+
+        <span class="topic">akordy</span>
+
+        <span class="topic">gamy</span>
+
+        <span class="topic">rozpoznawanie</span>
+
+    </div>
+
+
+    <div class="card-bottom">
+
+        <span>
+            Słuch + praktyka
+        </span>
+
+    </div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================
+     DÓŁ
+========================================= -->
+
+<div class="home-note">
+
+    Każdy dział łączy teorię z praktyką —
+    zamiast osobnych zakładek „teoria”, „słuch” i „testy”,
+    wszystko dotyczące danego tematu znajdziesz w jednym miejscu.
+
+</div>
+
 
 </div>
 
