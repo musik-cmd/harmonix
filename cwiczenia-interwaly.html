@@ -9,13 +9,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
 
 body{
     margin:0;
     font-family:Arial,sans-serif;
     background:#f7f5ff;
     color:#252238;
+}
+
+button{
+    font-family:inherit;
 }
 
 .page{
@@ -53,7 +59,9 @@ body{
     box-shadow:0 10px 35px rgba(40,30,80,.08);
 }
 
-.panel h2{margin:0 0 8px}
+.panel h2{
+    margin:0 0 8px;
+}
 
 .description{
     color:#777187;
@@ -89,7 +97,9 @@ body{
     margin-bottom:8px;
 }
 
-.exercise-name{font-weight:700}
+.exercise-name{
+    font-weight:700;
+}
 
 .exercise-description{
     display:block;
@@ -99,7 +109,9 @@ body{
     line-height:1.3;
 }
 
-.interval-section{margin-top:26px}
+.interval-section{
+    margin-top:26px;
+}
 
 .section-name{
     font-size:16px;
@@ -133,6 +145,7 @@ body{
     display:block;
     font-size:20px;
     font-weight:800;
+    line-height:1;
 }
 
 .interval-small{
@@ -205,7 +218,10 @@ body{
     color:white;
 }
 
-#quiz,#finish{display:none}
+#quiz,
+#finish{
+    display:none;
+}
 
 .quiz-top{
     display:flex;
@@ -236,7 +252,9 @@ body{
     margin:15px 0 25px;
 }
 
-.question h2{font-size:25px}
+.question h2{
+    font-size:25px;
+}
 
 .question-sub{
     color:#777187;
@@ -307,8 +325,13 @@ body{
     line-height:1.5;
 }
 
-.next-area{text-align:center}
-#nextButton{display:none}
+.next-area{
+    text-align:center;
+}
+
+#nextButton{
+    display:none;
+}
 
 .staff-wrapper{
     max-width:760px;
@@ -335,7 +358,9 @@ body{
     margin:20px 0 10px;
 }
 
-.finish-center{text-align:center}
+.finish-center{
+    text-align:center;
+}
 
 .mistakes{
     max-width:650px;
@@ -350,9 +375,18 @@ body{
 }
 
 @media(max-width:600px){
-    .header h1{font-size:32px}
-    .panel{padding:20px 15px}
-    .interval-grid{grid-template-columns:repeat(3,1fr)}
+
+    .header h1{
+        font-size:32px;
+    }
+
+    .panel{
+        padding:20px 15px;
+    }
+
+    .interval-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
 }
 </style>
 </head>
@@ -361,12 +395,19 @@ body{
 
 <div class="page">
 
-<a href="interwaly.html" class="back">← Wróć do interwałów</a>
+<a href="interwaly.html" class="back">
+← Wróć do interwałów
+</a>
 
 <div class="header">
-<h1>Ćwiczenia — Interwały</h1>
-<p>Rozpoznawaj ze słuchu, czytaj z nut i buduj interwały.</p>
+    <h1>Ćwiczenia — Interwały</h1>
+    <p>Rozpoznawaj ze słuchu, czytaj z nut i buduj interwały.</p>
 </div>
+
+
+<!-- ==================================================
+     USTAWIENIA
+================================================== -->
 
 <div id="setup">
 
@@ -376,28 +417,52 @@ body{
 
 <div class="exercise-types">
 
-<div class="exercise-type selected" data-type="ear" onclick="selectExercise(this)">
+<div
+class="exercise-type selected"
+data-type="ear"
+onclick="selectExercise(this)"
+>
 <span class="exercise-icon">🎧</span>
 <span class="exercise-name">Rozpoznaj ze słuchu</span>
-<span class="exercise-description">Posłuchaj i wskaż interwał</span>
+<span class="exercise-description">
+Posłuchaj i wskaż interwał
+</span>
 </div>
 
-<div class="exercise-type" data-type="notes" onclick="selectExercise(this)">
+<div
+class="exercise-type"
+data-type="notes"
+onclick="selectExercise(this)"
+>
 <span class="exercise-icon">🎼</span>
 <span class="exercise-name">Rozpoznaj z nut</span>
-<span class="exercise-description">Stopnie + dokładny zapis</span>
+<span class="exercise-description">
+Najpierw stopnie, potem rodzaj
+</span>
 </div>
 
-<div class="exercise-type" data-type="build" onclick="selectExercise(this)">
+<div
+class="exercise-type"
+data-type="build"
+onclick="selectExercise(this)"
+>
 <span class="exercise-icon">✏️</span>
 <span class="exercise-name">Budowanie</span>
-<span class="exercise-description">Zbuduj wskazany interwał</span>
+<span class="exercise-description">
+Zbuduj wskazany interwał
+</span>
 </div>
 
-<div class="exercise-type" data-type="mixed" onclick="selectExercise(this)">
+<div
+class="exercise-type"
+data-type="mixed"
+onclick="selectExercise(this)"
+>
 <span class="exercise-icon">⚡</span>
 <span class="exercise-name">Trening mieszany</span>
-<span class="exercise-description">Słuch + nuty + budowanie</span>
+<span class="exercise-description">
+Słuch + nuty + budowanie
+</span>
 </div>
 
 </div>
@@ -409,52 +474,110 @@ body{
 <h2>2. Wybierz interwały</h2>
 
 <p class="description">
-Możesz wybrać dokładnie te interwały, które chcesz ćwiczyć.
+Zaznacz dokładnie te interwały, które chcesz ćwiczyć.
 </p>
 
 <div class="interval-section">
-<div class="section-name">Interwały proste</div>
-<div id="simpleIntervals" class="interval-grid"></div>
+
+<div class="section-name">
+Interwały proste
 </div>
 
-<div class="interval-section">
-<div class="section-name">Interwały złożone</div>
-<div id="compoundIntervals" class="interval-grid"></div>
+<div
+id="simpleIntervals"
+class="interval-grid"
+></div>
+
 </div>
+
+
+<div class="interval-section">
+
+<div class="section-name">
+Interwały złożone
+</div>
+
+<div
+id="compoundIntervals"
+class="interval-grid"
+></div>
+
+</div>
+
 
 <div class="tools">
 
-<button class="small-button" onclick="selectSimple()">Wszystkie proste</button>
+<button
+class="small-button"
+onclick="selectSimple()"
+>
+Wszystkie proste
+</button>
 
-<button class="small-button" onclick="selectCompound()">Wszystkie złożone</button>
+<button
+class="small-button"
+onclick="selectCompound()"
+>
+Wszystkie złożone
+</button>
 
-<button class="small-button" onclick="selectAll()">Zaznacz wszystkie</button>
+<button
+class="small-button"
+onclick="selectAll()"
+>
+Zaznacz wszystkie
+</button>
 
-<button class="small-button" onclick="clearAll()">Wyczyść</button>
+<button
+class="small-button"
+onclick="clearAll()"
+>
+Wyczyść
+</button>
 
 </div>
+
 </div>
 
 
-<div class="panel" id="soundSettings">
+<div
+class="panel"
+id="soundSettings"
+>
 
 <h2>3. Sposób odsłuchu</h2>
 
 <div class="mode-grid">
 
-<div class="mode selected" data-mode="up" onclick="selectMode(this)">
+<div
+class="mode selected"
+data-mode="up"
+onclick="selectMode(this)"
+>
 ↗ Melodycznie w górę
 </div>
 
-<div class="mode" data-mode="down" onclick="selectMode(this)">
+<div
+class="mode"
+data-mode="down"
+onclick="selectMode(this)"
+>
 ↘ Melodycznie w dół
 </div>
 
-<div class="mode" data-mode="harmonic" onclick="selectMode(this)">
+<div
+class="mode"
+data-mode="harmonic"
+onclick="selectMode(this)"
+>
 ♫ Harmonicznie
 </div>
 
-<div class="mode" data-mode="mixed" onclick="selectMode(this)">
+<div
+class="mode"
+data-mode="mixed"
+onclick="selectMode(this)"
+>
 ⤨ Losowo
 </div>
 
@@ -464,16 +587,26 @@ Możesz wybrać dokładnie te interwały, które chcesz ćwiczyć.
 
 <div class="start-area">
 
-<button class="primary" onclick="startTraining()">
+<button
+class="primary"
+onclick="startTraining()"
+>
 Rozpocznij trening
 </button>
 
-<div id="warning" class="warning"></div>
+<div
+id="warning"
+class="warning"
+></div>
 
 </div>
 
 </div>
 
+
+<!-- ==================================================
+     QUIZ
+================================================== -->
 
 <div id="quiz">
 
@@ -482,30 +615,56 @@ Rozpocznij trening
 <div class="quiz-top">
 
 <div>
-Pytanie <span id="questionNumber">1</span>/10
+Pytanie
+<span id="questionNumber">1</span>/10
 </div>
 
 <div>
-Wynik: <span id="score">0</span>
+Wynik:
+<span id="score">0</span>
 </div>
 
 <div>
-🔥 <span id="streak">0</span>
+🔥
+<span id="streak">0</span>
 </div>
 
 </div>
+
 
 <div class="progress">
-<div id="progressBar" class="progress-bar"></div>
+
+<div
+id="progressBar"
+class="progress-bar"
+></div>
+
 </div>
 
-<div id="questionArea" class="question"></div>
 
-<div id="staffArea" class="staff-wrapper"></div>
+<div
+id="questionArea"
+class="question"
+></div>
 
-<div id="replayArea" class="replay">
 
-<button class="play-button" onclick="playCurrent()">▶</button>
+<div
+id="staffArea"
+class="staff-wrapper"
+></div>
+
+
+<div
+id="replayArea"
+class="replay"
+>
+
+<button
+class="play-button"
+onclick="playCurrent()"
+>
+▶
+</button>
 
 <div class="question-sub">
 Posłuchaj ponownie
@@ -513,13 +672,26 @@ Posłuchaj ponownie
 
 </div>
 
-<div id="answers" class="answers"></div>
 
-<div id="feedback" class="feedback"></div>
+<div
+id="answers"
+class="answers"
+></div>
+
+
+<div
+id="feedback"
+class="feedback"
+></div>
+
 
 <div class="next-area">
 
-<button id="nextButton" class="primary" onclick="nextQuestion()">
+<button
+id="nextButton"
+class="primary"
+onclick="nextQuestion()"
+>
 Następne →
 </button>
 
@@ -529,29 +701,49 @@ Następne →
 </div>
 
 
+<!-- ==================================================
+     KONIEC
+================================================== -->
+
 <div id="finish">
 
 <div class="panel finish-center">
 
 <h2>Koniec treningu</h2>
 
-<div id="finalScore" class="finish-score">
+<div
+id="finalScore"
+class="finish-score"
+>
 0/10
 </div>
 
-<div id="finishMessage" class="description"></div>
+<div
+id="finishMessage"
+class="description"
+></div>
 
-<div id="mistakes" class="mistakes"></div>
+<div
+id="mistakes"
+class="mistakes"
+></div>
 
-<button class="primary" onclick="restartSame()">
+<button
+class="primary"
+onclick="restartSame()"
+>
 Jeszcze raz
 </button>
 
-<button class="small-button" onclick="changeSettings()">
+<button
+class="small-button"
+onclick="changeSettings()"
+>
 Zmień ustawienia
 </button>
 
 </div>
+
 </div>
 
 </div>
@@ -560,93 +752,512 @@ Zmień ustawienia
 <script>
 
 /* =====================================================
-   INTERWAŁY
+   BAZA INTERWAŁÓW
 ===================================================== */
 
 const intervals=[
 
-/* PROSTE */
+/* SEKUNDY */
 
-{id:"2dim",symbol:"2>>",name:"sekunda zmniejszona",number:2,semitones:0,simple:true},
-{id:"2m",symbol:"2>",name:"sekunda mała",number:2,semitones:1,simple:true},
-{id:"2M",symbol:"2",name:"sekunda wielka",number:2,semitones:2,simple:true},
-{id:"2aug",symbol:"2<",name:"sekunda zwiększona",number:2,semitones:3,simple:true},
+{
+id:"2dim",
+symbol:"2>>",
+name:"sekunda zmniejszona",
+number:2,
+semitones:0,
+simple:true
+},
 
-{id:"3dim",symbol:"3>>",name:"tercja zmniejszona",number:3,semitones:2,simple:true},
-{id:"3m",symbol:"3>",name:"tercja mała",number:3,semitones:3,simple:true},
-{id:"3M",symbol:"3",name:"tercja wielka",number:3,semitones:4,simple:true},
-{id:"3aug",symbol:"3<",name:"tercja zwiększona",number:3,semitones:5,simple:true},
+{
+id:"2m",
+symbol:"2>",
+name:"sekunda mała",
+number:2,
+semitones:1,
+simple:true
+},
 
-{id:"4dim",symbol:"4>",name:"kwarta zmniejszona",number:4,semitones:4,simple:true},
-{id:"4P",symbol:"4",name:"kwarta czysta",number:4,semitones:5,simple:true},
-{id:"4aug",symbol:"4<",name:"kwarta zwiększona",number:4,semitones:6,simple:true},
+{
+id:"2M",
+symbol:"2",
+name:"sekunda wielka",
+number:2,
+semitones:2,
+simple:true
+},
 
-{id:"5dim",symbol:"5>",name:"kwinta zmniejszona",number:5,semitones:6,simple:true},
-{id:"5P",symbol:"5",name:"kwinta czysta",number:5,semitones:7,simple:true},
-{id:"5aug",symbol:"5<",name:"kwinta zwiększona",number:5,semitones:8,simple:true},
-
-{id:"6dim",symbol:"6>>",name:"seksta zmniejszona",number:6,semitones:7,simple:true},
-{id:"6m",symbol:"6>",name:"seksta mała",number:6,semitones:8,simple:true},
-{id:"6M",symbol:"6",name:"seksta wielka",number:6,semitones:9,simple:true},
-{id:"6aug",symbol:"6<",name:"seksta zwiększona",number:6,semitones:10,simple:true},
-
-/*
-7 = septyma mała
-7< = septyma wielka
-*/
-
-{id:"7dim",symbol:"7>",name:"septyma zmniejszona",number:7,semitones:9,simple:true},
-{id:"7m",symbol:"7",name:"septyma mała",number:7,semitones:10,simple:true},
-{id:"7M",symbol:"7<",name:"septyma wielka",number:7,semitones:11,simple:true},
-{id:"7aug",symbol:"7<<",name:"septyma zwiększona",number:7,semitones:12,simple:true},
-
-{id:"8dim",symbol:"8>",name:"oktawa zmniejszona",number:8,semitones:11,simple:true},
-{id:"8P",symbol:"8",name:"oktawa czysta",number:8,semitones:12,simple:true},
-{id:"8aug",symbol:"8<",name:"oktawa zwiększona",number:8,semitones:13,simple:true},
+{
+id:"2aug",
+symbol:"2<",
+name:"sekunda zwiększona",
+number:2,
+semitones:3,
+simple:true
+},
 
 
-/* ZŁOŻONE */
+/* TERCJE */
 
-{id:"9dim",symbol:"9>>",name:"nona zmniejszona",number:9,semitones:12,simple:false},
-{id:"9m",symbol:"9>",name:"nona mała",number:9,semitones:13,simple:false},
-{id:"9M",symbol:"9",name:"nona wielka",number:9,semitones:14,simple:false},
-{id:"9aug",symbol:"9<",name:"nona zwiększona",number:9,semitones:15,simple:false},
+{
+id:"3dim",
+symbol:"3>>",
+name:"tercja zmniejszona",
+number:3,
+semitones:2,
+simple:true
+},
 
-{id:"10dim",symbol:"10>>",name:"decyma zmniejszona",number:10,semitones:14,simple:false},
-{id:"10m",symbol:"10>",name:"decyma mała",number:10,semitones:15,simple:false},
-{id:"10M",symbol:"10",name:"decyma wielka",number:10,semitones:16,simple:false},
-{id:"10aug",symbol:"10<",name:"decyma zwiększona",number:10,semitones:17,simple:false},
+{
+id:"3m",
+symbol:"3>",
+name:"tercja mała",
+number:3,
+semitones:3,
+simple:true
+},
 
-{id:"11dim",symbol:"11>",name:"undecyma zmniejszona",number:11,semitones:16,simple:false},
-{id:"11P",symbol:"11",name:"undecyma czysta",number:11,semitones:17,simple:false},
-{id:"11aug",symbol:"11<",name:"undecyma zwiększona",number:11,semitones:18,simple:false},
+{
+id:"3M",
+symbol:"3",
+name:"tercja wielka",
+number:3,
+semitones:4,
+simple:true
+},
 
-{id:"12dim",symbol:"12>",name:"duodecyma zmniejszona",number:12,semitones:18,simple:false},
-{id:"12P",symbol:"12",name:"duodecyma czysta",number:12,semitones:19,simple:false},
-{id:"12aug",symbol:"12<",name:"duodecyma zwiększona",number:12,semitones:20,simple:false},
+{
+id:"3aug",
+symbol:"3<",
+name:"tercja zwiększona",
+number:3,
+semitones:5,
+simple:true
+},
 
-{id:"13dim",symbol:"13>>",name:"tercdecyma zmniejszona",number:13,semitones:19,simple:false},
-{id:"13m",symbol:"13>",name:"tercdecyma mała",number:13,semitones:20,simple:false},
-{id:"13M",symbol:"13",name:"tercdecyma wielka",number:13,semitones:21,simple:false},
-{id:"13aug",symbol:"13<",name:"tercdecyma zwiększona",number:13,semitones:22,simple:false},
 
-{id:"14dim",symbol:"14>",name:"kwartdecyma zmniejszona",number:14,semitones:21,simple:false},
-{id:"14m",symbol:"14",name:"kwartdecyma mała",number:14,semitones:22,simple:false},
-{id:"14M",symbol:"14<",name:"kwartdecyma wielka",number:14,semitones:23,simple:false},
-{id:"14aug",symbol:"14<<",name:"kwartdecyma zwiększona",number:14,semitones:24,simple:false},
+/* KWARTY */
 
-{id:"15dim",symbol:"15>",name:"kwintdecyma zmniejszona",number:15,semitones:23,simple:false},
-{id:"15P",symbol:"15",name:"kwintdecyma czysta",number:15,semitones:24,simple:false},
-{id:"15aug",symbol:"15<",name:"kwintdecyma zwiększona",number:15,semitones:25,simple:false}
+{
+id:"4dim",
+symbol:"4>",
+name:"kwarta zmniejszona",
+number:4,
+semitones:4,
+simple:true
+},
+
+{
+id:"4P",
+symbol:"4",
+name:"kwarta czysta",
+number:4,
+semitones:5,
+simple:true
+},
+
+{
+id:"4aug",
+symbol:"4<",
+name:"kwarta zwiększona",
+number:4,
+semitones:6,
+simple:true
+},
+
+
+/* KWINTY */
+
+{
+id:"5dim",
+symbol:"5>",
+name:"kwinta zmniejszona",
+number:5,
+semitones:6,
+simple:true
+},
+
+{
+id:"5P",
+symbol:"5",
+name:"kwinta czysta",
+number:5,
+semitones:7,
+simple:true
+},
+
+{
+id:"5aug",
+symbol:"5<",
+name:"kwinta zwiększona",
+number:5,
+semitones:8,
+simple:true
+},
+
+
+/* SEKSTY */
+
+{
+id:"6dim",
+symbol:"6>>",
+name:"seksta zmniejszona",
+number:6,
+semitones:7,
+simple:true
+},
+
+{
+id:"6m",
+symbol:"6>",
+name:"seksta mała",
+number:6,
+semitones:8,
+simple:true
+},
+
+{
+id:"6M",
+symbol:"6",
+name:"seksta wielka",
+number:6,
+semitones:9,
+simple:true
+},
+
+{
+id:"6aug",
+symbol:"6<",
+name:"seksta zwiększona",
+number:6,
+semitones:10,
+simple:true
+},
+
+
+/* SEPTYMY */
+
+{
+id:"7dim",
+symbol:"7>",
+name:"septyma zmniejszona",
+number:7,
+semitones:9,
+simple:true
+},
+
+{
+id:"7m",
+symbol:"7",
+name:"septyma mała",
+number:7,
+semitones:10,
+simple:true
+},
+
+{
+id:"7M",
+symbol:"7<",
+name:"septyma wielka",
+number:7,
+semitones:11,
+simple:true
+},
+
+{
+id:"7aug",
+symbol:"7<<",
+name:"septyma zwiększona",
+number:7,
+semitones:12,
+simple:true
+},
+
+
+/* OKTAWY */
+
+{
+id:"8dim",
+symbol:"8>",
+name:"oktawa zmniejszona",
+number:8,
+semitones:11,
+simple:true
+},
+
+{
+id:"8P",
+symbol:"8",
+name:"oktawa czysta",
+number:8,
+semitones:12,
+simple:true
+},
+
+{
+id:"8aug",
+symbol:"8<",
+name:"oktawa zwiększona",
+number:8,
+semitones:13,
+simple:true
+},
+
+
+/* NONY */
+
+{
+id:"9dim",
+symbol:"9>>",
+name:"nona zmniejszona",
+number:9,
+semitones:12,
+simple:false
+},
+
+{
+id:"9m",
+symbol:"9>",
+name:"nona mała",
+number:9,
+semitones:13,
+simple:false
+},
+
+{
+id:"9M",
+symbol:"9",
+name:"nona wielka",
+number:9,
+semitones:14,
+simple:false
+},
+
+{
+id:"9aug",
+symbol:"9<",
+name:"nona zwiększona",
+number:9,
+semitones:15,
+simple:false
+},
+
+
+/* DECYMY */
+
+{
+id:"10dim",
+symbol:"10>>",
+name:"decyma zmniejszona",
+number:10,
+semitones:14,
+simple:false
+},
+
+{
+id:"10m",
+symbol:"10>",
+name:"decyma mała",
+number:10,
+semitones:15,
+simple:false
+},
+
+{
+id:"10M",
+symbol:"10",
+name:"decyma wielka",
+number:10,
+semitones:16,
+simple:false
+},
+
+{
+id:"10aug",
+symbol:"10<",
+name:"decyma zwiększona",
+number:10,
+semitones:17,
+simple:false
+},
+
+
+/* UNDECYMY */
+
+{
+id:"11dim",
+symbol:"11>",
+name:"undecyma zmniejszona",
+number:11,
+semitones:16,
+simple:false
+},
+
+{
+id:"11P",
+symbol:"11",
+name:"undecyma czysta",
+number:11,
+semitones:17,
+simple:false
+},
+
+{
+id:"11aug",
+symbol:"11<",
+name:"undecyma zwiększona",
+number:11,
+semitones:18,
+simple:false
+},
+
+
+/* DUODECYMY */
+
+{
+id:"12dim",
+symbol:"12>",
+name:"duodecyma zmniejszona",
+number:12,
+semitones:18,
+simple:false
+},
+
+{
+id:"12P",
+symbol:"12",
+name:"duodecyma czysta",
+number:12,
+semitones:19,
+simple:false
+},
+
+{
+id:"12aug",
+symbol:"12<",
+name:"duodecyma zwiększona",
+number:12,
+semitones:20,
+simple:false
+},
+
+
+/* TERCDECYMY */
+
+{
+id:"13dim",
+symbol:"13>>",
+name:"tercdecyma zmniejszona",
+number:13,
+semitones:19,
+simple:false
+},
+
+{
+id:"13m",
+symbol:"13>",
+name:"tercdecyma mała",
+number:13,
+semitones:20,
+simple:false
+},
+
+{
+id:"13M",
+symbol:"13",
+name:"tercdecyma wielka",
+number:13,
+semitones:21,
+simple:false
+},
+
+{
+id:"13aug",
+symbol:"13<",
+name:"tercdecyma zwiększona",
+number:13,
+semitones:22,
+simple:false
+},
+
+
+/* KWARTDECYMY */
+
+{
+id:"14dim",
+symbol:"14>",
+name:"kwartdecyma zmniejszona",
+number:14,
+semitones:21,
+simple:false
+},
+
+{
+id:"14m",
+symbol:"14",
+name:"kwartdecyma mała",
+number:14,
+semitones:22,
+simple:false
+},
+
+{
+id:"14M",
+symbol:"14<",
+name:"kwartdecyma wielka",
+number:14,
+semitones:23,
+simple:false
+},
+
+{
+id:"14aug",
+symbol:"14<<",
+name:"kwartdecyma zwiększona",
+number:14,
+semitones:24,
+simple:false
+},
+
+
+/* KWINTDECYMY */
+
+{
+id:"15dim",
+symbol:"15>",
+name:"kwintdecyma zmniejszona",
+number:15,
+semitones:23,
+simple:false
+},
+
+{
+id:"15P",
+symbol:"15",
+name:"kwintdecyma czysta",
+number:15,
+semitones:24,
+simple:false
+},
+
+{
+id:"15aug",
+symbol:"15<",
+name:"kwintdecyma zwiększona",
+number:15,
+semitones:25,
+simple:false
+}
 
 ];
 
 
 /* =====================================================
-   SYSTEM NUTOWY
+   NUTY
 ===================================================== */
 
-const letters=["C","D","E","F","G","A","B"];
+const letters=[
+"C","D","E","F","G","A","B"
+];
 
 const naturalPitch={
 C:0,
@@ -661,55 +1272,74 @@ B:11
 
 function writtenNoteToMidi(note){
 
-return 12*(note.octave+1)
-+naturalPitch[note.letter]
-+note.accidental;
+return (
+12*(note.octave+1)
++
+naturalPitch[note.letter]
++
+note.accidental
+);
 
 }
 
 
-/*
-NAJPIERW STOPNIE.
-POTEM PÓŁTONY.
-*/
-
 function buildWrittenInterval(start,interval){
+
+/*
+Najpierw ustalamy liczbę stopni.
+*/
 
 const startIndex=
 letters.indexOf(start.letter);
 
-const steps=
+const diatonicSteps=
 interval.number-1;
 
 const absoluteIndex=
-startIndex+steps;
+startIndex+diatonicSteps;
 
 const targetLetter=
-letters[absoluteIndex%7];
+letters[
+absoluteIndex%7
+];
 
 const octaveShift=
-Math.floor(absoluteIndex/7);
+Math.floor(
+absoluteIndex/7
+);
 
 const targetOctave=
-start.octave+octaveShift;
+start.octave+
+octaveShift;
+
+
+/*
+Dopiero teraz półtony.
+*/
 
 const naturalTargetMidi=
 12*(targetOctave+1)
-+naturalPitch[targetLetter];
++
+naturalPitch[targetLetter];
 
 const requiredMidi=
 writtenNoteToMidi(start)
-+interval.semitones;
++
+interval.semitones;
 
 const accidental=
-requiredMidi-naturalTargetMidi;
+requiredMidi-
+naturalTargetMidi;
 
 
 return{
 
 letter:targetLetter,
+
 octave:targetOctave,
+
 accidental:accidental,
+
 midi:requiredMidi
 
 };
@@ -719,11 +1349,25 @@ midi:requiredMidi
 
 function accidentalText(value){
 
-if(value===-2) return "♭♭";
-if(value===-1) return "♭";
-if(value===0) return "";
-if(value===1) return "♯";
-if(value===2) return "𝄪";
+if(value===-2){
+return "♭♭";
+}
+
+if(value===-1){
+return "♭";
+}
+
+if(value===0){
+return "";
+}
+
+if(value===1){
+return "♯";
+}
+
+if(value===2){
+return "𝄪";
+}
 
 return "";
 
@@ -732,16 +1376,22 @@ return "";
 
 function writtenNoteName(note){
 
-return note.letter+
+return (
+note.letter+
 accidentalText(note.accidental)+
-note.octave;
+note.octave
+);
 
 }
 
 
+/* =====================================================
+   LOSOWANIE NUT
+===================================================== */
+
 function randomStartNote(interval){
 
-const accidentals=[
+const possibleAccidentals=[
 -1,
 0,
 0,
@@ -750,19 +1400,24 @@ const accidentals=[
 ];
 
 
-for(let tries=0;tries<200;tries++){
+for(
+let tries=0;
+tries<300;
+tries++
+){
 
 const start={
 
-letter:random(letters),
+letter:
+random(letters),
 
 octave:
 interval.number>=9
-? random([3,4])
+? random([3,3,4])
 : random([3,4,4]),
 
 accidental:
-random(accidentals)
+random(possibleAccidentals)
 
 };
 
@@ -782,8 +1437,11 @@ target.midi<=88
 ){
 
 return{
+
 start:start,
+
 target:target
+
 };
 
 }
@@ -791,10 +1449,18 @@ target:target
 }
 
 
+/*
+Awaryjnie.
+*/
+
 const start={
+
 letter:"C",
+
 octave:4,
+
 accidental:0
+
 };
 
 
@@ -814,7 +1480,7 @@ interval
 
 
 /* =====================================================
-   KAFELKI
+   KAFELKI INTERWAŁÓW
 ===================================================== */
 
 function makeIntervalButton(interval){
@@ -822,9 +1488,11 @@ function makeIntervalButton(interval){
 const button=
 document.createElement("button");
 
-button.className="interval-choice";
+button.className=
+"interval-choice";
 
-button.dataset.id=interval.id;
+button.dataset.id=
+interval.id;
 
 
 button.innerHTML=`
@@ -842,7 +1510,9 @@ ${interval.name}
 
 button.onclick=()=>{
 
-button.classList.toggle("selected");
+button.classList.toggle(
+"selected"
+);
 
 };
 
@@ -853,10 +1523,14 @@ return button;
 
 
 const simpleBox=
-document.getElementById("simpleIntervals");
+document.getElementById(
+"simpleIntervals"
+);
 
 const compoundBox=
-document.getElementById("compoundIntervals");
+document.getElementById(
+"compoundIntervals"
+);
 
 
 intervals.forEach(interval=>{
@@ -883,6 +1557,7 @@ makeIntervalButton(interval)
 ===================================================== */
 
 let exerciseType="ear";
+
 let soundMode="up";
 
 
@@ -890,23 +1565,35 @@ function selectExercise(element){
 
 document
 .querySelectorAll(".exercise-type")
-.forEach(
-x=>x.classList.remove("selected")
+.forEach(element=>{
+
+element.classList.remove(
+"selected"
 );
 
-element.classList.add("selected");
+});
+
+
+element.classList.add(
+"selected"
+);
+
 
 exerciseType=
 element.dataset.type;
 
 
-document.getElementById("soundSettings")
+document
+.getElementById("soundSettings")
 .style.display=
+
 (
 exerciseType==="ear" ||
 exerciseType==="mixed"
 )
+
 ? "block"
+
 : "none";
 
 }
@@ -916,11 +1603,19 @@ function selectMode(element){
 
 document
 .querySelectorAll(".mode")
-.forEach(
-x=>x.classList.remove("selected")
+.forEach(element=>{
+
+element.classList.remove(
+"selected"
 );
 
-element.classList.add("selected");
+});
+
+
+element.classList.add(
+"selected"
+);
+
 
 soundMode=
 element.dataset.mode;
@@ -934,9 +1629,13 @@ document
 .querySelectorAll(
 "#simpleIntervals .interval-choice"
 )
-.forEach(
-x=>x.classList.add("selected")
+.forEach(element=>{
+
+element.classList.add(
+"selected"
 );
+
+});
 
 }
 
@@ -947,9 +1646,13 @@ document
 .querySelectorAll(
 "#compoundIntervals .interval-choice"
 )
-.forEach(
-x=>x.classList.add("selected")
+.forEach(element=>{
+
+element.classList.add(
+"selected"
 );
+
+});
 
 }
 
@@ -957,10 +1660,16 @@ x=>x.classList.add("selected")
 function selectAll(){
 
 document
-.querySelectorAll(".interval-choice")
-.forEach(
-x=>x.classList.add("selected")
+.querySelectorAll(
+".interval-choice"
+)
+.forEach(element=>{
+
+element.classList.add(
+"selected"
 );
+
+});
 
 }
 
@@ -968,10 +1677,16 @@ x=>x.classList.add("selected")
 function clearAll(){
 
 document
-.querySelectorAll(".interval-choice")
-.forEach(
-x=>x.classList.remove("selected")
+.querySelectorAll(
+".interval-choice"
+)
+.forEach(element=>{
+
+element.classList.remove(
+"selected"
 );
+
+});
 
 }
 
@@ -985,44 +1700,74 @@ let piano=null;
 
 async function createPiano(){
 
-if(piano) return piano;
+if(piano){
+
+return piano;
+
+}
 
 
-piano=new Tone.Sampler({
+piano=
+new Tone.Sampler({
 
 urls:{
 
 A0:"A0.mp3",
+
 C1:"C1.mp3",
+
 "D#1":"Ds1.mp3",
+
 "F#1":"Fs1.mp3",
 
+
 A1:"A1.mp3",
+
 C2:"C2.mp3",
+
 "D#2":"Ds2.mp3",
+
 "F#2":"Fs2.mp3",
 
+
 A2:"A2.mp3",
+
 C3:"C3.mp3",
+
 "D#3":"Ds3.mp3",
+
 "F#3":"Fs3.mp3",
 
+
 A3:"A3.mp3",
+
 C4:"C4.mp3",
+
 "D#4":"Ds4.mp3",
+
 "F#4":"Fs4.mp3",
 
+
 A4:"A4.mp3",
+
 C5:"C5.mp3",
+
 "D#5":"Ds5.mp3",
+
 "F#5":"Fs5.mp3",
 
+
 A5:"A5.mp3",
+
 C6:"C6.mp3",
+
 "D#6":"Ds6.mp3",
+
 "F#6":"Fs6.mp3",
 
+
 A6:"A6.mp3",
+
 C7:"C7.mp3"
 
 },
@@ -1037,26 +1782,60 @@ baseUrl:
 
 await Tone.loaded();
 
+
 return piano;
 
 }
 
 
+/* =====================================================
+   MIDI → NUTA DLA PIANINA
+===================================================== */
+
 const audioNames=[
-"C","C#","D","D#","E","F",
-"F#","G","G#","A","A#","B"
+
+"C",
+
+"C#",
+
+"D",
+
+"D#",
+
+"E",
+
+"F",
+
+"F#",
+
+"G",
+
+"G#",
+
+"A",
+
+"A#",
+
+"B"
+
 ];
 
 
 function midiToAudioNote(midi){
 
 const pitch=
+
 audioNames[
 ((midi%12)+12)%12
 ];
 
+
 const octave=
-Math.floor(midi/12)-1;
+
+Math.floor(
+midi/12
+)-1;
+
 
 return pitch+octave;
 
@@ -1081,7 +1860,8 @@ Math.random()*array.length
 function randomInteger(min,max){
 
 return Math.floor(
-Math.random()*(max-min+1)
+Math.random()*
+(max-min+1)
 )+min;
 
 }
@@ -1090,31 +1870,41 @@ Math.random()*(max-min+1)
 function wait(ms){
 
 return new Promise(
-resolve=>setTimeout(resolve,ms)
+resolve=>
+setTimeout(resolve,ms)
 );
 
 }
 
 
 /* =====================================================
-   QUIZ
+   STAN QUIZU
 ===================================================== */
 
 let selectedIntervals=[];
 
 let currentInterval=null;
+
 let currentExercise=null;
-let currentSoundMode=null;
+
+let currentSoundMode="up";
+
+let currentEarSemitones=null;
 
 let firstMidi=60;
-let secondMidi=61;
+
+let secondMidi=64;
 
 let writtenStart=null;
+
 let writtenTarget=null;
 
 let questionNumber=1;
+
 let score=0;
+
 let streak=0;
+
 let answered=false;
 
 let mistakes=[];
@@ -1129,18 +1919,23 @@ const totalQuestions=10;
 async function startTraining(){
 
 const ids=[
+
 ...document.querySelectorAll(
 ".interval-choice.selected"
 )
+
 ].map(
-x=>x.dataset.id
+element=>
+element.dataset.id
 );
 
 
 if(ids.length<2){
 
-document.getElementById("warning")
+document
+.getElementById("warning")
 .textContent=
+
 "Zaznacz przynajmniej dwa interwały.";
 
 return;
@@ -1150,27 +1945,37 @@ return;
 
 selectedIntervals=
 intervals.filter(
-x=>ids.includes(x.id)
+interval=>
+ids.includes(interval.id)
 );
 
 
-document.getElementById("warning")
+document
+.getElementById("warning")
 .textContent="";
 
 
 questionNumber=1;
+
 score=0;
+
 streak=0;
+
 mistakes=[];
 
 
-document.getElementById("setup")
+document
+.getElementById("setup")
 .style.display="none";
 
-document.getElementById("finish")
+
+document
+.getElementById("finish")
 .style.display="none";
 
-document.getElementById("quiz")
+
+document
+.getElementById("quiz")
 .style.display="block";
 
 
@@ -1178,24 +1983,24 @@ await Tone.start();
 
 await createPiano();
 
+
 generateQuestion();
 
 }
 
 
 /* =====================================================
-   NOWE PYTANIE
+   GENEROWANIE PYTANIA
 ===================================================== */
 
 function generateQuestion(){
 
 answered=false;
 
-currentInterval=
-random(selectedIntervals);
 
-
-/* RODZAJ ZADANIA */
+/* -----------------------------------------------------
+   JAKI RODZAJ ĆWICZENIA?
+----------------------------------------------------- */
 
 if(exerciseType==="mixed"){
 
@@ -1214,42 +2019,56 @@ exerciseType;
 }
 
 
-/* ================================================
-   NUTY I BUDOWANIE
-================================================ */
-
-if(
-currentExercise==="notes" ||
-currentExercise==="build"
-){
-
-const generated=
-randomStartNote(
-currentInterval
-);
-
-writtenStart=
-generated.start;
-
-writtenTarget=
-generated.target;
-
-firstMidi=
-writtenNoteToMidi(
-writtenStart
-);
-
-secondMidi=
-writtenTarget.midi;
-
-}
-
-
-/* ================================================
+/* =====================================================
    SŁUCH
-================================================ */
 
-else{
+   TU NIE LOSUJEMY NAZWY INTERWAŁU.
+
+   Losujemy LICZBĘ PÓŁTONÓW.
+
+   Dzięki temu np.:
+
+   5< = 8 półtonów
+   6> = 8 półtonów
+
+   są jednym brzmieniem.
+===================================================== */
+
+if(currentExercise==="ear"){
+
+const availableSemitones=
+[
+...new Set(
+
+selectedIntervals.map(
+interval=>
+interval.semitones
+)
+
+)
+];
+
+
+currentEarSemitones=
+random(
+availableSemitones
+);
+
+
+/*
+Wybieramy tylko reprezentanta.
+Nie oznacza to, że tylko on jest poprawny.
+*/
+
+currentInterval=
+selectedIntervals.find(
+interval=>
+interval.semitones===
+currentEarSemitones
+);
+
+
+/* sposób grania */
 
 if(soundMode==="mixed"){
 
@@ -1268,59 +2087,132 @@ soundMode;
 }
 
 
+/* -----------------------------------------------------
+   LOSOWANIE DŹWIĘKÓW
+----------------------------------------------------- */
+
 const distance=
-currentInterval.semitones;
+currentEarSemitones;
 
 
 if(currentSoundMode==="down"){
 
 firstMidi=
-randomInteger(68,84);
+randomInteger(
+68,
+84
+);
 
 secondMidi=
-firstMidi-distance;
+firstMidi-
+distance;
 
 }else{
 
 firstMidi=
-randomInteger(48,62);
+randomInteger(
+48,
+62
+);
 
 secondMidi=
-firstMidi+distance;
+firstMidi+
+distance;
 
 }
+
+
+/*
+Pilnujemy zakresu pianina.
+*/
+
+let safety=0;
 
 
 while(
+(
 secondMidi<36 ||
 secondMidi>88
+)
+&&
+safety<100
 ){
+
+safety++;
+
 
 if(currentSoundMode==="down"){
 
 firstMidi=
-randomInteger(68,84);
+randomInteger(
+68,
+84
+);
 
 secondMidi=
-firstMidi-distance;
+firstMidi-
+distance;
 
 }else{
 
 firstMidi=
-randomInteger(48,62);
+randomInteger(
+48,
+62
+);
 
 secondMidi=
-firstMidi+distance;
+firstMidi+
+distance;
 
 }
 
 }
+
+}
+
+
+/* =====================================================
+   NUTY / BUDOWANIE
+===================================================== */
+
+else{
+
+currentInterval=
+random(
+selectedIntervals
+);
+
+
+const generated=
+randomStartNote(
+currentInterval
+);
+
+
+writtenStart=
+generated.start;
+
+writtenTarget=
+generated.target;
+
+
+firstMidi=
+writtenNoteToMidi(
+writtenStart
+);
+
+
+secondMidi=
+writtenTarget.midi;
 
 }
 
 
 updateTop();
+
 clearQuestion();
+
 renderCurrentExercise();
 
 }
@@ -1332,37 +2224,64 @@ renderCurrentExercise();
 
 function updateTop(){
 
-document.getElementById("questionNumber")
-.textContent=questionNumber;
+document
+.getElementById("questionNumber")
+.textContent=
+questionNumber;
 
-document.getElementById("score")
-.textContent=score;
 
-document.getElementById("streak")
-.textContent=streak;
+document
+.getElementById("score")
+.textContent=
+score;
 
-document.getElementById("progressBar")
+
+document
+.getElementById("streak")
+.textContent=
+streak;
+
+
+document
+.getElementById("progressBar")
 .style.width=
-((questionNumber-1)/totalQuestions*100)+"%";
+
+(
+(questionNumber-1)
+/
+totalQuestions
+*
+100
+)
++"%";
 
 }
 
 
 function clearQuestion(){
 
-document.getElementById("answers")
+document
+.getElementById("answers")
 .innerHTML="";
 
-document.getElementById("staffArea")
+
+document
+.getElementById("staffArea")
 .innerHTML="";
 
-document.getElementById("feedback")
+
+document
+.getElementById("feedback")
 .textContent="";
 
-document.getElementById("nextButton")
+
+document
+.getElementById("nextButton")
 .style.display="none";
 
-document.getElementById("replayArea")
+
+document
+.getElementById("replayArea")
 .style.display="none";
 
 }
@@ -1371,15 +2290,23 @@ document.getElementById("replayArea")
 function renderCurrentExercise(){
 
 if(currentExercise==="ear"){
+
 renderEar();
+
 }
+
 
 if(currentExercise==="notes"){
+
 renderNotes();
+
 }
 
+
 if(currentExercise==="build"){
+
 renderBuild();
+
 }
 
 }
@@ -1391,10 +2318,13 @@ renderBuild();
 
 function renderEar(){
 
-document.getElementById("questionArea")
+document
+.getElementById("questionArea")
 .innerHTML=`
 
-<h2>Jaki to interwał?</h2>
+<h2>
+Jaki to interwał?
+</h2>
 
 <div class="question-sub">
 Posłuchaj i wybierz odpowiedź.
@@ -1403,7 +2333,8 @@ Posłuchaj i wybierz odpowiedź.
 `;
 
 
-document.getElementById("replayArea")
+document
+.getElementById("replayArea")
 .style.display="block";
 
 
@@ -1412,15 +2343,27 @@ renderIntervalAnswers();
 
 setTimeout(
 playCurrent,
-300
+350
 );
 
 }
 
 
+/* =====================================================
+   ODTWARZANIE
+===================================================== */
+
 async function playCurrent(){
 
+if(currentExercise!=="ear"){
+
+return;
+
+}
+
+
 await Tone.start();
+
 
 const instrument=
 await createPiano();
@@ -1431,47 +2374,60 @@ midiToAudioNote(
 firstMidi
 );
 
+
 const second=
 midiToAudioNote(
 secondMidi
 );
 
 
+/* -----------------------------------------------------
+   HARMONICZNIE — DWA DŹWIĘKI RAZEM
+----------------------------------------------------- */
+
 if(currentSoundMode==="harmonic"){
 
-const together=
-Tone.now()+0.1;
+const time=
+Tone.now()+0.08;
 
 
 instrument.triggerAttackRelease(
 first,
-1.5,
-together
+1.6,
+time
 );
+
 
 instrument.triggerAttackRelease(
 second,
-1.5,
-together
+1.6,
+time
 );
+
 
 return;
 
 }
 
 
+/* -----------------------------------------------------
+   MELODYCZNIE
+----------------------------------------------------- */
+
 instrument.triggerAttackRelease(
 first,
-0.7
+0.7,
+Tone.now()+0.05
 );
 
 
-await wait(850);
+await wait(800);
 
 
 instrument.triggerAttackRelease(
 second,
-0.7
+0.7,
+Tone.now()+0.05
 );
 
 }
@@ -1483,13 +2439,16 @@ second,
 
 function renderNotes(){
 
-document.getElementById("questionArea")
+document
+.getElementById("questionArea")
 .innerHTML=`
 
-<h2>Jaki to interwał?</h2>
+<h2>
+Jaki to interwał?
+</h2>
 
 <div class="question-sub">
-Najpierw policz stopnie, potem określ rodzaj interwału.
+Najpierw policz stopnie, a potem określ rodzaj interwału.
 </div>
 
 `;
@@ -1512,17 +2471,25 @@ renderIntervalAnswers();
 
 function diatonicPosition(note){
 
-return note.octave*7+
-letters.indexOf(note.letter);
+return (
+note.octave*7
++
+letters.indexOf(
+note.letter
+)
+);
 
 }
 
 
 /* =====================================================
-   PIĘCIOLINIA
+   PIĘCIOLINIA — DWIE NUTY
 ===================================================== */
 
-function drawWrittenStaff(first,second){
+function drawWrittenStaff(
+first,
+second
+){
 
 const container=
 document.getElementById(
@@ -1531,12 +2498,15 @@ document.getElementById(
 
 
 const width=720;
-const height=310;
+
+const height=330;
 
 const left=100;
+
 const right=675;
 
-const top=125;
+const top=135;
+
 const gap=14;
 
 
@@ -1555,12 +2525,17 @@ xmlns="http://www.w3.org/2000/svg"
 `;
 
 
-/* LINIE */
+/* PIĘCIOLINIA */
 
-for(let i=0;i<5;i++){
+for(
+let i=0;
+i<5;
+i++
+){
 
 const y=
-top+i*gap;
+top+
+i*gap;
 
 
 svg+=`
@@ -1596,7 +2571,7 @@ fill="#252238"
 `;
 
 
-const drawnNotes=[
+const notes=[
 
 {
 note:first,
@@ -1611,17 +2586,21 @@ x:500
 ];
 
 
-drawnNotes.forEach(item=>{
+notes.forEach(item=>{
 
 const note=
 item.note;
+
 
 const x=
 item.x;
 
 
 const position=
-diatonicPosition(note);
+diatonicPosition(
+note
+);
+
 
 const step=
 position-
@@ -1634,7 +2613,9 @@ top+
 step*(gap/2);
 
 
-/* LINIE DODANE W DÓŁ */
+/* -----------------------------------------------------
+   LINIE DODANE W DÓŁ
+----------------------------------------------------- */
 
 if(step<=-2){
 
@@ -1644,7 +2625,7 @@ s>=step;
 s-=2
 ){
 
-const ly=
+const ledgerY=
 top+
 4*gap-
 s*(gap/2);
@@ -1654,9 +2635,9 @@ svg+=`
 
 <line
 x1="${x-21}"
-y1="${ly}"
+y1="${ledgerY}"
 x2="${x+21}"
-y2="${ly}"
+y2="${ledgerY}"
 stroke="#252238"
 stroke-width="1.5"
 />
@@ -1668,7 +2649,9 @@ stroke-width="1.5"
 }
 
 
-/* LINIE DODANE W GÓRĘ */
+/* -----------------------------------------------------
+   LINIE DODANE W GÓRĘ
+----------------------------------------------------- */
 
 if(step>=10){
 
@@ -1678,7 +2661,7 @@ s<=step;
 s+=2
 ){
 
-const ly=
+const ledgerY=
 top+
 4*gap-
 s*(gap/2);
@@ -1688,9 +2671,9 @@ svg+=`
 
 <line
 x1="${x-21}"
-y1="${ly}"
+y1="${ledgerY}"
 x2="${x+21}"
-y2="${ly}"
+y2="${ledgerY}"
 stroke="#252238"
 stroke-width="1.5"
 />
@@ -1702,25 +2685,38 @@ stroke-width="1.5"
 }
 
 
-/* ZNAK */
+/* -----------------------------------------------------
+   ZNAK CHROMATYCZNY
+----------------------------------------------------- */
 
 let sign="";
 
 
 if(note.accidental===-2){
+
 sign="𝄫";
+
 }
+
 
 if(note.accidental===-1){
+
 sign="♭";
+
 }
+
 
 if(note.accidental===1){
+
 sign="♯";
+
 }
 
+
 if(note.accidental===2){
+
 sign="𝄪";
+
 }
 
 
@@ -1729,7 +2725,7 @@ if(sign){
 svg+=`
 
 <text
-x="${x-42}"
+x="${x-44}"
 y="${y+9}"
 font-family="serif"
 font-size="29"
@@ -1743,7 +2739,9 @@ ${sign}
 }
 
 
-/* NUTA */
+/* -----------------------------------------------------
+   GŁÓWKA
+----------------------------------------------------- */
 
 svg+=`
 
@@ -1756,6 +2754,30 @@ transform="rotate(-18 ${x} ${y})"
 fill="#252238"
 />
 
+`;
+
+
+/* LASECZKA */
+
+if(y<top+2*gap){
+
+svg+=`
+
+<line
+x1="${x-8}"
+y1="${y}"
+x2="${x-8}"
+y2="${y+43}"
+stroke="#252238"
+stroke-width="2"
+/>
+
+`;
+
+}else{
+
+svg+=`
+
 <line
 x1="${x+8}"
 y1="${y}"
@@ -1766,6 +2788,8 @@ stroke-width="2"
 />
 
 `;
+
+}
 
 });
 
@@ -1782,7 +2806,7 @@ svg;
 
 
 /* =====================================================
-   ODPOWIEDZI
+   ODPOWIEDZI INTERWAŁOWE
 ===================================================== */
 
 function renderIntervalAnswers(){
@@ -1801,8 +2825,10 @@ document.createElement(
 "button"
 );
 
+
 button.className=
 "answer";
+
 
 button.dataset.id=
 interval.id;
@@ -1841,12 +2867,250 @@ button
 
 
 /* =====================================================
+   SPRAWDZANIE ODPOWIEDZI
+
+   SŁUCH:
+   tylko liczba półtonów.
+
+   NUTY:
+   dokładny interwał.
+===================================================== */
+
+function checkIntervalAnswer(
+interval,
+button
+){
+
+if(answered){
+
+return;
+
+}
+
+
+answered=true;
+
+
+let correct=false;
+
+
+/* -----------------------------------------------------
+   SŁUCH
+----------------------------------------------------- */
+
+if(currentExercise==="ear"){
+
+correct=
+interval.semitones===
+currentEarSemitones;
+
+}
+
+
+/* -----------------------------------------------------
+   NUTY
+----------------------------------------------------- */
+
+else{
+
+correct=
+interval.id===
+currentInterval.id;
+
+}
+
+
+/* =====================================================
+   ZNAJDŹ WSZYSTKIE POPRAWNE ODPOWIEDZI
+===================================================== */
+
+let correctIntervals=[];
+
+
+if(currentExercise==="ear"){
+
+correctIntervals=
+selectedIntervals.filter(
+candidate=>
+candidate.semitones===
+currentEarSemitones
+);
+
+}else{
+
+correctIntervals=[
+currentInterval
+];
+
+}
+
+
+/* =====================================================
+   ZAZNACZ POPRAWNE ODPOWIEDZI NA ZIELONO
+===================================================== */
+
+document
+.querySelectorAll(".answer")
+.forEach(answerButton=>{
+
+const answerInterval=
+selectedIntervals.find(
+candidate=>
+candidate.id===
+answerButton.dataset.id
+);
+
+
+if(!answerInterval){
+
+return;
+
+}
+
+
+let thisButtonIsCorrect=false;
+
+
+if(currentExercise==="ear"){
+
+thisButtonIsCorrect=
+answerInterval.semitones===
+currentEarSemitones;
+
+}else{
+
+thisButtonIsCorrect=
+answerInterval.id===
+currentInterval.id;
+
+}
+
+
+if(thisButtonIsCorrect){
+
+answerButton
+.classList
+.add("correct");
+
+}
+
+});
+
+
+/* =====================================================
+   DOBRZE
+===================================================== */
+
+if(correct){
+
+score++;
+
+streak++;
+
+
+if(
+currentExercise==="ear" &&
+correctIntervals.length>1
+){
+
+const names=
+correctIntervals
+.map(
+item=>
+item.symbol+
+" — "+
+item.name
+)
+.join(" / ");
+
+
+document
+.getElementById("feedback")
+.textContent=
+
+"✓ Dobrze! Te odpowiedzi brzmią tak samo: "
++
+names;
+
+}
+
+else{
+
+document
+.getElementById("feedback")
+.textContent=
+
+"✓ Dobrze — "
++
+currentInterval.name;
+
+}
+
+}
+
+
+/* =====================================================
+   ŹLE
+===================================================== */
+
+else{
+
+button
+.classList
+.add("wrong");
+
+
+streak=0;
+
+
+const correctNames=
+correctIntervals
+.map(
+item=>
+item.symbol+
+" — "+
+item.name
+)
+.join(" / ");
+
+
+mistakes.push({
+
+wanted:
+correctNames,
+
+answered:
+interval.symbol+
+" — "+
+interval.name
+
+});
+
+
+document
+.getElementById("feedback")
+.textContent=
+
+"✕ Poprawna odpowiedź: "
++
+correctNames;
+
+}
+
+
+afterAnswer();
+
+}
+
+
+/* =====================================================
    BUDOWANIE
 ===================================================== */
 
 function renderBuild(){
 
-document.getElementById("questionArea")
+document
+.getElementById("questionArea")
 .innerHTML=`
 
 <h2>
@@ -1855,7 +3119,9 @@ Zbuduj ${currentInterval.symbol}
 
 <div class="question-sub">
 
-${currentInterval.name}<br>
+${currentInterval.name}
+
+<br>
 
 Od dźwięku:
 
@@ -1879,7 +3145,7 @@ renderBuildAnswers();
 
 
 /* =====================================================
-   JEDNA NUTA
+   POJEDYNCZA NUTA
 ===================================================== */
 
 function drawSingleWrittenNote(note){
@@ -1891,9 +3157,11 @@ document.getElementById(
 
 
 const width=720;
-const height=250;
 
-const top=95;
+const height=270;
+
+const top=105;
+
 const gap=14;
 
 
@@ -1903,13 +3171,18 @@ letters.indexOf("E");
 
 
 const step=
-diatonicPosition(note)-E4;
+diatonicPosition(note)
+-
+E4;
 
 
 const y=
 top+
 4*gap-
 step*(gap/2);
+
+
+const x=400;
 
 
 let svg=`
@@ -1922,7 +3195,13 @@ xmlns="http://www.w3.org/2000/svg"
 `;
 
 
-for(let i=0;i<5;i++){
+/* PIĘCIOLINIA */
+
+for(
+let i=0;
+i<5;
+i++
+){
 
 const lineY=
 top+i*gap;
@@ -1944,6 +3223,8 @@ stroke-width="1.5"
 }
 
 
+/* KLUCZ */
+
 svg+=`
 
 <text
@@ -1959,9 +3240,6 @@ fill="#252238"
 `;
 
 
-const x=400;
-
-
 /* LINIE DODANE */
 
 if(step<=-2){
@@ -1972,7 +3250,7 @@ s>=step;
 s-=2
 ){
 
-const ly=
+const ledgerY=
 top+
 4*gap-
 s*(gap/2);
@@ -1982,9 +3260,9 @@ svg+=`
 
 <line
 x1="${x-21}"
-y1="${ly}"
+y1="${ledgerY}"
 x2="${x+21}"
-y2="${ly}"
+y2="${ledgerY}"
 stroke="#252238"
 stroke-width="1.5"
 />
@@ -2004,7 +3282,7 @@ s<=step;
 s+=2
 ){
 
-const ly=
+const ledgerY=
 top+
 4*gap-
 s*(gap/2);
@@ -2014,9 +3292,9 @@ svg+=`
 
 <line
 x1="${x-21}"
-y1="${ly}"
+y1="${ledgerY}"
 x2="${x+21}"
-y2="${ly}"
+y2="${ledgerY}"
 stroke="#252238"
 stroke-width="1.5"
 />
@@ -2034,19 +3312,30 @@ let sign="";
 
 
 if(note.accidental===-2){
+
 sign="𝄫";
+
 }
+
 
 if(note.accidental===-1){
+
 sign="♭";
+
 }
+
 
 if(note.accidental===1){
+
 sign="♯";
+
 }
 
+
 if(note.accidental===2){
+
 sign="𝄪";
+
 }
 
 
@@ -2055,7 +3344,7 @@ if(sign){
 svg+=`
 
 <text
-x="${x-42}"
+x="${x-44}"
 y="${y+9}"
 font-family="serif"
 font-size="29"
@@ -2082,6 +3371,28 @@ transform="rotate(-18 ${x} ${y})"
 fill="#252238"
 />
 
+`;
+
+
+if(y<top+2*gap){
+
+svg+=`
+
+<line
+x1="${x-8}"
+y1="${y}"
+x2="${x-8}"
+y2="${y+43}"
+stroke="#252238"
+stroke-width="2"
+/>
+
+`;
+
+}else{
+
+svg+=`
+
 <line
 x1="${x+8}"
 y1="${y}"
@@ -2091,8 +3402,13 @@ stroke="#252238"
 stroke-width="2"
 />
 
-</svg>
+`;
 
+}
+
+
+svg+=`
+</svg>
 `;
 
 
@@ -2151,6 +3467,7 @@ document.createElement(
 "button"
 );
 
+
 button.className=
 "answer";
 
@@ -2184,310 +3501,20 @@ button
 
 
 /* =====================================================
-   SPRAWDZANIE ODPOWIEDZI
-
-   WAŻNE:
-
-   SŁUCH:
-   ta sama liczba półtonów =
-   odpowiedź poprawna.
-
-   NUTY:
-   musi zgadzać się dokładny interwał.
+   SPRAWDZANIE BUDOWANIA
 ===================================================== */
 
-function checkIntervalAnswer(interval,button){
-
-if(answered) return;
-
-answered=true;
-
-
-let correct=false;
-
-
-/* =====================================================
-   SŁUCH
-===================================================== */
-
-if(currentExercise==="ear"){
-
-correct=
-interval.semitones===
-currentInterval.semitones;
-
-}
-
-
-/* =====================================================
-   NUTY
-===================================================== */
-
-else{
-
-correct=
-interval.id===
-currentInterval.id;
-
-}
-
-
-/* =====================================================
-   DOBRZE
-===================================================== */
-
-if(correct){
-
-button.classList.add(
-"correct"
-);
-
-score++;
-streak++;
-
-
-/* SŁUCH */
-
-if(currentExercise==="ear"){
-
-const equivalents=
-selectedIntervals.filter(
-x=>
-x.semitones===
-currentInterval.semitones
-);
-
-
-/*
-Zaznacz WSZYSTKIE
-brzmieniowo poprawne odpowiedzi.
-*/
-
-document
-.querySelectorAll(".answer")
-.forEach(answer=>{
-
-const answerInterval=
-selectedIntervals.find(
-x=>
-x.id===
-answer.dataset.id
-);
-
-
-if(
-answerInterval &&
-answerInterval.semitones===
-currentInterval.semitones
+function checkBuildAnswer(
+note,
+button
 ){
 
-answer.classList.add(
-"correct"
-);
+if(answered){
+
+return;
 
 }
 
-});
-
-
-/*
-Jeżeli istnieje więcej niż jedna
-poprawna nazwa interwału:
-*/
-
-if(equivalents.length>1){
-
-const names=
-equivalents
-.map(
-x=>x.symbol+" — "+x.name
-)
-.join(" / ");
-
-
-document.getElementById("feedback")
-.textContent=
-
-"✓ Dobrze! Ze słuchu te odpowiedzi brzmią tak samo: "
-+names;
-
-}
-
-else{
-
-document.getElementById("feedback")
-.textContent=
-
-"✓ Dobrze — "+
-currentInterval.name;
-
-}
-
-}
-
-
-/* NUTY */
-
-else{
-
-document.getElementById("feedback")
-.textContent=
-
-"✓ Dobrze — "+
-currentInterval.name;
-
-}
-
-}
-
-
-/* =====================================================
-   ŹLE
-===================================================== */
-
-else{
-
-button.classList.add(
-"wrong"
-);
-
-streak=0;
-
-
-/* =====================================================
-   BŁĄD W SŁUCHU
-===================================================== */
-
-if(currentExercise==="ear"){
-
-const equivalents=
-selectedIntervals.filter(
-x=>
-x.semitones===
-currentInterval.semitones
-);
-
-
-document
-.querySelectorAll(".answer")
-.forEach(answer=>{
-
-const answerInterval=
-selectedIntervals.find(
-x=>
-x.id===
-answer.dataset.id
-);
-
-
-if(
-answerInterval &&
-answerInterval.semitones===
-currentInterval.semitones
-){
-
-answer.classList.add(
-"correct"
-);
-
-}
-
-});
-
-
-const names=
-equivalents
-.map(
-x=>x.symbol+" — "+x.name
-)
-.join(" / ");
-
-
-mistakes.push({
-
-wanted:names,
-
-answered:
-interval.symbol+
-" — "+
-interval.name
-
-});
-
-
-document.getElementById("feedback")
-.textContent=
-
-"✕ Poprawna odpowiedź: "+
-names;
-
-}
-
-
-/* =====================================================
-   BŁĄD W NUTACH
-===================================================== */
-
-else{
-
-mistakes.push({
-
-wanted:
-currentInterval.symbol+
-" — "+
-currentInterval.name,
-
-answered:
-interval.symbol+
-" — "+
-interval.name
-
-});
-
-
-document.getElementById("feedback")
-.textContent=
-
-"✕ To był interwał "+
-currentInterval.symbol+
-" — "+
-currentInterval.name;
-
-
-document
-.querySelectorAll(".answer")
-.forEach(x=>{
-
-if(
-x.dataset.id===
-currentInterval.id
-){
-
-x.classList.add(
-"correct"
-);
-
-}
-
-});
-
-}
-
-}
-
-
-afterAnswer();
-
-}
-
-
-/* =====================================================
-   SPRAWDZENIE BUDOWANIA
-===================================================== */
-
-function checkBuildAnswer(note,button){
-
-if(answered) return;
 
 answered=true;
 
@@ -2508,31 +3535,45 @@ note.accidental===
 writtenTarget.accidental;
 
 
+/* -----------------------------------------------------
+   POPRAWNA
+----------------------------------------------------- */
+
 if(correct){
 
-button.classList.add(
-"correct"
-);
+button
+.classList
+.add("correct");
+
 
 score++;
+
 streak++;
 
 
-document.getElementById("feedback")
+document
+.getElementById("feedback")
 .textContent=
 
-"✓ Dobrze — "+
+"✓ Dobrze — "
++
 writtenNoteName(
 writtenTarget
 );
 
 }
 
+
+/* -----------------------------------------------------
+   BŁĘDNA
+----------------------------------------------------- */
+
 else{
 
-button.classList.add(
-"wrong"
-);
+button
+.classList
+.add("wrong");
+
 
 streak=0;
 
@@ -2540,6 +3581,8 @@ streak=0;
 mistakes.push({
 
 wanted:
+currentInterval.symbol+
+" — "+
 currentInterval.name+
 " → "+
 writtenNoteName(
@@ -2552,13 +3595,37 @@ writtenNoteName(note)
 });
 
 
-document.getElementById("feedback")
+document
+.getElementById("feedback")
 .textContent=
 
-"✕ Poprawna nuta: "+
+"✕ Poprawna nuta: "
++
 writtenNoteName(
 writtenTarget
 );
+
+
+/*
+Zaznaczamy właściwy przycisk.
+*/
+
+document
+.querySelectorAll(".answer")
+.forEach(answerButton=>{
+
+if(
+answerButton.textContent.trim()===
+writtenNoteName(writtenTarget)
+){
+
+answerButton
+.classList
+.add("correct");
+
+}
+
+});
 
 }
 
@@ -2574,15 +3641,20 @@ afterAnswer();
 
 function afterAnswer(){
 
-document.getElementById("score")
+document
+.getElementById("score")
 .textContent=
 score;
 
-document.getElementById("streak")
+
+document
+.getElementById("streak")
 .textContent=
 streak;
 
-document.getElementById("nextButton")
+
+document
+.getElementById("nextButton")
 .style.display=
 "inline-block";
 
@@ -2590,7 +3662,7 @@ document.getElementById("nextButton")
 
 
 /* =====================================================
-   NASTĘPNE
+   NASTĘPNE PYTANIE
 ===================================================== */
 
 function nextQuestion(){
@@ -2609,6 +3681,7 @@ return;
 
 questionNumber++;
 
+
 generateQuestion();
 
 }
@@ -2620,16 +3693,25 @@ generateQuestion();
 
 function finishTraining(){
 
-document.getElementById("quiz")
-.style.display="none";
+document
+.getElementById("quiz")
+.style.display=
+"none";
 
-document.getElementById("finish")
-.style.display="block";
+
+document
+.getElementById("finish")
+.style.display=
+"block";
 
 
-document.getElementById("finalScore")
+document
+.getElementById("finalScore")
 .textContent=
-score+"/"+totalQuestions;
+
+score+
+"/"+
+totalQuestions;
 
 
 let message="";
@@ -2659,12 +3741,13 @@ message=
 else{
 
 message=
-"Wybierz na początek mniej interwałów i ćwicz je partiami.";
+"Wybierz mniej interwałów i poćwicz je partiami.";
 
 }
 
 
-document.getElementById("finishMessage")
+document
+.getElementById("finishMessage")
 .textContent=
 message;
 
@@ -2674,13 +3757,25 @@ document.getElementById(
 "mistakes"
 );
 
+
 box.innerHTML="";
 
 
-if(mistakes.length){
+if(mistakes.length>0){
 
-box.innerHTML=
-"<strong>Do powtórzenia:</strong>";
+const title=
+document.createElement(
+"strong"
+);
+
+
+title.textContent=
+"Do powtórzenia:";
+
+
+box.appendChild(
+title
+);
 
 
 mistakes.forEach(
@@ -2691,13 +3786,15 @@ document.createElement(
 "div"
 );
 
+
 row.className=
 "mistake-row";
+
 
 row.textContent=
 
 mistake.wanted+
-" — odpowiedź: "+
+" — Twoja odpowiedź: "+
 mistake.answered;
 
 
@@ -2713,22 +3810,30 @@ row
 
 
 /* =====================================================
-   POWTÓRKA
+   JESZCZE RAZ
 ===================================================== */
 
 function restartSame(){
 
 questionNumber=1;
+
 score=0;
+
 streak=0;
+
 mistakes=[];
 
 
-document.getElementById("finish")
-.style.display="none";
+document
+.getElementById("finish")
+.style.display=
+"none";
 
-document.getElementById("quiz")
-.style.display="block";
+
+document
+.getElementById("quiz")
+.style.display=
+"block";
 
 
 generateQuestion();
@@ -2736,16 +3841,28 @@ generateQuestion();
 }
 
 
+/* =====================================================
+   ZMIANA USTAWIEŃ
+===================================================== */
+
 function changeSettings(){
 
-document.getElementById("finish")
-.style.display="none";
+document
+.getElementById("finish")
+.style.display=
+"none";
 
-document.getElementById("quiz")
-.style.display="none";
 
-document.getElementById("setup")
-.style.display="block";
+document
+.getElementById("quiz")
+.style.display=
+"none";
+
+
+document
+.getElementById("setup")
+.style.display=
+"block";
 
 }
 
