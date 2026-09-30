@@ -4,7 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Harmonix — Interwały</title>
 
@@ -12,56 +14,141 @@
 
 <style>
 
-.card a {
-    display: block;
-    color: inherit;
-    text-decoration: none;
-}
+    /* =========================================
+       LINKI W KAFELKACH
+    ========================================= */
 
-.card a:hover {
-    color: inherit;
-}
+    .card a {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+        height: 100%;
+    }
 
-/* wyróżniony kafel ćwiczeń */
-.practice-card {
-    position: relative;
-    overflow: hidden;
-}
+    .card a:hover {
+        color: inherit;
+    }
 
-.practice-card::after {
-    content: "TRENING";
-    position: absolute;
-    top: 16px;
-    right: 16px;
 
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1px;
+    /* =========================================
+       POWRÓT DO STRONY GŁÓWNEJ
+    ========================================= */
 
-    background: #252238;
-    color: white;
+    .back-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
 
-    padding: 6px 9px;
-    border-radius: 20px;
-}
+        margin-bottom: 28px;
+
+        color: #777187;
+        text-decoration: none;
+
+        font-size: 15px;
+        font-weight: 600;
+
+        transition: 0.2s ease;
+    }
+
+    .back-home:hover {
+        color: #252238;
+        transform: translateX(-4px);
+    }
+
+
+    /* =========================================
+       ĆWICZENIA
+    ========================================= */
+
+    .practice-area {
+        margin-top: 35px;
+        text-align: center;
+    }
+
+    .practice-button {
+        display: inline-block;
+
+        background: #252238;
+        color: white;
+
+        text-decoration: none;
+
+        padding: 15px 28px;
+
+        border-radius: 14px;
+
+        font-size: 16px;
+        font-weight: 700;
+
+        transition: 0.2s ease;
+    }
+
+    .practice-button:hover {
+        transform: translateY(-2px);
+        opacity: 0.92;
+    }
+
+
+    /* =========================================
+       TELEFON
+    ========================================= */
+
+    @media (max-width: 600px) {
+
+        .back-home {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .practice-button {
+            width: 100%;
+            text-align: center;
+        }
+
+    }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <main class="hero">
 
+
 <div class="container">
+
+
+    <!-- =========================================
+         POWRÓT DO HARMONIX
+    ========================================== -->
+
+    <a href="index.html" class="back-home">
+        ← Strona główna
+    </a>
+
+
+
+    <!-- =========================================
+         TYTUŁ
+    ========================================== -->
 
     <div class="logo">
         Interwały
     </div>
 
+
     <div class="subtitle">
         Od prymy do interwałów złożonych.
     </div>
+
+
+
+    <!-- =========================================
+         KAFELKI
+    ========================================== -->
 
     <div class="cards">
 
@@ -72,9 +159,13 @@
 
             <a href="pryma.html">
 
-                <div class="icon">1</div>
+                <div class="icon">
+                    1
+                </div>
 
-                <h2>Pryma</h2>
+                <h2>
+                    Pryma
+                </h2>
 
                 <p>
                     Czysta, zwiększona i zmniejszona.
@@ -85,15 +176,20 @@
         </div>
 
 
+
         <!-- SEKUNDY -->
 
         <div class="card">
 
             <a href="sekundy.html">
 
-                <div class="icon">2</div>
+                <div class="icon">
+                    2
+                </div>
 
-                <h2>Sekundy</h2>
+                <h2>
+                    Sekundy
+                </h2>
 
                 <p>
                     Małe, wielkie, zwiększone i zmniejszone.
@@ -102,6 +198,7 @@
             </a>
 
         </div>
+
 
 
         <!-- TERCJE -->
@@ -110,9 +207,13 @@
 
             <a href="tercje.html">
 
-                <div class="icon">3</div>
+                <div class="icon">
+                    3
+                </div>
 
-                <h2>Tercje</h2>
+                <h2>
+                    Tercje
+                </h2>
 
                 <p>
                     Małe, wielkie, zwiększone i zmniejszone.
@@ -121,6 +222,7 @@
             </a>
 
         </div>
+
 
 
         <!-- KWARTY -->
@@ -129,9 +231,13 @@
 
             <a href="kwarty.html">
 
-                <div class="icon">4</div>
+                <div class="icon">
+                    4
+                </div>
 
-                <h2>Kwarty</h2>
+                <h2>
+                    Kwarty
+                </h2>
 
                 <p>
                     Czyste, zwiększone i zmniejszone.
@@ -140,6 +246,7 @@
             </a>
 
         </div>
+
 
 
         <!-- KWINTY -->
@@ -148,9 +255,13 @@
 
             <a href="kwinty.html">
 
-                <div class="icon">5</div>
+                <div class="icon">
+                    5
+                </div>
 
-                <h2>Kwinty</h2>
+                <h2>
+                    Kwinty
+                </h2>
 
                 <p>
                     Czyste, zwiększone i zmniejszone.
@@ -161,15 +272,20 @@
         </div>
 
 
+
         <!-- SEKSTY -->
 
         <div class="card">
 
             <a href="seksty.html">
 
-                <div class="icon">6</div>
+                <div class="icon">
+                    6
+                </div>
 
-                <h2>Seksty</h2>
+                <h2>
+                    Seksty
+                </h2>
 
                 <p>
                     Małe, wielkie, zwiększone i zmniejszone.
@@ -180,15 +296,20 @@
         </div>
 
 
+
         <!-- SEPTYMY -->
 
         <div class="card">
 
             <a href="septyma.html">
 
-                <div class="icon">7</div>
+                <div class="icon">
+                    7
+                </div>
 
-                <h2>Septyma</h2>
+                <h2>
+                    Septyma
+                </h2>
 
                 <p>
                     Mała, wielka, zwiększona i zmniejszona.
@@ -199,15 +320,20 @@
         </div>
 
 
+
         <!-- OKTAWA -->
 
         <div class="card">
 
             <a href="oktawa.html">
 
-                <div class="icon">8</div>
+                <div class="icon">
+                    8
+                </div>
 
-                <h2>Oktawa</h2>
+                <h2>
+                    Oktawa
+                </h2>
 
                 <p>
                     Czysta, zwiększona i zmniejszona.
@@ -218,15 +344,20 @@
         </div>
 
 
+
         <!-- INTERWAŁY ZŁOŻONE -->
 
         <div class="card">
 
             <a href="zlozone.html">
 
-                <div class="icon">9+</div>
+                <div class="icon">
+                    9+
+                </div>
 
-                <h2>Interwały złożone</h2>
+                <h2>
+                    Interwały złożone
+                </h2>
 
                 <p>
                     Nony, decymy, undecymy i kolejne — w różnych rodzajach.
@@ -237,30 +368,31 @@
         </div>
 
 
-        <!-- ĆWICZENIA -->
+    </div>
 
-        <div class="card practice-card">
 
-            <a href="cwiczenia-interwaly.html">
 
-                <div class="icon">♪</div>
+    <!-- =========================================
+         ĆWICZENIA
+    ========================================== -->
 
-                <h2>Ćwiczenia</h2>
+    <div class="practice-area">
 
-                <p>
-                    Słuchaj, rozpoznawaj i buduj interwały.
-                </p>
+        <a href="cwiczenia-interwaly.html"
+           class="practice-button">
 
-            </a>
+            Ćwicz interwały →
 
-        </div>
-
+        </a>
 
     </div>
 
+
 </div>
 
+
 </main>
+
 
 </body>
 
