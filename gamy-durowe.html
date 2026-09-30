@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,10 @@
 <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.5/build/cjs/vexflow.js"></script>
 
 <style>
-* { box-sizing: border-box; }
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0 !important;
@@ -32,14 +36,28 @@ body {
     margin: 0 auto;
 }
 
+/* =========================
+   POWRÓT
+========================= */
+
 .back-button {
     display: inline-block;
     margin-bottom: 30px;
+
     color: #777187;
     text-decoration: none;
+
     font-size: 14px;
     font-weight: 700;
 }
+
+.back-button:hover {
+    color: #252238;
+}
+
+/* =========================
+   HEADER
+========================= */
 
 .page-header {
     text-align: center;
@@ -48,6 +66,7 @@ body {
 
 .page-title {
     margin: 0;
+
     font-size: 52px;
     font-weight: 800;
     letter-spacing: -2px;
@@ -56,99 +75,152 @@ body {
 .page-subtitle {
     max-width: 680px;
     margin: 12px auto 0;
+
     color: #6b6680;
+
     font-size: 18px;
     line-height: 1.5;
 }
 
-/* ODMIANY */
+/* =========================
+   ODMIANY
+========================= */
 
 .scale-tabs {
     display: grid;
     grid-template-columns: repeat(3,1fr);
+
     gap: 12px;
+
     margin-bottom: 20px;
 }
 
 .scale-tab {
     padding: 17px;
+
     background: white !important;
     color: #777187 !important;
+
     border: 1px solid #e3e0eb !important;
     border-radius: 15px;
+
+    font-size: 13px;
     font-weight: 800;
+
     cursor: pointer;
+
+    transition: .2s;
+}
+
+.scale-tab:hover {
+    transform: translateY(-2px);
 }
 
 .scale-tab.active {
     background: #ece9f5 !important;
     color: #252238 !important;
+
     border-color: #d4cfe2 !important;
 }
 
-/* KARTY */
+/* =========================
+   KARTY
+========================= */
 
 .section-card {
     margin-bottom: 18px;
     padding: 28px;
+
     background: white !important;
+
     border: 1px solid rgba(70,60,100,.08);
     border-radius: 22px;
+
     box-shadow: 0 8px 30px rgba(40,30,80,.08);
 }
 
 .section-card h2 {
     margin: 0 0 8px;
+
+    color: #252238;
+
     font-size: 22px;
+    font-weight: 800;
 }
 
 .section-description {
     margin: 0;
+
     color: #777187;
+
     font-size: 13px;
     line-height: 1.6;
 }
 
-/* TEORIA */
+/* =========================
+   TEORIA
+========================= */
 
 .change-row {
     display: flex;
     align-items: center;
+
     gap: 15px;
+
     margin-top: 20px;
     padding: 16px;
+
     background: #f7f5ff;
+
     border-radius: 14px;
 }
 
 .change-badge {
-    min-width: 90px;
+    min-width: 95px;
+
     padding: 12px;
+
     background: #ece9f5;
+
     border-radius: 10px;
+
     text-align: center;
+
+    font-size: 16px;
     font-weight: 800;
 }
 
 .change-description {
     color: #777187;
+
     font-size: 12px;
     line-height: 1.5;
+}
+
+.change-description strong {
+    color: #252238;
 }
 
 .degree-grid {
     display: grid;
     grid-template-columns: repeat(8,1fr);
+
     gap: 7px;
+
     margin-top: 20px;
 }
 
 .degree {
     padding: 12px 5px;
+
     background: #f7f5ff;
+
     border-radius: 10px;
+
     text-align: center;
+
     color: #777187;
+
     font-size: 11px;
     font-weight: 800;
 }
@@ -160,105 +232,136 @@ body {
 
 .degree small {
     display: block;
+
     margin-top: 4px;
+
     font-size: 8px;
     font-weight: 500;
 }
 
-/* KONTROLKI */
+/* =========================
+   WYBÓR TONACJI
+========================= */
 
 .scale-controls {
     display: flex;
     flex-wrap: wrap;
+
     gap: 9px;
+
     margin-top: 18px;
 }
 
 .scale-controls select {
     padding: 11px 14px;
+
     background: #faf9ff;
     color: #252238;
+
     border: 1px solid #dedbea;
     border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 12px;
     font-weight: 700;
 }
 
-/* ===== PIĘCIOLINIA ===== */
+/* =========================
+   PIĘCIOLINIA
+========================= */
 
 .staff-main {
     margin-top: 22px;
-    padding: 22px 18px 16px;
+    padding: 22px 18px 18px;
+
     background: #faf9ff;
+
     border: 1px solid #ece9f2;
     border-radius: 18px;
 }
 
 .staff-heading {
     text-align: center;
-    margin-bottom: 8px;
 }
 
 .scale-name {
+    color: #252238;
+
     font-size: 24px;
     font-weight: 800;
 }
 
 .scale-hint {
     margin-top: 5px;
+
     color: #9993a6;
-    font-size: 11px;
+
+    font-size: 10px;
     font-weight: 700;
 }
 
 .staff-scroll {
     width: 100%;
     overflow-x: auto;
+
     margin-top: 8px;
 }
 
-#staff {
-    min-width: 760px;
+#staff,
+#builderStaff {
     width: 100%;
+    min-width: 820px;
     height: 230px;
 }
 
-.staff-help {
-    margin-top: -5px;
-    text-align: center;
-    color: #9993a6;
-    font-size: 10px;
-}
-
-/* NUTY POMOCNICZE */
+/* =========================
+   KAFELKI POMOCNICZE
+========================= */
 
 .notes-title {
-    margin-top: 16px;
+    margin-top: 5px;
+
     text-align: center;
+
     color: #9993a6;
-    font-size: 10px;
+
+    font-size: 9px;
     font-weight: 800;
+
     text-transform: uppercase;
-    letter-spacing: .7px;
+    letter-spacing: .8px;
 }
 
 .notes-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
     gap: 7px;
-    margin-top: 9px;
+
+    margin-top: 10px;
 }
 
 .note-button {
     min-width: 55px;
+
     padding: 10px 8px;
+
     background: white !important;
     color: #252238 !important;
+
     border: 1px solid #e5e2ec !important;
     border-radius: 10px;
+
     font-size: 14px;
     font-weight: 800;
+
     cursor: pointer;
+}
+
+.note-button:hover {
+    background: #f3f1f9 !important;
+    transform: translateY(-2px);
 }
 
 .note-button.changed {
@@ -267,8 +370,11 @@ body {
 
 .note-button small {
     display: block;
+
     margin-top: 3px;
+
     color: #aaa5b5;
+
     font-size: 8px;
 }
 
@@ -276,37 +382,51 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
     gap: 5px;
+
     margin-top: 13px;
 }
 
 .step {
     padding: 5px 8px;
+
     background: #efedf5;
+
     border-radius: 7px;
+
     color: #777187;
+
     font-size: 9px;
     font-weight: 800;
 }
 
-/* AUDIO */
+/* =========================
+   AUDIO
+========================= */
 
 .listen-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
     gap: 8px;
-    margin-top: 18px;
+
+    margin-top: 10px;
 }
 
 .listen-button {
     padding: 10px 14px;
+
     background: white !important;
     color: #514b68 !important;
+
     border: 1px solid #dedbea !important;
     border-radius: 10px;
+
     font-size: 11px;
     font-weight: 800;
+
     cursor: pointer;
 }
 
@@ -316,84 +436,142 @@ body {
 
 .audio-status {
     min-height: 18px;
+
     margin-top: 10px;
+
     text-align: center;
+
     color: #9993a6;
+
     font-size: 10px;
 }
 
-/* PORÓWNANIE */
+/* =========================
+   PORÓWNANIE
+========================= */
 
 .compare-grid {
     display: grid;
     grid-template-columns: repeat(3,1fr);
+
     gap: 10px;
+
     margin-top: 18px;
 }
 
 .compare-box {
     padding: 18px;
+
     background: #faf9ff;
+
     border: 1px solid #ece9f2;
     border-radius: 14px;
 }
 
 .compare-box strong {
     display: block;
+
     margin-bottom: 7px;
+
+    color: #252238;
+
     font-size: 13px;
 }
 
 .compare-box span {
     color: #777187;
+
     font-size: 11px;
     line-height: 1.5;
 }
 
-/* ===== BUDOWANIE NA PIĘCIOLINII ===== */
+/* =========================
+   ĆWICZENIA
+========================= */
+
+.practice-menu {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 18px;
+}
+
+.practice-button {
+    padding: 10px 13px;
+
+    background: #faf9ff !important;
+    color: #777187 !important;
+
+    border: 1px solid #dedbea !important;
+    border-radius: 10px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.practice-button.active {
+    background: #ece9f5 !important;
+    color: #252238 !important;
+}
+
+/* =========================
+   BUDOWANIE
+========================= */
 
 .builder-box {
     margin-top: 18px;
-    padding: 20px;
+    padding: 22px;
+
     background: #faf9ff !important;
+
     border: 1px solid #ece9f2;
     border-radius: 16px;
 }
 
 .builder-question {
     text-align: center;
+
+    color: #252238;
+
     font-size: 17px;
     font-weight: 800;
 }
 
 .builder-instruction {
     margin-top: 5px;
-    text-align: center;
-    color: #777187;
-    font-size: 11px;
-}
 
-#builderStaff {
-    min-width: 760px;
-    width: 100%;
-    height: 220px;
+    text-align: center;
+
+    color: #777187;
+
+    font-size: 11px;
 }
 
 .builder-controls {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
     gap: 7px;
-    margin-top: 8px;
+
+    margin-top: 5px;
 }
 
 .builder-button {
-    padding: 9px 12px;
+    padding: 10px 14px;
+
     background: white !important;
     color: #514b68 !important;
+
     border: 1px solid #dedbea !important;
     border-radius: 9px;
+
     font-weight: 800;
+
     cursor: pointer;
 }
 
@@ -404,51 +582,40 @@ body {
 
 .check-button {
     display: block;
+
     margin: 14px auto 0;
     padding: 10px 18px;
+
     background: #252238 !important;
     color: white !important;
+
     border: 0;
     border-radius: 10px;
+
     font-weight: 800;
+
     cursor: pointer;
 }
 
-/* ĆWICZENIA */
-
-.practice-menu {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-top: 18px;
-}
-
-.practice-button {
-    padding: 10px 13px;
-    background: #faf9ff !important;
-    color: #777187 !important;
-    border: 1px solid #dedbea !important;
-    border-radius: 10px;
-    font-size: 11px;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.practice-button.active {
-    background: #ece9f5 !important;
-    color: #252238 !important;
-}
+/* =========================
+   NORMALNE PYTANIA
+========================= */
 
 .exercise-box {
     margin-top: 18px;
     padding: 22px;
+
     background: #faf9ff !important;
+
     border: 1px solid #ece9f2;
     border-radius: 16px;
+
     text-align: center;
 }
 
 .exercise-question {
+    color: #252238;
+
     font-size: 17px;
     font-weight: 800;
 }
@@ -456,17 +623,23 @@ body {
 .answers {
     display: grid;
     grid-template-columns: repeat(2,1fr);
+
     gap: 8px;
+
     margin-top: 17px;
 }
 
 .answer-button {
     padding: 11px;
+
     background: white !important;
     color: #514b68 !important;
+
     border: 1px solid #dedbea !important;
     border-radius: 10px;
+
     font-weight: 700;
+
     cursor: pointer;
 }
 
@@ -484,8 +657,11 @@ body {
 
 .feedback {
     min-height: 23px;
+
     margin-top: 14px;
+
     color: #777187;
+
     font-size: 12px;
     font-weight: 800;
 }
@@ -493,11 +669,15 @@ body {
 .next-button {
     margin-top: 8px;
     padding: 10px 15px;
+
     background: #ece9f5 !important;
     color: #252238 !important;
+
     border: 1px solid #d9d4e5 !important;
     border-radius: 10px;
+
     font-weight: 800;
+
     cursor: pointer;
 }
 
@@ -506,244 +686,451 @@ body {
 }
 
 @media(max-width:750px) {
-    .page-title { font-size: 42px; }
-    .scale-tabs { grid-template-columns: 1fr; }
-    .degree-grid { grid-template-columns: repeat(4,1fr); }
-    .compare-grid { grid-template-columns: 1fr; }
-    .answers { grid-template-columns: 1fr; }
-    .section-card { padding: 21px; }
+
+    .page-title {
+        font-size: 42px;
+    }
+
+    .scale-tabs {
+        grid-template-columns: 1fr;
+    }
+
+    .degree-grid {
+        grid-template-columns: repeat(4,1fr);
+    }
+
+    .compare-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+    .section-card {
+        padding: 21px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
 <main class="scale-page">
+
 <div class="scale-container">
 
-<a href="tonacje.html" class="back-button">← Gamy i tonacje</a>
+<a href="tonacje.html" class="back-button">
+    ← Gamy i tonacje
+</a>
 
 <header class="page-header">
-    <h1 class="page-title">Gamy durowe</h1>
+
+    <h1 class="page-title">
+        Gamy durowe
+    </h1>
+
     <p class="page-subtitle">
-        Zobacz gamę tak, jak zapisujesz ją w nutach.
-        Buduj, czytaj i słuchaj.
+        Czytaj je na pięciolinii, buduj, porównuj odmiany
+        i ucz się ich brzmienia.
     </p>
+
 </header>
 
+
 <div class="scale-tabs">
-    <button class="scale-tab active" onclick="selectScaleType('natural',this)">
+
+    <button
+        class="scale-tab active"
+        onclick="selectScaleType('natural',this)">
         Naturalna
     </button>
 
-    <button class="scale-tab" onclick="selectScaleType('harmonic',this)">
+    <button
+        class="scale-tab"
+        onclick="selectScaleType('harmonic',this)">
         Harmoniczna
     </button>
 
-    <button class="scale-tab" onclick="selectScaleType('soft',this)">
+    <button
+        class="scale-tab"
+        onclick="selectScaleType('soft',this)">
         Miękka
     </button>
+
 </div>
 
-<!-- TEORIA -->
+
+<!-- =========================
+     TEORIA
+========================= -->
 
 <section class="section-card">
 
-<h2 id="theoryTitle"></h2>
-<p class="section-description" id="theoryDescription"></p>
+    <h2 id="theoryTitle"></h2>
 
-<div class="change-row">
-    <div class="change-badge" id="changeBadge"></div>
-    <div class="change-description" id="changeDescription"></div>
-</div>
+    <p
+        class="section-description"
+        id="theoryDescription">
+    </p>
 
-<div class="degree-grid">
-    <div class="degree" id="degree1">I<small>tonika</small></div>
-    <div class="degree" id="degree2">II<small>stopień</small></div>
-    <div class="degree" id="degree3">III<small>stopień</small></div>
-    <div class="degree" id="degree4">IV<small>subdominanta</small></div>
-    <div class="degree" id="degree5">V<small>dominanta</small></div>
-    <div class="degree" id="degree6">VI<small>stopień</small></div>
-    <div class="degree" id="degree7">VII<small>stopień</small></div>
-    <div class="degree" id="degree8">VIII<small>tonika</small></div>
-</div>
+
+    <div class="change-row">
+
+        <div
+            class="change-badge"
+            id="changeBadge">
+        </div>
+
+        <div
+            class="change-description"
+            id="changeDescription">
+        </div>
+
+    </div>
+
+
+    <div class="degree-grid">
+
+        <div class="degree" id="degree1">
+            I
+            <small>tonika</small>
+        </div>
+
+        <div class="degree" id="degree2">
+            II
+            <small>stopień</small>
+        </div>
+
+        <div class="degree" id="degree3">
+            III
+            <small>stopień</small>
+        </div>
+
+        <div class="degree" id="degree4">
+            IV
+            <small>subdominanta</small>
+        </div>
+
+        <div class="degree" id="degree5">
+            V
+            <small>dominanta</small>
+        </div>
+
+        <div class="degree" id="degree6">
+            VI
+            <small>stopień</small>
+        </div>
+
+        <div class="degree" id="degree7">
+            VII
+            <small>stopień</small>
+        </div>
+
+        <div class="degree" id="degree8">
+            VIII
+            <small>tonika</small>
+        </div>
+
+    </div>
 
 </section>
 
-<!-- PIĘCIOLINIA -->
+
+<!-- =========================
+     PIĘCIOLINIA
+========================= -->
 
 <section class="section-card">
 
-<h2>Zapis gamy</h2>
+    <h2>
+        Zapis gamy
+    </h2>
 
-<p class="section-description">
-    Najważniejszy jest zapis na pięciolinii. Znaki należące do tonacji
-    znajdują się przy kluczu, a zmiany charakterystyczne dla odmiany
-    pojawiają się przy konkretnych nutach.
-</p>
+    <p class="section-description">
+        Znaki tonacji są przy kluczu. Dodatkowe zmiany
+        wynikające z odmiany gamy pojawiają się bezpośrednio
+        przy odpowiednich nutach.
+    </p>
 
-<div class="scale-controls">
 
-<select id="root" onchange="renderEverything()">
-    <option value="C">C-dur</option>
-    <option value="G">G-dur</option>
-    <option value="D">D-dur</option>
-    <option value="A">A-dur</option>
-    <option value="E">E-dur</option>
-    <option value="H">H-dur</option>
-    <option value="Fis">Fis-dur</option>
-    <option value="Cis">Cis-dur</option>
+    <div class="scale-controls">
 
-    <option value="F">F-dur</option>
-    <option value="B">B-dur</option>
-    <option value="Es">Es-dur</option>
-    <option value="As">As-dur</option>
-    <option value="Des">Des-dur</option>
-    <option value="Ges">Ges-dur</option>
-</select>
+        <select
+            id="root"
+            onchange="renderEverything()">
 
-</div>
+            <option value="C">C-dur</option>
+            <option value="G">G-dur</option>
+            <option value="D">D-dur</option>
+            <option value="A">A-dur</option>
+            <option value="E">E-dur</option>
+            <option value="H">H-dur</option>
+            <option value="Fis">Fis-dur</option>
+            <option value="Cis">Cis-dur</option>
 
-<div class="staff-main">
+            <option value="F">F-dur</option>
+            <option value="B">B-dur</option>
+            <option value="Es">Es-dur</option>
+            <option value="As">As-dur</option>
+            <option value="Des">Des-dur</option>
+            <option value="Ges">Ges-dur</option>
 
-<div class="staff-heading">
-    <div class="scale-name" id="scaleName"></div>
-    <div class="scale-hint" id="scaleHint"></div>
-</div>
+        </select>
 
-<div class="staff-scroll">
-    <div id="staff"></div>
-</div>
+    </div>
 
-<div class="staff-help">
-    I · II · III · IV · V · VI · VII · VIII
-</div>
 
-<div class="listen-buttons">
-    <button class="listen-button" onclick="playScale('up')">▶ W górę</button>
-    <button class="listen-button" onclick="playScale('down')">▶ W dół</button>
-    <button class="listen-button" onclick="playScale('both')">▶ Góra + dół</button>
-</div>
+    <div class="staff-main">
 
-<div class="audio-status" id="audioStatus"></div>
+        <div class="staff-heading">
 
-<div class="notes-title">Nazwy dźwięków — pomoc</div>
-<div class="notes-row" id="notesRow"></div>
-<div class="steps-row" id="stepsRow"></div>
+            <div
+                class="scale-name"
+                id="scaleName">
+            </div>
 
-</div>
+            <div
+                class="scale-hint"
+                id="scaleHint">
+            </div>
+
+        </div>
+
+
+        <div class="staff-scroll">
+            <div id="staff"></div>
+        </div>
+
+
+        <div class="listen-buttons">
+
+            <button
+                class="listen-button"
+                onclick="playScale('up')">
+                ▶ W górę
+            </button>
+
+            <button
+                class="listen-button"
+                onclick="playScale('down')">
+                ▶ W dół
+            </button>
+
+            <button
+                class="listen-button"
+                onclick="playScale('both')">
+                ▶ Góra + dół
+            </button>
+
+        </div>
+
+
+        <div
+            class="audio-status"
+            id="audioStatus">
+        </div>
+
+
+        <div class="notes-title">
+            Nazwy dźwięków — pomoc
+        </div>
+
+        <div
+            class="notes-row"
+            id="notesRow">
+        </div>
+
+        <div
+            class="steps-row"
+            id="stepsRow">
+        </div>
+
+    </div>
 
 </section>
 
-<!-- PORÓWNANIE -->
+
+<!-- =========================
+     PORÓWNANIE
+========================= -->
 
 <section class="section-card">
 
-<h2>Zapamiętaj</h2>
+    <h2>
+        Trzy odmiany
+    </h2>
 
-<div class="compare-grid">
 
-<div class="compare-box">
-<strong>Naturalna</strong>
-<span>
-Podstawowa postać gamy durowej.
-Półtony: III–IV i VII–VIII.
-</span>
-</div>
+    <div class="compare-grid">
 
-<div class="compare-box">
-<strong>Harmoniczna</strong>
-<span>
-Obniżamy VI stopień o pół tonu.
-</span>
-</div>
+        <div class="compare-box">
 
-<div class="compare-box">
-<strong>Miękka</strong>
-<span>
-Obniżamy VI i VII stopień o pół tonu.
-</span>
-</div>
+            <strong>
+                Naturalna
+            </strong>
 
-</div>
+            <span>
+                Podstawowa postać. Półtony:
+                III–IV i VII–VIII.
+            </span>
+
+        </div>
+
+
+        <div class="compare-box">
+
+            <strong>
+                Harmoniczna
+            </strong>
+
+            <span>
+                Obniżamy VI stopień.
+            </span>
+
+        </div>
+
+
+        <div class="compare-box">
+
+            <strong>
+                Miękka
+            </strong>
+
+            <span>
+                Obniżamy VI i VII stopień.
+            </span>
+
+        </div>
+
+    </div>
+
 </section>
 
-<!-- ĆWICZENIA -->
+
+<!-- =========================
+     ĆWICZENIA
+========================= -->
 
 <section class="section-card">
 
-<h2>Ćwiczenia</h2>
+    <h2>
+        Ćwiczenia
+    </h2>
 
-<p class="section-description">
-    Ćwicz zapis, budowanie i słuch.
-</p>
+    <p class="section-description">
+        Ćwicz budowanie, teorię i rozpoznawanie ze słuchu.
+    </p>
 
-<div class="practice-menu">
-    <button class="practice-button active"
+
+    <div class="practice-menu">
+
+        <button
+            class="practice-button active"
             onclick="setPractice('building',this)">
-        Budowanie
-    </button>
+            Budowanie
+        </button>
 
-    <button class="practice-button"
+        <button
+            class="practice-button"
             onclick="setPractice('recognition',this)">
-        Rozpoznawanie
-    </button>
+            Rozpoznawanie
+        </button>
 
-    <button class="practice-button"
+        <button
+            class="practice-button"
             onclick="setPractice('ear',this)">
-        Słuch
-    </button>
+            Słuch
+        </button>
 
-    <button class="practice-button"
+        <button
+            class="practice-button"
             onclick="setPractice('mix',this)">
-        Mix
-    </button>
-</div>
+            Mix
+        </button>
 
-<!-- BUDOWANIE -->
+    </div>
 
-<div id="builderArea" class="builder-box">
 
-<div class="builder-question" id="builderQuestion"></div>
+    <!-- BUDOWANIE -->
 
-<div class="builder-instruction">
-    Ustaw właściwe znaki chromatyczne przy stopniach gamy.
-</div>
+    <div
+        id="builderArea"
+        class="builder-box">
 
-<div class="staff-scroll">
-    <div id="builderStaff"></div>
-</div>
+        <div
+            class="builder-question"
+            id="builderQuestion">
+        </div>
 
-<div class="builder-controls" id="builderControls"></div>
+        <div class="builder-instruction">
+            Zaznacz zmiany potrzebne do zbudowania
+            podanej odmiany gamy.
+        </div>
 
-<button class="check-button" onclick="checkBuilder()">
-    Sprawdź
-</button>
 
-<div class="feedback" id="builderFeedback"></div>
+        <div class="staff-scroll">
+            <div id="builderStaff"></div>
+        </div>
 
-</div>
 
-<!-- ZWYKŁE PYTANIA -->
+        <div
+            class="builder-controls"
+            id="builderControls">
+        </div>
 
-<div id="normalExercise" class="exercise-box hidden">
 
-<div class="exercise-question" id="question"></div>
+        <button
+            class="check-button"
+            onclick="checkBuilder()">
+            Sprawdź
+        </button>
 
-<div class="answers" id="answers"></div>
 
-<div class="feedback" id="feedback"></div>
+        <div
+            class="feedback"
+            id="builderFeedback">
+        </div>
 
-<button class="next-button" onclick="newQuestion()">
-    Następne
-</button>
+    </div>
 
-</div>
+
+    <!-- POZOSTAŁE -->
+
+    <div
+        id="normalExercise"
+        class="exercise-box hidden">
+
+        <div
+            class="exercise-question"
+            id="question">
+        </div>
+
+        <div
+            class="answers"
+            id="answers">
+        </div>
+
+        <div
+            class="feedback"
+            id="feedback">
+        </div>
+
+        <button
+            class="next-button"
+            onclick="newQuestion()">
+            Następne
+        </button>
+
+    </div>
 
 </section>
 
 </div>
+
 </main>
+
 
 <script>
 
@@ -753,72 +1140,183 @@ Obniżamy VI i VII stopień o pół tonu.
 
 const TYPES = {
 
-natural: {
-    name:"naturalna",
-    title:"Gama durowa naturalna",
-    description:
-        "Podstawowa postać gamy durowej. Półtony występują między III–IV oraz VII–VIII stopniem.",
-    badge:"bez zmian",
-    change:"<strong>Nie zmieniamy żadnego stopnia.</strong>",
-    changed:[],
-    offsets:[0,2,4,5,7,9,11,12],
-    steps:["ton","ton","półton","ton","ton","ton","półton"]
-},
+    natural: {
 
-harmonic: {
-    name:"harmoniczna",
-    title:"Gama durowa harmoniczna",
-    description:
-        "Powstaje z naturalnej przez obniżenie VI stopnia o pół tonu.",
-    badge:"↓ VI",
-    change:
-        "<strong>VI stopień obniżamy o pół tonu.</strong> Powstaje charakterystyczna sekunda zwiększona między VI i VII stopniem.",
-    changed:[6],
-    offsets:[0,2,4,5,7,8,11,12],
-    steps:["ton","ton","półton","ton","półton","1½ tonu","półton"]
-},
+        name:
+            "naturalna",
 
-soft: {
-    name:"miękka",
-    title:"Gama durowa miękka",
-    description:
-        "Powstaje z naturalnej przez obniżenie VI i VII stopnia o pół tonu.",
-    badge:"↓ VI, VII",
-    change:
-        "<strong>VI i VII stopień obniżamy o pół tonu.</strong>",
-    changed:[6,7],
-    offsets:[0,2,4,5,7,8,10,12],
-    steps:["ton","ton","półton","ton","półton","ton","ton"]
-}
+        title:
+            "Gama durowa naturalna",
+
+        description:
+            "Podstawowa postać gamy durowej. Półtony występują między III–IV oraz VII–VIII stopniem.",
+
+        badge:
+            "bez zmian",
+
+        change:
+            "<strong>Nie zmieniamy żadnego stopnia.</strong>",
+
+        changed:
+            [],
+
+        offsets:
+            [0,2,4,5,7,9,11,12],
+
+        steps:
+            [
+                "ton",
+                "ton",
+                "półton",
+                "ton",
+                "ton",
+                "ton",
+                "półton"
+            ]
+
+    },
+
+
+    harmonic: {
+
+        name:
+            "harmoniczna",
+
+        title:
+            "Gama durowa harmoniczna",
+
+        description:
+            "Powstaje z gamy durowej naturalnej przez obniżenie VI stopnia o pół tonu.",
+
+        badge:
+            "↓ VI",
+
+        change:
+            "<strong>VI stopień obniżamy o pół tonu.</strong> Między VI i VII stopniem powstaje sekunda zwiększona.",
+
+        changed:
+            [6],
+
+        offsets:
+            [0,2,4,5,7,8,11,12],
+
+        steps:
+            [
+                "ton",
+                "ton",
+                "półton",
+                "ton",
+                "półton",
+                "1½ tonu",
+                "półton"
+            ]
+
+    },
+
+
+    soft: {
+
+        name:
+            "miękka",
+
+        title:
+            "Gama durowa miękka",
+
+        description:
+            "Powstaje z gamy durowej naturalnej przez obniżenie VI i VII stopnia o pół tonu.",
+
+        badge:
+            "↓ VI, VII",
+
+        change:
+            "<strong>VI i VII stopień obniżamy o pół tonu.</strong>",
+
+        changed:
+            [6,7],
+
+        offsets:
+            [0,2,4,5,7,8,10,12],
+
+        steps:
+            [
+                "ton",
+                "ton",
+                "półton",
+                "ton",
+                "półton",
+                "ton",
+                "ton"
+            ]
+
+    }
 
 };
+
+
+/* =====================================================
+   GAMY NATURALNE
+===================================================== */
 
 const SCALES = {
 
-C:["C","D","E","F","G","A","H","C"],
-G:["G","A","H","C","D","E","Fis","G"],
-D:["D","E","Fis","G","A","H","Cis","D"],
-A:["A","H","Cis","D","E","Fis","Gis","A"],
-E:["E","Fis","Gis","A","H","Cis","Dis","E"],
-H:["H","Cis","Dis","E","Fis","Gis","Ais","H"],
-Fis:["Fis","Gis","Ais","H","Cis","Dis","Eis","Fis"],
-Cis:["Cis","Dis","Eis","Fis","Gis","Ais","His","Cis"],
+    C:
+        ["C","D","E","F","G","A","H","C"],
 
-F:["F","G","A","B","C","D","E","F"],
-B:["B","C","D","Es","F","G","A","B"],
-Es:["Es","F","G","As","B","C","D","Es"],
-As:["As","B","C","Des","Es","F","G","As"],
-Des:["Des","Es","F","Ges","As","B","C","Des"],
-Ges:["Ges","As","B","Ces","Des","Es","F","Ges"]
+    G:
+        ["G","A","H","C","D","E","Fis","G"],
+
+    D:
+        ["D","E","Fis","G","A","H","Cis","D"],
+
+    A:
+        ["A","H","Cis","D","E","Fis","Gis","A"],
+
+    E:
+        ["E","Fis","Gis","A","H","Cis","Dis","E"],
+
+    H:
+        ["H","Cis","Dis","E","Fis","Gis","Ais","H"],
+
+    Fis:
+        ["Fis","Gis","Ais","H","Cis","Dis","Eis","Fis"],
+
+    Cis:
+        ["Cis","Dis","Eis","Fis","Gis","Ais","His","Cis"],
+
+
+    F:
+        ["F","G","A","B","C","D","E","F"],
+
+    B:
+        ["B","C","D","Es","F","G","A","B"],
+
+    Es:
+        ["Es","F","G","As","B","C","D","Es"],
+
+    As:
+        ["As","B","C","Des","Es","F","G","As"],
+
+    Des:
+        ["Des","Es","F","Ges","As","B","C","Des"],
+
+    Ges:
+        ["Ges","As","B","Ces","Des","Es","F","Ges"]
 
 };
 
+
+/* =====================================================
+   ZNAKI PRZYKLUCZOWE DLA VEXFLOW
+===================================================== */
+
 const KEY_SIGNATURES = {
+
     C:"C",
     G:"G",
     D:"D",
     A:"A",
     E:"E",
+
     H:"B",
     Fis:"F#",
     Cis:"C#",
@@ -829,1164 +1327,2407 @@ const KEY_SIGNATURES = {
     As:"Ab",
     Des:"Db",
     Ges:"Gb"
+
 };
 
-const ROOT_MIDI = {
-    C:60,
-    Cis:61,
-    Des:61,
-    D:62,
-    Es:63,
-    E:64,
-    F:65,
-    Fis:66,
-    Ges:66,
-    G:67,
-    As:68,
-    A:69,
-    B:70,
-    H:71
-};
-
-let currentType = "natural";
-let practiceMode = "building";
 
 /* =====================================================
-   NUTY
+   OBNIŻANIE NUT
 ===================================================== */
 
 function lowerNote(note) {
 
-const map = {
-    C:"Ces",
-    Cis:"C",
-    D:"Des",
-    Dis:"D",
-    E:"Es",
-    Eis:"E",
-    F:"Fes",
-    Fis:"F",
-    G:"Ges",
-    Gis:"G",
-    A:"As",
-    Ais:"A",
-    H:"B",
-    His:"H",
-    B:"Bes",
-    Es:"Eses",
-    As:"Ases",
-    Des:"Deses",
-    Ges:"Geses",
-    Ces:"Ceses"
+    const map = {
+
+        C:"Ces",
+        Cis:"C",
+
+        D:"Des",
+        Dis:"D",
+
+        E:"Es",
+        Eis:"E",
+
+        F:"Fes",
+        Fis:"F",
+
+        G:"Ges",
+        Gis:"G",
+
+        A:"As",
+        Ais:"A",
+
+        H:"B",
+        His:"H",
+
+        B:"Bes",
+
+        Es:"Eses",
+        As:"Ases",
+        Des:"Deses",
+        Ges:"Geses",
+        Ces:"Ceses"
+
+    };
+
+
+    return map[note] || note;
+
+}
+
+
+/* =====================================================
+   POBRANIE GAMY
+===================================================== */
+
+let currentType =
+    "natural";
+
+
+let practiceMode =
+    "building";
+
+
+function getScale(type = currentType) {
+
+    const root =
+        document
+        .getElementById("root")
+        .value;
+
+
+    const scale =
+        [...SCALES[root]];
+
+
+    if(type === "harmonic") {
+
+        scale[5] =
+            lowerNote(scale[5]);
+
+    }
+
+
+    if(type === "soft") {
+
+        scale[5] =
+            lowerNote(scale[5]);
+
+        scale[6] =
+            lowerNote(scale[6]);
+
+    }
+
+
+    return scale;
+
+}
+
+
+/* =====================================================
+   POLSKA NUTA → VEXFLOW
+===================================================== */
+
+function parsePolishNote(note) {
+
+    const notes = {
+
+        C:
+            {letter:"c",accidental:null},
+
+        Cis:
+            {letter:"c",accidental:"#"},
+
+        Cisis:
+            {letter:"c",accidental:"##"},
+
+        Ces:
+            {letter:"c",accidental:"b"},
+
+        Ceses:
+            {letter:"c",accidental:"bb"},
+
+
+        D:
+            {letter:"d",accidental:null},
+
+        Dis:
+            {letter:"d",accidental:"#"},
+
+        Disis:
+            {letter:"d",accidental:"##"},
+
+        Des:
+            {letter:"d",accidental:"b"},
+
+        Deses:
+            {letter:"d",accidental:"bb"},
+
+
+        E:
+            {letter:"e",accidental:null},
+
+        Eis:
+            {letter:"e",accidental:"#"},
+
+        Eisis:
+            {letter:"e",accidental:"##"},
+
+        Es:
+            {letter:"e",accidental:"b"},
+
+        Eses:
+            {letter:"e",accidental:"bb"},
+
+
+        F:
+            {letter:"f",accidental:null},
+
+        Fis:
+            {letter:"f",accidental:"#"},
+
+        Fisis:
+            {letter:"f",accidental:"##"},
+
+        Fes:
+            {letter:"f",accidental:"b"},
+
+        Feses:
+            {letter:"f",accidental:"bb"},
+
+
+        G:
+            {letter:"g",accidental:null},
+
+        Gis:
+            {letter:"g",accidental:"#"},
+
+        Gisis:
+            {letter:"g",accidental:"##"},
+
+        Ges:
+            {letter:"g",accidental:"b"},
+
+        Geses:
+            {letter:"g",accidental:"bb"},
+
+
+        A:
+            {letter:"a",accidental:null},
+
+        Ais:
+            {letter:"a",accidental:"#"},
+
+        Aisis:
+            {letter:"a",accidental:"##"},
+
+        As:
+            {letter:"a",accidental:"b"},
+
+        Ases:
+            {letter:"a",accidental:"bb"},
+
+
+        H:
+            {letter:"b",accidental:null},
+
+        His:
+            {letter:"b",accidental:"#"},
+
+        Hisis:
+            {letter:"b",accidental:"##"},
+
+
+        B:
+            {letter:"b",accidental:"b"},
+
+        Bes:
+            {letter:"b",accidental:"bb"}
+
+    };
+
+
+    return notes[note] || {
+        letter:"c",
+        accidental:null
+    };
+
+}
+
+
+/* =====================================================
+   LITERA DIATONICZNA
+===================================================== */
+
+function baseLetter(note) {
+
+    if(note.startsWith("C"))
+        return "C";
+
+    if(note.startsWith("D"))
+        return "D";
+
+    if(note.startsWith("E"))
+        return "E";
+
+    if(note.startsWith("F"))
+        return "F";
+
+    if(note.startsWith("G"))
+        return "G";
+
+    if(note.startsWith("A"))
+        return "A";
+
+    if(note.startsWith("H"))
+        return "H";
+
+    if(note === "B" || note.startsWith("Bes"))
+        return "H";
+
+
+    return "C";
+
+}
+
+
+/* =====================================================
+   OKTAWY
+===================================================== */
+
+const DIATONIC = {
+    C:0,
+    D:1,
+    E:2,
+    F:3,
+    G:4,
+    A:5,
+    H:6
 };
 
-return map[note] || note;
-
-}
-
-function getScale(type=currentType) {
-
-const root = document.getElementById("root").value;
-
-const scale = [...SCALES[root]];
-
-if(type === "harmonic")
-    scale[5] = lowerNote(scale[5]);
-
-if(type === "soft") {
-    scale[5] = lowerNote(scale[5]);
-    scale[6] = lowerNote(scale[6]);
-}
-
-return scale;
-
-}
-
-/* =====================================================
-   VEXFLOW — KONWERSJA NUT
-===================================================== */
-
-function vexPitch(note, octave) {
-
-let letter = note[0].toLowerCase();
-
-return letter + "/" + octave;
-
-}
-
-function accidentalFromName(note) {
-
-if(note.includes("isis")) return "##";
-if(note.includes("eses")) return "bb";
-if(note.endsWith("is")) return "#";
-if(note.endsWith("es")) return "b";
-
-/* polskie B = B-flat */
-
-if(note === "B") return "b";
-
-return null;
-
-}
-
-function naturalLetter(note) {
-    return note[0].toUpperCase();
-}
-
-/* =====================================================
-   OKTAWY NA PIĘCIOLINII
-===================================================== */
 
 function scaleWithOctaves(scale) {
 
-let octave = 4;
-
-const result = [];
-
-let previousLetter = null;
-
-scale.forEach((note,index) => {
-
-    const letter = naturalLetter(note);
-
-    if(
-        index > 0 &&
-        previousLetter &&
-        "CDEFGABH".indexOf(letter) <
-        "CDEFGABH".indexOf(previousLetter)
-    ) {
-        octave++;
-    }
-
     /*
-       polskie H/B należą do pozycji B
+    Wybieramy wygodny rejestr dla klucza wiolinowego.
     */
 
-    if(letter === "H" || letter === "B") {
-        previousLetter = "H";
-    } else {
-        previousLetter = letter;
-    }
+    const first =
+        baseLetter(scale[0]);
 
-    result.push({
-        note,
-        octave
+
+    let octave =
+        first === "H"
+        ? 3
+        : 4;
+
+
+    /*
+    Dla A-dur zaczynamy A4.
+    Dla B-dur/Bb również w wygodnym miejscu.
+    */
+
+    if(first === "A")
+        octave = 4;
+
+
+    const result = [];
+
+
+    let previous =
+        DIATONIC[first];
+
+
+    scale.forEach((note,index) => {
+
+        const letter =
+            baseLetter(note);
+
+
+        const position =
+            DIATONIC[letter];
+
+
+        if(
+            index > 0 &&
+            position <= previous
+        ) {
+
+            octave++;
+
+        }
+
+
+        result.push({
+
+            note:
+                note,
+
+            octave:
+                octave
+
+        });
+
+
+        previous =
+            position;
+
     });
 
-});
 
-return result;
+    return result;
 
 }
 
+
 /* =====================================================
-   PIĘCIOLINIA
+   TWORZENIE NUTY VEXFLOW
+===================================================== */
+
+function makeVexNote(
+    VF,
+    writtenNote,
+    octave,
+    degree,
+    showChromatic
+) {
+
+    const parsed =
+        parsePolishNote(
+            writtenNote
+        );
+
+
+    /*
+    Do keys dajemy wyłącznie literę i oktawę.
+    Dzięki temu główka nuty ZAWSZE się renderuje.
+    */
+
+    const note =
+        new VF.StaveNote({
+
+            clef:
+                "treble",
+
+            keys:[
+                parsed.letter +
+                "/" +
+                octave
+            ],
+
+            duration:
+                "q"
+
+        });
+
+
+    /*
+    Znak chromatyczny dodajemy wyłącznie
+    dla stopni zmienionych przez odmianę.
+    */
+
+    if(showChromatic) {
+
+        if(parsed.accidental) {
+
+            note.addModifier(
+
+                new VF.Accidental(
+                    parsed.accidental
+                ),
+
+                0
+
+            );
+
+        }
+
+        else {
+
+            /*
+            Naturalny dźwięk może wymagać
+            skasowania znaku z tonacji.
+            */
+
+            note.addModifier(
+
+                new VF.Accidental("n"),
+
+                0
+
+            );
+
+        }
+
+    }
+
+
+    /*
+    Stopień pod nutą.
+    */
+
+    const annotation =
+        new VF.Annotation(
+            degree
+        );
+
+
+    annotation.setFont(
+        "Arial",
+        11,
+        "normal"
+    );
+
+
+    annotation.setVerticalJustification(
+        VF.Annotation.VerticalJustify.BOTTOM
+    );
+
+
+    note.addModifier(
+        annotation,
+        0
+    );
+
+
+    return note;
+
+}
+
+
+/* =====================================================
+   PIĘCIOLINIA GŁÓWNA
 ===================================================== */
 
 function renderStaff() {
 
-const container = document.getElementById("staff");
+    const container =
+        document
+        .getElementById("staff");
 
-container.innerHTML = "";
 
-const VF = Vex.Flow;
+    container.innerHTML =
+        "";
 
-const renderer = new VF.Renderer(
-    container,
-    VF.Renderer.Backends.SVG
-);
 
-renderer.resize(900,220);
+    const VF =
+        Vex.Flow;
 
-const context = renderer.getContext();
 
-const stave = new VF.Stave(20,45,850);
+    const renderer =
+        new VF.Renderer(
 
-stave.addClef("treble");
+            container,
 
-const root = document.getElementById("root").value;
+            VF.Renderer.Backends.SVG
 
-stave.addKeySignature(KEY_SIGNATURES[root]);
-
-stave.setContext(context).draw();
-
-const scale = getScale();
-
-const notesWithOctaves =
-    scaleWithOctaves(scale);
-
-const naturalScale =
-    SCALES[root];
-
-const staveNotes =
-    notesWithOctaves.map((item,index) => {
-
-        const key =
-            vexPitch(item.note,item.octave);
-
-        const note =
-            new VF.StaveNote({
-                clef:"treble",
-                keys:[key],
-                duration:"q"
-            });
-
-        /*
-        Znaki przy nutach pokazujemy tylko wtedy,
-        gdy odmiana zmienia stopień względem
-        naturalnej gamy tej tonacji.
-        */
-
-        if(TYPES[currentType].changed.includes(index+1)) {
-
-            const accidental =
-                accidentalFromName(item.note);
-
-            if(accidental) {
-                note.addModifier(
-                    new VF.Accidental(accidental),
-                    0
-                );
-            } else {
-                note.addModifier(
-                    new VF.Accidental("n"),
-                    0
-                );
-            }
-
-        }
-
-        /*
-        Stopień pod nutą
-        */
-
-        note.addModifier(
-            new VF.Annotation(
-                ["I","II","III","IV","V","VI","VII","VIII"][index]
-            )
-            .setVerticalJustification(
-                VF.Annotation.VerticalJustify.BOTTOM
-            ),
-            0
         );
 
-        return note;
 
-    });
+    renderer.resize(
+        920,
+        225
+    );
 
-const voice =
-    new VF.Voice({
-        num_beats:8,
-        beat_value:4
-    });
 
-voice.addTickables(staveNotes);
+    const context =
+        renderer.getContext();
 
-new VF.Formatter()
-    .joinVoices([voice])
-    .format([voice],700);
 
-voice.draw(context,stave);
+    const stave =
+        new VF.Stave(
+            20,
+            45,
+            870
+        );
 
-/*
-Klikalne nuty przez niewidoczne pola SVG
-*/
 
-setTimeout(() => {
+    stave.addClef(
+        "treble"
+    );
 
-    const svg =
-        container.querySelector("svg");
 
-    if(!svg) return;
+    const root =
+        document
+        .getElementById("root")
+        .value;
 
-    for(let i=0;i<8;i++) {
 
-        const rect =
-            document.createElementNS(
-                "http://www.w3.org/2000/svg",
-                "rect"
+    stave.addKeySignature(
+        KEY_SIGNATURES[root]
+    );
+
+
+    stave
+        .setContext(context)
+        .draw();
+
+
+    const scale =
+        getScale();
+
+
+    const withOctaves =
+        scaleWithOctaves(
+            scale
+        );
+
+
+    const degrees = [
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VI",
+        "VII",
+        "VIII"
+    ];
+
+
+    const staveNotes =
+        withOctaves.map(
+            (item,index) => {
+
+
+        const changed =
+            TYPES[currentType]
+            .changed
+            .includes(
+                index + 1
             );
 
-        rect.setAttribute("x",145 + i*82);
-        rect.setAttribute("y","55");
-        rect.setAttribute("width","65");
-        rect.setAttribute("height","100");
-        rect.setAttribute("fill","transparent");
-        rect.style.cursor = "pointer";
 
-        rect.addEventListener(
-            "click",
-            () => playSingleNote(i)
+        return makeVexNote(
+
+            VF,
+
+            item.note,
+
+            item.octave,
+
+            degrees[index],
+
+            changed
+
         );
 
-        svg.appendChild(rect);
+    });
 
-    }
 
-},50);
+    const voice =
+        new VF.Voice({
+
+            num_beats:
+                8,
+
+            beat_value:
+                4
+
+        });
+
+
+    voice.addTickables(
+        staveNotes
+    );
+
+
+    new VF.Formatter()
+        .joinVoices(
+            [voice]
+        )
+        .format(
+            [voice],
+            680
+        );
+
+
+    voice.draw(
+        context,
+        stave
+    );
+
+
+    /*
+    Klikalne obszary nut.
+    */
+
+    setTimeout(() => {
+
+        const svg =
+            container
+            .querySelector("svg");
+
+
+        if(!svg)
+            return;
+
+
+        staveNotes.forEach(
+            (note,index) => {
+
+
+            const x =
+                note.getAbsoluteX();
+
+
+            const hit =
+                document.createElementNS(
+
+                    "http://www.w3.org/2000/svg",
+
+                    "rect"
+
+                );
+
+
+            hit.setAttribute(
+                "x",
+                x - 25
+            );
+
+
+            hit.setAttribute(
+                "y",
+                "55"
+            );
+
+
+            hit.setAttribute(
+                "width",
+                "50"
+            );
+
+
+            hit.setAttribute(
+                "height",
+                "105"
+            );
+
+
+            hit.setAttribute(
+                "fill",
+                "transparent"
+            );
+
+
+            hit.style.cursor =
+                "pointer";
+
+
+            hit.addEventListener(
+
+                "click",
+
+                () =>
+                    playSingleNote(
+                        index
+                    )
+
+            );
+
+
+            svg.appendChild(
+                hit
+            );
+
+        });
+
+    },30);
 
 }
 
+
 /* =====================================================
-   RENDER
+   TEORIA
 ===================================================== */
 
 function renderTheory() {
 
-const data = TYPES[currentType];
+    const data =
+        TYPES[currentType];
 
-document.getElementById("theoryTitle").textContent =
-    data.title;
 
-document.getElementById("theoryDescription").textContent =
-    data.description;
+    document
+        .getElementById(
+            "theoryTitle"
+        )
+        .textContent =
+        data.title;
 
-document.getElementById("changeBadge").textContent =
-    data.badge;
 
-document.getElementById("changeDescription").innerHTML =
-    data.change;
+    document
+        .getElementById(
+            "theoryDescription"
+        )
+        .textContent =
+        data.description;
 
-for(let i=1;i<=8;i++)
-    document.getElementById("degree"+i)
-        .classList.remove("changed");
 
-data.changed.forEach(i =>
-    document.getElementById("degree"+i)
-        .classList.add("changed")
-);
+    document
+        .getElementById(
+            "changeBadge"
+        )
+        .textContent =
+        data.badge;
+
+
+    document
+        .getElementById(
+            "changeDescription"
+        )
+        .innerHTML =
+        data.change;
+
+
+    for(
+        let i=1;
+        i<=8;
+        i++
+    ) {
+
+        document
+            .getElementById(
+                "degree" + i
+            )
+            .classList
+            .remove(
+                "changed"
+            );
+
+    }
+
+
+    data.changed.forEach(
+        number => {
+
+        document
+            .getElementById(
+                "degree" + number
+            )
+            .classList
+            .add(
+                "changed"
+            );
+
+    });
 
 }
+
+
+/* =====================================================
+   RENDER CAŁOŚCI
+===================================================== */
 
 function renderEverything() {
 
-renderTheory();
+    renderTheory();
 
-const root =
-    document.getElementById("root").value;
 
-const data =
-    TYPES[currentType];
+    const root =
+        document
+        .getElementById("root")
+        .value;
 
-const scale =
-    getScale();
 
-document.getElementById("scaleName").textContent =
-    root + "-dur " + data.name;
+    const data =
+        TYPES[currentType];
 
-document.getElementById("scaleHint").textContent =
-    data.badge;
 
-renderStaff();
+    const scale =
+        getScale();
 
-const notesRow =
-    document.getElementById("notesRow");
 
-notesRow.innerHTML = "";
+    document
+        .getElementById(
+            "scaleName"
+        )
+        .textContent =
+        root +
+        "-dur " +
+        data.name;
 
-scale.forEach((note,index) => {
 
-const button =
-    document.createElement("button");
+    document
+        .getElementById(
+            "scaleHint"
+        )
+        .textContent =
+        data.badge;
 
-button.className = "note-button";
 
-if(data.changed.includes(index+1))
-    button.classList.add("changed");
+    /*
+    NAJWAŻNIEJSZE:
+    pięciolinia renderuje się przy KAŻDEJ odmianie.
+    */
 
-button.innerHTML =
-    note +
-    "<small>" +
-    ["I","II","III","IV","V","VI","VII","VIII"][index] +
-    "</small>";
+    renderStaff();
 
-button.onclick =
-    () => playSingleNote(index);
 
-notesRow.appendChild(button);
+    /*
+    Nazwy nut jako pomoc.
+    */
 
-});
+    const notesRow =
+        document
+        .getElementById(
+            "notesRow"
+        );
 
-const steps =
-    document.getElementById("stepsRow");
 
-steps.innerHTML = "";
+    notesRow.innerHTML =
+        "";
 
-data.steps.forEach(text => {
 
-const div =
-    document.createElement("div");
+    scale.forEach(
+        (note,index) => {
 
-div.className = "step";
-div.textContent = text;
 
-steps.appendChild(div);
+        const button =
+            document.createElement(
+                "button"
+            );
 
-});
+
+        button.className =
+            "note-button";
+
+
+        if(
+            data.changed
+            .includes(index+1)
+        ) {
+
+            button
+                .classList
+                .add(
+                    "changed"
+                );
+
+        }
+
+
+        button.innerHTML =
+            note +
+            "<small>" +
+            [
+                "I",
+                "II",
+                "III",
+                "IV",
+                "V",
+                "VI",
+                "VII",
+                "VIII"
+            ][index] +
+            "</small>";
+
+
+        button.onclick =
+            () =>
+                playSingleNote(
+                    index
+                );
+
+
+        notesRow.appendChild(
+            button
+        );
+
+    });
+
+
+    /*
+    Tony i półtony.
+    */
+
+    const stepsRow =
+        document
+        .getElementById(
+            "stepsRow"
+        );
+
+
+    stepsRow.innerHTML =
+        "";
+
+
+    data.steps.forEach(
+        text => {
+
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+
+        div.className =
+            "step";
+
+
+        div.textContent =
+            text;
+
+
+        stepsRow.appendChild(
+            div
+        );
+
+    });
 
 }
 
-function selectScaleType(type,button) {
 
-currentType = type;
+/* =====================================================
+   ZMIANA ODMIANY
+===================================================== */
 
-document.querySelectorAll(".scale-tab")
-    .forEach(x => x.classList.remove("active"));
+function selectScaleType(
+    type,
+    button
+) {
 
-button.classList.add("active");
+    currentType =
+        type;
 
-renderEverything();
+
+    document
+        .querySelectorAll(
+            ".scale-tab"
+        )
+        .forEach(
+            item =>
+                item.classList
+                .remove(
+                    "active"
+                )
+        );
+
+
+    button
+        .classList
+        .add(
+            "active"
+        );
+
+
+    renderEverything();
 
 }
+
 
 /* =====================================================
    FORTEPIAN
 ===================================================== */
 
-let piano = null;
-let pianoLoading = false;
+let piano =
+    null;
+
+
+let pianoLoading =
+    false;
+
 
 async function getPiano() {
 
-const status =
-    document.getElementById("audioStatus");
+    const status =
+        document
+        .getElementById(
+            "audioStatus"
+        );
 
-try {
 
-await Tone.start();
+    try {
 
-if(piano)
-    return piano;
+        await Tone.start();
 
-if(pianoLoading) {
 
-status.textContent =
-    "Ładowanie fortepianu…";
+        if(piano)
+            return piano;
 
-while(pianoLoading)
-    await new Promise(r => setTimeout(r,100));
 
-return piano;
+        if(pianoLoading) {
+
+            status.textContent =
+                "Ładowanie fortepianu…";
+
+
+            while(
+                pianoLoading
+            ) {
+
+                await new Promise(
+                    resolve =>
+                        setTimeout(
+                            resolve,
+                            100
+                        )
+                );
+
+            }
+
+
+            return piano;
+
+        }
+
+
+        pianoLoading =
+            true;
+
+
+        status.textContent =
+            "Ładowanie próbek fortepianu…";
+
+
+        piano =
+            new Tone.Sampler({
+
+                urls: {
+
+                    A0:"A0.mp3",
+                    C1:"C1.mp3",
+                    "D#1":"Ds1.mp3",
+                    "F#1":"Fs1.mp3",
+
+                    A1:"A1.mp3",
+                    C2:"C2.mp3",
+                    "D#2":"Ds2.mp3",
+                    "F#2":"Fs2.mp3",
+
+                    A2:"A2.mp3",
+                    C3:"C3.mp3",
+                    "D#3":"Ds3.mp3",
+                    "F#3":"Fs3.mp3",
+
+                    A3:"A3.mp3",
+                    C4:"C4.mp3",
+                    "D#4":"Ds4.mp3",
+                    "F#4":"Fs4.mp3",
+
+                    A4:"A4.mp3",
+                    C5:"C5.mp3",
+                    "D#5":"Ds5.mp3",
+                    "F#5":"Fs5.mp3",
+
+                    A5:"A5.mp3",
+                    C6:"C6.mp3"
+
+                },
+
+
+                baseUrl:
+                    "https://tonejs.github.io/audio/salamander/",
+
+
+                release:
+                    1.4
+
+            })
+            .toDestination();
+
+
+        await Tone.loaded();
+
+
+        pianoLoading =
+            false;
+
+
+        status.textContent =
+            "Fortepian gotowy ✓";
+
+
+        return piano;
+
+    }
+
+    catch(error) {
+
+        pianoLoading =
+            false;
+
+
+        piano =
+            null;
+
+
+        status.textContent =
+            "Nie udało się załadować fortepianu.";
+
+
+        console.error(
+            error
+        );
+
+
+        return null;
+
+    }
 
 }
 
-pianoLoading = true;
-
-status.textContent =
-    "Ładowanie próbek fortepianu…";
-
-piano =
-new Tone.Sampler({
-
-urls:{
-A0:"A0.mp3",
-C1:"C1.mp3",
-"D#1":"Ds1.mp3",
-"F#1":"Fs1.mp3",
-
-A1:"A1.mp3",
-C2:"C2.mp3",
-"D#2":"Ds2.mp3",
-"F#2":"Fs2.mp3",
-
-A2:"A2.mp3",
-C3:"C3.mp3",
-"D#3":"Ds3.mp3",
-"F#3":"Fs3.mp3",
-
-A3:"A3.mp3",
-C4:"C4.mp3",
-"D#4":"Ds4.mp3",
-"F#4":"Fs4.mp3",
-
-A4:"A4.mp3",
-C5:"C5.mp3",
-"D#5":"Ds5.mp3",
-"F#5":"Fs5.mp3",
-
-A5:"A5.mp3",
-C6:"C6.mp3"
-},
-
-baseUrl:
-"https://tonejs.github.io/audio/salamander/",
-
-release:1.4
-
-}).toDestination();
-
-await Tone.loaded();
-
-pianoLoading = false;
-
-status.textContent =
-    "Fortepian gotowy ✓";
-
-return piano;
-
-}
-
-catch(error) {
-
-pianoLoading = false;
-piano = null;
-
-status.textContent =
-    "Nie udało się załadować fortepianu.";
-
-console.error(error);
-
-return null;
-
-}
-
-}
 
 /* =====================================================
    MIDI
 ===================================================== */
 
+const ROOT_MIDI = {
+
+    C:60,
+    Cis:61,
+    Des:61,
+
+    D:62,
+    Es:63,
+
+    E:64,
+
+    F:65,
+
+    Fis:66,
+    Ges:66,
+
+    G:67,
+    As:68,
+
+    A:69,
+
+    B:70,
+
+    H:71
+
+};
+
+
 const PITCHES = [
-"C","C#","D","D#","E","F",
-"F#","G","G#","A","A#","B"
+
+    "C",
+    "C#",
+    "D",
+    "D#",
+    "E",
+    "F",
+    "F#",
+    "G",
+    "G#",
+    "A",
+    "A#",
+    "B"
+
 ];
 
-function midiName(midi) {
 
-return PITCHES[midi%12] +
-    (Math.floor(midi/12)-1);
+function midiName(
+    midi
+) {
 
-}
-
-function midiScale(type=currentType) {
-
-const root =
-    document.getElementById("root").value;
-
-const base =
-    ROOT_MIDI[root];
-
-return TYPES[type].offsets.map(
-    offset => base + offset
-);
+    return (
+        PITCHES[
+            midi % 12
+        ] +
+        (
+            Math.floor(
+                midi / 12
+            ) - 1
+        )
+    );
 
 }
 
-async function playSingleNote(index) {
 
-const instrument =
-    await getPiano();
+function midiScale(
+    type = currentType
+) {
 
-if(!instrument) return;
+    const root =
+        document
+        .getElementById("root")
+        .value;
 
-instrument.triggerAttackRelease(
-    midiName(midiScale()[index]),
-    .9
-);
 
-}
+    const base =
+        ROOT_MIDI[root];
 
-async function playScale(direction) {
 
-const instrument =
-    await getPiano();
-
-if(!instrument) return;
-
-let notes =
-    midiScale();
-
-if(direction === "down")
-    notes = [...notes].reverse();
-
-if(direction === "both")
-    notes = [
-        ...notes,
-        ...notes.slice(0,-1).reverse()
-    ];
-
-const start =
-    Tone.now()+.1;
-
-notes.forEach((midi,index) => {
-
-instrument.triggerAttackRelease(
-    midiName(midi),
-    .85,
-    start + index*.43,
-    .75
-);
-
-});
+    return TYPES[type]
+        .offsets
+        .map(
+            offset =>
+                base + offset
+        );
 
 }
+
 
 /* =====================================================
-   BUDOWANIE NA PIĘCIOLINII
+   AUDIO
 ===================================================== */
 
-let builderType = "harmonic";
-let builderRoot = "C";
+async function playSingleNote(
+    index
+) {
+
+    const instrument =
+        await getPiano();
+
+
+    if(!instrument)
+        return;
+
+
+    const midi =
+        midiScale()[index];
+
+
+    instrument
+        .triggerAttackRelease(
+
+            midiName(midi),
+
+            .9
+
+        );
+
+}
+
+
+async function playScale(
+    direction
+) {
+
+    const instrument =
+        await getPiano();
+
+
+    if(!instrument)
+        return;
+
+
+    let notes =
+        midiScale();
+
+
+    if(
+        direction ===
+        "down"
+    ) {
+
+        notes =
+            [...notes]
+            .reverse();
+
+    }
+
+
+    if(
+        direction ===
+        "both"
+    ) {
+
+        notes = [
+
+            ...notes,
+
+            ...notes
+                .slice(
+                    0,
+                    -1
+                )
+                .reverse()
+
+        ];
+
+    }
+
+
+    const start =
+        Tone.now() +
+        .1;
+
+
+    notes.forEach(
+        (midi,index) => {
+
+
+        instrument
+            .triggerAttackRelease(
+
+                midiName(midi),
+
+                .85,
+
+                start +
+                index * .43,
+
+                .75
+
+            );
+
+    });
+
+}
+
+
+/* =====================================================
+   BUDOWANIE
+===================================================== */
+
+let builderType =
+    "harmonic";
+
+
+let builderRoot =
+    "C";
+
 
 let builderChanges = {
+
     6:false,
     7:false
+
 };
+
+
+function random(
+    array
+) {
+
+    return array[
+        Math.floor(
+            Math.random() *
+            array.length
+        )
+    ];
+
+}
+
 
 function newBuilder() {
 
-const types =
-    ["natural","harmonic","soft"];
+    builderType =
+        random([
+            "natural",
+            "harmonic",
+            "soft"
+        ]);
 
-builderType =
-    types[
-        Math.floor(Math.random()*types.length)
-    ];
 
-const roots =
-    Object.keys(SCALES);
+    builderRoot =
+        random(
+            Object.keys(
+                SCALES
+            )
+        );
 
-builderRoot =
-    roots[
-        Math.floor(Math.random()*roots.length)
-    ];
 
-builderChanges = {
-    6:false,
-    7:false
-};
+    builderChanges = {
 
-document.getElementById("builderQuestion").textContent =
-    "Zbuduj: " +
-    builderRoot +
-    "-dur " +
-    TYPES[builderType].name;
+        6:false,
+        7:false
 
-renderBuilder();
+    };
+
+
+    document
+        .getElementById(
+            "builderQuestion"
+        )
+        .textContent =
+        "Zbuduj: " +
+        builderRoot +
+        "-dur " +
+        TYPES[builderType].name;
+
+
+    document
+        .getElementById(
+            "builderFeedback"
+        )
+        .textContent =
+        "";
+
+
+    renderBuilder();
 
 }
+
+
+/* =====================================================
+   PIĘCIOLINIA ĆWICZENIA
+===================================================== */
 
 function renderBuilder() {
 
-const container =
-    document.getElementById("builderStaff");
+    const container =
+        document
+        .getElementById(
+            "builderStaff"
+        );
 
-container.innerHTML = "";
 
-const VF = Vex.Flow;
+    container.innerHTML =
+        "";
 
-const renderer =
-    new VF.Renderer(
-        container,
-        VF.Renderer.Backends.SVG
+
+    const VF =
+        Vex.Flow;
+
+
+    const renderer =
+        new VF.Renderer(
+
+            container,
+
+            VF.Renderer.Backends.SVG
+
+        );
+
+
+    renderer.resize(
+        920,
+        220
     );
 
-renderer.resize(900,210);
 
-const context =
-    renderer.getContext();
+    const context =
+        renderer.getContext();
 
-const stave =
-    new VF.Stave(20,45,850);
 
-stave.addClef("treble");
-stave.addKeySignature(
-    KEY_SIGNATURES[builderRoot]
-);
+    const stave =
+        new VF.Stave(
+            20,
+            45,
+            870
+        );
 
-stave.setContext(context).draw();
 
-const scale =
-    [...SCALES[builderRoot]];
+    stave.addClef(
+        "treble"
+    );
 
-if(builderChanges[6])
-    scale[5] = lowerNote(scale[5]);
 
-if(builderChanges[7])
-    scale[6] = lowerNote(scale[6]);
+    stave.addKeySignature(
+        KEY_SIGNATURES[
+            builderRoot
+        ]
+    );
 
-const withOctaves =
-    scaleWithOctaves(scale);
 
-const notes =
-    withOctaves.map((item,index) => {
-
-const note =
-new VF.StaveNote({
-    clef:"treble",
-    keys:[
-        vexPitch(
-            item.note,
-            item.octave
+    stave
+        .setContext(
+            context
         )
-    ],
-    duration:"q"
-});
+        .draw();
 
-if(
-    index === 5 &&
-    builderChanges[6]
-) {
 
-const acc =
-    accidentalFromName(item.note);
+    const scale =
+        [
+            ...SCALES[
+                builderRoot
+            ]
+        ];
 
-note.addModifier(
-    new VF.Accidental(acc || "n"),
-    0
-);
+
+    if(
+        builderChanges[6]
+    ) {
+
+        scale[5] =
+            lowerNote(
+                scale[5]
+            );
+
+    }
+
+
+    if(
+        builderChanges[7]
+    ) {
+
+        scale[6] =
+            lowerNote(
+                scale[6]
+            );
+
+    }
+
+
+    const withOctaves =
+        scaleWithOctaves(
+            scale
+        );
+
+
+    const degrees = [
+
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VI",
+        "VII",
+        "VIII"
+
+    ];
+
+
+    const notes =
+        withOctaves.map(
+            (item,index) => {
+
+
+        const changed =
+            (
+                index === 5 &&
+                builderChanges[6]
+            )
+            ||
+            (
+                index === 6 &&
+                builderChanges[7]
+            );
+
+
+        return makeVexNote(
+
+            VF,
+
+            item.note,
+
+            item.octave,
+
+            degrees[index],
+
+            changed
+
+        );
+
+    });
+
+
+    const voice =
+        new VF.Voice({
+
+            num_beats:
+                8,
+
+            beat_value:
+                4
+
+        });
+
+
+    voice.addTickables(
+        notes
+    );
+
+
+    new VF.Formatter()
+        .joinVoices(
+            [voice]
+        )
+        .format(
+            [voice],
+            680
+        );
+
+
+    voice.draw(
+        context,
+        stave
+    );
+
+
+    /*
+    Przyciski zmian.
+    */
+
+    const controls =
+        document
+        .getElementById(
+            "builderControls"
+        );
+
+
+    controls.innerHTML =
+        "";
+
+
+    [
+        {
+            degree:6,
+            label:"↓ VI"
+        },
+
+        {
+            degree:7,
+            label:"↓ VII"
+        }
+
+    ].forEach(
+        item => {
+
+
+        const button =
+            document
+            .createElement(
+                "button"
+            );
+
+
+        button.className =
+            "builder-button";
+
+
+        if(
+            builderChanges[
+                item.degree
+            ]
+        ) {
+
+            button
+                .classList
+                .add(
+                    "active"
+                );
+
+        }
+
+
+        button.textContent =
+            item.label;
+
+
+        button.onclick =
+            () => {
+
+
+            builderChanges[
+                item.degree
+            ] =
+            !builderChanges[
+                item.degree
+            ];
+
+
+            renderBuilder();
+
+        };
+
+
+        controls.appendChild(
+            button
+        );
+
+    });
 
 }
 
-if(
-    index === 6 &&
-    builderChanges[7]
-) {
 
-const acc =
-    accidentalFromName(item.note);
-
-note.addModifier(
-    new VF.Accidental(acc || "n"),
-    0
-);
-
-}
-
-note.addModifier(
-new VF.Annotation(
-["I","II","III","IV","V","VI","VII","VIII"][index]
-)
-.setVerticalJustification(
-VF.Annotation.VerticalJustify.BOTTOM
-),
-0
-);
-
-return note;
-
-});
-
-const voice =
-new VF.Voice({
-num_beats:8,
-beat_value:4
-});
-
-voice.addTickables(notes);
-
-new VF.Formatter()
-.joinVoices([voice])
-.format([voice],700);
-
-voice.draw(context,stave);
-
-/* PRZYCISKI */
-
-const controls =
-    document.getElementById("builderControls");
-
-controls.innerHTML = "";
-
-[
-    {degree:6,label:"↓ VI"},
-    {degree:7,label:"↓ VII"}
-].forEach(item => {
-
-const button =
-    document.createElement("button");
-
-button.className =
-    "builder-button" +
-    (builderChanges[item.degree]
-        ? " active"
-        : "");
-
-button.textContent =
-    item.label;
-
-button.onclick = () => {
-
-builderChanges[item.degree] =
-    !builderChanges[item.degree];
-
-renderBuilder();
-
-};
-
-controls.appendChild(button);
-
-});
-
-}
+/* =====================================================
+   SPRAWDZENIE BUDOWANIA
+===================================================== */
 
 function checkBuilder() {
 
-const expected =
-    TYPES[builderType].changed;
+    const expected =
+        TYPES[
+            builderType
+        ].changed;
 
-const selected =
-    Object.keys(builderChanges)
-    .filter(key => builderChanges[key])
-    .map(Number);
 
-const correct =
-    expected.length === selected.length &&
-    expected.every(x =>
-        selected.includes(x)
-    );
+    const selected =
+        Object
+        .keys(
+            builderChanges
+        )
+        .filter(
+            key =>
+                builderChanges[key]
+        )
+        .map(
+            Number
+        );
 
-const feedback =
-    document.getElementById(
-        "builderFeedback"
-    );
 
-if(correct) {
+    const correct =
+        expected.length ===
+        selected.length
+        &&
+        expected.every(
+            item =>
+                selected.includes(
+                    item
+                )
+        );
 
-feedback.textContent =
-    "✓ Dobrze!";
 
-setTimeout(newBuilder,900);
+    const feedback =
+        document
+        .getElementById(
+            "builderFeedback"
+        );
 
-} else {
 
-let answer = "bez zmian";
+    if(correct) {
 
-if(expected.length)
-    answer =
-        expected
-        .map(x => "↓ " + roman(x))
-        .join(", ");
+        feedback.textContent =
+            "✓ Dobrze!";
 
-feedback.textContent =
-    "Jeszcze nie — poprawnie: " +
-    answer;
+
+        setTimeout(
+            newBuilder,
+            900
+        );
+
+    }
+
+    else {
+
+        let answer =
+            "bez zmian";
+
+
+        if(
+            expected.length
+        ) {
+
+            answer =
+                expected
+                .map(
+                    item =>
+                        "↓ " +
+                        roman(item)
+                )
+                .join(", ");
+
+        }
+
+
+        feedback.textContent =
+            "Jeszcze nie — poprawnie: " +
+            answer;
+
+    }
 
 }
 
+
+function roman(
+    number
+) {
+
+    return [
+
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VI",
+        "VII",
+        "VIII"
+
+    ][number - 1];
+
 }
 
-function roman(n) {
-
-return [
-"I","II","III","IV",
-"V","VI","VII","VIII"
-][n-1];
-
-}
 
 /* =====================================================
-   POZOSTAŁE ĆWICZENIA
+   PYTANIA
 ===================================================== */
 
 const QUESTIONS = [
 
-{
-q:"W gamie durowej harmonicznej obniżamy:",
-correct:"VI stopień",
-answers:[
-"VI stopień",
-"VII stopień",
-"VI i VII stopień",
-"III stopień"
-]
-},
+    {
 
-{
-q:"W gamie durowej miękkiej obniżamy:",
-correct:"VI i VII stopień",
-answers:[
-"VI i VII stopień",
-"tylko VI",
-"tylko VII",
-"III i VI"
-]
-},
+        q:
+            "W gamie durowej harmonicznej obniżamy:",
 
-{
-q:"Półtony w gamie durowej naturalnej występują:",
-correct:"III–IV i VII–VIII",
-answers:[
-"III–IV i VII–VIII",
-"II–III i VI–VII",
-"III–IV i VI–VII",
-"II–III i VII–VIII"
-]
-}
+        correct:
+            "VI stopień",
+
+        answers:[
+            "VI stopień",
+            "VII stopień",
+            "VI i VII stopień",
+            "III stopień"
+        ]
+
+    },
+
+
+    {
+
+        q:
+            "W gamie durowej miękkiej obniżamy:",
+
+        correct:
+            "VI i VII stopień",
+
+        answers:[
+            "VI i VII stopień",
+            "tylko VI stopień",
+            "tylko VII stopień",
+            "III i VI stopień"
+        ]
+
+    },
+
+
+    {
+
+        q:
+            "Półtony w gamie durowej naturalnej występują:",
+
+        correct:
+            "III–IV i VII–VIII",
+
+        answers:[
+            "III–IV i VII–VIII",
+            "II–III i VI–VII",
+            "III–IV i VI–VII",
+            "II–III i VII–VIII"
+        ]
+
+    }
 
 ];
 
-function setPractice(mode,button) {
 
-practiceMode = mode;
+function shuffle(
+    array
+) {
 
-document.querySelectorAll(
-".practice-button"
-).forEach(x =>
-x.classList.remove("active")
-);
-
-button.classList.add("active");
-
-if(mode === "building") {
-
-document.getElementById(
-"builderArea"
-).classList.remove("hidden");
-
-document.getElementById(
-"normalExercise"
-).classList.add("hidden");
-
-newBuilder();
-
-} else {
-
-document.getElementById(
-"builderArea"
-).classList.add("hidden");
-
-document.getElementById(
-"normalExercise"
-).classList.remove("hidden");
-
-newQuestion();
+    return [
+        ...array
+    ].sort(
+        () =>
+            Math.random() -
+            .5
+    );
 
 }
 
+
+/* =====================================================
+   WYBÓR ĆWICZENIA
+===================================================== */
+
+function setPractice(
+    mode,
+    button
+) {
+
+    practiceMode =
+        mode;
+
+
+    document
+        .querySelectorAll(
+            ".practice-button"
+        )
+        .forEach(
+            item =>
+                item.classList
+                .remove(
+                    "active"
+                )
+        );
+
+
+    button
+        .classList
+        .add(
+            "active"
+        );
+
+
+    if(
+        mode ===
+        "building"
+    ) {
+
+        document
+            .getElementById(
+                "builderArea"
+            )
+            .classList
+            .remove(
+                "hidden"
+            );
+
+
+        document
+            .getElementById(
+                "normalExercise"
+            )
+            .classList
+            .add(
+                "hidden"
+            );
+
+
+        newBuilder();
+
+    }
+
+    else {
+
+        document
+            .getElementById(
+                "builderArea"
+            )
+            .classList
+            .add(
+                "hidden"
+            );
+
+
+        document
+            .getElementById(
+                "normalExercise"
+            )
+            .classList
+            .remove(
+                "hidden"
+            );
+
+
+        newQuestion();
+
+    }
+
 }
 
-function random(array) {
-return array[
-Math.floor(Math.random()*array.length)
-];
-}
 
-function shuffle(array) {
-return [...array].sort(
-() => Math.random()-.5
-);
-}
+/* =====================================================
+   NOWE PYTANIE
+===================================================== */
 
 async function newQuestion() {
 
-document.getElementById("feedback")
-.textContent = "";
+    document
+        .getElementById(
+            "feedback"
+        )
+        .textContent =
+        "";
 
-let mode =
-practiceMode;
 
-if(mode === "mix")
-mode =
-random([
-"recognition",
-"ear"
-]);
+    let mode =
+        practiceMode;
 
-if(mode === "ear") {
-await earQuestion();
-return;
-}
 
-const item =
-random(QUESTIONS);
+    if(
+        mode ===
+        "mix"
+    ) {
 
-showQuestion(
-item.q,
-item.correct,
-item.answers
-);
+        mode =
+            random([
+                "recognition",
+                "ear"
+            ]);
 
-}
+    }
 
-function showQuestion(q,correct,options) {
 
-document.getElementById("question")
-.textContent = q;
+    if(
+        mode ===
+        "ear"
+    ) {
 
-const container =
-document.getElementById("answers");
+        await earQuestion();
 
-container.innerHTML = "";
+        return;
 
-shuffle(options).forEach(option => {
+    }
 
-const button =
-document.createElement("button");
 
-button.className =
-"answer-button";
+    const item =
+        random(
+            QUESTIONS
+        );
 
-button.textContent =
-option;
 
-button.onclick = () =>
-checkAnswer(
-button,
-option,
-correct
-);
+    showQuestion(
 
-container.appendChild(button);
+        item.q,
 
-});
+        item.correct,
+
+        item.answers
+
+    );
 
 }
 
-function checkAnswer(button,answer,correct) {
 
-const buttons =
-document.querySelectorAll(
-"#answers .answer-button"
-);
+/* =====================================================
+   WYŚWIETLENIE PYTANIA
+===================================================== */
 
-buttons.forEach(x => {
+function showQuestion(
+    question,
+    correct,
+    options
+) {
 
-if(
-x.textContent !==
-"▶ Posłuchaj ponownie"
-)
-x.disabled = true;
+    document
+        .getElementById(
+            "question"
+        )
+        .textContent =
+        question;
 
-});
 
-if(answer === correct) {
+    const answers =
+        document
+        .getElementById(
+            "answers"
+        );
 
-button.classList.add("correct");
 
-document.getElementById(
-"feedback"
-).textContent =
-"✓ Dobrze!";
+    answers.innerHTML =
+        "";
 
-} else {
 
-button.classList.add("wrong");
+    shuffle(
+        options
+    )
+    .forEach(
+        option => {
 
-buttons.forEach(x => {
 
-if(x.textContent === correct)
-x.classList.add("correct");
+        const button =
+            document
+            .createElement(
+                "button"
+            );
 
-});
 
-document.getElementById(
-"feedback"
-).textContent =
-"Poprawna odpowiedź: " +
-correct;
+        button.className =
+            "answer-button";
+
+
+        button.textContent =
+            option;
+
+
+        button.onclick =
+            () =>
+                checkAnswer(
+
+                    button,
+
+                    option,
+
+                    correct
+
+                );
+
+
+        answers.appendChild(
+            button
+        );
+
+    });
 
 }
 
+
+/* =====================================================
+   SPRAWDZENIE
+===================================================== */
+
+function checkAnswer(
+    button,
+    answer,
+    correct
+) {
+
+    const buttons =
+        document
+        .querySelectorAll(
+            "#answers .answer-button"
+        );
+
+
+    buttons.forEach(
+        item => {
+
+
+        if(
+            item.textContent !==
+            "▶ Posłuchaj ponownie"
+        ) {
+
+            item.disabled =
+                true;
+
+        }
+
+    });
+
+
+    if(
+        answer ===
+        correct
+    ) {
+
+        button
+            .classList
+            .add(
+                "correct"
+            );
+
+
+        document
+            .getElementById(
+                "feedback"
+            )
+            .textContent =
+            "✓ Dobrze!";
+
+    }
+
+    else {
+
+        button
+            .classList
+            .add(
+                "wrong"
+            );
+
+
+        buttons.forEach(
+            item => {
+
+
+            if(
+                item.textContent ===
+                correct
+            ) {
+
+                item
+                    .classList
+                    .add(
+                        "correct"
+                    );
+
+            }
+
+        });
+
+
+        document
+            .getElementById(
+                "feedback"
+            )
+            .textContent =
+            "Poprawna odpowiedź: " +
+            correct;
+
+    }
+
 }
+
 
 /* =====================================================
    SŁUCH
 ===================================================== */
 
-let earType = null;
+let earType =
+    null;
+
 
 async function earQuestion() {
 
-earType =
-random([
-"natural",
-"harmonic",
-"soft"
-]);
+    earType =
+        random([
+            "natural",
+            "harmonic",
+            "soft"
+        ]);
 
-document.getElementById("question")
-.textContent =
-"Posłuchaj gamy. Która to odmiana?";
 
-const container =
-document.getElementById("answers");
+    document
+        .getElementById(
+            "question"
+        )
+        .textContent =
+        "Posłuchaj gamy. Która to odmiana?";
 
-container.innerHTML = "";
 
-const replay =
-document.createElement("button");
+    const answers =
+        document
+        .getElementById(
+            "answers"
+        );
 
-replay.className =
-"answer-button";
 
-replay.textContent =
-"▶ Posłuchaj ponownie";
+    answers.innerHTML =
+        "";
 
-replay.onclick =
-() => playEar();
 
-container.appendChild(replay);
+    const replay =
+        document
+        .createElement(
+            "button"
+        );
 
-[
-"naturalna",
-"harmoniczna",
-"miękka"
-].forEach(label => {
 
-const button =
-document.createElement("button");
+    replay.className =
+        "answer-button";
 
-button.className =
-"answer-button";
 
-button.textContent =
-label;
+    replay.textContent =
+        "▶ Posłuchaj ponownie";
 
-button.onclick = () =>
-checkAnswer(
-button,
-label,
-TYPES[earType].name
-);
 
-container.appendChild(button);
+    replay.onclick =
+        () =>
+            playEar();
 
-});
 
-await playEar();
+    answers.appendChild(
+        replay
+    );
+
+
+    [
+        "naturalna",
+        "harmoniczna",
+        "miękka"
+
+    ].forEach(
+        label => {
+
+
+        const button =
+            document
+            .createElement(
+                "button"
+            );
+
+
+        button.className =
+            "answer-button";
+
+
+        button.textContent =
+            label;
+
+
+        button.onclick =
+            () =>
+                checkAnswer(
+
+                    button,
+
+                    label,
+
+                    TYPES[
+                        earType
+                    ].name
+
+                );
+
+
+        answers.appendChild(
+            button
+        );
+
+    });
+
+
+    await playEar();
 
 }
+
+
+/* =====================================================
+   ODSŁUCH PYTANIA
+===================================================== */
 
 async function playEar() {
 
-const instrument =
-await getPiano();
+    const instrument =
+        await getPiano();
 
-if(!instrument) return;
 
-const root =
-document.getElementById("root").value;
+    if(
+        !instrument
+    )
+        return;
 
-const base =
-ROOT_MIDI[root];
 
-const notes =
-TYPES[earType]
-.offsets
-.map(x => base+x);
+    const root =
+        document
+        .getElementById(
+            "root"
+        )
+        .value;
 
-const start =
-Tone.now()+.1;
 
-notes.forEach((midi,index) => {
+    const base =
+        ROOT_MIDI[
+            root
+        ];
 
-instrument.triggerAttackRelease(
-midiName(midi),
-.85,
-start + index*.43,
-.75
-);
 
-});
+    const notes =
+        TYPES[
+            earType
+        ]
+        .offsets
+        .map(
+            offset =>
+                base +
+                offset
+        );
+
+
+    const start =
+        Tone.now() +
+        .1;
+
+
+    notes.forEach(
+        (midi,index) => {
+
+
+        instrument
+            .triggerAttackRelease(
+
+                midiName(
+                    midi
+                ),
+
+                .85,
+
+                start +
+                index * .43,
+
+                .75
+
+            );
+
+    });
 
 }
+
 
 /* =====================================================
    START
 ===================================================== */
 
 renderEverything();
+
 newBuilder();
 
 </script>
