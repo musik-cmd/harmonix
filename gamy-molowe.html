@@ -2,6 +2,7 @@
 <html lang="pl">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,161 +19,153 @@
 }
 
 body {
-    margin: 0 !important;
-    background: #f7f5ff !important;
-    color: #252238 !important;
-    font-family: Arial, sans-serif !important;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f5ff;
+    color: #252238;
 }
 
-.scale-page {
+.page {
     min-height: 100vh;
     padding: 40px 20px 80px;
 }
 
-.scale-container {
+.container {
     width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
+    max-width: 1050px;
+    margin: auto;
 }
 
-/* POWRÓT */
-
-.back-button {
+.back {
     display: inline-block;
-    margin-bottom: 30px;
-    color: #777187;
+    margin-bottom: 28px;
     text-decoration: none;
-    font-size: 14px;
+    color: #777187;
     font-weight: 700;
+    font-size: 14px;
 }
 
-.back-button:hover {
-    color: #252238;
-}
-
-/* HEADER */
-
-.page-header {
+.header {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 34px;
 }
 
-.page-title {
+.title {
     margin: 0;
     font-size: 52px;
     font-weight: 800;
     letter-spacing: -2px;
 }
 
-.page-subtitle {
-    max-width: 650px;
+.subtitle {
     margin: 12px auto 0;
+    max-width: 680px;
     color: #6b6680;
     font-size: 18px;
     line-height: 1.5;
 }
 
-/* ZAKŁADKI */
+/* =========================
+   ODMIANY
+========================= */
 
-.scale-tabs {
+.tabs {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(4,1fr);
+    gap: 12px;
     margin-bottom: 20px;
 }
 
-.scale-tab {
+.tab {
     padding: 17px 10px;
-    background: #fff !important;
-    color: #777187 !important;
-    border: 1px solid #e3e0eb !important;
+    border: 1px solid #e3e0eb;
     border-radius: 15px;
-    font-size: 12px;
+    background: white;
+    color: #777187;
     font-weight: 800;
     cursor: pointer;
     transition: .2s;
 }
 
-.scale-tab:hover {
+.tab:hover {
     transform: translateY(-2px);
 }
 
-.scale-tab.active {
-    background: #ece9f5 !important;
-    color: #252238 !important;
-    border-color: #d4cfe2 !important;
+.tab.active {
+    background: #ece9f5;
+    color: #252238;
+    border-color: #d4cfe2;
 }
 
-/* KARTY */
+/* =========================
+   KARTY
+========================= */
 
-.section-card {
+.card {
     margin-bottom: 18px;
     padding: 28px;
-    background: #fff !important;
-    border: 1px solid rgba(70,60,100,.08) !important;
+    background: white;
     border-radius: 22px;
     box-shadow: 0 8px 30px rgba(40,30,80,.08);
 }
 
-.section-card h2 {
+.card h2 {
     margin: 0 0 8px;
-    color: #252238 !important;
     font-size: 22px;
 }
 
-.section-description {
+.description {
     margin: 0;
-    color: #777187 !important;
+    color: #777187;
     font-size: 13px;
     line-height: 1.6;
 }
 
-/* ZMIANY */
+/* =========================
+   TEORIA
+========================= */
 
-.change-row {
+.change {
     display: flex;
     align-items: center;
     gap: 15px;
     margin-top: 20px;
     padding: 16px;
-    background: #f7f5ff !important;
+    background: #f7f5ff;
     border-radius: 14px;
 }
 
 .change-badge {
     min-width: 100px;
-    padding: 12px 9px;
-    background: #ece9f5 !important;
-    border-radius: 10px;
+    padding: 12px;
     text-align: center;
-    font-size: 16px;
+    background: #ece9f5;
+    border-radius: 10px;
     font-weight: 800;
 }
 
-.change-description {
+.change-text {
     color: #777187;
     font-size: 12px;
     line-height: 1.5;
 }
 
-.change-description strong {
+.change-text strong {
     color: #252238;
 }
 
-/* STOPNIE */
-
-.degree-grid {
+.degrees {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(8,1fr);
     gap: 7px;
     margin-top: 20px;
 }
 
 .degree {
     padding: 12px 5px;
+    text-align: center;
     background: #f7f5ff;
     border-radius: 10px;
-    text-align: center;
     color: #777187;
     font-size: 11px;
     font-weight: 800;
@@ -190,90 +183,147 @@ body {
     font-weight: 500;
 }
 
-/* KONTROLKI */
+/* =========================
+   WYBÓR TONACJI
+========================= */
 
-.scale-controls {
+.controls {
     margin-top: 18px;
 }
 
-.scale-controls select {
-    padding: 11px 14px;
-    background: #faf9ff;
-    color: #252238;
+.controls select {
+    padding: 11px 15px;
     border: 1px solid #dedbea;
     border-radius: 11px;
-    font-family: inherit;
-    font-size: 12px;
+    background: #faf9ff;
+    color: #252238;
     font-weight: 700;
 }
 
-/* WYNIK */
+/* =========================
+   ZAPIS NUTOWY
+========================= */
 
-.scale-display {
-    margin-top: 22px;
-    padding: 22px;
+.music-box {
+    margin-top: 20px;
+    padding: 22px 18px 20px;
     background: #faf9ff;
-    border-radius: 17px;
-    text-align: center;
+    border: 1px solid #ece9f2;
+    border-radius: 18px;
 }
 
 .scale-name {
+    text-align: center;
     font-size: 24px;
     font-weight: 800;
 }
 
-.scale-hint {
-    margin-top: 6px;
+.scale-info {
+    margin-top: 5px;
+    text-align: center;
     color: #9993a6;
     font-size: 10px;
     font-weight: 700;
 }
 
-.notes-row {
+.staff-scroll {
+    overflow-x: auto;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.staff {
+    display: block;
+    width: 100%;
+    min-width: 800px;
+    height: 245px;
+}
+
+/* =========================
+   AUDIO
+========================= */
+
+.listen {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.listen button {
+    padding: 10px 14px;
+    border: 1px solid #dedbea;
+    border-radius: 10px;
+    background: white;
+    color: #514b68;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.listen button:hover {
+    background: #f1eff8;
+}
+
+.status {
+    min-height: 18px;
+    margin-top: 9px;
+    text-align: center;
+    color: #9993a6;
+    font-size: 10px;
+}
+
+/* =========================
+   NAZWY DŹWIĘKÓW
+========================= */
+
+.helper-title {
+    margin-top: 9px;
+    text-align: center;
+    color: #9993a6;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+}
+
+.note-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 7px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .note-button {
     min-width: 55px;
-    padding: 11px 8px;
-    background: #fff !important;
-    color: #252238 !important;
-    border: 1px solid #e5e2ec !important;
+    padding: 10px 8px;
+    border: 1px solid #e5e2ec;
     border-radius: 10px;
+    background: white;
+    color: #252238;
     font-size: 14px;
     font-weight: 800;
     cursor: pointer;
 }
 
-.note-button:hover {
-    background: #f3f1f9 !important;
-    transform: translateY(-2px);
-}
-
 .note-button.changed {
-    background: #e8e4f2 !important;
-    border-color: #d6d0e4 !important;
+    background: #e8e4f2;
 }
 
 .note-button small {
     display: block;
-    margin-top: 4px;
+    margin-top: 3px;
     color: #aaa5b5;
     font-size: 8px;
 }
 
-/* ODLEGŁOŚCI */
-
-.steps-row {
+.steps {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 5px;
-    margin-top: 14px;
+    margin-top: 13px;
 }
 
 .step {
@@ -285,49 +335,19 @@ body {
     font-weight: 800;
 }
 
-/* AUDIO */
+/* =========================
+   PORÓWNANIE
+========================= */
 
-.listen-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-}
-
-.listen-button {
-    padding: 10px 14px;
-    background: #fff !important;
-    color: #514b68 !important;
-    border: 1px solid #dedbea !important;
-    border-radius: 10px;
-    font-size: 11px;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.listen-button:hover {
-    background: #f1eff8 !important;
-}
-
-.audio-status {
-    min-height: 18px;
-    margin-top: 12px;
-    color: #9993a6;
-    font-size: 10px;
-}
-
-/* PORÓWNANIE */
-
-.compare-grid {
+.compare {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 9px;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
     margin-top: 18px;
 }
 
 .compare-box {
-    padding: 17px;
+    padding: 18px;
     background: #faf9ff;
     border: 1px solid #ece9f2;
     border-radius: 14px;
@@ -336,22 +356,18 @@ body {
 .compare-box strong {
     display: block;
     margin-bottom: 7px;
-    color: #252238;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .compare-box span {
     color: #777187;
-    font-size: 10px;
+    font-size: 11px;
     line-height: 1.5;
 }
 
-/* ĆWICZENIA */
-
-.practice-section {
-    background: #fff !important;
-    color: #252238 !important;
-}
+/* =========================
+   ĆWICZENIA
+========================= */
 
 .practice-menu {
     display: flex;
@@ -360,117 +376,153 @@ body {
     margin-top: 18px;
 }
 
-.practice-button {
+.practice-menu button {
     padding: 10px 13px;
-    background: #faf9ff !important;
-    color: #777187 !important;
-    border: 1px solid #dedbea !important;
+    border: 1px solid #dedbea;
     border-radius: 10px;
-    font-size: 11px;
+    background: #faf9ff;
+    color: #777187;
     font-weight: 800;
     cursor: pointer;
 }
 
-.practice-button.active {
-    background: #ece9f5 !important;
-    color: #252238 !important;
+.practice-menu button.active {
+    background: #ece9f5;
+    color: #252238;
 }
 
-.exercise-box {
+.exercise {
     margin-top: 18px;
     padding: 22px;
-    background: #faf9ff !important;
+    background: #faf9ff;
     border: 1px solid #ece9f2;
     border-radius: 16px;
-    text-align: center;
 }
 
-.exercise-question {
-    color: #252238 !important;
+.exercise-title {
+    text-align: center;
     font-size: 17px;
     font-weight: 800;
-    line-height: 1.45;
+}
+
+.exercise-subtitle {
+    margin-top: 5px;
+    text-align: center;
+    color: #777187;
+    font-size: 11px;
+}
+
+.builder-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.builder-buttons button {
+    padding: 10px 14px;
+    border: 1px solid #dedbea;
+    border-radius: 9px;
+    background: white;
+    color: #514b68;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.builder-buttons button.active {
+    background: #e5e0f1;
+    color: #252238;
+}
+
+.check {
+    display: block;
+    margin: 14px auto 0;
+    padding: 10px 18px;
+    border: 0;
+    border-radius: 10px;
+    background: #252238;
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
 }
 
 .answers {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 8px;
     margin-top: 17px;
 }
 
-.answer-button {
+.answer {
     padding: 11px;
-    background: #fff !important;
-    color: #514b68 !important;
-    border: 1px solid #dedbea !important;
+    border: 1px solid #dedbea;
     border-radius: 10px;
+    background: white;
+    color: #514b68;
     font-weight: 700;
     cursor: pointer;
 }
 
-.answer-button:hover {
-    background: #f1eff8 !important;
+.answer.correct {
+    background: #edf7ef;
+    border-color: #b8d9bf;
+    color: #315c39;
 }
 
-.answer-button.correct {
-    background: #edf7ef !important;
-    border-color: #b8d9bf !important;
-    color: #315c39 !important;
-}
-
-.answer-button.wrong {
-    background: #faeeee !important;
-    border-color: #e0bebe !important;
-    color: #7b4242 !important;
+.answer.wrong {
+    background: #faeeee;
+    border-color: #e0bebe;
+    color: #7b4242;
 }
 
 .feedback {
-    min-height: 23px;
-    margin-top: 14px;
+    min-height: 22px;
+    margin-top: 13px;
+    text-align: center;
     color: #777187;
     font-size: 12px;
     font-weight: 800;
 }
 
-.next-button {
-    margin-top: 8px;
+.next {
+    display: block;
+    margin: 8px auto 0;
     padding: 10px 15px;
-    background: #ece9f5 !important;
-    color: #252238 !important;
-    border: 1px solid #d9d4e5 !important;
+    border: 1px solid #d9d4e5;
     border-radius: 10px;
+    background: #ece9f5;
+    color: #252238;
     font-weight: 800;
     cursor: pointer;
 }
 
-/* MOBILE */
+.hidden {
+    display: none !important;
+}
 
-@media(max-width: 750px) {
+@media(max-width:800px) {
 
-    .page-title {
+    .title {
         font-size: 42px;
     }
 
-    .scale-tabs {
+    .tabs {
         grid-template-columns: repeat(2,1fr);
     }
 
-    .degree-grid {
+    .degrees {
         grid-template-columns: repeat(4,1fr);
     }
 
-    .compare-grid {
-        grid-template-columns: 1fr;
+    .compare {
+        grid-template-columns: repeat(2,1fr);
     }
 
     .answers {
         grid-template-columns: 1fr;
     }
 
-    .section-card {
-        padding: 22px;
-    }
 }
 
 </style>
@@ -479,250 +531,286 @@ body {
 
 <body>
 
-<main class="scale-page">
+<main class="page">
 
-<div class="scale-container">
+<div class="container">
 
-<a href="tonacje.html" class="back-button">
+<a href="tonacje.html" class="back">
     ← Gamy i tonacje
 </a>
 
-<header class="page-header">
+<header class="header">
 
-    <h1 class="page-title">
-        Gamy molowe
-    </h1>
+<h1 class="title">
+    Gamy molowe
+</h1>
 
-    <p class="page-subtitle">
-        Naturalna (eolska), harmoniczna, dorycka i melodyczna.
-        Porównaj ich budowę, posłuchaj i przećwicz.
-    </p>
+<p class="subtitle">
+    Naturalna (eolska), harmoniczna, dorycka i melodyczna —
+    zapisuj, buduj, porównuj i rozpoznawaj ze słuchu.
+</p>
 
 </header>
 
 
-<!-- ODMIANY -->
+<div class="tabs">
 
-<div class="scale-tabs">
+<button
+    class="tab active"
+    onclick="changeType('natural',this)">
+    Naturalna (eolska)
+</button>
 
-    <button class="scale-tab active"
-            onclick="selectType('natural',this)">
-        Naturalna (eolska)
-    </button>
+<button
+    class="tab"
+    onclick="changeType('harmonic',this)">
+    Harmoniczna
+</button>
 
-    <button class="scale-tab"
-            onclick="selectType('harmonic',this)">
-        Harmoniczna
-    </button>
+<button
+    class="tab"
+    onclick="changeType('dorian',this)">
+    Dorycka
+</button>
 
-    <button class="scale-tab"
-            onclick="selectType('dorian',this)">
-        Dorycka
-    </button>
-
-    <button class="scale-tab"
-            onclick="selectType('melodic',this)">
-        Melodyczna
-    </button>
+<button
+    class="tab"
+    onclick="changeType('melodic',this)">
+    Melodyczna
+</button>
 
 </div>
 
 
 <!-- TEORIA -->
 
-<section class="section-card">
+<section class="card">
 
-    <h2 id="theoryTitle"></h2>
+<h2 id="theoryTitle"></h2>
 
-    <p class="section-description"
-       id="theoryDescription"></p>
+<p
+    class="description"
+    id="theoryDescription">
+</p>
+
+<div class="change">
+
+<div
+    class="change-badge"
+    id="changeBadge">
+</div>
+
+<div
+    class="change-text"
+    id="changeText">
+</div>
+
+</div>
 
 
-    <div class="change-row">
+<div class="degrees">
 
-        <div class="change-badge"
-             id="changeBadge"></div>
+<div class="degree" id="degree1">
+I
+<small>tonika</small>
+</div>
 
-        <div class="change-description"
-             id="changeDescription"></div>
+<div class="degree" id="degree2">
+II
+<small>stopień</small>
+</div>
 
-    </div>
+<div class="degree" id="degree3">
+III
+<small>stopień</small>
+</div>
 
+<div class="degree" id="degree4">
+IV
+<small>subdominanta</small>
+</div>
 
-    <div class="degree-grid">
+<div class="degree" id="degree5">
+V
+<small>dominanta</small>
+</div>
 
-        <div class="degree" id="degree1">
-            I
-            <small>tonika</small>
-        </div>
+<div class="degree" id="degree6">
+VI
+<small>stopień</small>
+</div>
 
-        <div class="degree" id="degree2">
-            II
-            <small>stopień</small>
-        </div>
+<div class="degree" id="degree7">
+VII
+<small>stopień</small>
+</div>
 
-        <div class="degree" id="degree3">
-            III
-            <small>stopień</small>
-        </div>
+<div class="degree" id="degree8">
+VIII
+<small>tonika</small>
+</div>
 
-        <div class="degree" id="degree4">
-            IV
-            <small>subdominanta</small>
-        </div>
-
-        <div class="degree" id="degree5">
-            V
-            <small>dominanta</small>
-        </div>
-
-        <div class="degree" id="degree6">
-            VI
-            <small>stopień</small>
-        </div>
-
-        <div class="degree" id="degree7">
-            VII
-            <small>stopień</small>
-        </div>
-
-        <div class="degree" id="degree8">
-            VIII
-            <small>tonika</small>
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- GENERATOR -->
+<!-- ZAPIS -->
 
-<section class="section-card">
+<section class="card">
 
-    <h2>
-        Zbuduj i posłuchaj
-    </h2>
+<h2>Zapis gamy</h2>
 
-    <p class="section-description">
-        Wybierz tonację. Kliknij pojedynczy dźwięk,
-        żeby usłyszeć go osobno.
-    </p>
-
-
-    <div class="scale-controls">
-
-        <select id="root"
-                onchange="renderScale()">
-
-            <option value="a">a-moll</option>
-            <option value="e">e-moll</option>
-            <option value="h">h-moll</option>
-            <option value="fis">fis-moll</option>
-            <option value="cis">cis-moll</option>
-            <option value="gis">gis-moll</option>
-
-            <option value="d">d-moll</option>
-            <option value="g">g-moll</option>
-            <option value="c">c-moll</option>
-            <option value="f">f-moll</option>
-            <option value="b">b-moll</option>
-
-        </select>
-
-    </div>
+<p class="description">
+Znaki należące do tonacji znajdują się przy kluczu.
+Zmiany charakterystyczne dla danej odmiany zapisujemy
+przy odpowiednich stopniach gamy.
+</p>
 
 
-    <div class="scale-display">
+<div class="controls">
 
-        <div class="scale-name"
-             id="scaleName"></div>
+<select
+    id="root"
+    onchange="renderAll()">
 
-        <div class="scale-hint"
-             id="scaleHint"></div>
+<option value="a">a-moll</option>
+<option value="e">e-moll</option>
+<option value="h">h-moll</option>
+<option value="fis">fis-moll</option>
+<option value="cis">cis-moll</option>
+<option value="gis">gis-moll</option>
+
+<option value="d">d-moll</option>
+<option value="g">g-moll</option>
+<option value="c">c-moll</option>
+<option value="f">f-moll</option>
+<option value="b">b-moll</option>
+<option value="es">es-moll</option>
+
+</select>
+
+</div>
 
 
-        <div class="notes-row"
-             id="notesRow"></div>
+<div class="music-box">
+
+<div
+    class="scale-name"
+    id="scaleName">
+</div>
+
+<div
+    class="scale-info"
+    id="scaleInfo">
+</div>
 
 
-        <div class="steps-row"
-             id="stepsRow"></div>
+<div class="staff-scroll">
+
+<svg
+    id="mainStaff"
+    class="staff"
+    viewBox="0 0 900 245">
+</svg>
+
+</div>
 
 
-        <div class="listen-buttons">
+<div class="listen">
 
-            <button class="listen-button"
-                    onclick="playScale('up')">
-                ▶ W górę
-            </button>
+<button onclick="playScale('up')">
+▶ W górę
+</button>
 
-            <button class="listen-button"
-                    onclick="playScale('down')">
-                ▶ W dół
-            </button>
+<button onclick="playScale('down')">
+▶ W dół
+</button>
 
-            <button class="listen-button"
-                    onclick="playScale('both')">
-                ▶ Góra + dół
-            </button>
+<button onclick="playScale('both')">
+▶ Góra + dół
+</button>
 
-        </div>
+</div>
 
-        <div class="audio-status"
-             id="audioStatus"></div>
 
-    </div>
+<div
+    class="status"
+    id="audioStatus">
+</div>
+
+
+<div class="helper-title">
+Nazwy dźwięków — pomoc
+</div>
+
+<div
+    class="note-buttons"
+    id="noteButtons">
+</div>
+
+<div
+    class="steps"
+    id="steps">
+</div>
+
+</div>
 
 </section>
 
 
 <!-- PORÓWNANIE -->
 
-<section class="section-card">
+<section class="card">
 
-<h2>
-    Cztery odmiany
-</h2>
+<h2>Porównaj odmiany</h2>
 
-<p class="section-description">
-    Najważniejsze różnice względem gamy molowej naturalnej.
-</p>
+<div class="compare">
 
+<div class="compare-box">
 
-<div class="compare-grid">
+<strong>Naturalna (eolska)</strong>
 
-    <div class="compare-box">
-        <strong>Naturalna (eolska)</strong>
-        <span>
-            Podstawowa postać gamy molowej.
-        </span>
-    </div>
+<span>
+Podstawowa postać gamy molowej.
+Półtony: II–III oraz V–VI.
+</span>
+
+</div>
 
 
-    <div class="compare-box">
-        <strong>Harmoniczna</strong>
-        <span>
-            Podwyższony VII stopień.
-        </span>
-    </div>
+<div class="compare-box">
+
+<strong>Harmoniczna</strong>
+
+<span>
+VII stopień podwyższamy o pół tonu.
+</span>
+
+</div>
 
 
-    <div class="compare-box">
-        <strong>Dorycka</strong>
-        <span>
-            Podwyższony VI stopień.
-        </span>
-    </div>
+<div class="compare-box">
+
+<strong>Dorycka</strong>
+
+<span>
+VI stopień gamy naturalnej podwyższamy o pół tonu.
+</span>
+
+</div>
 
 
-    <div class="compare-box">
-        <strong>Melodyczna</strong>
-        <span>
-            W górę podwyższony VI i VII stopień.
-            W dół wraca postać naturalna.
-        </span>
-    </div>
+<div class="compare-box">
+
+<strong>Melodyczna</strong>
+
+<span>
+W górę podwyższamy VI i VII stopień.
+W dół wracamy do postaci naturalnej.
+</span>
+
+</div>
 
 </div>
 
@@ -731,57 +819,112 @@ body {
 
 <!-- ĆWICZENIA -->
 
-<section class="section-card practice-section">
+<section class="card">
 
-<h2>
-    Ćwiczenia
-</h2>
+<h2>Ćwiczenia</h2>
 
-<p class="section-description">
-    Wybierz, co chcesz przećwiczyć.
+<p class="description">
+Buduj odmiany gam molowych, rozpoznawaj ich budowę
+i ćwicz różnice ze słuchu.
 </p>
 
 
 <div class="practice-menu">
 
-    <button class="practice-button active"
-            onclick="setPractice('recognition',this)">
-        Rozpoznawanie
-    </button>
+<button
+    class="active"
+    onclick="setPractice('builder',this)">
+    Budowanie
+</button>
 
-    <button class="practice-button"
-            onclick="setPractice('building',this)">
-        Budowanie
-    </button>
+<button
+    onclick="setPractice('theory',this)">
+    Rozpoznawanie
+</button>
 
-    <button class="practice-button"
-            onclick="setPractice('ear',this)">
-        Słuch
-    </button>
+<button
+    onclick="setPractice('ear',this)">
+    Słuch
+</button>
 
-    <button class="practice-button"
-            onclick="setPractice('mix',this)">
-        Mix
-    </button>
+<button
+    onclick="setPractice('mix',this)">
+    Mix
+</button>
 
 </div>
 
 
-<div class="exercise-box">
+<div
+    id="builderExercise"
+    class="exercise">
 
-    <div class="exercise-question"
-         id="question"></div>
+<div
+    class="exercise-title"
+    id="builderQuestion">
+</div>
 
-    <div class="answers"
-         id="answers"></div>
+<div class="exercise-subtitle">
+Zaznacz zmiany potrzebne do zbudowania podanej odmiany.
+</div>
 
-    <div class="feedback"
-         id="feedback"></div>
 
-    <button class="next-button"
-            onclick="newQuestion()">
-        Następne
-    </button>
+<div class="staff-scroll">
+
+<svg
+    id="builderStaff"
+    class="staff"
+    viewBox="0 0 900 245">
+</svg>
+
+</div>
+
+
+<div
+    class="builder-buttons"
+    id="builderButtons">
+</div>
+
+
+<button
+    class="check"
+    onclick="checkBuilder()">
+    Sprawdź
+</button>
+
+
+<div
+    class="feedback"
+    id="builderFeedback">
+</div>
+
+</div>
+
+
+<div
+    id="questionExercise"
+    class="exercise hidden">
+
+<div
+    class="exercise-title"
+    id="question">
+</div>
+
+<div
+    class="answers"
+    id="answers">
+</div>
+
+<div
+    class="feedback"
+    id="feedback">
+</div>
+
+<button
+    class="next"
+    onclick="newQuestion()">
+    Następne
+</button>
 
 </div>
 
@@ -794,1202 +937,3118 @@ body {
 
 <script>
 
-/* ==========================================
-   ODMIANY
-========================================== */
+/* =========================================================
+   ODMIANY GAM MOLOWYCH
+========================================================= */
 
 const TYPES = {
 
-    natural: {
+natural: {
 
-        name:
-            "naturalna (eolska)",
+    name:
+    "naturalna (eolska)",
 
-        title:
-            "Gama molowa naturalna (eolska)",
+    title:
+    "Gama molowa naturalna (eolska)",
 
-        description:
-            "Podstawowa postać gamy molowej. Półtony znajdują się między II–III oraz V–VI stopniem.",
+    description:
+    "Podstawowa postać gamy molowej. Półtony występują między II–III oraz V–VI stopniem.",
 
-        badge:
-            "bez zmian",
+    badge:
+    "bez zmian",
 
-        change:
-            "<strong>Nie podwyższamy żadnego stopnia.</strong> To punkt wyjścia dla pozostałych odmian.",
+    explanation:
+    "<strong>Nie zmieniamy żadnego stopnia.</strong> Jest to podstawowa, eolska postać gamy molowej.",
 
-        changed:
-            [],
+    changed:
+    [],
 
-        offsets:
-            [0,2,3,5,7,8,10,12],
+    raise:
+    [],
 
-        steps:
-            ["ton","półton","ton","ton","półton","ton","ton"]
+    offsets:
+    [0,2,3,5,7,8,10,12],
 
-    },
+    steps:
+    [
+        "ton",
+        "półton",
+        "ton",
+        "ton",
+        "półton",
+        "ton",
+        "ton"
+    ]
 
-
-    harmonic: {
-
-        name:
-            "harmoniczna",
-
-        title:
-            "Gama molowa harmoniczna",
-
-        description:
-            "Powstaje z gamy molowej naturalnej przez podwyższenie VII stopnia o pół tonu.",
-
-        badge:
-            "↑ VII",
-
-        change:
-            "<strong>VII stopień podwyższamy o pół tonu.</strong> Między VI i VII stopniem powstaje sekunda zwiększona.",
-
-        changed:
-            [7],
-
-        offsets:
-            [0,2,3,5,7,8,11,12],
-
-        steps:
-            ["ton","półton","ton","ton","półton","1½ tonu","półton"]
-
-    },
+},
 
 
-    dorian: {
+harmonic: {
 
-        name:
-            "dorycka",
+    name:
+    "harmoniczna",
 
-        title:
-            "Gama molowa dorycka",
+    title:
+    "Gama molowa harmoniczna",
 
-        description:
-            "W stosunku do gamy molowej naturalnej ma podwyższony VI stopień.",
+    description:
+    "Powstaje z gamy molowej naturalnej przez podwyższenie VII stopnia o pół tonu.",
 
-        badge:
-            "↑ VI",
+    badge:
+    "↑ VII",
 
-        change:
-            "<strong>VI stopień podwyższamy o pół tonu.</strong>",
+    explanation:
+    "<strong>VII stopień podwyższamy o pół tonu.</strong> Dzięki temu VII stopień znajduje się pół tonu poniżej toniki.",
 
-        changed:
-            [6],
+    changed:
+    [7],
 
-        offsets:
-            [0,2,3,5,7,9,10,12],
+    raise:
+    [7],
 
-        steps:
-            ["ton","półton","ton","ton","ton","półton","ton"]
+    offsets:
+    [0,2,3,5,7,8,11,12],
 
-    },
+    steps:
+    [
+        "ton",
+        "półton",
+        "ton",
+        "ton",
+        "półton",
+        "1½ tonu",
+        "półton"
+    ]
+
+},
 
 
-    melodic: {
+dorian: {
 
-        name:
-            "melodyczna",
+    name:
+    "dorycka",
 
-        title:
-            "Gama molowa melodyczna",
+    title:
+    "Gama molowa dorycka",
 
-        description:
-            "W ruchu w górę podwyższamy VI i VII stopień. W tradycyjnym zapisie w ruchu w dół wracamy do postaci naturalnej.",
+    description:
+    "W odmianie doryckiej VI stopień gamy molowej naturalnej jest podwyższony o pół tonu.",
 
-        badge:
-            "↑ VI, VII",
+    badge:
+    "↑ VI",
 
-        change:
-            "<strong>W górę: ↑ VI i ↑ VII.</strong> W dół: postać naturalna.",
+    explanation:
+    "<strong>VI stopień podwyższamy o pół tonu.</strong>",
 
-        changed:
-            [6,7],
+    changed:
+    [6],
 
-        offsets:
-            [0,2,3,5,7,9,11,12],
+    raise:
+    [6],
 
-        steps:
-            ["ton","półton","ton","ton","ton","ton","półton"]
+    offsets:
+    [0,2,3,5,7,9,10,12],
 
-    }
+    steps:
+    [
+        "ton",
+        "półton",
+        "ton",
+        "ton",
+        "ton",
+        "półton",
+        "ton"
+    ]
+
+},
+
+
+melodic: {
+
+    name:
+    "melodyczna",
+
+    title:
+    "Gama molowa melodyczna",
+
+    description:
+    "W kierunku wznoszącym podwyższamy VI i VII stopień o pół tonu. W tradycyjnym zapisie szkolnym w dół gama wraca do postaci naturalnej.",
+
+    badge:
+    "↑ VI, VII",
+
+    explanation:
+    "<strong>W górę podwyższamy VI i VII stopień.</strong> W dół gramy postać naturalną.",
+
+    changed:
+    [6,7],
+
+    raise:
+    [6,7],
+
+    offsets:
+    [0,2,3,5,7,9,11,12],
+
+    steps:
+    [
+        "ton",
+        "półton",
+        "ton",
+        "ton",
+        "ton",
+        "ton",
+        "półton"
+    ]
+
+}
 
 };
 
 
-let currentType =
-    "natural";
-
-
-let practiceMode =
-    "recognition";
-
-
-/* ==========================================
+/* =========================================================
    GAMY NATURALNE
-========================================== */
+========================================================= */
 
-const NATURAL_MINOR = {
+const SCALES = {
 
-    a:
-        ["A","H","C","D","E","F","G","A"],
+a:
+["A","H","C","D","E","F","G","A"],
 
-    e:
-        ["E","Fis","G","A","H","C","D","E"],
+e:
+["E","Fis","G","A","H","C","D","E"],
 
-    h:
-        ["H","Cis","D","E","Fis","G","A","H"],
+h:
+["H","Cis","D","E","Fis","G","A","H"],
 
-    fis:
-        ["Fis","Gis","A","H","Cis","D","E","Fis"],
+fis:
+["Fis","Gis","A","H","Cis","D","E","Fis"],
 
-    cis:
-        ["Cis","Dis","E","Fis","Gis","A","H","Cis"],
+cis:
+["Cis","Dis","E","Fis","Gis","A","H","Cis"],
 
-    gis:
-        ["Gis","Ais","H","Cis","Dis","E","Fis","Gis"],
+gis:
+["Gis","Ais","H","Cis","Dis","E","Fis","Gis"],
 
-    d:
-        ["D","E","F","G","A","B","C","D"],
 
-    g:
-        ["G","A","B","C","D","Es","F","G"],
+d:
+["D","E","F","G","A","B","C","D"],
 
-    c:
-        ["C","D","Es","F","G","As","B","C"],
+g:
+["G","A","B","C","D","Es","F","G"],
 
-    f:
-        ["F","G","As","B","C","Des","Es","F"],
+c:
+["C","D","Es","F","G","As","B","C"],
 
-    b:
-        ["B","C","Des","Es","F","Ges","As","B"]
+f:
+["F","G","As","B","C","Des","Es","F"],
+
+b:
+["B","C","Des","Es","F","Ges","As","B"],
+
+es:
+["Es","F","Ges","As","B","Ces","Des","Es"]
 
 };
 
 
-/* ==========================================
+/* =========================================================
+   ZNAKI PRZYKLUCZOWE
+========================================================= */
+
+const KEY_COUNT = {
+
+a:0,
+
+e:1,
+h:2,
+fis:3,
+cis:4,
+gis:5,
+
+d:-1,
+g:-2,
+c:-3,
+f:-4,
+b:-5,
+es:-6
+
+};
+
+
+const SHARP_ORDER =
+["F","C","G","D","A","E","H"];
+
+
+const FLAT_ORDER =
+["H","E","A","D","G","C","F"];
+
+
+/* =========================================================
    PODWYŻSZANIE NUT
-========================================== */
+========================================================= */
 
 function raiseNote(note) {
 
-    const map = {
+const map = {
 
-        C:"Cis",
-        Cis:"Cisis",
+C:"Cis",
+Cis:"Cisis",
+Ces:"C",
 
-        D:"Dis",
-        Dis:"Disis",
+D:"Dis",
+Dis:"Disis",
+Des:"D",
 
-        E:"Eis",
+E:"Eis",
+Es:"E",
+Eis:"Eisis",
 
-        F:"Fis",
-        Fis:"Fisis",
+F:"Fis",
+Fis:"Fisis",
+Fes:"F",
 
-        G:"Gis",
-        Gis:"Gisis",
+G:"Gis",
+Gis:"Gisis",
+Ges:"G",
 
-        A:"Ais",
-        Ais:"Aisis",
+A:"Ais",
+Ais:"Aisis",
+As:"A",
 
-        H:"His",
+H:"His",
 
-        B:"H",
+B:"H",
+Bes:"B",
 
-        Es:"E",
-        As:"A",
-        Des:"D",
-        Ges:"G",
+Ces:"C"
 
-        Ces:"C"
+};
 
-    };
 
-    return map[note] || note;
+return map[note] || note;
+
+}
+
+
+/* =========================================================
+   LITERA NUTY
+========================================================= */
+
+function getLetter(note) {
+
+if(note.startsWith("C"))
+return "C";
+
+if(note.startsWith("D"))
+return "D";
+
+if(note.startsWith("E"))
+return "E";
+
+if(note.startsWith("F"))
+return "F";
+
+if(note.startsWith("G"))
+return "G";
+
+if(note.startsWith("A"))
+return "A";
+
+if(note.startsWith("H"))
+return "H";
+
+/*
+Polskie B = H♭.
+*/
+
+if(note.startsWith("B"))
+return "H";
+
+
+return "C";
 
 }
 
 
-/* ==========================================
-   WYBÓR ODMIANY
-========================================== */
+/* =========================================================
+   WARTOŚĆ ZNAKU
+========================================================= */
 
-function selectType(type, button) {
+function accidentalValue(note) {
 
-    currentType = type;
+if(note === "B")
+return -1;
 
+if(note === "Bes")
+return -2;
 
-    document
-        .querySelectorAll(".scale-tab")
-        .forEach(btn =>
-            btn.classList.remove("active")
-        );
+if(note.endsWith("isis"))
+return 2;
 
+if(note.endsWith("eses"))
+return -2;
 
-    button.classList.add("active");
+if(note.endsWith("is"))
+return 1;
 
+if(note.endsWith("es"))
+return -1;
 
-    renderTheory();
-
-    renderScale();
+return 0;
 
 }
 
+
+/* =========================================================
+   ZNAK W TONACJI
+========================================================= */
+
+function keyAccidentalForLetter(
+root,
+letter
+) {
+
+const count =
+KEY_COUNT[root];
+
+
+if(count > 0) {
+
+const used =
+SHARP_ORDER.slice(
+0,
+count
+);
+
+
+return used.includes(letter)
+? 1
+: 0;
+
+}
+
+
+if(count < 0) {
+
+const used =
+FLAT_ORDER.slice(
+0,
+Math.abs(count)
+);
+
+
+return used.includes(letter)
+? -1
+: 0;
+
+}
+
+
+return 0;
+
+}
+
+
+/* =========================================================
+   SYMBOL ZNAKU
+========================================================= */
+
+function accidentalDifferenceSymbol(
+keyValue,
+wantedValue
+) {
+
+if(keyValue === wantedValue)
+return "";
+
+
+if(wantedValue === 0)
+return "♮";
+
+
+if(wantedValue === 1)
+return "♯";
+
+
+if(wantedValue === -1)
+return "♭";
+
+
+if(wantedValue === 2)
+return "𝄪";
+
+
+if(wantedValue === -2)
+return "♭♭";
+
+
+return "";
+
+}
+
+
+/* =========================================================
+   AKTUALNA GAMA
+========================================================= */
+
+let currentType =
+"natural";
+
+
+function getScale(
+type=currentType
+) {
+
+const root =
+document.getElementById(
+"root"
+).value;
+
+
+const scale =
+[
+...SCALES[root]
+];
+
+
+TYPES[type]
+.raise
+.forEach(
+degree => {
+
+scale[degree-1] =
+raiseNote(
+scale[degree-1]
+);
+
+});
+
+
+return scale;
+
+}
+
+
+/* =========================================================
+   SVG
+========================================================= */
+
+const SVG_NS =
+"http://www.w3.org/2000/svg";
+
+
+function svgElement(
+name,
+attributes={}
+) {
+
+const element =
+document.createElementNS(
+SVG_NS,
+name
+);
+
+
+Object.entries(
+attributes
+)
+.forEach(
+([key,value]) => {
+
+element.setAttribute(
+key,
+value
+);
+
+});
+
+
+return element;
+
+}
+
+
+/* =========================================================
+   POZYCJE NUT
+========================================================= */
+
+const STAFF_Y_BOTTOM =
+145;
+
+
+const LETTER_INDEX = {
+
+C:0,
+D:1,
+E:2,
+F:3,
+G:4,
+A:5,
+H:6
+
+};
+
+
+function scalePositions(
+scale
+) {
+
+const firstLetter =
+getLetter(
+scale[0]
+);
+
+
+let octave =
+4;
+
+
+/*
+h-moll i b-moll zaczynamy niżej,
+żeby zapis dobrze mieścił się
+na pięciolinii.
+*/
+
+if(firstLetter === "H")
+octave = 3;
+
+
+let previous =
+LETTER_INDEX[
+firstLetter
+];
+
+
+return scale.map(
+(note,index) => {
+
+const letter =
+getLetter(note);
+
+
+const current =
+LETTER_INDEX[
+letter
+];
+
+
+if(
+index > 0 &&
+current <= previous
+) {
+
+octave++;
+
+}
+
+
+const diatonicNumber =
+octave*7 +
+current;
+
+
+const E4 =
+4*7 +
+LETTER_INDEX.E;
+
+
+const stepsAboveE4 =
+diatonicNumber -
+E4;
+
+
+const y =
+STAFF_Y_BOTTOM -
+stepsAboveE4*6;
+
+
+previous =
+current;
+
+
+return {
+
+note,
+letter,
+octave,
+y
+
+};
+
+});
+
+}
+
+
+/* =========================================================
+   PIĘCIOLINIA
+========================================================= */
+
+function drawStaffLines(
+svg
+) {
+
+for(let i=0;i<5;i++) {
+
+const y =
+97 + i*12;
+
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:35,
+y1:y,
+x2:865,
+y2:y,
+stroke:"#373345",
+"stroke-width":"1.3"
+}
+)
+
+);
+
+}
+
+}
+
+
+/* =========================================================
+   KLUCZ
+========================================================= */
+
+function drawTrebleClef(
+svg
+) {
+
+const text =
+svgElement(
+"text",
+{
+x:47,
+y:145,
+"font-size":78,
+"font-family":
+"Bravura, Noto Music, Segoe UI Symbol, Apple Symbols, serif",
+fill:"#252238"
+}
+);
+
+
+text.textContent =
+"𝄞";
+
+
+svg.appendChild(
+text
+);
+
+}
+
+
+/* =========================================================
+   RYSOWANIE KRZYŻYKA
+========================================================= */
+
+function drawSharp(
+svg,
+x,
+y
+) {
+
+const group =
+svgElement("g");
+
+
+group.appendChild(
+svgElement(
+"line",
+{
+x1:x-4,
+y1:y-13,
+x2:x-4,
+y2:y+13,
+stroke:"#252238",
+"stroke-width":"1.7"
+}
+)
+);
+
+
+group.appendChild(
+svgElement(
+"line",
+{
+x1:x+4,
+y1:y-15,
+x2:x+4,
+y2:y+11,
+stroke:"#252238",
+"stroke-width":"1.7"
+}
+)
+);
+
+
+group.appendChild(
+svgElement(
+"line",
+{
+x1:x-9,
+y1:y-5,
+x2:x+9,
+y2:y-8,
+stroke:"#252238",
+"stroke-width":"2.2"
+}
+)
+);
+
+
+group.appendChild(
+svgElement(
+"line",
+{
+x1:x-9,
+y1:y+5,
+x2:x+9,
+y2:y+2,
+stroke:"#252238",
+"stroke-width":"2.2"
+}
+)
+);
+
+
+svg.appendChild(
+group
+);
+
+}
+
+
+/* =========================================================
+   BEMOL
+========================================================= */
+
+function drawFlat(
+svg,
+x,
+y
+) {
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:x-2,
+y1:y-16,
+x2:x-2,
+y2:y+11,
+stroke:"#252238",
+"stroke-width":"1.8"
+}
+)
+
+);
+
+
+svg.appendChild(
+
+svgElement(
+"path",
+{
+d:
+`M ${x-2} ${y-1}
+ C ${x+11} ${y-9},
+   ${x+12} ${y+7},
+   ${x-2} ${y+11}`,
+
+fill:"none",
+stroke:"#252238",
+"stroke-width":"1.8"
+}
+)
+
+);
+
+}
+
+
+/* =========================================================
+   KASOWNIK
+========================================================= */
+
+function drawNatural(
+svg,
+x,
+y
+) {
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:x-5,
+y1:y-14,
+x2:x-5,
+y2:y+8,
+stroke:"#252238",
+"stroke-width":"1.7"
+}
+)
+
+);
+
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:x+5,
+y1:y-8,
+x2:x+5,
+y2:y+14,
+stroke:"#252238",
+"stroke-width":"1.7"
+}
+)
+
+);
+
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:x-5,
+y1:y,
+x2:x+5,
+y2:y-4,
+stroke:"#252238",
+"stroke-width":"2"
+}
+)
+
+);
+
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:x-5,
+y1:y+7,
+x2:x+5,
+y2:y+3,
+stroke:"#252238",
+"stroke-width":"2"
+}
+)
+
+);
+
+}
+
+
+/* =========================================================
+   PODWÓJNY KRZYŻYK
+========================================================= */
+
+function drawDoubleSharp(
+svg,
+x,
+y
+) {
+
+const size =
+7;
+
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:x-size,
+y1:y-size,
+x2:x+size,
+y2:y+size,
+stroke:"#252238",
+"stroke-width":"2.1"
+}
+)
+
+);
+
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:x-size,
+y1:y+size,
+x2:x+size,
+y2:y-size,
+stroke:"#252238",
+"stroke-width":"2.1"
+}
+)
+
+);
+
+}
+
+
+/* =========================================================
+   PODWÓJNY BEMOL
+========================================================= */
+
+function drawDoubleFlat(
+svg,
+x,
+y
+) {
+
+drawFlat(
+svg,
+x-5,
+y
+);
+
+
+drawFlat(
+svg,
+x+6,
+y
+);
+
+}
+
+
+/* =========================================================
+   ZNAK PRZY NUCIE
+========================================================= */
+
+function drawAccidental(
+svg,
+symbol,
+x,
+y
+) {
+
+if(symbol === "♯") {
+
+drawSharp(svg,x,y);
+return;
+
+}
+
+
+if(symbol === "♭") {
+
+drawFlat(svg,x,y);
+return;
+
+}
+
+
+if(symbol === "♮") {
+
+drawNatural(svg,x,y);
+return;
+
+}
+
+
+if(symbol === "𝄪") {
+
+drawDoubleSharp(svg,x,y);
+return;
+
+}
+
+
+if(symbol === "♭♭") {
+
+drawDoubleFlat(svg,x,y);
+
+}
+
+}
+
+
+/* =========================================================
+   ZNAKI PRZYKLUCZOWE
+========================================================= */
+
+const SHARP_Y = {
+
+F:91,
+C:109,
+G:85,
+D:103,
+A:121,
+E:97,
+H:115
+
+};
+
+
+const FLAT_Y = {
+
+H:115,
+E:97,
+A:121,
+D:103,
+G:127,
+C:109,
+F:133
+
+};
+
+
+function drawKeySignature(
+svg,
+root
+) {
+
+const count =
+KEY_COUNT[root];
+
+
+if(count === 0)
+return 90;
+
+
+let x =
+102;
+
+
+if(count > 0) {
+
+for(
+let i=0;
+i<count;
+i++
+) {
+
+const letter =
+SHARP_ORDER[i];
+
+
+drawSharp(
+svg,
+x,
+SHARP_Y[letter]
+);
+
+
+x += 17;
+
+}
+
+}
+
+
+else {
+
+for(
+let i=0;
+i<Math.abs(count);
+i++
+) {
+
+const letter =
+FLAT_ORDER[i];
+
+
+drawFlat(
+svg,
+x,
+FLAT_Y[letter]
+);
+
+
+x += 17;
+
+}
+
+}
+
+
+return x+15;
+
+}
+
+
+/* =========================================================
+   LINIE DODANE
+========================================================= */
+
+function drawLedgerLines(
+svg,
+x,
+y
+) {
+
+if(y >= 157) {
+
+for(
+let ledgerY=157;
+ledgerY<=y+1;
+ledgerY+=12
+) {
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:x-14,
+y1:ledgerY,
+x2:x+14,
+y2:ledgerY,
+stroke:"#373345",
+"stroke-width":"1.3"
+}
+)
+
+);
+
+}
+
+}
+
+
+if(y <= 85) {
+
+for(
+let ledgerY=85;
+ledgerY>=y-1;
+ledgerY-=12
+) {
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:x-14,
+y1:ledgerY,
+x2:x+14,
+y2:ledgerY,
+stroke:"#373345",
+"stroke-width":"1.3"
+}
+)
+
+);
+
+}
+
+}
+
+}
+
+
+/* =========================================================
+   NUTA
+========================================================= */
+
+function drawNote(
+svg,
+x,
+y,
+index,
+accidental,
+clickable=true
+) {
+
+drawLedgerLines(
+svg,
+x,
+y
+);
+
+
+if(accidental) {
+
+drawAccidental(
+svg,
+accidental,
+x-24,
+y
+);
+
+}
+
+
+/*
+Główka.
+*/
+
+svg.appendChild(
+
+svgElement(
+"ellipse",
+{
+cx:x,
+cy:y,
+rx:8.5,
+ry:6,
+fill:"#252238",
+transform:
+`rotate(-18 ${x} ${y})`
+}
+)
+
+);
+
+
+/*
+Laseczka.
+*/
+
+const stemUp =
+y >= 121;
+
+
+if(stemUp) {
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:x+7,
+y1:y,
+x2:x+7,
+y2:y-37,
+stroke:"#252238",
+"stroke-width":"1.8"
+}
+)
+
+);
+
+}
+
+else {
+
+svg.appendChild(
+
+svgElement(
+"line",
+{
+x1:x-7,
+y1:y,
+x2:x-7,
+y2:y+37,
+stroke:"#252238",
+"stroke-width":"1.8"
+}
+)
+
+);
+
+}
+
+
+/*
+Stopień.
+*/
+
+const degree =
+svgElement(
+"text",
+{
+x:x,
+y:205,
+"text-anchor":"middle",
+"font-family":"Arial, sans-serif",
+"font-size":"11",
+"font-weight":"700",
+fill:"#777187"
+}
+);
+
+
+degree.textContent =
+[
+"I",
+"II",
+"III",
+"IV",
+"V",
+"VI",
+"VII",
+"VIII"
+][index];
+
+
+svg.appendChild(
+degree
+);
+
+
+if(clickable) {
+
+const hit =
+svgElement(
+"rect",
+{
+x:x-28,
+y:y-30,
+width:56,
+height:60,
+fill:"transparent",
+style:"cursor:pointer"
+}
+);
+
+
+hit.addEventListener(
+"click",
+() =>
+playSingleNote(index)
+);
+
+
+svg.appendChild(
+hit
+);
+
+}
+
+}
+
+
+/* =========================================================
+   RYSOWANIE GAMY
+========================================================= */
+
+function drawScaleStaff(
+svgId,
+root,
+scale,
+type,
+clickable=true
+) {
+
+const svg =
+document.getElementById(
+svgId
+);
+
+
+svg.innerHTML =
+"";
+
+
+drawStaffLines(
+svg
+);
+
+
+drawTrebleClef(
+svg
+);
+
+
+const firstNoteX =
+drawKeySignature(
+svg,
+root
+) + 35;
+
+
+const positions =
+scalePositions(
+scale
+);
+
+
+const availableWidth =
+820-firstNoteX;
+
+
+const spacing =
+availableWidth/7;
+
+
+positions.forEach(
+(item,index) => {
+
+const x =
+firstNoteX +
+index*spacing;
+
+
+let accidental =
+"";
+
+
+if(
+TYPES[type]
+.changed
+.includes(index+1)
+) {
+
+const keyValue =
+keyAccidentalForLetter(
+root,
+item.letter
+);
+
+
+const wantedValue =
+accidentalValue(
+item.note
+);
+
+
+accidental =
+accidentalDifferenceSymbol(
+keyValue,
+wantedValue
+);
+
+}
+
+
+drawNote(
+
+svg,
+x,
+item.y,
+index,
+accidental,
+clickable
+
+);
+
+});
+
+}
+
+
+/* =========================================================
+   TEORIA
+========================================================= */
 
 function renderTheory() {
 
-    const data =
-        TYPES[currentType];
+const data =
+TYPES[currentType];
 
 
-    document.getElementById("theoryTitle").textContent =
-        data.title;
+document.getElementById(
+"theoryTitle"
+).textContent =
+data.title;
 
 
-    document.getElementById("theoryDescription").textContent =
-        data.description;
+document.getElementById(
+"theoryDescription"
+).textContent =
+data.description;
 
 
-    document.getElementById("changeBadge").textContent =
-        data.badge;
+document.getElementById(
+"changeBadge"
+).textContent =
+data.badge;
 
 
-    document.getElementById("changeDescription").innerHTML =
-        data.change;
+document.getElementById(
+"changeText"
+).innerHTML =
+data.explanation;
 
 
-    for(let i=1; i<=8; i++) {
+for(
+let i=1;
+i<=8;
+i++
+) {
 
-        document
-            .getElementById("degree"+i)
-            .classList.remove("changed");
-
-    }
-
-
-    data.changed.forEach(number => {
-
-        document
-            .getElementById("degree"+number)
-            .classList.add("changed");
-
-    });
-
-}
-
-
-/* ==========================================
-   ZAPIS GAMY
-========================================== */
-
-function getScale(type = currentType) {
-
-    const root =
-        document.getElementById("root").value;
-
-
-    const scale =
-        [...NATURAL_MINOR[root]];
-
-
-    if(type === "harmonic") {
-
-        scale[6] =
-            raiseNote(scale[6]);
-
-    }
-
-
-    if(type === "dorian") {
-
-        scale[5] =
-            raiseNote(scale[5]);
-
-    }
-
-
-    if(type === "melodic") {
-
-        scale[5] =
-            raiseNote(scale[5]);
-
-        scale[6] =
-            raiseNote(scale[6]);
-
-    }
-
-
-    return scale;
+document.getElementById(
+"degree"+i
+)
+.classList.remove(
+"changed"
+);
 
 }
 
 
-function renderScale() {
+data.changed.forEach(
+number => {
 
-    const root =
-        document.getElementById("root").value;
+document.getElementById(
+"degree"+number
+)
+.classList.add(
+"changed"
+);
 
-
-    const data =
-        TYPES[currentType];
-
-
-    const scale =
-        getScale();
-
-
-    document.getElementById("scaleName").textContent =
-        root + "-moll " + data.name;
-
-
-    document.getElementById("scaleHint").textContent =
-        data.badge;
-
-
-    const notes =
-        document.getElementById("notesRow");
-
-
-    notes.innerHTML = "";
-
-
-    scale.forEach((note,index) => {
-
-        const button =
-            document.createElement("button");
-
-
-        button.className =
-            "note-button";
-
-
-        if(data.changed.includes(index+1)) {
-
-            button.classList.add("changed");
-
-        }
-
-
-        button.innerHTML =
-            note +
-            "<small>" +
-            roman(index+1) +
-            "</small>";
-
-
-        button.onclick =
-            () =>
-                playSingleNote(index);
-
-
-        notes.appendChild(button);
-
-    });
-
-
-    const steps =
-        document.getElementById("stepsRow");
-
-
-    steps.innerHTML = "";
-
-
-    data.steps.forEach(item => {
-
-        const div =
-            document.createElement("div");
-
-
-        div.className =
-            "step";
-
-
-        div.textContent =
-            item;
-
-
-        steps.appendChild(div);
-
-    });
+});
 
 }
 
 
-function roman(number) {
+/* =========================================================
+   RENDER
+========================================================= */
 
-    return [
-        "I","II","III","IV",
-        "V","VI","VII","VIII"
-    ][number-1];
+function renderAll() {
+
+renderTheory();
+
+
+const root =
+document.getElementById(
+"root"
+).value;
+
+
+const data =
+TYPES[currentType];
+
+
+const scale =
+getScale();
+
+
+document.getElementById(
+"scaleName"
+).textContent =
+root +
+"-moll " +
+data.name;
+
+
+document.getElementById(
+"scaleInfo"
+).textContent =
+data.badge;
+
+
+drawScaleStaff(
+
+"mainStaff",
+root,
+scale,
+currentType,
+true
+
+);
+
+
+/*
+NAZWY DŹWIĘKÓW
+*/
+
+const noteButtons =
+document.getElementById(
+"noteButtons"
+);
+
+
+noteButtons.innerHTML =
+"";
+
+
+scale.forEach(
+(note,index) => {
+
+const button =
+document.createElement(
+"button"
+);
+
+
+button.className =
+"note-button";
+
+
+if(
+data.changed
+.includes(index+1)
+) {
+
+button.classList.add(
+"changed"
+);
 
 }
 
 
-/* ==========================================
-   FORTEPIAN — TE SAME PRÓBKI CO W DUROWYCH
-========================================== */
+button.innerHTML =
+note +
+"<small>" +
+[
+"I",
+"II",
+"III",
+"IV",
+"V",
+"VI",
+"VII",
+"VIII"
+][index] +
+"</small>";
 
-let piano = null;
-let pianoLoading = false;
+
+button.onclick =
+() =>
+playSingleNote(
+index
+);
+
+
+noteButtons.appendChild(
+button
+);
+
+});
+
+
+/*
+KROKI
+*/
+
+const steps =
+document.getElementById(
+"steps"
+);
+
+
+steps.innerHTML =
+"";
+
+
+data.steps.forEach(
+text => {
+
+const div =
+document.createElement(
+"div"
+);
+
+
+div.className =
+"step";
+
+
+div.textContent =
+text;
+
+
+steps.appendChild(
+div
+);
+
+});
+
+}
+
+
+/* =========================================================
+   ZMIANA ODMIANY
+========================================================= */
+
+function changeType(
+type,
+button
+) {
+
+currentType =
+type;
+
+
+document.querySelectorAll(
+".tab"
+)
+.forEach(
+item =>
+item.classList.remove(
+"active"
+)
+);
+
+
+button.classList.add(
+"active"
+);
+
+
+renderAll();
+
+}
+
+
+/* =========================================================
+   FORTEPIAN
+========================================================= */
+
+let piano =
+null;
+
+
+let pianoLoading =
+false;
 
 
 async function getPiano() {
 
-    const status =
-        document.getElementById("audioStatus");
+const status =
+document.getElementById(
+"audioStatus"
+);
 
 
-    try {
+try {
 
-        await Tone.start();
-
-
-        if(piano) {
-            return piano;
-        }
+await Tone.start();
 
 
-        if(pianoLoading) {
-
-            status.textContent =
-                "Ładowanie fortepianu…";
+if(piano)
+return piano;
 
 
-            while(pianoLoading) {
+if(pianoLoading) {
 
-                await new Promise(
-                    resolve =>
-                        setTimeout(resolve,100)
-                );
-
-            }
+status.textContent =
+"Ładowanie fortepianu…";
 
 
-            return piano;
+while(pianoLoading) {
 
-        }
-
-
-        pianoLoading = true;
-
-
-        status.textContent =
-            "Ładowanie próbek fortepianu…";
-
-
-        piano =
-            new Tone.Sampler({
-
-                urls: {
-
-                    A0:"A0.mp3",
-                    C1:"C1.mp3",
-                    "D#1":"Ds1.mp3",
-                    "F#1":"Fs1.mp3",
-
-                    A1:"A1.mp3",
-                    C2:"C2.mp3",
-                    "D#2":"Ds2.mp3",
-                    "F#2":"Fs2.mp3",
-
-                    A2:"A2.mp3",
-                    C3:"C3.mp3",
-                    "D#3":"Ds3.mp3",
-                    "F#3":"Fs3.mp3",
-
-                    A3:"A3.mp3",
-                    C4:"C4.mp3",
-                    "D#4":"Ds4.mp3",
-                    "F#4":"Fs4.mp3",
-
-                    A4:"A4.mp3",
-                    C5:"C5.mp3",
-                    "D#5":"Ds5.mp3",
-                    "F#5":"Fs5.mp3",
-
-                    A5:"A5.mp3",
-                    C6:"C6.mp3"
-
-                },
-
-                baseUrl:
-                    "https://tonejs.github.io/audio/salamander/",
-
-                release:1.4
-
-            }).toDestination();
-
-
-        await Tone.loaded();
-
-
-        pianoLoading = false;
-
-
-        status.textContent =
-            "Fortepian gotowy ✓";
-
-
-        return piano;
-
-    }
-
-    catch(error) {
-
-        pianoLoading = false;
-        piano = null;
-
-
-        status.textContent =
-            "Nie udało się załadować fortepianu.";
-
-
-        console.error(error);
-
-
-        return null;
-
-    }
+await new Promise(
+resolve =>
+setTimeout(
+resolve,
+100
+)
+);
 
 }
 
 
-/* ==========================================
+return piano;
+
+}
+
+
+pianoLoading =
+true;
+
+
+status.textContent =
+"Ładowanie fortepianu…";
+
+
+piano =
+new Tone.Sampler({
+
+urls: {
+
+A0:"A0.mp3",
+
+C1:"C1.mp3",
+"D#1":"Ds1.mp3",
+"F#1":"Fs1.mp3",
+
+A1:"A1.mp3",
+
+C2:"C2.mp3",
+"D#2":"Ds2.mp3",
+"F#2":"Fs2.mp3",
+
+A2:"A2.mp3",
+
+C3:"C3.mp3",
+"D#3":"Ds3.mp3",
+"F#3":"Fs3.mp3",
+
+A3:"A3.mp3",
+
+C4:"C4.mp3",
+"D#4":"Ds4.mp3",
+"F#4":"Fs4.mp3",
+
+A4:"A4.mp3",
+
+C5:"C5.mp3",
+"D#5":"Ds5.mp3",
+"F#5":"Fs5.mp3",
+
+A5:"A5.mp3",
+
+C6:"C6.mp3"
+
+},
+
+baseUrl:
+"https://tonejs.github.io/audio/salamander/",
+
+release:1.4
+
+})
+.toDestination();
+
+
+await Tone.loaded();
+
+
+pianoLoading =
+false;
+
+
+status.textContent =
+"Fortepian gotowy ✓";
+
+
+return piano;
+
+}
+
+catch(error) {
+
+pianoLoading =
+false;
+
+piano =
+null;
+
+
+status.textContent =
+"Nie udało się załadować fortepianu.";
+
+
+console.error(
+error
+);
+
+
+return null;
+
+}
+
+}
+
+
+/* =========================================================
    MIDI
-========================================== */
+========================================================= */
 
 const ROOT_MIDI = {
 
-    a:57,
-    e:64,
-    h:59,
-    fis:66,
-    cis:61,
-    gis:68,
+a:69,
 
-    d:62,
-    g:67,
-    c:60,
-    f:65,
-    b:58
+e:64,
+
+h:71,
+
+fis:66,
+
+cis:61,
+
+gis:68,
+
+d:62,
+
+g:67,
+
+c:60,
+
+f:65,
+
+b:70,
+
+es:63
 
 };
 
 
 const PITCHES = [
-    "C","C#","D","D#",
-    "E","F","F#","G",
-    "G#","A","A#","B"
+
+"C",
+"C#",
+"D",
+"D#",
+"E",
+"F",
+"F#",
+"G",
+"G#",
+"A",
+"A#",
+"B"
+
 ];
 
 
-function midiName(midi) {
+function midiName(
+midi
+) {
 
-    return (
-        PITCHES[midi % 12] +
-        (Math.floor(midi / 12)-1)
-    );
-
-}
-
-
-function midiScale(type=currentType) {
-
-    const root =
-        document.getElementById("root").value;
-
-
-    const base =
-        ROOT_MIDI[root];
-
-
-    return TYPES[type]
-        .offsets
-        .map(offset =>
-            base + offset
-        );
+return (
+PITCHES[
+midi % 12
+]
++
+(
+Math.floor(
+midi/12
+)-1
+)
+);
 
 }
 
 
-/* ==========================================
-   AUDIO
-========================================== */
+function midiScale(
+type=currentType
+) {
 
-async function playSingleNote(index) {
-
-    const instrument =
-        await getPiano();
-
-
-    if(!instrument) return;
+const root =
+document.getElementById(
+"root"
+).value;
 
 
-    const midi =
-        midiScale()[index];
+const base =
+ROOT_MIDI[root];
 
 
-    instrument.triggerAttackRelease(
-        midiName(midi),
-        .9
-    );
-
-}
-
-
-async function playScale(direction) {
-
-    const instrument =
-        await getPiano();
-
-
-    if(!instrument) return;
-
-
-    let notes;
-
-
-    /*
-       Melodyczna:
-       góra = melodyczna
-       dół = naturalna
-    */
-
-    if(
-        currentType === "melodic" &&
-        direction === "down"
-    ) {
-
-        notes =
-            midiScale("natural")
-            .reverse();
-
-    }
-
-    else if(
-        currentType === "melodic" &&
-        direction === "both"
-    ) {
-
-        const up =
-            midiScale("melodic");
-
-
-        const down =
-            midiScale("natural")
-            .slice(0,-1)
-            .reverse();
-
-
-        notes = [
-            ...up,
-            ...down
-        ];
-
-    }
-
-    else {
-
-        notes =
-            midiScale();
-
-
-        if(direction === "down") {
-
-            notes =
-                [...notes].reverse();
-
-        }
-
-
-        if(direction === "both") {
-
-            notes = [
-                ...notes,
-                ...notes
-                    .slice(0,-1)
-                    .reverse()
-            ];
-
-        }
-
-    }
-
-
-    const start =
-        Tone.now()+.1;
-
-
-    notes.forEach((midi,index) => {
-
-        instrument.triggerAttackRelease(
-
-            midiName(midi),
-
-            .85,
-
-            start + index*.43,
-
-            .75
-
-        );
-
-    });
+return TYPES[type]
+.offsets
+.map(
+offset =>
+base+offset
+);
 
 }
 
 
-/* ==========================================
+/* =========================================================
+   ODSŁUCH POJEDYNCZEJ NUTY
+========================================================= */
+
+async function playSingleNote(
+index
+) {
+
+const instrument =
+await getPiano();
+
+
+if(!instrument)
+return;
+
+
+const notes =
+midiScale();
+
+
+instrument.triggerAttackRelease(
+
+midiName(
+notes[index]
+),
+
+.9
+
+);
+
+}
+
+
+/* =========================================================
+   ODSŁUCH GAMY
+========================================================= */
+
+async function playScale(
+direction
+) {
+
+const instrument =
+await getPiano();
+
+
+if(!instrument)
+return;
+
+
+const root =
+document.getElementById(
+"root"
+).value;
+
+
+const base =
+ROOT_MIDI[root];
+
+
+let up =
+TYPES[currentType]
+.offsets
+.map(
+offset =>
+base+offset
+);
+
+
+let notes;
+
+
+/*
+MELODYCZNA:
+w górę melodyczna,
+w dół naturalna.
+*/
+
+if(
+currentType ===
+"melodic"
+) {
+
+const naturalDown =
+TYPES.natural
+.offsets
+.map(
+offset =>
+base+offset
+)
+.reverse();
+
+
+if(direction === "up") {
+
+notes =
+up;
+
+}
+
+
+else if(
+direction === "down"
+) {
+
+notes =
+naturalDown;
+
+}
+
+
+else {
+
+notes = [
+
+...up,
+
+...naturalDown.slice(1)
+
+];
+
+}
+
+}
+
+
+else {
+
+if(direction === "up") {
+
+notes =
+up;
+
+}
+
+
+else if(
+direction === "down"
+) {
+
+notes =
+[...up]
+.reverse();
+
+}
+
+
+else {
+
+notes = [
+
+...up,
+
+...up
+.slice(0,-1)
+.reverse()
+
+];
+
+}
+
+}
+
+
+const start =
+Tone.now()+.1;
+
+
+notes.forEach(
+(midi,index) => {
+
+instrument.triggerAttackRelease(
+
+midiName(midi),
+
+.85,
+
+start +
+index*.43,
+
+.75
+
+);
+
+});
+
+}
+
+
+/* =========================================================
+   BUDOWANIE
+========================================================= */
+
+let builderType =
+"harmonic";
+
+
+let builderRoot =
+"a";
+
+
+let builderChanges = {
+
+6:false,
+7:false
+
+};
+
+
+function random(
+array
+) {
+
+return array[
+Math.floor(
+Math.random() *
+array.length
+)
+];
+
+}
+
+
+function newBuilder() {
+
+builderType =
+random([
+"natural",
+"harmonic",
+"dorian",
+"melodic"
+]);
+
+
+builderRoot =
+random(
+Object.keys(
+SCALES
+)
+);
+
+
+builderChanges = {
+
+6:false,
+7:false
+
+};
+
+
+document.getElementById(
+"builderQuestion"
+).textContent =
+"Zbuduj: " +
+builderRoot +
+"-moll " +
+TYPES[
+builderType
+].name;
+
+
+document.getElementById(
+"builderFeedback"
+).textContent =
+"";
+
+
+renderBuilder();
+
+}
+
+
+/* =========================================================
+   PIĘCIOLINIA BUDOWANIA
+========================================================= */
+
+function renderBuilder() {
+
+const scale =
+[
+...SCALES[
+builderRoot
+]
+];
+
+
+if(
+builderChanges[6]
+) {
+
+scale[5] =
+raiseNote(
+scale[5]
+);
+
+}
+
+
+if(
+builderChanges[7]
+) {
+
+scale[6] =
+raiseNote(
+scale[6]
+);
+
+}
+
+
+const tempChanged =
+[];
+
+
+if(builderChanges[6])
+tempChanged.push(6);
+
+
+if(builderChanges[7])
+tempChanged.push(7);
+
+
+TYPES.builderTemp = {
+
+changed:
+tempChanged
+
+};
+
+
+drawScaleStaff(
+
+"builderStaff",
+
+builderRoot,
+
+scale,
+
+"builderTemp",
+
+false
+
+);
+
+
+delete TYPES.builderTemp;
+
+
+/*
+PRZYCISKI
+*/
+
+const box =
+document.getElementById(
+"builderButtons"
+);
+
+
+box.innerHTML =
+"";
+
+
+[
+{
+degree:6,
+label:"↑ VI"
+},
+
+{
+degree:7,
+label:"↑ VII"
+}
+
+]
+.forEach(
+item => {
+
+const button =
+document.createElement(
+"button"
+);
+
+
+button.textContent =
+item.label;
+
+
+if(
+builderChanges[
+item.degree
+]
+) {
+
+button.classList.add(
+"active"
+);
+
+}
+
+
+button.onclick =
+() => {
+
+builderChanges[
+item.degree
+] =
+!builderChanges[
+item.degree
+];
+
+
+renderBuilder();
+
+};
+
+
+box.appendChild(
+button
+);
+
+});
+
+}
+
+
+/* =========================================================
+   SPRAWDZANIE BUDOWANIA
+========================================================= */
+
+function checkBuilder() {
+
+const expected =
+TYPES[
+builderType
+].changed;
+
+
+const selected =
+Object.keys(
+builderChanges
+)
+.filter(
+key =>
+builderChanges[key]
+)
+.map(Number);
+
+
+const correct =
+
+expected.length ===
+selected.length
+
+&&
+
+expected.every(
+degree =>
+selected.includes(
+degree
+)
+);
+
+
+const feedback =
+document.getElementById(
+"builderFeedback"
+);
+
+
+if(correct) {
+
+feedback.textContent =
+"✓ Dobrze!";
+
+
+setTimeout(
+newBuilder,
+900
+);
+
+}
+
+else {
+
+let answer =
+"bez zmian";
+
+
+if(expected.length) {
+
+answer =
+expected
+.map(
+degree =>
+"↑ " +
+[
+"I",
+"II",
+"III",
+"IV",
+"V",
+"VI",
+"VII",
+"VIII"
+][degree-1]
+)
+.join(", ");
+
+}
+
+
+feedback.textContent =
+"Jeszcze nie — poprawnie: " +
+answer;
+
+}
+
+}
+
+
+/* =========================================================
    PYTANIA
-========================================== */
+========================================================= */
 
-const RECOGNITION = [
+const QUESTIONS = [
 
-    {
-        q:
-            "Jak inaczej nazywamy gamę molową naturalną?",
+{
 
-        correct:
-            "eolska",
+q:
+"Jak inaczej nazywamy naturalną gamę molową?",
 
-        answers:
-            ["eolska","dorycka","harmoniczna","melodyczna"]
-    },
+correct:
+"eolską",
 
+answers:[
+"eolską",
+"dorycką",
+"frygijską",
+"lidyjską"
+]
 
-    {
-        q:
-            "Która odmiana ma podwyższony VII stopień?",
-
-        correct:
-            "harmoniczna",
-
-        answers:
-            ["naturalna","harmoniczna","dorycka","melodyczna"]
-    },
+},
 
 
-    {
-        q:
-            "Która odmiana ma podwyższony VI stopień?",
+{
 
-        correct:
-            "dorycka",
+q:
+"W gamie molowej harmonicznej podwyższamy:",
 
-        answers:
-            ["naturalna","harmoniczna","dorycka","melodyczna"]
-    },
+correct:
+"VII stopień",
 
+answers:[
+"VII stopień",
+"VI stopień",
+"VI i VII stopień",
+"III stopień"
+]
 
-    {
-        q:
-            "Która odmiana w ruchu w górę ma podwyższony VI i VII stopień?",
-
-        correct:
-            "melodyczna",
-
-        answers:
-            ["naturalna","harmoniczna","dorycka","melodyczna"]
-    },
+},
 
 
-    {
-        q:
-            "Gdzie występują półtony w gamie molowej naturalnej?",
+{
 
-        correct:
-            "II–III i V–VI",
+q:
+"W gamie molowej doryckiej podwyższamy:",
 
-        answers:
-            [
-                "II–III i V–VI",
-                "III–IV i VII–VIII",
-                "II–III i VI–VII",
-                "III–IV i V–VI"
-            ]
-    }
+correct:
+"VI stopień",
+
+answers:[
+"VI stopień",
+"VII stopień",
+"VI i VII stopień",
+"II stopień"
+]
+
+},
+
+
+{
+
+q:
+"W gamie molowej melodycznej w górę podwyższamy:",
+
+correct:
+"VI i VII stopień",
+
+answers:[
+"VI i VII stopień",
+"tylko VII stopień",
+"tylko VI stopień",
+"III i VII stopień"
+]
+
+},
+
+
+{
+
+q:
+"Półtony w naturalnej gamie molowej występują między:",
+
+correct:
+"II–III i V–VI",
+
+answers:[
+"II–III i V–VI",
+"III–IV i VII–VIII",
+"II–III i VI–VII",
+"I–II i V–VI"
+]
+
+}
 
 ];
 
 
-const BUILDING = [
+function shuffle(
+array
+) {
 
-    {
-        q:
-            "Jak zmienia się a-moll harmoniczna?",
-
-        correct:
-            "G → Gis",
-
-        answers:
-            [
-                "G → Gis",
-                "F → Fis",
-                "C → Cis",
-                "H → His"
-            ]
-    },
-
-
-    {
-        q:
-            "Jak zmienia się a-moll dorycka?",
-
-        correct:
-            "F → Fis",
-
-        answers:
-            [
-                "F → Fis",
-                "G → Gis",
-                "C → Cis",
-                "E → Eis"
-            ]
-    },
-
-
-    {
-        q:
-            "Jak wygląda a-moll melodyczna w górę?",
-
-        correct:
-            "F → Fis i G → Gis",
-
-        answers:
-            [
-                "F → Fis i G → Gis",
-                "tylko G → Gis",
-                "tylko F → Fis",
-                "C → Cis i G → Gis"
-            ]
-    }
-
-];
-
-
-/* ==========================================
-   ĆWICZENIA
-========================================== */
-
-function setPractice(mode,button) {
-
-    practiceMode = mode;
-
-
-    document
-        .querySelectorAll(".practice-button")
-        .forEach(btn =>
-            btn.classList.remove("active")
-        );
-
-
-    button.classList.add("active");
-
-
-    newQuestion();
+return [
+...array
+]
+.sort(
+() =>
+Math.random()-.5
+);
 
 }
 
 
-function random(array) {
+/* =========================================================
+   TRYBY ĆWICZEŃ
+========================================================= */
 
-    return array[
-        Math.floor(
-            Math.random()*array.length
-        )
-    ];
+let practiceMode =
+"builder";
+
+
+function setPractice(
+mode,
+button
+) {
+
+practiceMode =
+mode;
+
+
+document.querySelectorAll(
+".practice-menu button"
+)
+.forEach(
+item =>
+item.classList.remove(
+"active"
+)
+);
+
+
+button.classList.add(
+"active"
+);
+
+
+if(
+mode ===
+"builder"
+) {
+
+document.getElementById(
+"builderExercise"
+)
+.classList.remove(
+"hidden"
+);
+
+
+document.getElementById(
+"questionExercise"
+)
+.classList.add(
+"hidden"
+);
+
+
+newBuilder();
+
+}
+
+else {
+
+document.getElementById(
+"builderExercise"
+)
+.classList.add(
+"hidden"
+);
+
+
+document.getElementById(
+"questionExercise"
+)
+.classList.remove(
+"hidden"
+);
+
+
+newQuestion();
+
+}
 
 }
 
 
-function shuffle(array) {
-
-    return [...array]
-        .sort(() =>
-            Math.random()-.5
-        );
-
-}
-
+/* =========================================================
+   NOWE PYTANIE
+========================================================= */
 
 async function newQuestion() {
 
-    document.getElementById("feedback").textContent =
-        "";
+document.getElementById(
+"feedback"
+).textContent =
+"";
 
 
-    let mode =
-        practiceMode;
+let mode =
+practiceMode;
 
 
-    if(mode === "mix") {
+if(
+mode ===
+"mix"
+) {
 
-        mode =
-            random([
-                "recognition",
-                "building",
-                "ear"
-            ]);
-
-    }
-
-
-    if(mode === "ear") {
-
-        await earQuestion();
-
-        return;
-
-    }
-
-
-    const source =
-        mode === "building"
-        ? BUILDING
-        : RECOGNITION;
-
-
-    const item =
-        random(source);
-
-
-    showQuestion(
-        item.q,
-        item.correct,
-        item.answers
-    );
+mode =
+random([
+"theory",
+"ear"
+]);
 
 }
 
 
-function showQuestion(q,correct,options) {
+if(
+mode ===
+"ear"
+) {
 
-    document.getElementById("question").textContent =
-        q;
+await earQuestion();
 
-
-    const answers =
-        document.getElementById("answers");
-
-
-    answers.innerHTML = "";
-
-
-    shuffle(options)
-        .forEach(option => {
-
-            const button =
-                document.createElement("button");
-
-
-            button.className =
-                "answer-button";
-
-
-            button.textContent =
-                option;
-
-
-            button.onclick =
-                () =>
-                    checkAnswer(
-                        button,
-                        option,
-                        correct
-                    );
-
-
-            answers.appendChild(button);
-
-        });
+return;
 
 }
 
 
-function checkAnswer(button,answer,correct) {
-
-    const buttons =
-        document.querySelectorAll(
-            "#answers .answer-button"
-        );
+const item =
+random(
+QUESTIONS
+);
 
 
-    buttons.forEach(btn => {
+showQuestion(
 
-        if(
-            btn.textContent !==
-            "▶ Posłuchaj ponownie"
-        ) {
+item.q,
 
-            btn.disabled = true;
+item.correct,
 
-        }
+item.answers
 
-    });
-
-
-    if(answer === correct) {
-
-        button.classList.add("correct");
-
-
-        document.getElementById("feedback").textContent =
-            "✓ Dobrze!";
-
-    }
-
-    else {
-
-        button.classList.add("wrong");
-
-
-        buttons.forEach(btn => {
-
-            if(btn.textContent === correct) {
-
-                btn.classList.add("correct");
-
-            }
-
-        });
-
-
-        document.getElementById("feedback").textContent =
-            "Poprawna odpowiedź: " + correct;
-
-    }
+);
 
 }
 
 
-/* ==========================================
+/* =========================================================
+   PYTANIE
+========================================================= */
+
+function showQuestion(
+question,
+correct,
+options
+) {
+
+document.getElementById(
+"question"
+).textContent =
+question;
+
+
+const answers =
+document.getElementById(
+"answers"
+);
+
+
+answers.innerHTML =
+"";
+
+
+shuffle(
+options
+)
+.forEach(
+option => {
+
+const button =
+document.createElement(
+"button"
+);
+
+
+button.className =
+"answer";
+
+
+button.textContent =
+option;
+
+
+button.onclick =
+() =>
+checkAnswer(
+button,
+option,
+correct
+);
+
+
+answers.appendChild(
+button
+);
+
+});
+
+}
+
+
+/* =========================================================
+   ODPOWIEDŹ
+========================================================= */
+
+function checkAnswer(
+button,
+answer,
+correct
+) {
+
+const buttons =
+document.querySelectorAll(
+"#answers .answer"
+);
+
+
+buttons.forEach(
+item => {
+
+if(
+item.textContent !==
+"▶ Posłuchaj ponownie"
+) {
+
+item.disabled =
+true;
+
+}
+
+});
+
+
+if(
+answer ===
+correct
+) {
+
+button.classList.add(
+"correct"
+);
+
+
+document.getElementById(
+"feedback"
+).textContent =
+"✓ Dobrze!";
+
+}
+
+else {
+
+button.classList.add(
+"wrong"
+);
+
+
+buttons.forEach(
+item => {
+
+if(
+item.textContent ===
+correct
+) {
+
+item.classList.add(
+"correct"
+);
+
+}
+
+});
+
+
+document.getElementById(
+"feedback"
+).textContent =
+"Poprawna odpowiedź: " +
+correct;
+
+}
+
+}
+
+
+/* =========================================================
    SŁUCH
-========================================== */
+========================================================= */
 
-let earType = null;
+let earType =
+null;
 
 
 async function earQuestion() {
 
-    earType =
-        random([
-            "natural",
-            "harmonic",
-            "dorian",
-            "melodic"
-        ]);
+earType =
+random([
+"natural",
+"harmonic",
+"dorian",
+"melodic"
+]);
 
 
-    document.getElementById("question").textContent =
-        "Posłuchaj gamy. Która to odmiana?";
+document.getElementById(
+"question"
+).textContent =
+"Posłuchaj gamy. Która to odmiana?";
 
 
-    const answers =
-        document.getElementById("answers");
+const box =
+document.getElementById(
+"answers"
+);
 
 
-    answers.innerHTML = "";
+box.innerHTML =
+"";
 
 
-    const replay =
-        document.createElement("button");
+const replay =
+document.createElement(
+"button"
+);
 
 
-    replay.className =
-        "answer-button";
+replay.className =
+"answer";
 
 
-    replay.textContent =
-        "▶ Posłuchaj ponownie";
+replay.textContent =
+"▶ Posłuchaj ponownie";
 
 
-    replay.onclick =
-        () => playEar();
+replay.onclick =
+playEar;
 
 
-    answers.appendChild(replay);
+box.appendChild(
+replay
+);
 
 
-    [
-        "naturalna (eolska)",
-        "harmoniczna",
-        "dorycka",
-        "melodyczna"
-    ].forEach(label => {
+[
+"naturalna (eolska)",
+"harmoniczna",
+"dorycka",
+"melodyczna"
+]
+.forEach(
+label => {
 
-        const button =
-            document.createElement("button");
-
-
-        button.className =
-            "answer-button";
-
-
-        button.textContent =
-            label;
+const button =
+document.createElement(
+"button"
+);
 
 
-        button.onclick =
-            () =>
-                checkAnswer(
-                    button,
-                    label,
-                    TYPES[earType].name
-                );
+button.className =
+"answer";
 
 
-        answers.appendChild(button);
+button.textContent =
+label;
 
-    });
+
+button.onclick =
+() =>
+checkAnswer(
+
+button,
+
+label,
+
+TYPES[
+earType
+].name
+
+);
 
 
-    await playEar();
+box.appendChild(
+button
+);
+
+});
+
+
+await playEar();
 
 }
 
+
+/* =========================================================
+   ODSŁUCH PYTANIA
+========================================================= */
 
 async function playEar() {
 
-    const instrument =
-        await getPiano();
+const instrument =
+await getPiano();
 
 
-    if(!instrument) return;
+if(!instrument)
+return;
 
 
-    const notes =
-        midiScale(earType);
+const root =
+document.getElementById(
+"root"
+).value;
 
 
-    const start =
-        Tone.now()+.1;
+const base =
+ROOT_MIDI[
+root
+];
 
 
-    notes.forEach((midi,index) => {
+let notes =
+TYPES[
+earType
+]
+.offsets
+.map(
+offset =>
+base+offset
+);
 
-        instrument.triggerAttackRelease(
 
-            midiName(midi),
+/*
+W pytaniu melodyczną gramy w górę,
+żeby można było rozpoznać
+podwyższone VI i VII.
+*/
 
-            .85,
+const start =
+Tone.now()+.1;
 
-            start + index*.43,
 
-            .75
+notes.forEach(
+(midi,index) => {
 
-        );
+instrument.triggerAttackRelease(
 
-    });
+midiName(midi),
+
+.85,
+
+start +
+index*.43,
+
+.75
+
+);
+
+});
 
 }
 
 
-/* START */
+/* =========================================================
+   START
+========================================================= */
 
-renderTheory();
-renderScale();
-newQuestion();
+renderAll();
+
+newBuilder();
 
 </script>
 
