@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Harmonix — Tonacje pokrewne</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f5ff;
+    color: #252238;
+}
+
+.page {
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1050px;
+    margin: auto;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #777187;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.back:hover {
+    color: #252238;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 38px;
+}
+
+.title {
+    margin: 0;
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.subtitle {
+    max-width: 730px;
+    margin: 12px auto 0;
+    color: #6b6680;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   KARTY
+===================================================== */
+
+.card {
+    margin-bottom: 18px;
+    padding: 28px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(40,30,80,.08);
+}
+
+.card h2 {
+    margin: 0 0 8px;
+    font-size: 22px;
+}
+
+.description {
+    margin: 0;
+    color: #777187;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+
+/* =====================================================
+   NAJWAŻNIEJSZA DEFINICJA
+===================================================== */
+
+.definition {
+    margin-top: 20px;
+    padding: 22px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 16px;
+}
+
+.definition strong {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 15px;
+}
+
+.definition p {
+    margin: 0;
+    color: #6f697f;
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+
+/* =====================================================
+   DWA RODZAJE
+===================================================== */
+
+.relation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.relation-box {
+    padding: 22px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 16px;
+}
+
+.relation-icon {
+    margin-bottom: 12px;
+    font-size: 30px;
+}
+
+.relation-box h3 {
+    margin: 0 0 7px;
+    font-size: 16px;
+}
+
+.relation-box p {
+    margin: 0;
+    color: #777187;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.example {
+    margin-top: 13px;
+    padding: 12px;
+    background: white;
+    border-radius: 10px;
+    color: #514b68;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   PORÓWNANIE
+===================================================== */
+
+.compare {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.key-card {
+    padding: 22px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.key-name {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.key-type {
+    margin-top: 5px;
+    color: #9993a6;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+}
+
+.key-signs {
+    margin-top: 13px;
+    color: #6f697f;
+    font-size: 12px;
+}
+
+.compare-arrow {
+    color: #aaa5b5;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   INTERAKTYWNA TONACJA
+===================================================== */
+
+.key-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 18px;
+}
+
+.key-selector button {
+    padding: 10px 13px;
+    border: 1px solid #dedbea;
+    border-radius: 10px;
+    background: #faf9ff;
+    color: #777187;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.key-selector button:hover,
+.key-selector button.active {
+    background: #ece9f5;
+    color: #252238;
+}
+
+.relationship-display {
+    margin-top: 20px;
+    padding: 24px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 17px;
+}
+
+.relationship-main {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 18px;
+}
+
+.relationship-key {
+    text-align: center;
+}
+
+.relationship-name {
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.relationship-label {
+    margin-top: 5px;
+    color: #9993a6;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+}
+
+.relationship-arrow {
+    text-align: center;
+    color: #aaa5b5;
+}
+
+.relationship-arrow .arrow-symbol {
+    font-size: 30px;
+}
+
+.relationship-arrow .arrow-label {
+    margin-top: 3px;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.shared-signs {
+    margin-top: 20px;
+    padding: 14px;
+    background: white;
+    border-radius: 11px;
+    text-align: center;
+    color: #6f697f;
+    font-size: 12px;
+}
+
+.shared-signs strong {
+    color: #252238;
+}
+
+
+/* =====================================================
+   JAK ZNALEŹĆ
+===================================================== */
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.step {
+    padding: 20px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 15px;
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 29px;
+    height: 29px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    background: #ece9f5;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.step h3 {
+    margin: 0 0 7px;
+    font-size: 14px;
+}
+
+.step p {
+    margin: 0;
+    color: #777187;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   TABELA
+===================================================== */
+
+.table-wrap {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eeeaf3;
+    text-align: left;
+    font-size: 12px;
+}
+
+th {
+    color: #9993a6;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+}
+
+td strong {
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   WAŻNE
+===================================================== */
+
+.remember-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.remember {
+    padding: 18px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 14px;
+}
+
+.remember-title {
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.remember p {
+    margin: 0;
+    color: #777187;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+
+/* =====================================================
+   ĆWICZENIA
+===================================================== */
+
+.exercise-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.exercise-tabs button {
+    padding: 10px 13px;
+    border: 1px solid #dedbea;
+    border-radius: 10px;
+    background: #faf9ff;
+    color: #777187;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.exercise-tabs button:hover,
+.exercise-tabs button.active {
+    background: #ece9f5;
+    color: #252238;
+}
+
+.exercise {
+    margin-top: 17px;
+    padding: 23px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 16px;
+}
+
+.question {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.hint {
+    margin-top: 6px;
+    text-align: center;
+    color: #9993a6;
+    font-size: 10px;
+}
+
+.answers {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.answer {
+    padding: 12px;
+    border: 1px solid #dedbea;
+    border-radius: 10px;
+    background: white;
+    color: #514b68;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.answer:hover {
+    background: #f5f3fa;
+}
+
+.answer.correct {
+    background: #edf7ef;
+    border-color: #b8d9bf;
+    color: #315c39;
+}
+
+.answer.wrong {
+    background: #faeeee;
+    border-color: #e0bebe;
+    color: #7b4242;
+}
+
+.feedback {
+    min-height: 21px;
+    margin-top: 13px;
+    text-align: center;
+    color: #777187;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.next {
+    display: block;
+    margin: 8px auto 0;
+    padding: 10px 16px;
+    border: 1px solid #d9d4e5;
+    border-radius: 10px;
+    background: #ece9f5;
+    color: #252238;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:750px) {
+
+    .title {
+        font-size: 41px;
+    }
+
+    .relation-grid,
+    .steps,
+    .remember-grid,
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+    .compare,
+    .relationship-main {
+        grid-template-columns: 1fr;
+    }
+
+    .compare-arrow,
+    .relationship-arrow .arrow-symbol {
+        transform: rotate(90deg);
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<main class="page">
+<div class="container">
+
+<a href="tonacje.html" class="back">
+← Tonacje i gamy
+</a>
+
+
+<header class="header">
+
+<h1 class="title">
+Tonacje pokrewne
+</h1>
+
+<p class="subtitle">
+Zobacz, które tonacje są ze sobą związane,
+jak znaleźć tonację równoległą i jednoimienną
+oraz czym właściwie się od siebie różnią.
+</p>
+
+</header>
+
+
+
+<!-- =====================================================
+     CO TO SĄ TONACJE POKREWNE
+===================================================== -->
+
+<section class="card">
+
+<h2>Co to są tonacje pokrewne?</h2>
+
+<p class="description">
+Tonacje mogą być ze sobą powiązane na różne sposoby.
+Mogą mieć wspólne znaki przykluczowe, tę samą tonikę
+albo wiele wspólnych dźwięków i akordów.
+</p>
+
+<div class="definition">
+
+<strong>Najważniejsze</strong>
+
+<p>
+W tym dziale skupiamy się przede wszystkim na dwóch relacjach,
+które trzeba umieć szybko rozpoznawać:
+<strong>tonacjach równoległych</strong> i
+<strong>tonacjach jednoimiennych</strong>.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RÓWNOLEGŁA VS JEDNOIMIENNA
+===================================================== -->
+
+<section class="card">
+
+<h2>Równoległa czy jednoimienna?</h2>
+
+<p class="description">
+Te dwa pojęcia bardzo łatwo pomylić, ale oznaczają coś zupełnie innego.
+</p>
+
+
+<div class="relation-grid">
+
+
+<div class="relation-box">
+
+<div class="relation-icon">↔</div>
+
+<h3>Tonacje równoległe</h3>
+
+<p>
+Jedna jest durowa, druga molowa, ale mają
+<strong>dokładnie te same znaki przykluczowe</strong>.
+Mają natomiast inne toniki.
+</p>
+
+<div class="example">
+C-dur ↔ a-moll<br>
+0 znaków
+</div>
+
+</div>
+
+
+<div class="relation-box">
+
+<div class="relation-icon">◎</div>
+
+<h3>Tonacje jednoimienne</h3>
+
+<p>
+Mają <strong>tę samą tonikę</strong>, ale jedna jest durowa,
+a druga molowa. Dlatego zazwyczaj mają inne znaki przykluczowe.
+</p>
+
+<div class="example">
+C-dur ↔ c-moll<br>
+ta sama tonika: C
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PORÓWNANIE
+===================================================== -->
+
+<section class="card">
+
+<h2>Spójrz na różnicę</h2>
+
+<p class="description">
+Najłatwiej zrozumieć to na konkretnych przykładach.
+</p>
+
+
+<div class="compare">
+
+<div class="key-card">
+
+<div class="key-name">
+G-dur
+</div>
+
+<div class="key-type">
+tonacja durowa
+</div>
+
+<div class="key-signs">
+1♯ — fis
+</div>
+
+</div>
+
+
+<div class="compare-arrow">
+↔
+</div>
+
+
+<div class="key-card">
+
+<div class="key-name">
+e-moll
+</div>
+
+<div class="key-type">
+równoległa
+</div>
+
+<div class="key-signs">
+1♯ — fis
+</div>
+
+</div>
+
+</div>
+
+
+<div class="compare" style="margin-top:14px;">
+
+<div class="key-card">
+
+<div class="key-name">
+G-dur
+</div>
+
+<div class="key-type">
+tonacja durowa
+</div>
+
+<div class="key-signs">
+1♯ — fis
+</div>
+
+</div>
+
+
+<div class="compare-arrow">
+↔
+</div>
+
+
+<div class="key-card">
+
+<div class="key-name">
+g-moll
+</div>
+
+<div class="key-type">
+jednoimienna
+</div>
+
+<div class="key-signs">
+2♭ — b, es
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INTERAKTYWNE
+===================================================== -->
+
+<section class="card">
+
+<h2>Znajdź tonację równoległą</h2>
+
+<p class="description">
+Wybierz tonację durową. Harmonix pokaże odpowiadającą jej
+tonację molową oraz wspólne znaki przykluczowe.
+</p>
+
+
+<div class="key-selector">
+
+<button onclick="selectKey('Ces-dur',this)">Ces-dur</button>
+<button onclick="selectKey('Ges-dur',this)">Ges-dur</button>
+<button onclick="selectKey('Des-dur',this)">Des-dur</button>
+<button onclick="selectKey('As-dur',this)">As-dur</button>
+<button onclick="selectKey('Es-dur',this)">Es-dur</button>
+<button onclick="selectKey('B-dur',this)">B-dur</button>
+<button onclick="selectKey('F-dur',this)">F-dur</button>
+
+<button class="active"
+onclick="selectKey('C-dur',this)">C-dur</button>
+
+<button onclick="selectKey('G-dur',this)">G-dur</button>
+<button onclick="selectKey('D-dur',this)">D-dur</button>
+<button onclick="selectKey('A-dur',this)">A-dur</button>
+<button onclick="selectKey('E-dur',this)">E-dur</button>
+<button onclick="selectKey('H-dur',this)">H-dur</button>
+<button onclick="selectKey('Fis-dur',this)">Fis-dur</button>
+<button onclick="selectKey('Cis-dur',this)">Cis-dur</button>
+
+</div>
+
+
+<div class="relationship-display">
+
+<div class="relationship-main">
+
+<div class="relationship-key">
+
+<div class="relationship-name"
+id="majorName">
+C-dur
+</div>
+
+<div class="relationship-label">
+tonacja durowa
+</div>
+
+</div>
+
+
+<div class="relationship-arrow">
+
+<div class="arrow-symbol">
+↔
+</div>
+
+<div class="arrow-label">
+równoległe
+</div>
+
+</div>
+
+
+<div class="relationship-key">
+
+<div class="relationship-name"
+id="minorName">
+a-moll
+</div>
+
+<div class="relationship-label">
+tonacja molowa
+</div>
+
+</div>
+
+</div>
+
+
+<div class="shared-signs">
+
+<strong>Wspólne znaki przykluczowe:</strong>
+<span id="sharedSigns">brak</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     JAK ZNALEŹĆ RÓWNOLEGŁĄ
+===================================================== -->
+
+<section class="card">
+
+<h2>Jak znaleźć tonację równoległą?</h2>
+
+<p class="description">
+Nie musisz uczyć się wszystkich par na pamięć.
+Możesz znaleźć je bezpośrednio z gamy.
+</p>
+
+
+<div class="steps">
+
+<div class="step">
+
+<div class="step-number">1</div>
+
+<h3>Zacznij od tonacji durowej</h3>
+
+<p>
+Znajdź tonikę i przypomnij sobie dźwięki jej gamy.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">2</div>
+
+<h3>Znajdź VI stopień</h3>
+
+<p>
+VI stopień gamy durowej jest toniką jej
+równoległej tonacji molowej.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">3</div>
+
+<h3>Zostaw te same znaki</h3>
+
+<p>
+Tonacja równoległa ma dokładnie takie same
+znaki przykluczowe.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="definition">
+
+<strong>Przykład: G-dur</strong>
+
+<p>
+Gama G-dur: G – A – H – C – D – E – Fis – G.<br>
+VI stopień to <strong>E</strong>, więc tonacją równoległą jest
+<strong>e-moll</strong>. Obie mają jeden krzyżyk — fis.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     Z MOLL DO DUR
+===================================================== -->
+
+<section class="card">
+
+<h2>A jak znaleźć Dur z moll?</h2>
+
+<p class="description">
+Możemy wykonać tę samą operację w drugą stronę.
+</p>
+
+
+<div class="definition">
+
+<strong>III stopień gamy molowej naturalnej</strong>
+
+<p>
+Tonika równoległej tonacji durowej znajduje się na
+<strong>III stopniu gamy molowej naturalnej</strong>.
+</p>
+
+</div>
+
+
+<div class="definition">
+
+<strong>Przykład: e-moll</strong>
+
+<p>
+Gama e-moll naturalna:
+E – Fis – G – A – H – C – D – E.<br>
+III stopień to <strong>G</strong>, dlatego tonacją równoległą
+jest <strong>G-dur</strong>.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     JEDNOIMIENNE
+===================================================== -->
+
+<section class="card">
+
+<h2>Tonacje jednoimienne</h2>
+
+<p class="description">
+Tutaj zasada jest jeszcze prostsza — tonika się nie zmienia.
+Zmienia się tylko tryb Dur ↔ moll.
+</p>
+
+
+<div class="relation-grid">
+
+<div class="relation-box">
+
+<h3>C-dur → c-moll</h3>
+
+<p>
+Ta sama tonika: C.
+</p>
+
+<div class="example">
+C-dur: brak znaków<br>
+c-moll: 3♭ — b, es, as
+</div>
+
+</div>
+
+
+<div class="relation-box">
+
+<h3>A-dur → a-moll</h3>
+
+<p>
+Ta sama tonika: A.
+</p>
+
+<div class="example">
+A-dur: 3♯ — fis, cis, gis<br>
+a-moll: brak znaków
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TABELA
+===================================================== -->
+
+<section class="card">
+
+<h2>Tonacje równoległe — tabela</h2>
+
+<p class="description">
+Każda para ma dokładnie tę samą sygnaturę.
+</p>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Znaki</th>
+<th>Tonacja durowa</th>
+<th>Tonacja molowa</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>7♭</td>
+<td><strong>Ces-dur</strong></td>
+<td>as-moll</td>
+</tr>
+
+<tr>
+<td>6♭</td>
+<td><strong>Ges-dur</strong></td>
+<td>es-moll</td>
+</tr>
+
+<tr>
+<td>5♭</td>
+<td><strong>Des-dur</strong></td>
+<td>b-moll</td>
+</tr>
+
+<tr>
+<td>4♭</td>
+<td><strong>As-dur</strong></td>
+<td>f-moll</td>
+</tr>
+
+<tr>
+<td>3♭</td>
+<td><strong>Es-dur</strong></td>
+<td>c-moll</td>
+</tr>
+
+<tr>
+<td>2♭</td>
+<td><strong>B-dur</strong></td>
+<td>g-moll</td>
+</tr>
+
+<tr>
+<td>1♭</td>
+<td><strong>F-dur</strong></td>
+<td>d-moll</td>
+</tr>
+
+<tr>
+<td>0</td>
+<td><strong>C-dur</strong></td>
+<td>a-moll</td>
+</tr>
+
+<tr>
+<td>1♯</td>
+<td><strong>G-dur</strong></td>
+<td>e-moll</td>
+</tr>
+
+<tr>
+<td>2♯</td>
+<td><strong>D-dur</strong></td>
+<td>h-moll</td>
+</tr>
+
+<tr>
+<td>3♯</td>
+<td><strong>A-dur</strong></td>
+<td>fis-moll</td>
+</tr>
+
+<tr>
+<td>4♯</td>
+<td><strong>E-dur</strong></td>
+<td>cis-moll</td>
+</tr>
+
+<tr>
+<td>5♯</td>
+<td><strong>H-dur</strong></td>
+<td>gis-moll</td>
+</tr>
+
+<tr>
+<td>6♯</td>
+<td><strong>Fis-dur</strong></td>
+<td>dis-moll</td>
+</tr>
+
+<tr>
+<td>7♯</td>
+<td><strong>Cis-dur</strong></td>
+<td>ais-moll</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ZAPAMIĘTAJ
+===================================================== -->
+
+<section class="card">
+
+<h2>Zapamiętaj</h2>
+
+<div class="remember-grid">
+
+<div class="remember">
+
+<div class="remember-title">
+Równoległe = te same znaki
+</div>
+
+<p>
+C-dur i a-moll mają różne toniki,
+ale tę samą sygnaturę.
+</p>
+
+</div>
+
+
+<div class="remember">
+
+<div class="remember-title">
+Jednoimienne = ta sama tonika
+</div>
+
+<p>
+C-dur i c-moll mają tę samą tonikę,
+ale inne znaki.
+</p>
+
+</div>
+
+
+<div class="remember">
+
+<div class="remember-title">
+VI Dur ↔ III moll
+</div>
+
+<p>
+VI stopień gamy durowej prowadzi do równoległej moll,
+a III stopień moll naturalnej do równoległej Dur.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ĆWICZENIA
+===================================================== -->
+
+<section class="card">
+
+<h2>Ćwiczenia</h2>
+
+<p class="description">
+Sprawdź, czy rozpoznajesz tonacje równoległe,
+jednoimienne i ich znaki przykluczowe.
+</p>
+
+
+<div class="exercise-tabs">
+
+<button class="active"
+onclick="setMode('parallel',this)">
+Równoległe
+</button>
+
+<button onclick="setMode('same',this)">
+Jednoimienne
+</button>
+
+<button onclick="setMode('signs',this)">
+Znaki
+</button>
+
+<button onclick="setMode('mix',this)">
+Mix
+</button>
+
+</div>
+
+
+<div class="exercise">
+
+<div class="question" id="question"></div>
+
+<div class="hint" id="hint"></div>
+
+<div class="answers" id="answers"></div>
+
+<div class="feedback" id="feedback"></div>
+
+<button class="next" onclick="newQuestion()">
+Następne
+</button>
+
+</div>
+
+</section>
+
+
+</div>
+</main>
+
+
+<script>
+
+/* =====================================================
+   DANE
+===================================================== */
+
+const KEYS = [
+
+{
+major:"Ces-dur",
+minor:"as-moll",
+signs:"7♭ — b, es, as, des, ges, ces, fes"
+},
+
+{
+major:"Ges-dur",
+minor:"es-moll",
+signs:"6♭ — b, es, as, des, ges, ces"
+},
+
+{
+major:"Des-dur",
+minor:"b-moll",
+signs:"5♭ — b, es, as, des, ges"
+},
+
+{
+major:"As-dur",
+minor:"f-moll",
+signs:"4♭ — b, es, as, des"
+},
+
+{
+major:"Es-dur",
+minor:"c-moll",
+signs:"3♭ — b, es, as"
+},
+
+{
+major:"B-dur",
+minor:"g-moll",
+signs:"2♭ — b, es"
+},
+
+{
+major:"F-dur",
+minor:"d-moll",
+signs:"1♭ — b"
+},
+
+{
+major:"C-dur",
+minor:"a-moll",
+signs:"brak znaków"
+},
+
+{
+major:"G-dur",
+minor:"e-moll",
+signs:"1♯ — fis"
+},
+
+{
+major:"D-dur",
+minor:"h-moll",
+signs:"2♯ — fis, cis"
+},
+
+{
+major:"A-dur",
+minor:"fis-moll",
+signs:"3♯ — fis, cis, gis"
+},
+
+{
+major:"E-dur",
+minor:"cis-moll",
+signs:"4♯ — fis, cis, gis, dis"
+},
+
+{
+major:"H-dur",
+minor:"gis-moll",
+signs:"5♯ — fis, cis, gis, dis, ais"
+},
+
+{
+major:"Fis-dur",
+minor:"dis-moll",
+signs:"6♯ — fis, cis, gis, dis, ais, eis"
+},
+
+{
+major:"Cis-dur",
+minor:"ais-moll",
+signs:"7♯ — fis, cis, gis, dis, ais, eis, his"
+}
+
+];
+
+
+/* =====================================================
+   JEDNOIMIENNE
+===================================================== */
+
+const SAME_NAME = {
+
+"Ces-dur":"ces-moll",
+"Ges-dur":"ges-moll",
+"Des-dur":"des-moll",
+"As-dur":"as-moll",
+"Es-dur":"es-moll",
+"B-dur":"b-moll",
+"F-dur":"f-moll",
+
+"C-dur":"c-moll",
+
+"G-dur":"g-moll",
+"D-dur":"d-moll",
+"A-dur":"a-moll",
+"E-dur":"e-moll",
+"H-dur":"h-moll",
+"Fis-dur":"fis-moll",
+"Cis-dur":"cis-moll"
+
+};
+
+
+/* =====================================================
+   WYBÓR TONACJI
+===================================================== */
+
+function selectKey(name,button) {
+
+    document
+    .querySelectorAll(".key-selector button")
+    .forEach(b => {
+        b.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+
+    const data =
+    KEYS.find(
+        key=>key.major===name
+    );
+
+
+    document.getElementById(
+        "majorName"
+    ).textContent =
+        data.major;
+
+
+    document.getElementById(
+        "minorName"
+    ).textContent =
+        data.minor;
+
+
+    document.getElementById(
+        "sharedSigns"
+    ).textContent =
+        data.signs;
+
+}
+
+
+/* =====================================================
+   ĆWICZENIA
+===================================================== */
+
+let mode="parallel";
+
+
+function setMode(newMode,button) {
+
+    mode=newMode;
+
+
+    document
+    .querySelectorAll(".exercise-tabs button")
+    .forEach(b => {
+        b.classList.remove("active");
+    });
+
+
+    button.classList.add("active");
+
+    newQuestion();
+
+}
+
+
+function random(array) {
+
+    return array[
+        Math.floor(
+            Math.random()*array.length
+        )
+    ];
+
+}
+
+
+function shuffle(array) {
+
+    return [...array]
+    .sort(
+        ()=>Math.random()-.5
+    );
+
+}
+
+
+/* =====================================================
+   NOWE PYTANIE
+===================================================== */
+
+function newQuestion() {
+
+    document.getElementById(
+        "feedback"
+    ).textContent="";
+
+
+    let currentMode=mode;
+
+
+    if(currentMode==="mix") {
+
+        currentMode =
+        random([
+            "parallel",
+            "same",
+            "signs"
+        ]);
+
+    }
+
+
+    if(currentMode==="parallel") {
+        parallelQuestion();
+    }
+
+    if(currentMode==="same") {
+        sameNameQuestion();
+    }
+
+    if(currentMode==="signs") {
+        signsQuestion();
+    }
+
+}
+
+
+/* =====================================================
+   RÓWNOLEGŁE
+===================================================== */
+
+function parallelQuestion() {
+
+    const data =
+    random(KEYS);
+
+
+    const direction =
+    Math.random()>.5;
+
+
+    let question;
+    let correct;
+    let possibilities;
+
+
+    if(direction) {
+
+        question =
+        "Jaka tonacja molowa jest równoległa do "
+        + data.major + "?";
+
+        correct =
+        data.minor;
+
+        possibilities =
+        KEYS.map(key=>key.minor);
+
+    }
+
+    else {
+
+        question =
+        "Jaka tonacja durowa jest równoległa do "
+        + data.minor + "?";
+
+        correct =
+        data.major;
+
+        possibilities =
+        KEYS.map(key=>key.major);
+
+    }
+
+
+    const wrong =
+    shuffle(
+        possibilities.filter(
+            item=>item!==correct
+        )
+    ).slice(0,3);
+
+
+    showQuestion(
+
+        question,
+
+        "Tonacje równoległe mają te same znaki przykluczowe.",
+
+        correct,
+
+        [
+            correct,
+            ...wrong
+        ]
+
+    );
+
+}
+
+
+/* =====================================================
+   JEDNOIMIENNE
+===================================================== */
+
+function sameNameQuestion() {
+
+    const majors =
+    Object.keys(SAME_NAME);
+
+
+    const major =
+    random(majors);
+
+
+    const correct =
+    SAME_NAME[major];
+
+
+    const wrong =
+    shuffle(
+        Object.values(SAME_NAME)
+        .filter(
+            item=>item!==correct
+        )
+    ).slice(0,3);
+
+
+    showQuestion(
+
+        "Jaka tonacja molowa jest jednoimienna z "
+        + major + "?",
+
+        "Tonacje jednoimienne mają tę samą tonikę.",
+
+        correct,
+
+        [
+            correct,
+            ...wrong
+        ]
+
+    );
+
+}
+
+
+/* =====================================================
+   ZNAKI
+===================================================== */
+
+function signsQuestion() {
+
+    const data =
+    random(KEYS);
+
+
+    const correct =
+    data.minor;
+
+
+    const wrong =
+    shuffle(
+        KEYS
+        .map(key=>key.minor)
+        .filter(
+            item=>item!==correct
+        )
+    ).slice(0,3);
+
+
+    showQuestion(
+
+        "Która tonacja molowa ma takie same znaki jak "
+        + data.major + "?",
+
+        data.signs,
+
+        correct,
+
+        [
+            correct,
+            ...wrong
+        ]
+
+    );
+
+}
+
+
+/* =====================================================
+   WYŚWIETLENIE PYTANIA
+===================================================== */
+
+function showQuestion(
+    question,
+    hint,
+    correct,
+    options
+) {
+
+    document.getElementById(
+        "question"
+    ).textContent =
+        question;
+
+
+    document.getElementById(
+        "hint"
+    ).textContent =
+        hint;
+
+
+    const box =
+    document.getElementById(
+        "answers"
+    );
+
+
+    box.innerHTML="";
+
+
+    shuffle(options)
+    .forEach(option => {
+
+        const button =
+        document.createElement(
+            "button"
+        );
+
+
+        button.className =
+        "answer";
+
+
+        button.textContent =
+        option;
+
+
+        button.onclick =
+        ()=>checkAnswer(
+            button,
+            option,
+            correct
+        );
+
+
+        box.appendChild(button);
+
+    });
+
+}
+
+
+/* =====================================================
+   SPRAWDZANIE
+===================================================== */
+
+function checkAnswer(
+    button,
+    answer,
+    correct
+) {
+
+    const buttons =
+    document.querySelectorAll(
+        "#answers .answer"
+    );
+
+
+    buttons.forEach(
+        b=>b.disabled=true
+    );
+
+
+    if(answer===correct) {
+
+        button.classList.add(
+            "correct"
+        );
+
+
+        document.getElementById(
+            "feedback"
+        ).textContent =
+            "✓ Dobrze!";
+
+    }
+
+    else {
+
+        button.classList.add(
+            "wrong"
+        );
+
+
+        buttons.forEach(b => {
+
+            if(
+                b.textContent===correct
+            ) {
+
+                b.classList.add(
+                    "correct"
+                );
+
+            }
+
+        });
+
+
+        document.getElementById(
+            "feedback"
+        ).textContent =
+            "Poprawna odpowiedź: "
+            + correct;
+
+    }
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+newQuestion();
+
+</script>
+
+</body>
+</html>
