@@ -3,2171 +3,762 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Harmonix — Gamy i tonacje</title>
 
 <link rel="stylesheet" href="style.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
-
 <style>
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    background:#f7f5ff;
-    color:#252238;
-    font-family:Arial,sans-serif;
+body {
+    margin: 0;
 }
-
-button,select{
-    font-family:inherit;
-}
-
-.page{
-    max-width:1150px;
-    margin:auto;
-    padding:35px 20px 80px;
-}
-
-.back{
-    display:inline-block;
-    margin-bottom:28px;
-    text-decoration:none;
-    color:#777187;
-    font-size:14px;
-    font-weight:600;
-}
-
-.back:hover{
-    color:#252238;
-}
-
-.header{
-    text-align:center;
-    margin-bottom:38px;
-}
-
-.header h1{
-    margin:0;
-    font-size:44px;
-}
-
-.header p{
-    color:#777187;
-    font-size:16px;
-    line-height:1.5;
-}
-
 
 /* =========================================
-   NAWIGACJA DZIAŁU
+   STRONA
 ========================================= */
 
-.nav{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:8px;
-    margin-bottom:30px;
+.tonacje-page {
+    min-height: 100vh;
+    padding: 40px 20px 80px;
 }
 
-.nav button{
-    border:1px solid #dedbea;
-    background:white;
-    color:#514b68;
-    padding:10px 14px;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:700;
+.tonacje-container {
+    max-width: 1050px;
+    margin: 0 auto;
 }
-
-.nav button:hover{
-    background:#f1eff8;
-}
-
 
 /* =========================================
-   KARTY
+   POWRÓT
 ========================================= */
 
-.card{
-    background:white;
-    border-radius:23px;
-    padding:27px;
-    margin-bottom:18px;
-    box-shadow:0 9px 32px rgba(40,30,80,.065);
+.back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-bottom: 32px;
+
+    color: #777187;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: .2s;
 }
 
-.card h2{
-    margin:0 0 10px;
-    font-size:25px;
+.back-home:hover {
+    color: #252238;
+    transform: translateX(-3px);
 }
-
-.card h3{
-    margin-top:24px;
-    margin-bottom:8px;
-}
-
-.text{
-    color:#696477;
-    line-height:1.65;
-    font-size:14px;
-}
-
-.highlight{
-    background:#f4f2fa;
-    border-radius:15px;
-    padding:17px;
-    margin-top:15px;
-    line-height:1.6;
-}
-
-.formula{
-    display:flex;
-    flex-wrap:wrap;
-    gap:7px;
-    margin:16px 0;
-}
-
-.step{
-    background:#252238;
-    color:white;
-    border-radius:10px;
-    padding:8px 11px;
-    font-weight:800;
-    font-size:12px;
-}
-
 
 /* =========================================
-   MINI KARTY
+   NAGŁÓWEK
 ========================================= */
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-top:17px;
+.tonacje-header {
+    text-align: center;
+    margin-bottom: 42px;
 }
 
-.mini{
-    background:#faf9ff;
-    border:1px solid #e7e4ef;
-    border-radius:16px;
-    padding:17px;
+.tonacje-title {
+    font-size: clamp(40px, 6vw, 60px);
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+    color: #252238;
 }
 
-.mini strong{
-    display:block;
-    margin-bottom:6px;
+.tonacje-subtitle {
+    max-width: 650px;
+
+    margin: 12px auto 0;
+
+    color: #777187;
+
+    font-size: 16px;
+    line-height: 1.5;
 }
 
-.mini span{
-    font-size:12px;
-    color:#777187;
-    line-height:1.45;
-}
+.section-label {
+    margin-top: 27px;
 
+    color: #aaa5b5;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
 /* =========================================
-   GENERATOR
+   KAFELKI
 ========================================= */
 
-.generator-controls{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:18px;
+.topic-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
 }
 
-select{
-    border:1px solid #dedbea;
-    background:#faf9ff;
-    color:#252238;
-    border-radius:12px;
-    padding:12px 15px;
-    font-weight:700;
+.topic-card {
+    min-height: 235px;
+
+    background: white;
+
+    border: 1px solid rgba(70, 60, 100, .08);
+    border-radius: 23px;
+
+    box-shadow:
+        0 8px 30px rgba(40, 30, 80, .065);
+
+    overflow: hidden;
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
 }
 
-.primary{
-    border:none;
-    background:#252238;
-    color:white;
-    padding:12px 18px;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:800;
+.topic-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 17px 45px rgba(40, 30, 80, .11);
+
+    border-color:
+        rgba(70, 60, 100, .16);
 }
 
-.secondary{
-    border:1px solid #dedbea;
-    background:#f7f6fb;
-    color:#252238;
-    padding:12px 18px;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:700;
-}
+.topic-card a {
+    width: 100%;
+    height: 100%;
 
-.scale-name{
-    text-align:center;
-    font-size:28px;
-    font-weight:800;
-    margin-top:28px;
-}
+    min-height: 235px;
 
-.scale-notes{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:8px;
-    margin:18px 0;
-}
+    padding: 24px;
 
-.note-pill{
-    min-width:48px;
-    text-align:center;
-    background:#f1eff8;
-    padding:10px;
-    border-radius:11px;
-    font-weight:800;
-}
+    display: flex;
+    flex-direction: column;
 
+    color: inherit;
+    text-decoration: none;
+}
 
 /* =========================================
-   KLAWIATURA
+   IKONA
 ========================================= */
 
-.piano-wrap{
-    overflow-x:auto;
-    margin-top:20px;
-}
+.topic-icon {
+    width: 50px;
+    height: 50px;
 
-.piano{
-    position:relative;
-    width:700px;
-    height:175px;
-    margin:auto;
-    display:flex;
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.white-key{
-    position:relative;
-    width:50px;
-    height:170px;
-    background:white;
-    border:1px solid #aaa;
-    border-radius:0 0 6px 6px;
-}
+    margin-bottom: 20px;
 
-.white-key.active{
-    background:#ded9f2;
-}
+    border-radius: 15px;
 
-.black-key{
-    position:absolute;
-    width:31px;
-    height:105px;
-    background:#252238;
-    border-radius:0 0 5px 5px;
-    z-index:2;
-}
+    background: #f1eff8;
 
-.black-key.active{
-    background:#777187;
-}
+    color: #514b68;
 
+    font-size: 22px;
+    font-weight: 800;
+}
 
 /* =========================================
-   KOŁO KWINTOWE
+   TEKST
 ========================================= */
 
-.circle{
-    max-width:560px;
-    margin:25px auto 5px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
+.topic-card h2 {
+    margin: 0 0 8px;
+
+    color: #252238;
+
+    font-size: 20px;
+    font-weight: 800;
 }
 
-.circle-item{
-    padding:12px 5px;
-    text-align:center;
-    border-radius:12px;
-    background:#f4f2fa;
-    font-size:12px;
-    font-weight:700;
-}
+.topic-card p {
+    margin: 0;
 
+    color: #777187;
+
+    font-size: 12px;
+    line-height: 1.55;
+}
 
 /* =========================================
-   TABELA ZNAKÓW
+   TAGI
 ========================================= */
 
-.key-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:18px;
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    margin-top: 14px;
 }
 
-.key-table th,
-.key-table td{
-    text-align:left;
-    padding:11px;
-    border-bottom:1px solid #eceaf2;
-    font-size:13px;
-}
+.tag {
+    padding: 5px 7px;
 
-.key-table th{
-    color:#777187;
-}
+    border-radius: 7px;
 
+    background: #f7f6fb;
+
+    color: #777187;
+
+    font-size: 9px;
+    font-weight: 700;
+}
 
 /* =========================================
-   QUIZ
+   DÓŁ KAFELKA
 ========================================= */
 
-.quiz-setup{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin:17px 0;
+.card-bottom {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: auto;
+    padding-top: 18px;
+
+    color: #59536d;
+
+    font-size: 11px;
+    font-weight: 700;
 }
 
-.quiz-type{
-    border:1px solid #dedbea;
-    background:#faf9ff;
-    padding:10px 13px;
-    border-radius:11px;
-    cursor:pointer;
-    font-weight:700;
+.arrow {
+    font-size: 17px;
+    transition: .2s;
 }
 
-.quiz-type.selected{
-    background:#252238;
-    color:white;
+.topic-card:hover .arrow {
+    transform: translateX(4px);
 }
-
-.quiz-box{
-    margin-top:20px;
-    background:#faf9ff;
-    border-radius:18px;
-    padding:24px;
-    text-align:center;
-}
-
-.quiz-question{
-    font-size:21px;
-    font-weight:800;
-    line-height:1.4;
-}
-
-.answers{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-    gap:8px;
-    margin-top:20px;
-}
-
-.answer{
-    border:1px solid #dedbea;
-    background:white;
-    color:#252238;
-    border-radius:11px;
-    padding:12px 8px;
-    cursor:pointer;
-    font-weight:700;
-}
-
-.answer.correct{
-    background:#dff3e5;
-    border-color:#9ac9a7;
-}
-
-.answer.wrong{
-    background:#f7dfe4;
-    border-color:#d8a0ab;
-}
-
-.feedback{
-    min-height:25px;
-    margin-top:17px;
-    font-weight:800;
-}
-
-.score{
-    margin-top:12px;
-    color:#777187;
-    font-size:13px;
-}
-
 
 /* =========================================
-   RESPONSYWNOŚĆ
+   ĆWICZENIA
 ========================================= */
 
-@media(max-width:750px){
+.practice-card {
+    background: #252238;
+}
 
-    .grid{
-        grid-template-columns:1fr;
+.practice-card h2 {
+    color: white;
+}
+
+.practice-card p {
+    color: #cbc7d7;
+}
+
+.practice-card .topic-icon {
+    background: rgba(255, 255, 255, .1);
+    color: white;
+}
+
+.practice-card .tag {
+    background: rgba(255, 255, 255, .08);
+    color: #ddd9e7;
+}
+
+.practice-card .card-bottom {
+    color: white;
+}
+
+/* =========================================
+   INFORMACJA O ZAPISIE
+========================================= */
+
+.naming-note {
+    max-width: 700px;
+
+    margin: 28px auto 0;
+
+    padding: 14px 18px;
+
+    background: rgba(255, 255, 255, .55);
+
+    border: 1px solid rgba(70, 60, 100, .07);
+    border-radius: 14px;
+
+    text-align: center;
+
+    color: #8b8698;
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.naming-note strong {
+    color: #514b68;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 850px) {
+
+    .topic-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
-    .header h1{
-        font-size:34px;
+}
+
+/* =========================================
+   TELEFON
+========================================= */
+
+@media (max-width: 550px) {
+
+    .tonacje-page {
+        padding: 30px 16px 60px;
     }
 
-    .card{
-        padding:20px;
+    .topic-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topic-card,
+    .topic-card a {
+        min-height: 205px;
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
-<div class="page">
 
-<a class="back" href="index.html">
-← Strona główna
+<main class="tonacje-page">
+
+
+<div class="tonacje-container">
+
+
+<!-- =========================================
+     POWRÓT
+========================================= -->
+
+<a href="index.html"
+   class="back-home">
+
+    ← Strona główna
+
 </a>
 
 
-<header class="header">
+<!-- =========================================
+     NAGŁÓWEK
+========================================= -->
 
-<h1>Gamy i tonacje</h1>
+<header class="tonacje-header">
 
-<p>
-Od budowy gamy po znaki przykluczowe, koło kwintowe,
-pokrewieństwo tonacji, odsłuch i ćwiczenia.
-</p>
+    <div class="tonacje-title">
+        Gamy i tonacje
+    </div>
+
+    <div class="tonacje-subtitle">
+        Poznaj budowę gam durowych i molowych,
+        znaki przykluczowe oraz zależności między tonacjami.
+    </div>
+
+    <div class="section-label">
+        Wybierz temat
+    </div>
 
 </header>
 
 
-<!-- =============================================
-     MENU
-============================================= -->
+<!-- =========================================
+     KAFELKI
+========================================= -->
 
-<div class="nav">
-
-<button onclick="go('dur')">Gamy durowe</button>
-
-<button onclick="go('moll')">Gamy molowe</button>
-
-<button onclick="go('znaki')">Znaki przykluczowe</button>
-
-<button onclick="go('kolo')">Koło kwintowe</button>
-
-<button onclick="go('relacje')">Relacje tonacji</button>
-
-<button onclick="go('generator')">Generator gam</button>
-
-<button onclick="go('cwiczenia')">Ćwiczenia</button>
-
-</div>
+<div class="topic-grid">
 
 
-<!-- =============================================
+<!-- =========================================
      GAMY DUROWE
-============================================= -->
+========================================= -->
 
-<section class="card" id="dur">
+<div class="topic-card">
 
-<h2>Gamy durowe</h2>
+<a href="gamy-durowe.html">
 
-<p class="text">
-Gama durowa składa się z siedmiu różnych stopni,
-a ósmy dźwięk jest powtórzeniem pierwszego o oktawę wyżej.
-O tym, że gama jest durowa, decyduje układ całych tonów
-i półtonów.
-</p>
+    <div class="topic-icon">
+        D
+    </div>
 
-<h3>Budowa gamy durowej</h3>
+    <h2>
+        Gamy durowe
+    </h2>
 
-<div class="formula">
+    <p>
+        Budowa gam durowych, rozmieszczenie półtonów,
+        stopnie gamy oraz ich odmiany.
+    </p>
 
-<span class="step">ton</span>
-<span class="step">ton</span>
-<span class="step">półton</span>
-<span class="step">ton</span>
-<span class="step">ton</span>
-<span class="step">ton</span>
-<span class="step">półton</span>
+    <div class="tags">
 
-</div>
+        <span class="tag">
+            naturalna
+        </span>
 
-<div class="highlight">
+        <span class="tag">
+            harmoniczna
+        </span>
 
-<strong>Półtony w gamie durowej:</strong>
-między III–IV oraz VII–VIII stopniem.
+        <span class="tag">
+            miękka
+        </span>
 
-<br><br>
+    </div>
 
-Przykład:
+    <div class="card-bottom">
 
-<strong>C-dur:</strong>
-C – D – E – F – G – A – H – C
+        <span>
+            Otwórz temat
+        </span>
 
-</div>
+        <span class="arrow">
+            →
+        </span>
 
-<div class="grid">
+    </div>
 
-<div class="mini">
-<strong>Tonika — I</strong>
-<span>
-Najważniejszy stopień gamy. Daje poczucie zakończenia i określa tonację.
-</span>
-</div>
-
-<div class="mini">
-<strong>Subdominanta — IV</strong>
-<span>
-Jeden z głównych stopni funkcyjnych tonacji.
-</span>
-</div>
-
-<div class="mini">
-<strong>Dominanta — V</strong>
-<span>
-Silnie dąży do toniki i ma ogromne znaczenie w harmonii.
-</span>
-</div>
+</a>
 
 </div>
 
-</section>
 
-
-<!-- =============================================
+<!-- =========================================
      GAMY MOLOWE
-============================================= -->
+========================================= -->
 
-<section class="card" id="moll">
+<div class="topic-card">
 
-<h2>Gamy molowe</h2>
+<a href="gamy-molowe.html">
 
-<p class="text">
-W systemie szkolnym spotkasz przede wszystkim trzy odmiany gamy molowej:
-naturalną, harmoniczną i melodyczną.
-</p>
+    <div class="topic-icon">
+        m
+    </div>
 
+    <h2>
+        Gamy molowe
+    </h2>
 
-<h3>Moll naturalna</h3>
+    <p>
+        Poznaj budowę gam molowych i zobacz,
+        jak zmieniają się ich poszczególne stopnie.
+    </p>
 
-<div class="formula">
+    <div class="tags">
 
-<span class="step">ton</span>
-<span class="step">półton</span>
-<span class="step">ton</span>
-<span class="step">ton</span>
-<span class="step">półton</span>
-<span class="step">ton</span>
-<span class="step">ton</span>
+        <span class="tag">
+            naturalna
+        </span>
 
-</div>
+        <span class="tag">
+            harmoniczna
+        </span>
 
-<div class="highlight">
-<strong>a-moll naturalna:</strong>
-A – H – C – D – E – F – G – A
-</div>
+        <span class="tag">
+            melodyczna
+        </span>
 
+    </div>
 
-<h3>Moll harmoniczna</h3>
+    <div class="card-bottom">
 
-<p class="text">
-W odmianie harmonicznej podwyższamy VII stopień gamy molowej.
-Powstaje dźwięk prowadzący znajdujący się pół tonu poniżej toniki.
-</p>
+        <span>
+            Otwórz temat
+        </span>
 
-<div class="highlight">
-<strong>a-moll harmoniczna:</strong>
-A – H – C – D – E – F – G♯ – A
-</div>
+        <span class="arrow">
+            →
+        </span>
 
+    </div>
 
-<h3>Moll melodyczna</h3>
-
-<p class="text">
-W klasycznej gamie melodycznej podczas ruchu w górę
-podwyższamy VI i VII stopień. W ruchu w dół wracamy
-do postaci naturalnej.
-</p>
-
-<div class="highlight">
-
-<strong>w górę:</strong><br>
-A – H – C – D – E – F♯ – G♯ – A
-
-<br><br>
-
-<strong>w dół:</strong><br>
-A – G – F – E – D – C – H – A
+</a>
 
 </div>
 
-</section>
 
-
-<!-- =============================================
+<!-- =========================================
      ZNAKI PRZYKLUCZOWE
-============================================= -->
+========================================= -->
 
-<section class="card" id="znaki">
+<div class="topic-card">
 
-<h2>Znaki przykluczowe</h2>
+<a href="znaki-przykluczowe.html">
 
-<p class="text">
-Znaki przykluczowe zapisujemy na początku pięciolinii.
-Obowiązują one w całej tonacji, dopóki zapis muzyczny
-nie wprowadzi zmiany.
-</p>
+    <div class="topic-icon">
+        ♯♭
+    </div>
 
+    <h2>
+        Znaki przykluczowe
+    </h2>
 
-<h3>Kolejność krzyżyków</h3>
+    <p>
+        Naucz się określać tonację na podstawie
+        liczby krzyżyków lub bemoli — i odwrotnie.
+    </p>
 
-<div class="highlight">
-<strong>F♯ – C♯ – G♯ – D♯ – A♯ – E♯ – H♯</strong>
+    <div class="tags">
+
+        <span class="tag">
+            krzyżyki
+        </span>
+
+        <span class="tag">
+            bemole
+        </span>
+
+        <span class="tag">
+            C-dur
+        </span>
+
+        <span class="tag">
+            a-moll
+        </span>
+
+    </div>
+
+    <div class="card-bottom">
+
+        <span>
+            Otwórz temat
+        </span>
+
+        <span class="arrow">
+            →
+        </span>
+
+    </div>
+
+</a>
+
 </div>
 
 
-<h3>Kolejność bemoli</h3>
-
-<div class="highlight">
-<strong>B♭ – E♭ – A♭ – D♭ – G♭ – C♭ – F♭</strong>
-</div>
-
-
-<table class="key-table">
-
-<thead>
-<tr>
-<th>Liczba znaków</th>
-<th>Dur</th>
-<th>moll</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr><td>0</td><td>C-dur</td><td>a-moll</td></tr>
-
-<tr><td>1 ♯</td><td>G-dur</td><td>e-moll</td></tr>
-
-<tr><td>2 ♯</td><td>D-dur</td><td>h-moll</td></tr>
-
-<tr><td>3 ♯</td><td>A-dur</td><td>fis-moll</td></tr>
-
-<tr><td>4 ♯</td><td>E-dur</td><td>cis-moll</td></tr>
-
-<tr><td>5 ♯</td><td>H-dur</td><td>gis-moll</td></tr>
-
-<tr><td>6 ♯</td><td>Fis-dur</td><td>dis-moll</td></tr>
-
-<tr><td>7 ♯</td><td>Cis-dur</td><td>ais-moll</td></tr>
-
-<tr><td>1 ♭</td><td>F-dur</td><td>d-moll</td></tr>
-
-<tr><td>2 ♭</td><td>B-dur</td><td>g-moll</td></tr>
-
-<tr><td>3 ♭</td><td>Es-dur</td><td>c-moll</td></tr>
-
-<tr><td>4 ♭</td><td>As-dur</td><td>f-moll</td></tr>
-
-<tr><td>5 ♭</td><td>Des-dur</td><td>b-moll</td></tr>
-
-<tr><td>6 ♭</td><td>Ges-dur</td><td>es-moll</td></tr>
-
-<tr><td>7 ♭</td><td>Ces-dur</td><td>as-moll</td></tr>
-
-</tbody>
-
-</table>
-
-</section>
-
-
-<!-- =============================================
+<!-- =========================================
      KOŁO KWINTOWE
-============================================= -->
+========================================= -->
 
-<section class="card" id="kolo">
+<div class="topic-card">
 
-<h2>Koło kwintowe</h2>
+<a href="kolo-kwintowe.html">
 
-<p class="text">
-Koło kwintowe pokazuje zależności między tonacjami.
-Poruszając się w stronę tonacji krzyżykowych,
-kolejne tonacje oddalone są od siebie o kwintę czystą.
-W przeciwną stronę pojawiają się tonacje bemolowe.
-</p>
+    <div class="topic-icon">
+        ◯
+    </div>
 
+    <h2>
+        Koło kwintowe
+    </h2>
 
-<div class="circle">
+    <p>
+        Zobacz układ tonacji durowych i molowych
+        oraz kolejność pojawiania się znaków.
+    </p>
 
-<div class="circle-item">C-dur<br>a-moll</div>
+    <div class="tags">
 
-<div class="circle-item">G-dur<br>e-moll<br>1♯</div>
+        <span class="tag">
+            kwinty
+        </span>
 
-<div class="circle-item">D-dur<br>h-moll<br>2♯</div>
+        <span class="tag">
+            znaki
+        </span>
 
-<div class="circle-item">A-dur<br>fis-moll<br>3♯</div>
+        <span class="tag">
+            C-dur ↔ a-moll
+        </span>
 
-<div class="circle-item">E-dur<br>cis-moll<br>4♯</div>
+    </div>
 
-<div class="circle-item">H-dur<br>gis-moll<br>5♯</div>
+    <div class="card-bottom">
 
-<div class="circle-item">Fis-dur<br>dis-moll<br>6♯</div>
+        <span>
+            Otwórz temat
+        </span>
 
-<div class="circle-item">Cis-dur<br>ais-moll<br>7♯</div>
+        <span class="arrow">
+            →
+        </span>
 
-<div class="circle-item">F-dur<br>d-moll<br>1♭</div>
+    </div>
 
-<div class="circle-item">B-dur<br>g-moll<br>2♭</div>
-
-<div class="circle-item">Es-dur<br>c-moll<br>3♭</div>
-
-<div class="circle-item">As-dur<br>f-moll<br>4♭</div>
-
-<div class="circle-item">Des-dur<br>b-moll<br>5♭</div>
-
-<div class="circle-item">Ges-dur<br>es-moll<br>6♭</div>
-
-<div class="circle-item">Ces-dur<br>as-moll<br>7♭</div>
-
-</div>
-
-</section>
-
-
-<!-- =============================================
-     RELACJE TONACJI
-============================================= -->
-
-<section class="card" id="relacje">
-
-<h2>Relacje między tonacjami</h2>
-
-
-<div class="grid">
-
-<div class="mini">
-
-<strong>Tonacje równoległe</strong>
-
-<span>
-Mają te same znaki przykluczowe, ale inną tonikę i tryb.
-
-<br><br>
-
-C-dur ↔ a-moll<br>
-G-dur ↔ e-moll<br>
-Es-dur ↔ c-moll
-</span>
+</a>
 
 </div>
 
 
-<div class="mini">
+<!-- =========================================
+     POKREWIEŃSTWO TONACJI
+========================================= -->
 
-<strong>Tonacje jednoimienne</strong>
+<div class="topic-card">
 
-<span>
-Mają tę samą tonikę, ale przeciwny tryb.
+<a href="pokrewienstwo-tonacji.html">
 
-<br><br>
+    <div class="topic-icon">
+        ↔
+    </div>
 
-C-dur ↔ c-moll<br>
-A-dur ↔ a-moll<br>
-E-dur ↔ e-moll
-</span>
+    <h2>
+        Pokrewieństwo tonacji
+    </h2>
 
-</div>
+    <p>
+        Zrozum relacje między tonacjami i naucz się
+        szybko znajdować tonacje ze sobą powiązane.
+    </p>
 
+    <div class="tags">
 
-<div class="mini">
+        <span class="tag">
+            równoległe
+        </span>
 
-<strong>Pokrewieństwo</strong>
+        <span class="tag">
+            jednoimienne
+        </span>
 
-<span>
-Tonacje mogą być bliżej lub dalej spokrewnione
-w zależności od wspólnych dźwięków, akordów
-i liczby różniących je znaków.
-</span>
+        <span class="tag">
+            pokrewne
+        </span>
 
-</div>
+    </div>
 
-</div>
+    <div class="card-bottom">
 
-</section>
+        <span>
+            Otwórz temat
+        </span>
 
+        <span class="arrow">
+            →
+        </span>
 
-<!-- =============================================
-     GENERATOR
-============================================= -->
+    </div>
 
-<section class="card" id="generator">
-
-<h2>Interaktywny generator gam</h2>
-
-<p class="text">
-Wybierz tonikę i rodzaj gamy. Harmonix zbuduje gamę
-i pozwoli Ci jej posłuchać.
-</p>
-
-
-<div class="generator-controls">
-
-<select id="rootSelect">
-
-<option value="C">C</option>
-<option value="C#">C♯</option>
-<option value="Db">D♭</option>
-<option value="D">D</option>
-<option value="Eb">E♭</option>
-<option value="E">E</option>
-<option value="F">F</option>
-<option value="F#">F♯</option>
-<option value="G">G</option>
-<option value="Ab">A♭</option>
-<option value="A">A</option>
-<option value="Bb">B♭</option>
-<option value="B">H</option>
-
-</select>
-
-
-<select id="scaleSelect">
-
-<option value="major">dur</option>
-
-<option value="minor">
-moll naturalna
-</option>
-
-<option value="harmonic">
-moll harmoniczna
-</option>
-
-<option value="melodic">
-moll melodyczna
-</option>
-
-</select>
-
-
-<button
-class="primary"
-onclick="generateScale()"
->
-Zbuduj gamę
-</button>
-
-
-<button
-class="secondary"
-onclick="playScaleUp()"
->
-▶ W górę
-</button>
-
-
-<button
-class="secondary"
-onclick="playScaleDown()"
->
-▶ W dół
-</button>
+</a>
 
 </div>
 
 
-<div
-id="scaleName"
-class="scale-name"
->
-C-dur
-</div>
+<!-- =========================================
+     ĆWICZENIA I SŁUCH
+========================================= -->
 
+<div class="topic-card practice-card">
 
-<div
-id="scaleNotes"
-class="scale-notes"
-></div>
+<a href="cwiczenia-tonacje.html">
 
+    <div class="topic-icon">
+        ✓
+    </div>
 
-<div class="piano-wrap">
+    <h2>
+        Ćwiczenia i słuch
+    </h2>
 
-<div
-id="piano"
-class="piano"
-></div>
+    <p>
+        Buduj gamy, określaj tonacje i znaki,
+        rozpoznawaj odmiany oraz ćwicz je ze słuchu.
+    </p>
 
-</div>
+    <div class="tags">
 
-</section>
+        <span class="tag">
+            budowanie
+        </span>
 
+        <span class="tag">
+            rozpoznawanie
+        </span>
 
-<!-- =============================================
-     ĆWICZENIA
-============================================= -->
+        <span class="tag">
+            słuch
+        </span>
 
-<section class="card" id="cwiczenia">
+        <span class="tag">
+            test
+        </span>
 
-<h2>Ćwiczenia</h2>
+    </div>
 
-<p class="text">
-Wybierz, czego chcesz się uczyć. Możesz ćwiczyć jeden typ
-zadań albo wszystko razem.
-</p>
+    <div class="card-bottom">
 
+        <span>
+            Rozpocznij ćwiczenia
+        </span>
 
-<div class="quiz-setup">
+        <span class="arrow">
+            →
+        </span>
 
-<button
-class="quiz-type selected"
-data-type="signs"
-onclick="selectQuiz(this)"
->
-Znaki przykluczowe
-</button>
+    </div>
 
-
-<button
-class="quiz-type"
-data-type="relative"
-onclick="selectQuiz(this)"
->
-Tonacje równoległe
-</button>
-
-
-<button
-class="quiz-type"
-data-type="parallel"
-onclick="selectQuiz(this)"
->
-Tonacje jednoimienne
-</button>
-
-
-<button
-class="quiz-type"
-data-type="scale"
-onclick="selectQuiz(this)"
->
-Budowa gam
-</button>
-
-
-<button
-class="quiz-type"
-data-type="mixed"
-onclick="selectQuiz(this)"
->
-Wszystko
-</button>
+</a>
 
 </div>
 
 
-<button
-class="primary"
-onclick="newQuestion()"
->
-Rozpocznij / nowe pytanie
-</button>
-
-
-<div class="quiz-box">
-
-<div
-id="quizQuestion"
-class="quiz-question"
->
-Wybierz rodzaj ćwiczenia i rozpocznij.
 </div>
 
 
-<div
-id="quizAnswers"
-class="answers"
-></div>
+<!-- =========================================
+     ZASADA NAZEWNICTWA
+========================================= -->
 
+<div class="naming-note">
 
-<div
-id="quizFeedback"
-class="feedback"
-></div>
-
-
-<div
-id="quizScore"
-class="score"
->
-Wynik: 0 / 0
-</div>
-
-</div>
-
-</section>
+    W Harmonix stosujemy zapis:
+    <strong>C-dur, G-dur, Es-dur</strong>
+    dla tonacji durowych oraz
+    <strong>a-moll, e-moll, c-moll</strong>
+    dla tonacji molowych.
 
 </div>
 
 
-<script>
+</div>
 
-/* ============================================
-   PRZEWIJANIE
-============================================ */
+</main>
 
-function go(id){
-
-document
-.getElementById(id)
-.scrollIntoView({
-behavior:"smooth"
-});
-
-}
-
-
-/* ============================================
-   DANE GAM
-============================================ */
-
-const chromaticSharp=[
-"C","C♯","D","D♯","E","F",
-"F♯","G","G♯","A","A♯","H"
-];
-
-const chromaticFlat=[
-"C","D♭","D","E♭","E","F",
-"G♭","G","A♭","A","B♭","H"
-];
-
-const pitchMap={
-"C":0,
-"C#":1,
-"Db":1,
-"D":2,
-"Eb":3,
-"E":4,
-"F":5,
-"F#":6,
-"G":7,
-"Ab":8,
-"A":9,
-"Bb":10,
-"B":11
-};
-
-const displayRoot={
-"C":"C",
-"C#":"C♯",
-"Db":"Des",
-"D":"D",
-"Eb":"Es",
-"E":"E",
-"F":"F",
-"F#":"Fis",
-"G":"G",
-"Ab":"As",
-"A":"A",
-"Bb":"B",
-"B":"H"
-};
-
-const patterns={
-
-major:[
-0,2,4,5,7,9,11,12
-],
-
-minor:[
-0,2,3,5,7,8,10,12
-],
-
-harmonic:[
-0,2,3,5,7,8,11,12
-],
-
-melodic:[
-0,2,3,5,7,9,11,12
-]
-
-};
-
-const scaleLabels={
-major:"dur",
-minor:"moll naturalna",
-harmonic:"moll harmoniczna",
-melodic:"moll melodyczna"
-};
-
-
-let currentScaleMidi=[];
-
-let currentScaleNames=[];
-
-
-/* ============================================
-   POPRAWNA PISOWNIA NAZW GAM
-
-   Generator audio działa półtonami,
-   ale nazwy popularnych gam zapisujemy
-   zgodnie z teorią.
-============================================ */
-
-const writtenScales={
-
-"C_major":
-["C","D","E","F","G","A","H","C"],
-
-"G_major":
-["G","A","H","C","D","E","F♯","G"],
-
-"D_major":
-["D","E","F♯","G","A","H","C♯","D"],
-
-"A_major":
-["A","H","C♯","D","E","F♯","G♯","A"],
-
-"E_major":
-["E","F♯","G♯","A","H","C♯","D♯","E"],
-
-"B_major":
-["H","C♯","D♯","E","F♯","G♯","A♯","H"],
-
-"F#_major":
-["F♯","G♯","A♯","H","C♯","D♯","E♯","F♯"],
-
-"C#_major":
-["C♯","D♯","E♯","F♯","G♯","A♯","H♯","C♯"],
-
-
-"F_major":
-["F","G","A","B♭","C","D","E","F"],
-
-"Bb_major":
-["B♭","C","D","E♭","F","G","A","B♭"],
-
-"Eb_major":
-["E♭","F","G","A♭","B♭","C","D","E♭"],
-
-"Ab_major":
-["A♭","B♭","C","D♭","E♭","F","G","A♭"],
-
-"Db_major":
-["D♭","E♭","F","G♭","A♭","B♭","C","D♭"],
-
-
-"A_minor":
-["A","H","C","D","E","F","G","A"],
-
-"E_minor":
-["E","F♯","G","A","H","C","D","E"],
-
-"D_minor":
-["D","E","F","G","A","B♭","C","D"]
-
-};
-
-
-/* ============================================
-   GENEROWANIE
-============================================ */
-
-function generateScale(){
-
-const root=
-document
-.getElementById("rootSelect")
-.value;
-
-const type=
-document
-.getElementById("scaleSelect")
-.value;
-
-const rootPitch=
-pitchMap[root];
-
-const pattern=
-patterns[type];
-
-
-currentScaleMidi=
-pattern.map(
-distance=>
-60+
-rootPitch+
-distance
-);
-
-
-/* nazwy */
-
-const key=
-root+"_"+type;
-
-
-if(writtenScales[key]){
-
-currentScaleNames=
-writtenScales[key];
-
-}else{
-
-const useFlat=
-root.includes("b");
-
-
-const names=
-useFlat
-? chromaticFlat
-: chromaticSharp;
-
-
-currentScaleNames=
-pattern.map(
-distance=>
-names[
-(rootPitch+distance)%12
-]
-);
-
-}
-
-
-/* moll melodyczna w dół */
-
-document
-.getElementById("scaleName")
-.textContent=
-
-displayRoot[root]
-+
-" "
-+
-scaleLabels[type];
-
-
-renderScaleNotes();
-
-renderPiano();
-
-}
-
-
-/* ============================================
-   NUTY
-============================================ */
-
-function renderScaleNotes(){
-
-const box=
-document.getElementById(
-"scaleNotes"
-);
-
-box.innerHTML="";
-
-
-currentScaleNames.forEach(
-(note,index)=>{
-
-const element=
-document.createElement("div");
-
-element.className=
-"note-pill";
-
-element.innerHTML=
-
-note+
-"<br><small>"+
-(index+1)+
-"</small>";
-
-
-box.appendChild(
-element
-);
-
-});
-
-}
-
-
-/* ============================================
-   PIANINO
-============================================ */
-
-function renderPiano(){
-
-const piano=
-document.getElementById("piano");
-
-piano.innerHTML="";
-
-
-const whitePitch=[
-0,2,4,5,7,9,11
-];
-
-
-const activePitches=
-new Set(
-
-currentScaleMidi.map(
-midi=>
-midi%12
-)
-
-);
-
-
-/* białe */
-
-for(let octave=0;octave<2;octave++){
-
-whitePitch.forEach(
-pitch=>{
-
-const key=
-document.createElement("div");
-
-key.className=
-"white-key";
-
-
-if(
-activePitches.has(pitch)
-){
-
-key.classList.add(
-"active"
-);
-
-}
-
-
-piano.appendChild(key);
-
-});
-
-}
-
-
-/* czarne */
-
-const blackPositions=[
-35,
-85,
-185,
-235,
-285,
-385,
-435,
-535,
-585,
-635
-];
-
-const blackPitches=[
-1,3,6,8,10,
-1,3,6,8,10
-];
-
-
-blackPositions.forEach(
-(position,index)=>{
-
-const key=
-document.createElement("div");
-
-key.className=
-"black-key";
-
-key.style.left=
-position+"px";
-
-
-if(
-activePitches.has(
-blackPitches[index]
-)
-){
-
-key.classList.add(
-"active"
-);
-
-}
-
-
-piano.appendChild(key);
-
-});
-
-}
-
-
-/* ============================================
-   AUDIO
-============================================ */
-
-let synth=null;
-
-
-async function ensureAudio(){
-
-await Tone.start();
-
-
-if(!synth){
-
-synth=
-new Tone.Sampler({
-
-urls:{
-
-A0:"A0.mp3",
-C1:"C1.mp3",
-"D#1":"Ds1.mp3",
-"F#1":"Fs1.mp3",
-
-A1:"A1.mp3",
-C2:"C2.mp3",
-"D#2":"Ds2.mp3",
-"F#2":"Fs2.mp3",
-
-A2:"A2.mp3",
-C3:"C3.mp3",
-"D#3":"Ds3.mp3",
-"F#3":"Fs3.mp3",
-
-A3:"A3.mp3",
-C4:"C4.mp3",
-"D#4":"Ds4.mp3",
-"F#4":"Fs4.mp3",
-
-A4:"A4.mp3",
-C5:"C5.mp3",
-"D#5":"Ds5.mp3",
-"F#5":"Fs5.mp3",
-
-A5:"A5.mp3",
-C6:"C6.mp3"
-
-},
-
-baseUrl:
-"https://tonejs.github.io/audio/salamander/",
-
-release:1
-
-}).toDestination();
-
-
-await Tone.loaded();
-
-}
-
-}
-
-
-const audioPitch=[
-"C","C#","D","D#","E","F",
-"F#","G","G#","A","A#","B"
-];
-
-
-function midiName(midi){
-
-return (
-audioPitch[midi%12]
-+
-(Math.floor(midi/12)-1)
-);
-
-}
-
-
-async function playScaleUp(){
-
-generateScale();
-
-await ensureAudio();
-
-
-const now=
-Tone.now()+.1;
-
-
-currentScaleMidi.forEach(
-(midi,index)=>{
-
-synth.triggerAttackRelease(
-midiName(midi),
-.55,
-now+index*.43
-);
-
-});
-
-}
-
-
-async function playScaleDown(){
-
-generateScale();
-
-await ensureAudio();
-
-
-let notes=[
-...currentScaleMidi
-].reverse();
-
-
-/*
-W melodycznej w dół
-używamy naturalnej.
-*/
-
-const type=
-document
-.getElementById("scaleSelect")
-.value;
-
-
-if(type==="melodic"){
-
-const root=
-document
-.getElementById("rootSelect")
-.value;
-
-
-const rootPitch=
-pitchMap[root];
-
-
-notes=
-patterns.minor
-.map(
-distance=>
-60+
-rootPitch+
-distance
-)
-.reverse();
-
-}
-
-
-const now=
-Tone.now()+.1;
-
-
-notes.forEach(
-(midi,index)=>{
-
-synth.triggerAttackRelease(
-midiName(midi),
-.55,
-now+index*.43
-);
-
-});
-
-}
-
-
-/* ============================================
-   QUIZ
-============================================ */
-
-let quizType="signs";
-
-let correctAnswer="";
-
-let quizScore=0;
-
-let quizTotal=0;
-
-
-function selectQuiz(button){
-
-document
-.querySelectorAll(".quiz-type")
-.forEach(
-element=>
-element.classList.remove(
-"selected"
-)
-);
-
-
-button.classList.add(
-"selected"
-);
-
-
-quizType=
-button.dataset.type;
-
-}
-
-
-const keyData=[
-
-{
-major:"C-dur",
-minor:"a-moll",
-signs:"0 znaków"
-},
-
-{
-major:"G-dur",
-minor:"e-moll",
-signs:"1 ♯"
-},
-
-{
-major:"D-dur",
-minor:"h-moll",
-signs:"2 ♯"
-},
-
-{
-major:"A-dur",
-minor:"fis-moll",
-signs:"3 ♯"
-},
-
-{
-major:"E-dur",
-minor:"cis-moll",
-signs:"4 ♯"
-},
-
-{
-major:"H-dur",
-minor:"gis-moll",
-signs:"5 ♯"
-},
-
-{
-major:"Fis-dur",
-minor:"dis-moll",
-signs:"6 ♯"
-},
-
-{
-major:"F-dur",
-minor:"d-moll",
-signs:"1 ♭"
-},
-
-{
-major:"B-dur",
-minor:"g-moll",
-signs:"2 ♭"
-},
-
-{
-major:"Es-dur",
-minor:"c-moll",
-signs:"3 ♭"
-},
-
-{
-major:"As-dur",
-minor:"f-moll",
-signs:"4 ♭"
-},
-
-{
-major:"Des-dur",
-minor:"b-moll",
-signs:"5 ♭"
-}
-
-];
-
-
-function rand(array){
-
-return array[
-Math.floor(
-Math.random()*array.length
-)
-];
-
-}
-
-
-function shuffle(array){
-
-return [
-...array
-].sort(
-()=>Math.random()-.5
-);
-
-}
-
-
-function newQuestion(){
-
-document
-.getElementById("quizFeedback")
-.textContent="";
-
-
-let type=
-quizType;
-
-
-if(type==="mixed"){
-
-type=
-rand([
-"signs",
-"relative",
-"parallel",
-"scale"
-]);
-
-}
-
-
-if(type==="signs"){
-
-questionSigns();
-
-}
-
-
-if(type==="relative"){
-
-questionRelative();
-
-}
-
-
-if(type==="parallel"){
-
-questionParallel();
-
-}
-
-
-if(type==="scale"){
-
-questionScale();
-
-}
-
-}
-
-
-/* ============================================
-   ZNAKI
-============================================ */
-
-function questionSigns(){
-
-const item=
-rand(keyData);
-
-
-const askMajor=
-Math.random()<.5;
-
-
-const tonality=
-askMajor
-? item.major
-: item.minor;
-
-
-correctAnswer=
-item.signs;
-
-
-const options=
-shuffle([
-
-correctAnswer,
-
-rand(keyData).signs,
-
-rand(keyData).signs,
-
-rand(keyData).signs
-
-]);
-
-
-showQuestion(
-"Ile znaków przykluczowych ma "+tonality+"?",
-options
-);
-
-}
-
-
-/* ============================================
-   RÓWNOLEGŁE
-============================================ */
-
-function questionRelative(){
-
-const item=
-rand(keyData);
-
-
-const askMajor=
-Math.random()<.5;
-
-
-if(askMajor){
-
-correctAnswer=
-item.minor;
-
-
-showQuestion(
-
-"Jaka tonacja molowa jest równoległa do "+item.major+"?",
-
-shuffle([
-correctAnswer,
-rand(keyData).minor,
-rand(keyData).minor,
-rand(keyData).minor
-])
-
-);
-
-}else{
-
-correctAnswer=
-item.major;
-
-
-showQuestion(
-
-"Jaka tonacja durowa jest równoległa do "+item.minor+"?",
-
-shuffle([
-correctAnswer,
-rand(keyData).major,
-rand(keyData).major,
-rand(keyData).major
-])
-
-);
-
-}
-
-}
-
-
-/* ============================================
-   JEDNOIMIENNE
-============================================ */
-
-function questionParallel(){
-
-const item=
-rand(keyData);
-
-
-const majorRoot=
-item.major.replace(
-"-dur",
-""
-);
-
-
-correctAnswer=
-majorRoot+"-moll";
-
-
-showQuestion(
-
-"Jaka tonacja jest jednoimienna z "+item.major+"?",
-
-shuffle([
-
-correctAnswer,
-
-item.minor,
-
-rand(keyData).minor,
-
-rand(keyData).minor
-
-])
-
-);
-
-}
-
-
-/* ============================================
-   BUDOWA GAMY
-============================================ */
-
-function questionScale(){
-
-const questions=[
-
-{
-q:"Gdzie znajdują się półtony w gamie durowej?",
-a:"III–IV i VII–VIII",
-wrong:[
-"II–III i V–VI",
-"I–II i IV–V",
-"III–IV i VI–VII"
-]
-},
-
-{
-q:"Który stopień podwyższamy w moll harmonicznej?",
-a:"VII",
-wrong:[
-"VI",
-"III",
-"II"
-]
-},
-
-{
-q:"Które stopnie podwyższamy w moll melodycznej w górę?",
-a:"VI i VII",
-wrong:[
-"III i VII",
-"V i VI",
-"II i VI"
-]
-},
-
-{
-q:"Jak moll melodyczna zachowuje się w dół?",
-a:"Wraca do postaci naturalnej",
-wrong:[
-"Podwyższa tylko VII",
-"Podwyższa VI i VII",
-"Obniża III stopień"
-]
-}
-
-];
-
-
-const item=
-rand(questions);
-
-
-correctAnswer=
-item.a;
-
-
-showQuestion(
-
-item.q,
-
-shuffle([
-item.a,
-...item.wrong
-])
-
-);
-
-}
-
-
-/* ============================================
-   WYŚWIETLANIE PYTANIA
-============================================ */
-
-function showQuestion(
-question,
-options
-){
-
-document
-.getElementById("quizQuestion")
-.textContent=
-question;
-
-
-const box=
-document.getElementById(
-"quizAnswers"
-);
-
-
-box.innerHTML="";
-
-
-/*
-Usuwamy duplikaty.
-*/
-
-const unique=
-[...new Set(options)];
-
-
-unique.forEach(
-option=>{
-
-const button=
-document.createElement(
-"button"
-);
-
-
-button.className=
-"answer";
-
-
-button.textContent=
-option;
-
-
-button.onclick=()=>{
-
-checkAnswer(
-option,
-button
-);
-
-};
-
-
-box.appendChild(
-button
-);
-
-});
-
-}
-
-
-/* ============================================
-   SPRAWDZANIE
-============================================ */
-
-function checkAnswer(
-answer,
-button
-){
-
-const buttons=
-document.querySelectorAll(
-"#quizAnswers .answer"
-);
-
-
-buttons.forEach(
-element=>{
-element.disabled=true;
-});
-
-
-quizTotal++;
-
-
-if(answer===correctAnswer){
-
-quizScore++;
-
-
-button.classList.add(
-"correct"
-);
-
-
-document
-.getElementById("quizFeedback")
-.textContent=
-"✓ Dobrze!";
-
-}else{
-
-button.classList.add(
-"wrong"
-);
-
-
-buttons.forEach(
-element=>{
-
-if(
-element.textContent===
-correctAnswer
-){
-
-element.classList.add(
-"correct"
-);
-
-}
-
-});
-
-
-document
-.getElementById("quizFeedback")
-.textContent=
-
-"✕ Poprawna odpowiedź: "
-+
-correctAnswer;
-
-}
-
-
-document
-.getElementById("quizScore")
-.textContent=
-
-"Wynik: "
-+
-quizScore+
-" / "+
-quizTotal;
-
-
-setTimeout(
-newQuestion,
-1300
-);
-
-}
-
-
-/* ============================================
-   START
-============================================ */
-
-generateScale();
-
-</script>
 
 </body>
 
