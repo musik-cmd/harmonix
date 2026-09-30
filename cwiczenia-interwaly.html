@@ -53,9 +53,7 @@ body{
     box-shadow:0 10px 35px rgba(40,30,80,.08);
 }
 
-.panel h2{
-    margin:0 0 8px;
-}
+.panel h2{margin:0 0 8px}
 
 .description{
     color:#777187;
@@ -91,9 +89,7 @@ body{
     margin-bottom:8px;
 }
 
-.exercise-name{
-    font-weight:700;
-}
+.exercise-name{font-weight:700}
 
 .exercise-description{
     display:block;
@@ -103,9 +99,7 @@ body{
     line-height:1.3;
 }
 
-.interval-section{
-    margin-top:26px;
-}
+.interval-section{margin-top:26px}
 
 .section-name{
     font-size:16px;
@@ -139,7 +133,6 @@ body{
     display:block;
     font-size:20px;
     font-weight:800;
-    line-height:1;
 }
 
 .interval-small{
@@ -212,9 +205,7 @@ body{
     color:white;
 }
 
-#quiz,#finish{
-    display:none;
-}
+#quiz,#finish{display:none}
 
 .quiz-top{
     display:flex;
@@ -245,9 +236,7 @@ body{
     margin:15px 0 25px;
 }
 
-.question h2{
-    font-size:25px;
-}
+.question h2{font-size:25px}
 
 .question-sub{
     color:#777187;
@@ -315,15 +304,11 @@ body{
     min-height:30px;
     font-weight:700;
     margin:20px 0;
+    line-height:1.5;
 }
 
-.next-area{
-    text-align:center;
-}
-
-#nextButton{
-    display:none;
-}
+.next-area{text-align:center}
+#nextButton{display:none}
 
 .staff-wrapper{
     max-width:760px;
@@ -350,9 +335,7 @@ body{
     margin:20px 0 10px;
 }
 
-.finish-center{
-    text-align:center;
-}
+.finish-center{text-align:center}
 
 .mistakes{
     max-width:650px;
@@ -381,8 +364,8 @@ body{
 <a href="interwaly.html" class="back">← Wróć do interwałów</a>
 
 <div class="header">
-    <h1>Ćwiczenia — Interwały</h1>
-    <p>Rozpoznawaj ze słuchu, czytaj z nut i buduj interwały.</p>
+<h1>Ćwiczenia — Interwały</h1>
+<p>Rozpoznawaj ze słuchu, czytaj z nut i buduj interwały.</p>
 </div>
 
 <div id="setup">
@@ -394,27 +377,27 @@ body{
 <div class="exercise-types">
 
 <div class="exercise-type selected" data-type="ear" onclick="selectExercise(this)">
-    <span class="exercise-icon">🎧</span>
-    <span class="exercise-name">Rozpoznaj ze słuchu</span>
-    <span class="exercise-description">Posłuchaj i wskaż interwał</span>
+<span class="exercise-icon">🎧</span>
+<span class="exercise-name">Rozpoznaj ze słuchu</span>
+<span class="exercise-description">Posłuchaj i wskaż interwał</span>
 </div>
 
 <div class="exercise-type" data-type="notes" onclick="selectExercise(this)">
-    <span class="exercise-icon">🎼</span>
-    <span class="exercise-name">Rozpoznaj z nut</span>
-    <span class="exercise-description">Najpierw stopnie, potem półtony</span>
+<span class="exercise-icon">🎼</span>
+<span class="exercise-name">Rozpoznaj z nut</span>
+<span class="exercise-description">Stopnie + dokładny zapis</span>
 </div>
 
 <div class="exercise-type" data-type="build" onclick="selectExercise(this)">
-    <span class="exercise-icon">✏️</span>
-    <span class="exercise-name">Budowanie</span>
-    <span class="exercise-description">Zbuduj wskazany interwał</span>
+<span class="exercise-icon">✏️</span>
+<span class="exercise-name">Budowanie</span>
+<span class="exercise-description">Zbuduj wskazany interwał</span>
 </div>
 
 <div class="exercise-type" data-type="mixed" onclick="selectExercise(this)">
-    <span class="exercise-icon">⚡</span>
-    <span class="exercise-name">Trening mieszany</span>
-    <span class="exercise-description">Słuch + nuty + budowanie</span>
+<span class="exercise-icon">⚡</span>
+<span class="exercise-name">Trening mieszany</span>
+<span class="exercise-description">Słuch + nuty + budowanie</span>
 </div>
 
 </div>
@@ -426,36 +409,28 @@ body{
 <h2>2. Wybierz interwały</h2>
 
 <p class="description">
-Pod symbolem masz pełną nazwę interwału.
+Możesz wybrać dokładnie te interwały, które chcesz ćwiczyć.
 </p>
 
 <div class="interval-section">
-    <div class="section-name">Interwały proste</div>
-    <div id="simpleIntervals" class="interval-grid"></div>
+<div class="section-name">Interwały proste</div>
+<div id="simpleIntervals" class="interval-grid"></div>
 </div>
 
 <div class="interval-section">
-    <div class="section-name">Interwały złożone</div>
-    <div id="compoundIntervals" class="interval-grid"></div>
+<div class="section-name">Interwały złożone</div>
+<div id="compoundIntervals" class="interval-grid"></div>
 </div>
 
 <div class="tools">
 
-<button class="small-button" onclick="selectSimple()">
-Wszystkie proste
-</button>
+<button class="small-button" onclick="selectSimple()">Wszystkie proste</button>
 
-<button class="small-button" onclick="selectCompound()">
-Wszystkie złożone
-</button>
+<button class="small-button" onclick="selectCompound()">Wszystkie złożone</button>
 
-<button class="small-button" onclick="selectAll()">
-Zaznacz wszystkie
-</button>
+<button class="small-button" onclick="selectAll()">Zaznacz wszystkie</button>
 
-<button class="small-button" onclick="clearAll()">
-Wyczyść
-</button>
+<button class="small-button" onclick="clearAll()">Wyczyść</button>
 
 </div>
 </div>
@@ -521,7 +496,7 @@ Wynik: <span id="score">0</span>
 </div>
 
 <div class="progress">
-    <div id="progressBar" class="progress-bar"></div>
+<div id="progressBar" class="progress-bar"></div>
 </div>
 
 <div id="questionArea" class="question"></div>
@@ -585,105 +560,80 @@ Zmień ustawienia
 <script>
 
 /* =====================================================
-   BAZA INTERWAŁÓW
-
-   number = liczba stopni interwału
-   semitones = liczba półtonów
-
-   W NUTACH:
-   number jest sprawdzane/budowane NAJPIERW.
-   Dopiero potem semitones określa znak chromatyczny.
+   INTERWAŁY
 ===================================================== */
 
 const intervals=[
 
-/* SEKUNDY */
+/* PROSTE */
 
 {id:"2dim",symbol:"2>>",name:"sekunda zmniejszona",number:2,semitones:0,simple:true},
 {id:"2m",symbol:"2>",name:"sekunda mała",number:2,semitones:1,simple:true},
 {id:"2M",symbol:"2",name:"sekunda wielka",number:2,semitones:2,simple:true},
 {id:"2aug",symbol:"2<",name:"sekunda zwiększona",number:2,semitones:3,simple:true},
 
-/* TERCJE */
-
 {id:"3dim",symbol:"3>>",name:"tercja zmniejszona",number:3,semitones:2,simple:true},
 {id:"3m",symbol:"3>",name:"tercja mała",number:3,semitones:3,simple:true},
 {id:"3M",symbol:"3",name:"tercja wielka",number:3,semitones:4,simple:true},
 {id:"3aug",symbol:"3<",name:"tercja zwiększona",number:3,semitones:5,simple:true},
 
-/* KWARTY */
-
 {id:"4dim",symbol:"4>",name:"kwarta zmniejszona",number:4,semitones:4,simple:true},
 {id:"4P",symbol:"4",name:"kwarta czysta",number:4,semitones:5,simple:true},
 {id:"4aug",symbol:"4<",name:"kwarta zwiększona",number:4,semitones:6,simple:true},
 
-/* KWINTY */
-
 {id:"5dim",symbol:"5>",name:"kwinta zmniejszona",number:5,semitones:6,simple:true},
 {id:"5P",symbol:"5",name:"kwinta czysta",number:5,semitones:7,simple:true},
 {id:"5aug",symbol:"5<",name:"kwinta zwiększona",number:5,semitones:8,simple:true},
-
-/* SEKSTY */
 
 {id:"6dim",symbol:"6>>",name:"seksta zmniejszona",number:6,semitones:7,simple:true},
 {id:"6m",symbol:"6>",name:"seksta mała",number:6,semitones:8,simple:true},
 {id:"6M",symbol:"6",name:"seksta wielka",number:6,semitones:9,simple:true},
 {id:"6aug",symbol:"6<",name:"seksta zwiększona",number:6,semitones:10,simple:true},
 
-/* SEPTYMY */
+/*
+7 = septyma mała
+7< = septyma wielka
+*/
 
 {id:"7dim",symbol:"7>",name:"septyma zmniejszona",number:7,semitones:9,simple:true},
 {id:"7m",symbol:"7",name:"septyma mała",number:7,semitones:10,simple:true},
 {id:"7M",symbol:"7<",name:"septyma wielka",number:7,semitones:11,simple:true},
 {id:"7aug",symbol:"7<<",name:"septyma zwiększona",number:7,semitones:12,simple:true},
 
-/* OKTAWY */
-
 {id:"8dim",symbol:"8>",name:"oktawa zmniejszona",number:8,semitones:11,simple:true},
 {id:"8P",symbol:"8",name:"oktawa czysta",number:8,semitones:12,simple:true},
 {id:"8aug",symbol:"8<",name:"oktawa zwiększona",number:8,semitones:13,simple:true},
 
-/* NONY */
+
+/* ZŁOŻONE */
 
 {id:"9dim",symbol:"9>>",name:"nona zmniejszona",number:9,semitones:12,simple:false},
 {id:"9m",symbol:"9>",name:"nona mała",number:9,semitones:13,simple:false},
 {id:"9M",symbol:"9",name:"nona wielka",number:9,semitones:14,simple:false},
 {id:"9aug",symbol:"9<",name:"nona zwiększona",number:9,semitones:15,simple:false},
 
-/* DECYMY */
-
 {id:"10dim",symbol:"10>>",name:"decyma zmniejszona",number:10,semitones:14,simple:false},
 {id:"10m",symbol:"10>",name:"decyma mała",number:10,semitones:15,simple:false},
 {id:"10M",symbol:"10",name:"decyma wielka",number:10,semitones:16,simple:false},
 {id:"10aug",symbol:"10<",name:"decyma zwiększona",number:10,semitones:17,simple:false},
 
-/* UNDECYMY */
-
 {id:"11dim",symbol:"11>",name:"undecyma zmniejszona",number:11,semitones:16,simple:false},
 {id:"11P",symbol:"11",name:"undecyma czysta",number:11,semitones:17,simple:false},
 {id:"11aug",symbol:"11<",name:"undecyma zwiększona",number:11,semitones:18,simple:false},
 
-/* DUODECYMY */
-
 {id:"12dim",symbol:"12>",name:"duodecyma zmniejszona",number:12,semitones:18,simple:false},
 {id:"12P",symbol:"12",name:"duodecyma czysta",number:12,semitones:19,simple:false},
 {id:"12aug",symbol:"12<",name:"duodecyma zwiększona",number:12,semitones:20,simple:false},
-
-/* TERCDECYMY */
 
 {id:"13dim",symbol:"13>>",name:"tercdecyma zmniejszona",number:13,semitones:19,simple:false},
 {id:"13m",symbol:"13>",name:"tercdecyma mała",number:13,semitones:20,simple:false},
 {id:"13M",symbol:"13",name:"tercdecyma wielka",number:13,semitones:21,simple:false},
 {id:"13aug",symbol:"13<",name:"tercdecyma zwiększona",number:13,semitones:22,simple:false},
 
-/* KWARTDECYMY */
-
 {id:"14dim",symbol:"14>",name:"kwartdecyma zmniejszona",number:14,semitones:21,simple:false},
 {id:"14m",symbol:"14",name:"kwartdecyma mała",number:14,semitones:22,simple:false},
 {id:"14M",symbol:"14<",name:"kwartdecyma wielka",number:14,semitones:23,simple:false},
 {id:"14aug",symbol:"14<<",name:"kwartdecyma zwiększona",number:14,semitones:24,simple:false},
-
-/* KWINTDECYMY */
 
 {id:"15dim",symbol:"15>",name:"kwintdecyma zmniejszona",number:15,semitones:23,simple:false},
 {id:"15P",symbol:"15",name:"kwintdecyma czysta",number:15,semitones:24,simple:false},
@@ -693,123 +643,66 @@ const intervals=[
 
 
 /* =====================================================
-   NUTY DIATONICZNE
+   SYSTEM NUTOWY
 ===================================================== */
 
 const letters=["C","D","E","F","G","A","B"];
 
 const naturalPitch={
-    C:0,
-    D:2,
-    E:4,
-    F:5,
-    G:7,
-    A:9,
-    B:11
+C:0,
+D:2,
+E:4,
+F:5,
+G:7,
+A:9,
+B:11
 };
 
-
-/*
-Zamienia zapisaną nutę na MIDI.
-Np.
-C4 = 60
-Eb4 = 63
-D#4 = 63
-
-MIDI może być identyczne,
-ale ZAPIS nuty pozostaje różny.
-*/
 
 function writtenNoteToMidi(note){
 
 return 12*(note.octave+1)
-    + naturalPitch[note.letter]
-    + note.accidental;
++naturalPitch[note.letter]
++note.accidental;
 
 }
 
 
 /*
-Buduje poprawny interwał zapisany nutowo.
-
-TO JEST NAJWAŻNIEJSZA FUNKCJA.
-
-1. Najpierw liczba stopni.
-2. Wyznaczamy literę drugiej nuty.
-3. Wyznaczamy jej oktawę.
-4. Dopiero potem liczymy półtony.
-5. Dobieramy znak chromatyczny.
+NAJPIERW STOPNIE.
+POTEM PÓŁTONY.
 */
 
 function buildWrittenInterval(start,interval){
 
-const startLetterIndex=
+const startIndex=
 letters.indexOf(start.letter);
 
-
-/* liczba przesunięć literowych */
-
-const diatonicSteps=
+const steps=
 interval.number-1;
 
-
-/* absolutny indeks literowy */
-
-const absoluteLetterIndex=
-startLetterIndex+
-diatonicSteps;
-
+const absoluteIndex=
+startIndex+steps;
 
 const targetLetter=
-letters[
-absoluteLetterIndex%7
-];
-
-
-/*
-Ile razy przeszliśmy przez C,
-czyli ile oktaw wyżej znajduje się nuta.
-*/
+letters[absoluteIndex%7];
 
 const octaveShift=
-Math.floor(
-absoluteLetterIndex/7
-);
-
+Math.floor(absoluteIndex/7);
 
 const targetOctave=
-start.octave+
-octaveShift;
-
-
-/*
-MIDI naturalnej wersji drugiej nuty.
-*/
+start.octave+octaveShift;
 
 const naturalTargetMidi=
 12*(targetOctave+1)
-+
-naturalPitch[targetLetter];
-
-
-/*
-Dokładna wysokość, jakiej potrzebujemy.
-*/
++naturalPitch[targetLetter];
 
 const requiredMidi=
 writtenNoteToMidi(start)
-+
-interval.semitones;
-
-
-/*
-Różnica mówi, jaki znak chromatyczny
-musi dostać DRUGA NUTA.
-*/
++interval.semitones;
 
 const accidental=
-requiredMidi-
-naturalTargetMidi;
+requiredMidi-naturalTargetMidi;
 
 
 return{
@@ -824,10 +717,6 @@ midi:requiredMidi
 }
 
 
-/* =====================================================
-   WYŚWIETLANIE NAZW NUT
-===================================================== */
-
 function accidentalText(value){
 
 if(value===-2) return "♭♭";
@@ -836,11 +725,7 @@ if(value===0) return "";
 if(value===1) return "♯";
 if(value===2) return "𝄪";
 
-if(value>2){
-    return "♯".repeat(value);
-}
-
-return "♭".repeat(Math.abs(value));
+return "";
 
 }
 
@@ -854,18 +739,9 @@ note.octave;
 }
 
 
-/* =====================================================
-   LOSOWANIE NUTY POCZĄTKOWEJ
-===================================================== */
-
 function randomStartNote(interval){
 
-/*
-W ćwiczeniach nutowych losujemy przede wszystkim
-zwykłe nuty i pojedyncze znaki, żeby zapis był czytelny.
-*/
-
-const possibleAccidentals=[
+const accidentals=[
 -1,
 0,
 0,
@@ -874,13 +750,7 @@ const possibleAccidentals=[
 ];
 
 
-let tries=0;
-
-
-while(tries<200){
-
-tries++;
-
+for(let tries=0;tries<200;tries++){
 
 const start={
 
@@ -892,7 +762,7 @@ interval.number>=9
 : random([3,4,4]),
 
 accidental:
-random(possibleAccidentals)
+random(accidentals)
 
 };
 
@@ -904,11 +774,6 @@ interval
 );
 
 
-/*
-Nie generujemy absurdalnych potrójnych znaków.
-Podwójne ♭/♯ są dopuszczalne.
-*/
-
 if(
 target.accidental>=-2 &&
 target.accidental<=2 &&
@@ -916,7 +781,7 @@ target.midi>=43 &&
 target.midi<=88
 ){
 
-return {
+return{
 start:start,
 target:target
 };
@@ -926,18 +791,23 @@ target:target
 }
 
 
-/* awaryjnie */
-
 const start={
 letter:"C",
 octave:4,
 accidental:0
 };
 
+
 return{
+
 start:start,
+
 target:
-buildWrittenInterval(start,interval)
+buildWrittenInterval(
+start,
+interval
+)
+
 };
 
 }
@@ -956,6 +826,7 @@ button.className="interval-choice";
 
 button.dataset.id=interval.id;
 
+
 button.innerHTML=`
 
 <span class="interval-symbol">
@@ -968,11 +839,13 @@ ${interval.name}
 
 `;
 
+
 button.onclick=()=>{
 
 button.classList.toggle("selected");
 
 };
+
 
 return button;
 
@@ -1017,7 +890,9 @@ function selectExercise(element){
 
 document
 .querySelectorAll(".exercise-type")
-.forEach(x=>x.classList.remove("selected"));
+.forEach(
+x=>x.classList.remove("selected")
+);
 
 element.classList.add("selected");
 
@@ -1041,7 +916,9 @@ function selectMode(element){
 
 document
 .querySelectorAll(".mode")
-.forEach(x=>x.classList.remove("selected"));
+.forEach(
+x=>x.classList.remove("selected")
+);
 
 element.classList.add("selected");
 
@@ -1054,8 +931,12 @@ element.dataset.mode;
 function selectSimple(){
 
 document
-.querySelectorAll("#simpleIntervals .interval-choice")
-.forEach(x=>x.classList.add("selected"));
+.querySelectorAll(
+"#simpleIntervals .interval-choice"
+)
+.forEach(
+x=>x.classList.add("selected")
+);
 
 }
 
@@ -1063,8 +944,12 @@ document
 function selectCompound(){
 
 document
-.querySelectorAll("#compoundIntervals .interval-choice")
-.forEach(x=>x.classList.add("selected"));
+.querySelectorAll(
+"#compoundIntervals .interval-choice"
+)
+.forEach(
+x=>x.classList.add("selected")
+);
 
 }
 
@@ -1073,7 +958,9 @@ function selectAll(){
 
 document
 .querySelectorAll(".interval-choice")
-.forEach(x=>x.classList.add("selected"));
+.forEach(
+x=>x.classList.add("selected")
+);
 
 }
 
@@ -1082,7 +969,9 @@ function clearAll(){
 
 document
 .querySelectorAll(".interval-choice")
-.forEach(x=>x.classList.remove("selected"));
+.forEach(
+x=>x.classList.remove("selected")
+);
 
 }
 
@@ -1153,10 +1042,6 @@ return piano;
 }
 
 
-/* =====================================================
-   MIDI DO AUDIO
-===================================================== */
-
 const audioNames=[
 "C","C#","D","D#","E","F",
 "F#","G","G#","A","A#","B"
@@ -1185,7 +1070,9 @@ return pitch+octave;
 function random(array){
 
 return array[
-Math.floor(Math.random()*array.length)
+Math.floor(
+Math.random()*array.length
+)
 ];
 
 }
@@ -1210,7 +1097,7 @@ resolve=>setTimeout(resolve,ms)
 
 
 /* =====================================================
-   STAN QUIZU
+   QUIZ
 ===================================================== */
 
 let selectedIntervals=[];
@@ -1229,6 +1116,7 @@ let questionNumber=1;
 let score=0;
 let streak=0;
 let answered=false;
+
 let mistakes=[];
 
 const totalQuestions=10;
@@ -1244,7 +1132,9 @@ const ids=[
 ...document.querySelectorAll(
 ".interval-choice.selected"
 )
-].map(x=>x.dataset.id);
+].map(
+x=>x.dataset.id
+);
 
 
 if(ids.length<2){
@@ -1305,6 +1195,8 @@ currentInterval=
 random(selectedIntervals);
 
 
+/* RODZAJ ZADANIA */
+
 if(exerciseType==="mixed"){
 
 currentExercise=
@@ -1322,10 +1214,9 @@ exerciseType;
 }
 
 
-/* =====================================================
-   DLA NUT I BUDOWANIA:
-   UŻYWAMY SYSTEMU DIATONICZNEGO
-===================================================== */
+/* ================================================
+   NUTY I BUDOWANIE
+================================================ */
 
 if(
 currentExercise==="notes" ||
@@ -1333,7 +1224,9 @@ currentExercise==="build"
 ){
 
 const generated=
-randomStartNote(currentInterval);
+randomStartNote(
+currentInterval
+);
 
 writtenStart=
 generated.start;
@@ -1342,7 +1235,9 @@ writtenTarget=
 generated.target;
 
 firstMidi=
-writtenNoteToMidi(writtenStart);
+writtenNoteToMidi(
+writtenStart
+);
 
 secondMidi=
 writtenTarget.midi;
@@ -1350,10 +1245,9 @@ writtenTarget.midi;
 }
 
 
-/* =====================================================
-   DLA SŁUCHU:
-   WYSTARCZA ODLEGŁOŚĆ W PÓŁTONACH
-===================================================== */
+/* ================================================
+   SŁUCH
+================================================ */
 
 else{
 
@@ -1477,15 +1371,15 @@ document.getElementById("replayArea")
 function renderCurrentExercise(){
 
 if(currentExercise==="ear"){
-    renderEar();
+renderEar();
 }
 
 if(currentExercise==="notes"){
-    renderNotes();
+renderNotes();
 }
 
 if(currentExercise==="build"){
-    renderBuild();
+renderBuild();
 }
 
 }
@@ -1508,12 +1402,18 @@ Posłuchaj i wybierz odpowiedź.
 
 `;
 
+
 document.getElementById("replayArea")
 .style.display="block";
 
+
 renderIntervalAnswers();
 
-setTimeout(playCurrent,300);
+
+setTimeout(
+playCurrent,
+300
+);
 
 }
 
@@ -1527,16 +1427,21 @@ await createPiano();
 
 
 const first=
-midiToAudioNote(firstMidi);
+midiToAudioNote(
+firstMidi
+);
 
 const second=
-midiToAudioNote(secondMidi);
+midiToAudioNote(
+secondMidi
+);
 
 
 if(currentSoundMode==="harmonic"){
 
 const together=
 Tone.now()+0.1;
+
 
 instrument.triggerAttackRelease(
 first,
@@ -1560,7 +1465,9 @@ first,
 0.7
 );
 
+
 await wait(850);
+
 
 instrument.triggerAttackRelease(
 second,
@@ -1582,15 +1489,17 @@ document.getElementById("questionArea")
 <h2>Jaki to interwał?</h2>
 
 <div class="question-sub">
-Najpierw policz stopnie, a następnie określ jego rodzaj.
+Najpierw policz stopnie, potem określ rodzaj interwału.
 </div>
 
 `;
+
 
 drawWrittenStaff(
 writtenStart,
 writtenTarget
 );
+
 
 renderIntervalAnswers();
 
@@ -1598,7 +1507,7 @@ renderIntervalAnswers();
 
 
 /* =====================================================
-   POPRAWNA PIĘCIOLINIA DIATONICZNA
+   POZYCJA DIATONICZNA
 ===================================================== */
 
 function diatonicPosition(note){
@@ -1609,10 +1518,16 @@ letters.indexOf(note.letter);
 }
 
 
+/* =====================================================
+   PIĘCIOLINIA
+===================================================== */
+
 function drawWrittenStaff(first,second){
 
 const container=
-document.getElementById("staffArea");
+document.getElementById(
+"staffArea"
+);
 
 
 const width=720;
@@ -1624,10 +1539,6 @@ const right=675;
 const top=125;
 const gap=14;
 
-
-/*
-Dolna linia klucza wiolinowego = E4.
-*/
 
 const E4Position=
 4*7+
@@ -1644,12 +1555,13 @@ xmlns="http://www.w3.org/2000/svg"
 `;
 
 
-/* PIĘCIOLINIA */
+/* LINIE */
 
 for(let i=0;i<5;i++){
 
 const y=
 top+i*gap;
+
 
 svg+=`
 
@@ -1667,7 +1579,7 @@ stroke-width="1.5"
 }
 
 
-/* KLUCZ WIOLINOWY */
+/* KLUCZ */
 
 svg+=`
 
@@ -1701,16 +1613,12 @@ x:500
 
 drawnNotes.forEach(item=>{
 
-const note=item.note;
-const x=item.x;
+const note=
+item.note;
 
+const x=
+item.x;
 
-/*
-Najpierw pozycja DIATONICZNA.
-
-♯ i ♭ NIE przesuwają nuty
-na inną linię lub pole.
-*/
 
 const position=
 diatonicPosition(note);
@@ -1720,29 +1628,27 @@ position-
 E4Position;
 
 
-/*
-Dolna linia E4 znajduje się
-na top + 4*gap.
-*/
-
 const y=
 top+
 4*gap-
 step*(gap/2);
 
 
-/* =====================================================
-   LINIE DODANE
-===================================================== */
+/* LINIE DODANE W DÓŁ */
 
 if(step<=-2){
 
-for(let s=-2;s>=step;s-=2){
+for(
+let s=-2;
+s>=step;
+s-=2
+){
 
 const ly=
 top+
 4*gap-
 s*(gap/2);
+
 
 svg+=`
 
@@ -1761,15 +1667,22 @@ stroke-width="1.5"
 
 }
 
+
+/* LINIE DODANE W GÓRĘ */
 
 if(step>=10){
 
-for(let s=10;s<=step;s+=2){
+for(
+let s=10;
+s<=step;
+s+=2
+){
 
 const ly=
 top+
 4*gap-
 s*(gap/2);
+
 
 svg+=`
 
@@ -1789,29 +1702,25 @@ stroke-width="1.5"
 }
 
 
-/* =====================================================
-   ZNAK CHROMATYCZNY
-
-   Znak jest oddzielny od stopnia nuty.
-===================================================== */
+/* ZNAK */
 
 let sign="";
 
 
 if(note.accidental===-2){
-    sign="𝄫";
+sign="𝄫";
 }
 
 if(note.accidental===-1){
-    sign="♭";
+sign="♭";
 }
 
 if(note.accidental===1){
-    sign="♯";
+sign="♯";
 }
 
 if(note.accidental===2){
-    sign="𝄪";
+sign="𝄪";
 }
 
 
@@ -1834,7 +1743,7 @@ ${sign}
 }
 
 
-/* GŁÓWKA */
+/* NUTA */
 
 svg+=`
 
@@ -1846,13 +1755,6 @@ ry="7"
 transform="rotate(-18 ${x} ${y})"
 fill="#252238"
 />
-
-`;
-
-
-/* LASECZKA */
-
-svg+=`
 
 <line
 x1="${x+8}"
@@ -1873,7 +1775,8 @@ svg+=`
 `;
 
 
-container.innerHTML=svg;
+container.innerHTML=
+svg;
 
 }
 
@@ -1885,17 +1788,24 @@ container.innerHTML=svg;
 function renderIntervalAnswers(){
 
 const box=
-document.getElementById("answers");
+document.getElementById(
+"answers"
+);
 
 
-selectedIntervals.forEach(interval=>{
+selectedIntervals.forEach(
+interval=>{
 
 const button=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
-button.className="answer";
+button.className=
+"answer";
 
-button.dataset.id=interval.id;
+button.dataset.id=
+interval.id;
 
 
 button.innerHTML=`
@@ -1921,7 +1831,9 @@ button
 };
 
 
-box.appendChild(button);
+box.appendChild(
+button
+);
 
 });
 
@@ -1930,8 +1842,6 @@ box.appendChild(button);
 
 /* =====================================================
    BUDOWANIE
-
-   Tu również najpierw ustalamy STOPIEŃ.
 ===================================================== */
 
 function renderBuild(){
@@ -1958,10 +1868,6 @@ ${writtenNoteName(writtenStart)}
 `;
 
 
-/*
-Pokazujemy na pięciolinii tylko nutę początkową.
-*/
-
 drawSingleWrittenNote(
 writtenStart
 );
@@ -1973,19 +1879,23 @@ renderBuildAnswers();
 
 
 /* =====================================================
-   POJEDYNCZA NUTA
+   JEDNA NUTA
 ===================================================== */
 
 function drawSingleWrittenNote(note){
 
 const container=
-document.getElementById("staffArea");
+document.getElementById(
+"staffArea"
+);
+
 
 const width=720;
 const height=250;
 
 const top=95;
 const gap=14;
+
 
 const E4=
 4*7+
@@ -1995,14 +1905,11 @@ letters.indexOf("E");
 const step=
 diatonicPosition(note)-E4;
 
+
 const y=
 top+
 4*gap-
 step*(gap/2);
-
-
-let sign=
-accidentalText(note.accidental);
 
 
 let svg=`
@@ -2019,6 +1926,7 @@ for(let i=0;i<5;i++){
 
 const lineY=
 top+i*gap;
+
 
 svg+=`
 
@@ -2054,14 +1962,21 @@ fill="#252238"
 const x=400;
 
 
-/* linie dodane */
+/* LINIE DODANE */
 
 if(step<=-2){
 
-for(let s=-2;s>=step;s-=2){
+for(
+let s=-2;
+s>=step;
+s-=2
+){
 
 const ly=
-top+4*gap-s*(gap/2);
+top+
+4*gap-
+s*(gap/2);
+
 
 svg+=`
 
@@ -2083,10 +1998,17 @@ stroke-width="1.5"
 
 if(step>=10){
 
-for(let s=10;s<=step;s+=2){
+for(
+let s=10;
+s<=step;
+s+=2
+){
 
 const ly=
-top+4*gap-s*(gap/2);
+top+
+4*gap-
+s*(gap/2);
+
 
 svg+=`
 
@@ -2103,6 +2025,28 @@ stroke-width="1.5"
 
 }
 
+}
+
+
+/* ZNAK */
+
+let sign="";
+
+
+if(note.accidental===-2){
+sign="𝄫";
+}
+
+if(note.accidental===-1){
+sign="♭";
+}
+
+if(note.accidental===1){
+sign="♯";
+}
+
+if(note.accidental===2){
+sign="𝄪";
 }
 
 
@@ -2124,6 +2068,8 @@ ${sign}
 
 }
 
+
+/* NUTA */
 
 svg+=`
 
@@ -2150,40 +2096,32 @@ stroke-width="2"
 `;
 
 
-container.innerHTML=svg;
+container.innerHTML=
+svg;
 
 }
 
 
 /* =====================================================
    ODPOWIEDZI DO BUDOWANIA
-
-   Nie dajemy już przypadkowych MIDI.
-   Każda odpowiedź zachowuje POPRAWNY STOPIEŃ.
-
-   Przykład:
-   jeśli budujemy tercję od C,
-   odpowiedzi będą odmianami E,
-   a nie D# / F♭ jako przypadkowymi zamiennikami.
 ===================================================== */
 
 function renderBuildAnswers(){
 
 const box=
-document.getElementById("answers");
+document.getElementById(
+"answers"
+);
 
 
 const variants=[];
 
 
-/*
-Ta sama litera i oktawa,
-różne znaki chromatyczne.
-*/
-
-for(let accidental=-2;
-    accidental<=2;
-    accidental++){
+for(
+let accidental=-2;
+accidental<=2;
+accidental++
+){
 
 variants.push({
 
@@ -2201,10 +2139,6 @@ accidental
 }
 
 
-/*
-Mieszamy kolejność.
-*/
-
 variants.sort(
 ()=>Math.random()-.5
 );
@@ -2213,9 +2147,12 @@ variants.sort(
 variants.forEach(note=>{
 
 const button=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
-button.className="answer";
+button.className=
+"answer";
 
 
 button.innerHTML=`
@@ -2237,7 +2174,9 @@ button
 };
 
 
-box.appendChild(button);
+box.appendChild(
+button
+);
 
 });
 
@@ -2245,7 +2184,16 @@ box.appendChild(button);
 
 
 /* =====================================================
-   SPRAWDZENIE ROZPOZNAWANIA
+   SPRAWDZANIE ODPOWIEDZI
+
+   WAŻNE:
+
+   SŁUCH:
+   ta sama liczba półtonów =
+   odpowiedź poprawna.
+
+   NUTY:
+   musi zgadzać się dokładny interwał.
 ===================================================== */
 
 function checkIntervalAnswer(interval,button){
@@ -2255,32 +2203,213 @@ if(answered) return;
 answered=true;
 
 
-if(interval.id===currentInterval.id){
+let correct=false;
 
-button.classList.add("correct");
+
+/* =====================================================
+   SŁUCH
+===================================================== */
+
+if(currentExercise==="ear"){
+
+correct=
+interval.semitones===
+currentInterval.semitones;
+
+}
+
+
+/* =====================================================
+   NUTY
+===================================================== */
+
+else{
+
+correct=
+interval.id===
+currentInterval.id;
+
+}
+
+
+/* =====================================================
+   DOBRZE
+===================================================== */
+
+if(correct){
+
+button.classList.add(
+"correct"
+);
 
 score++;
 streak++;
 
 
+/* SŁUCH */
+
+if(currentExercise==="ear"){
+
+const equivalents=
+selectedIntervals.filter(
+x=>
+x.semitones===
+currentInterval.semitones
+);
+
+
+/*
+Zaznacz WSZYSTKIE
+brzmieniowo poprawne odpowiedzi.
+*/
+
+document
+.querySelectorAll(".answer")
+.forEach(answer=>{
+
+const answerInterval=
+selectedIntervals.find(
+x=>
+x.id===
+answer.dataset.id
+);
+
+
+if(
+answerInterval &&
+answerInterval.semitones===
+currentInterval.semitones
+){
+
+answer.classList.add(
+"correct"
+);
+
+}
+
+});
+
+
+/*
+Jeżeli istnieje więcej niż jedna
+poprawna nazwa interwału:
+*/
+
+if(equivalents.length>1){
+
+const names=
+equivalents
+.map(
+x=>x.symbol+" — "+x.name
+)
+.join(" / ");
+
+
 document.getElementById("feedback")
 .textContent=
+
+"✓ Dobrze! Ze słuchu te odpowiedzi brzmią tak samo: "
++names;
+
+}
+
+else{
+
+document.getElementById("feedback")
+.textContent=
+
 "✓ Dobrze — "+
 currentInterval.name;
 
-}else{
+}
 
-button.classList.add("wrong");
+}
+
+
+/* NUTY */
+
+else{
+
+document.getElementById("feedback")
+.textContent=
+
+"✓ Dobrze — "+
+currentInterval.name;
+
+}
+
+}
+
+
+/* =====================================================
+   ŹLE
+===================================================== */
+
+else{
+
+button.classList.add(
+"wrong"
+);
 
 streak=0;
 
 
+/* =====================================================
+   BŁĄD W SŁUCHU
+===================================================== */
+
+if(currentExercise==="ear"){
+
+const equivalents=
+selectedIntervals.filter(
+x=>
+x.semitones===
+currentInterval.semitones
+);
+
+
+document
+.querySelectorAll(".answer")
+.forEach(answer=>{
+
+const answerInterval=
+selectedIntervals.find(
+x=>
+x.id===
+answer.dataset.id
+);
+
+
+if(
+answerInterval &&
+answerInterval.semitones===
+currentInterval.semitones
+){
+
+answer.classList.add(
+"correct"
+);
+
+}
+
+});
+
+
+const names=
+equivalents
+.map(
+x=>x.symbol+" — "+x.name
+)
+.join(" / ");
+
+
 mistakes.push({
 
-wanted:
-currentInterval.name,
+wanted:names,
 
 answered:
+interval.symbol+
+" — "+
 interval.name
 
 });
@@ -2288,7 +2417,40 @@ interval.name
 
 document.getElementById("feedback")
 .textContent=
-"✕ To była "+
+
+"✕ Poprawna odpowiedź: "+
+names;
+
+}
+
+
+/* =====================================================
+   BŁĄD W NUTACH
+===================================================== */
+
+else{
+
+mistakes.push({
+
+wanted:
+currentInterval.symbol+
+" — "+
+currentInterval.name,
+
+answered:
+interval.symbol+
+" — "+
+interval.name
+
+});
+
+
+document.getElementById("feedback")
+.textContent=
+
+"✕ To był interwał "+
+currentInterval.symbol+
+" — "+
 currentInterval.name;
 
 
@@ -2301,11 +2463,15 @@ x.dataset.id===
 currentInterval.id
 ){
 
-x.classList.add("correct");
+x.classList.add(
+"correct"
+);
 
 }
 
 });
+
+}
 
 }
 
@@ -2317,9 +2483,6 @@ afterAnswer();
 
 /* =====================================================
    SPRAWDZENIE BUDOWANIA
-
-   Sprawdzamy zapis nutowy:
-   litera + oktawa + znak.
 ===================================================== */
 
 function checkBuildAnswer(note,button){
@@ -2347,7 +2510,9 @@ writtenTarget.accidental;
 
 if(correct){
 
-button.classList.add("correct");
+button.classList.add(
+"correct"
+);
 
 score++;
 streak++;
@@ -2355,12 +2520,19 @@ streak++;
 
 document.getElementById("feedback")
 .textContent=
+
 "✓ Dobrze — "+
-writtenNoteName(writtenTarget);
+writtenNoteName(
+writtenTarget
+);
 
-}else{
+}
 
-button.classList.add("wrong");
+else{
+
+button.classList.add(
+"wrong"
+);
 
 streak=0;
 
@@ -2370,7 +2542,9 @@ mistakes.push({
 wanted:
 currentInterval.name+
 " → "+
-writtenNoteName(writtenTarget),
+writtenNoteName(
+writtenTarget
+),
 
 answered:
 writtenNoteName(note)
@@ -2380,8 +2554,11 @@ writtenNoteName(note)
 
 document.getElementById("feedback")
 .textContent=
+
 "✕ Poprawna nuta: "+
-writtenNoteName(writtenTarget);
+writtenNoteName(
+writtenTarget
+);
 
 }
 
@@ -2398,13 +2575,16 @@ afterAnswer();
 function afterAnswer(){
 
 document.getElementById("score")
-.textContent=score;
+.textContent=
+score;
 
 document.getElementById("streak")
-.textContent=streak;
+.textContent=
+streak;
 
 document.getElementById("nextButton")
-.style.display="inline-block";
+.style.display=
+"inline-block";
 
 }
 
@@ -2415,12 +2595,17 @@ document.getElementById("nextButton")
 
 function nextQuestion(){
 
-if(questionNumber>=totalQuestions){
+if(
+questionNumber>=
+totalQuestions
+){
 
 finishTraining();
+
 return;
 
 }
+
 
 questionNumber++;
 
@@ -2455,17 +2640,23 @@ if(score===10){
 message=
 "Perfekcyjnie — 10/10.";
 
-}else if(score>=8){
+}
+
+else if(score>=8){
 
 message=
 "Bardzo dobrze. Interwały są już naprawdę pewne.";
 
-}else if(score>=5){
+}
+
+else if(score>=5){
 
 message=
 "Dobra baza. Warto zrobić jeszcze jedną rundę.";
 
-}else{
+}
+
+else{
 
 message=
 "Wybierz na początek mniej interwałów i ćwicz je partiami.";
@@ -2474,11 +2665,14 @@ message=
 
 
 document.getElementById("finishMessage")
-.textContent=message;
+.textContent=
+message;
 
 
 const box=
-document.getElementById("mistakes");
+document.getElementById(
+"mistakes"
+);
 
 box.innerHTML="";
 
@@ -2489,19 +2683,27 @@ box.innerHTML=
 "<strong>Do powtórzenia:</strong>";
 
 
-mistakes.forEach(mistake=>{
+mistakes.forEach(
+mistake=>{
 
 const row=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
-row.className="mistake-row";
+row.className=
+"mistake-row";
 
 row.textContent=
+
 mistake.wanted+
 " — odpowiedź: "+
 mistake.answered;
 
-box.appendChild(row);
+
+box.appendChild(
+row
+);
 
 });
 
@@ -2527,6 +2729,7 @@ document.getElementById("finish")
 
 document.getElementById("quiz")
 .style.display="block";
+
 
 generateQuestion();
 
