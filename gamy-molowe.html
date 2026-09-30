@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Harmonix — Gamy molowe</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 !important;
+    background: #f7f5ff !important;
+    color: #252238 !important;
+    font-family: Arial, sans-serif !important;
+}
+
+.scale-page {
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+}
+
+.scale-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* POWRÓT */
+
+.back-button {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #777187;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.back-button:hover {
+    color: #252238;
+}
+
+/* HEADER */
+
+.page-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.page-subtitle {
+    max-width: 650px;
+    margin: 12px auto 0;
+    color: #6b6680;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* ZAKŁADKI */
+
+.scale-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.scale-tab {
+    padding: 17px 10px;
+    background: #fff !important;
+    color: #777187 !important;
+    border: 1px solid #e3e0eb !important;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.scale-tab:hover {
+    transform: translateY(-2px);
+}
+
+.scale-tab.active {
+    background: #ece9f5 !important;
+    color: #252238 !important;
+    border-color: #d4cfe2 !important;
+}
+
+/* KARTY */
+
+.section-card {
+    margin-bottom: 18px;
+    padding: 28px;
+    background: #fff !important;
+    border: 1px solid rgba(70,60,100,.08) !important;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(40,30,80,.08);
+}
+
+.section-card h2 {
+    margin: 0 0 8px;
+    color: #252238 !important;
+    font-size: 22px;
+}
+
+.section-description {
+    margin: 0;
+    color: #777187 !important;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ZMIANY */
+
+.change-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 16px;
+    background: #f7f5ff !important;
+    border-radius: 14px;
+}
+
+.change-badge {
+    min-width: 100px;
+    padding: 12px 9px;
+    background: #ece9f5 !important;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.change-description {
+    color: #777187;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.change-description strong {
+    color: #252238;
+}
+
+/* STOPNIE */
+
+.degree-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 7px;
+    margin-top: 20px;
+}
+
+.degree {
+    padding: 12px 5px;
+    background: #f7f5ff;
+    border-radius: 10px;
+    text-align: center;
+    color: #777187;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.degree.changed {
+    background: #e5e0f1;
+    color: #252238;
+}
+
+.degree small {
+    display: block;
+    margin-top: 4px;
+    font-size: 8px;
+    font-weight: 500;
+}
+
+/* KONTROLKI */
+
+.scale-controls {
+    margin-top: 18px;
+}
+
+.scale-controls select {
+    padding: 11px 14px;
+    background: #faf9ff;
+    color: #252238;
+    border: 1px solid #dedbea;
+    border-radius: 11px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* WYNIK */
+
+.scale-display {
+    margin-top: 22px;
+    padding: 22px;
+    background: #faf9ff;
+    border-radius: 17px;
+    text-align: center;
+}
+
+.scale-name {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.scale-hint {
+    margin-top: 6px;
+    color: #9993a6;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.notes-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 20px;
+}
+
+.note-button {
+    min-width: 55px;
+    padding: 11px 8px;
+    background: #fff !important;
+    color: #252238 !important;
+    border: 1px solid #e5e2ec !important;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.note-button:hover {
+    background: #f3f1f9 !important;
+    transform: translateY(-2px);
+}
+
+.note-button.changed {
+    background: #e8e4f2 !important;
+    border-color: #d6d0e4 !important;
+}
+
+.note-button small {
+    display: block;
+    margin-top: 4px;
+    color: #aaa5b5;
+    font-size: 8px;
+}
+
+/* ODLEGŁOŚCI */
+
+.steps-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 14px;
+}
+
+.step {
+    padding: 5px 8px;
+    background: #efedf5;
+    border-radius: 7px;
+    color: #777187;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+/* AUDIO */
+
+.listen-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.listen-button {
+    padding: 10px 14px;
+    background: #fff !important;
+    color: #514b68 !important;
+    border: 1px solid #dedbea !important;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.listen-button:hover {
+    background: #f1eff8 !important;
+}
+
+.audio-status {
+    min-height: 18px;
+    margin-top: 12px;
+    color: #9993a6;
+    font-size: 10px;
+}
+
+/* PORÓWNANIE */
+
+.compare-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.compare-box {
+    padding: 17px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 14px;
+}
+
+.compare-box strong {
+    display: block;
+    margin-bottom: 7px;
+    color: #252238;
+    font-size: 12px;
+}
+
+.compare-box span {
+    color: #777187;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+/* ĆWICZENIA */
+
+.practice-section {
+    background: #fff !important;
+    color: #252238 !important;
+}
+
+.practice-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 18px;
+}
+
+.practice-button {
+    padding: 10px 13px;
+    background: #faf9ff !important;
+    color: #777187 !important;
+    border: 1px solid #dedbea !important;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.practice-button.active {
+    background: #ece9f5 !important;
+    color: #252238 !important;
+}
+
+.exercise-box {
+    margin-top: 18px;
+    padding: 22px;
+    background: #faf9ff !important;
+    border: 1px solid #ece9f2;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.exercise-question {
+    color: #252238 !important;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.45;
+}
+
+.answers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 17px;
+}
+
+.answer-button {
+    padding: 11px;
+    background: #fff !important;
+    color: #514b68 !important;
+    border: 1px solid #dedbea !important;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.answer-button:hover {
+    background: #f1eff8 !important;
+}
+
+.answer-button.correct {
+    background: #edf7ef !important;
+    border-color: #b8d9bf !important;
+    color: #315c39 !important;
+}
+
+.answer-button.wrong {
+    background: #faeeee !important;
+    border-color: #e0bebe !important;
+    color: #7b4242 !important;
+}
+
+.feedback {
+    min-height: 23px;
+    margin-top: 14px;
+    color: #777187;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.next-button {
+    margin-top: 8px;
+    padding: 10px 15px;
+    background: #ece9f5 !important;
+    color: #252238 !important;
+    border: 1px solid #d9d4e5 !important;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+/* MOBILE */
+
+@media(max-width: 750px) {
+
+    .page-title {
+        font-size: 42px;
+    }
+
+    .scale-tabs {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .degree-grid {
+        grid-template-columns: repeat(4,1fr);
+    }
+
+    .compare-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+    .section-card {
+        padding: 22px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main class="scale-page">
+
+<div class="scale-container">
+
+<a href="tonacje.html" class="back-button">
+    ← Gamy i tonacje
+</a>
+
+<header class="page-header">
+
+    <h1 class="page-title">
+        Gamy molowe
+    </h1>
+
+    <p class="page-subtitle">
+        Naturalna (eolska), harmoniczna, dorycka i melodyczna.
+        Porównaj ich budowę, posłuchaj i przećwicz.
+    </p>
+
+</header>
+
+
+<!-- ODMIANY -->
+
+<div class="scale-tabs">
+
+    <button class="scale-tab active"
+            onclick="selectType('natural',this)">
+        Naturalna (eolska)
+    </button>
+
+    <button class="scale-tab"
+            onclick="selectType('harmonic',this)">
+        Harmoniczna
+    </button>
+
+    <button class="scale-tab"
+            onclick="selectType('dorian',this)">
+        Dorycka
+    </button>
+
+    <button class="scale-tab"
+            onclick="selectType('melodic',this)">
+        Melodyczna
+    </button>
+
+</div>
+
+
+<!-- TEORIA -->
+
+<section class="section-card">
+
+    <h2 id="theoryTitle"></h2>
+
+    <p class="section-description"
+       id="theoryDescription"></p>
+
+
+    <div class="change-row">
+
+        <div class="change-badge"
+             id="changeBadge"></div>
+
+        <div class="change-description"
+             id="changeDescription"></div>
+
+    </div>
+
+
+    <div class="degree-grid">
+
+        <div class="degree" id="degree1">
+            I
+            <small>tonika</small>
+        </div>
+
+        <div class="degree" id="degree2">
+            II
+            <small>stopień</small>
+        </div>
+
+        <div class="degree" id="degree3">
+            III
+            <small>stopień</small>
+        </div>
+
+        <div class="degree" id="degree4">
+            IV
+            <small>subdominanta</small>
+        </div>
+
+        <div class="degree" id="degree5">
+            V
+            <small>dominanta</small>
+        </div>
+
+        <div class="degree" id="degree6">
+            VI
+            <small>stopień</small>
+        </div>
+
+        <div class="degree" id="degree7">
+            VII
+            <small>stopień</small>
+        </div>
+
+        <div class="degree" id="degree8">
+            VIII
+            <small>tonika</small>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GENERATOR -->
+
+<section class="section-card">
+
+    <h2>
+        Zbuduj i posłuchaj
+    </h2>
+
+    <p class="section-description">
+        Wybierz tonację. Kliknij pojedynczy dźwięk,
+        żeby usłyszeć go osobno.
+    </p>
+
+
+    <div class="scale-controls">
+
+        <select id="root"
+                onchange="renderScale()">
+
+            <option value="a">a-moll</option>
+            <option value="e">e-moll</option>
+            <option value="h">h-moll</option>
+            <option value="fis">fis-moll</option>
+            <option value="cis">cis-moll</option>
+            <option value="gis">gis-moll</option>
+
+            <option value="d">d-moll</option>
+            <option value="g">g-moll</option>
+            <option value="c">c-moll</option>
+            <option value="f">f-moll</option>
+            <option value="b">b-moll</option>
+
+        </select>
+
+    </div>
+
+
+    <div class="scale-display">
+
+        <div class="scale-name"
+             id="scaleName"></div>
+
+        <div class="scale-hint"
+             id="scaleHint"></div>
+
+
+        <div class="notes-row"
+             id="notesRow"></div>
+
+
+        <div class="steps-row"
+             id="stepsRow"></div>
+
+
+        <div class="listen-buttons">
+
+            <button class="listen-button"
+                    onclick="playScale('up')">
+                ▶ W górę
+            </button>
+
+            <button class="listen-button"
+                    onclick="playScale('down')">
+                ▶ W dół
+            </button>
+
+            <button class="listen-button"
+                    onclick="playScale('both')">
+                ▶ Góra + dół
+            </button>
+
+        </div>
+
+        <div class="audio-status"
+             id="audioStatus"></div>
+
+    </div>
+
+</section>
+
+
+<!-- PORÓWNANIE -->
+
+<section class="section-card">
+
+<h2>
+    Cztery odmiany
+</h2>
+
+<p class="section-description">
+    Najważniejsze różnice względem gamy molowej naturalnej.
+</p>
+
+
+<div class="compare-grid">
+
+    <div class="compare-box">
+        <strong>Naturalna (eolska)</strong>
+        <span>
+            Podstawowa postać gamy molowej.
+        </span>
+    </div>
+
+
+    <div class="compare-box">
+        <strong>Harmoniczna</strong>
+        <span>
+            Podwyższony VII stopień.
+        </span>
+    </div>
+
+
+    <div class="compare-box">
+        <strong>Dorycka</strong>
+        <span>
+            Podwyższony VI stopień.
+        </span>
+    </div>
+
+
+    <div class="compare-box">
+        <strong>Melodyczna</strong>
+        <span>
+            W górę podwyższony VI i VII stopień.
+            W dół wraca postać naturalna.
+        </span>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ĆWICZENIA -->
+
+<section class="section-card practice-section">
+
+<h2>
+    Ćwiczenia
+</h2>
+
+<p class="section-description">
+    Wybierz, co chcesz przećwiczyć.
+</p>
+
+
+<div class="practice-menu">
+
+    <button class="practice-button active"
+            onclick="setPractice('recognition',this)">
+        Rozpoznawanie
+    </button>
+
+    <button class="practice-button"
+            onclick="setPractice('building',this)">
+        Budowanie
+    </button>
+
+    <button class="practice-button"
+            onclick="setPractice('ear',this)">
+        Słuch
+    </button>
+
+    <button class="practice-button"
+            onclick="setPractice('mix',this)">
+        Mix
+    </button>
+
+</div>
+
+
+<div class="exercise-box">
+
+    <div class="exercise-question"
+         id="question"></div>
+
+    <div class="answers"
+         id="answers"></div>
+
+    <div class="feedback"
+         id="feedback"></div>
+
+    <button class="next-button"
+            onclick="newQuestion()">
+        Następne
+    </button>
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+
+<script>
+
+/* ==========================================
+   ODMIANY
+========================================== */
+
+const TYPES = {
+
+    natural: {
+
+        name:
+            "naturalna (eolska)",
+
+        title:
+            "Gama molowa naturalna (eolska)",
+
+        description:
+            "Podstawowa postać gamy molowej. Półtony znajdują się między II–III oraz V–VI stopniem.",
+
+        badge:
+            "bez zmian",
+
+        change:
+            "<strong>Nie podwyższamy żadnego stopnia.</strong> To punkt wyjścia dla pozostałych odmian.",
+
+        changed:
+            [],
+
+        offsets:
+            [0,2,3,5,7,8,10,12],
+
+        steps:
+            ["ton","półton","ton","ton","półton","ton","ton"]
+
+    },
+
+
+    harmonic: {
+
+        name:
+            "harmoniczna",
+
+        title:
+            "Gama molowa harmoniczna",
+
+        description:
+            "Powstaje z gamy molowej naturalnej przez podwyższenie VII stopnia o pół tonu.",
+
+        badge:
+            "↑ VII",
+
+        change:
+            "<strong>VII stopień podwyższamy o pół tonu.</strong> Między VI i VII stopniem powstaje sekunda zwiększona.",
+
+        changed:
+            [7],
+
+        offsets:
+            [0,2,3,5,7,8,11,12],
+
+        steps:
+            ["ton","półton","ton","ton","półton","1½ tonu","półton"]
+
+    },
+
+
+    dorian: {
+
+        name:
+            "dorycka",
+
+        title:
+            "Gama molowa dorycka",
+
+        description:
+            "W stosunku do gamy molowej naturalnej ma podwyższony VI stopień.",
+
+        badge:
+            "↑ VI",
+
+        change:
+            "<strong>VI stopień podwyższamy o pół tonu.</strong>",
+
+        changed:
+            [6],
+
+        offsets:
+            [0,2,3,5,7,9,10,12],
+
+        steps:
+            ["ton","półton","ton","ton","ton","półton","ton"]
+
+    },
+
+
+    melodic: {
+
+        name:
+            "melodyczna",
+
+        title:
+            "Gama molowa melodyczna",
+
+        description:
+            "W ruchu w górę podwyższamy VI i VII stopień. W tradycyjnym zapisie w ruchu w dół wracamy do postaci naturalnej.",
+
+        badge:
+            "↑ VI, VII",
+
+        change:
+            "<strong>W górę: ↑ VI i ↑ VII.</strong> W dół: postać naturalna.",
+
+        changed:
+            [6,7],
+
+        offsets:
+            [0,2,3,5,7,9,11,12],
+
+        steps:
+            ["ton","półton","ton","ton","ton","ton","półton"]
+
+    }
+
+};
+
+
+let currentType =
+    "natural";
+
+
+let practiceMode =
+    "recognition";
+
+
+/* ==========================================
+   GAMY NATURALNE
+========================================== */
+
+const NATURAL_MINOR = {
+
+    a:
+        ["A","H","C","D","E","F","G","A"],
+
+    e:
+        ["E","Fis","G","A","H","C","D","E"],
+
+    h:
+        ["H","Cis","D","E","Fis","G","A","H"],
+
+    fis:
+        ["Fis","Gis","A","H","Cis","D","E","Fis"],
+
+    cis:
+        ["Cis","Dis","E","Fis","Gis","A","H","Cis"],
+
+    gis:
+        ["Gis","Ais","H","Cis","Dis","E","Fis","Gis"],
+
+    d:
+        ["D","E","F","G","A","B","C","D"],
+
+    g:
+        ["G","A","B","C","D","Es","F","G"],
+
+    c:
+        ["C","D","Es","F","G","As","B","C"],
+
+    f:
+        ["F","G","As","B","C","Des","Es","F"],
+
+    b:
+        ["B","C","Des","Es","F","Ges","As","B"]
+
+};
+
+
+/* ==========================================
+   PODWYŻSZANIE NUT
+========================================== */
+
+function raiseNote(note) {
+
+    const map = {
+
+        C:"Cis",
+        Cis:"Cisis",
+
+        D:"Dis",
+        Dis:"Disis",
+
+        E:"Eis",
+
+        F:"Fis",
+        Fis:"Fisis",
+
+        G:"Gis",
+        Gis:"Gisis",
+
+        A:"Ais",
+        Ais:"Aisis",
+
+        H:"His",
+
+        B:"H",
+
+        Es:"E",
+        As:"A",
+        Des:"D",
+        Ges:"G",
+
+        Ces:"C"
+
+    };
+
+    return map[note] || note;
+
+}
+
+
+/* ==========================================
+   WYBÓR ODMIANY
+========================================== */
+
+function selectType(type, button) {
+
+    currentType = type;
+
+
+    document
+        .querySelectorAll(".scale-tab")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+
+    button.classList.add("active");
+
+
+    renderTheory();
+
+    renderScale();
+
+}
+
+
+function renderTheory() {
+
+    const data =
+        TYPES[currentType];
+
+
+    document.getElementById("theoryTitle").textContent =
+        data.title;
+
+
+    document.getElementById("theoryDescription").textContent =
+        data.description;
+
+
+    document.getElementById("changeBadge").textContent =
+        data.badge;
+
+
+    document.getElementById("changeDescription").innerHTML =
+        data.change;
+
+
+    for(let i=1; i<=8; i++) {
+
+        document
+            .getElementById("degree"+i)
+            .classList.remove("changed");
+
+    }
+
+
+    data.changed.forEach(number => {
+
+        document
+            .getElementById("degree"+number)
+            .classList.add("changed");
+
+    });
+
+}
+
+
+/* ==========================================
+   ZAPIS GAMY
+========================================== */
+
+function getScale(type = currentType) {
+
+    const root =
+        document.getElementById("root").value;
+
+
+    const scale =
+        [...NATURAL_MINOR[root]];
+
+
+    if(type === "harmonic") {
+
+        scale[6] =
+            raiseNote(scale[6]);
+
+    }
+
+
+    if(type === "dorian") {
+
+        scale[5] =
+            raiseNote(scale[5]);
+
+    }
+
+
+    if(type === "melodic") {
+
+        scale[5] =
+            raiseNote(scale[5]);
+
+        scale[6] =
+            raiseNote(scale[6]);
+
+    }
+
+
+    return scale;
+
+}
+
+
+function renderScale() {
+
+    const root =
+        document.getElementById("root").value;
+
+
+    const data =
+        TYPES[currentType];
+
+
+    const scale =
+        getScale();
+
+
+    document.getElementById("scaleName").textContent =
+        root + "-moll " + data.name;
+
+
+    document.getElementById("scaleHint").textContent =
+        data.badge;
+
+
+    const notes =
+        document.getElementById("notesRow");
+
+
+    notes.innerHTML = "";
+
+
+    scale.forEach((note,index) => {
+
+        const button =
+            document.createElement("button");
+
+
+        button.className =
+            "note-button";
+
+
+        if(data.changed.includes(index+1)) {
+
+            button.classList.add("changed");
+
+        }
+
+
+        button.innerHTML =
+            note +
+            "<small>" +
+            roman(index+1) +
+            "</small>";
+
+
+        button.onclick =
+            () =>
+                playSingleNote(index);
+
+
+        notes.appendChild(button);
+
+    });
+
+
+    const steps =
+        document.getElementById("stepsRow");
+
+
+    steps.innerHTML = "";
+
+
+    data.steps.forEach(item => {
+
+        const div =
+            document.createElement("div");
+
+
+        div.className =
+            "step";
+
+
+        div.textContent =
+            item;
+
+
+        steps.appendChild(div);
+
+    });
+
+}
+
+
+function roman(number) {
+
+    return [
+        "I","II","III","IV",
+        "V","VI","VII","VIII"
+    ][number-1];
+
+}
+
+
+/* ==========================================
+   FORTEPIAN — TE SAME PRÓBKI CO W DUROWYCH
+========================================== */
+
+let piano = null;
+let pianoLoading = false;
+
+
+async function getPiano() {
+
+    const status =
+        document.getElementById("audioStatus");
+
+
+    try {
+
+        await Tone.start();
+
+
+        if(piano) {
+            return piano;
+        }
+
+
+        if(pianoLoading) {
+
+            status.textContent =
+                "Ładowanie fortepianu…";
+
+
+            while(pianoLoading) {
+
+                await new Promise(
+                    resolve =>
+                        setTimeout(resolve,100)
+                );
+
+            }
+
+
+            return piano;
+
+        }
+
+
+        pianoLoading = true;
+
+
+        status.textContent =
+            "Ładowanie próbek fortepianu…";
+
+
+        piano =
+            new Tone.Sampler({
+
+                urls: {
+
+                    A0:"A0.mp3",
+                    C1:"C1.mp3",
+                    "D#1":"Ds1.mp3",
+                    "F#1":"Fs1.mp3",
+
+                    A1:"A1.mp3",
+                    C2:"C2.mp3",
+                    "D#2":"Ds2.mp3",
+                    "F#2":"Fs2.mp3",
+
+                    A2:"A2.mp3",
+                    C3:"C3.mp3",
+                    "D#3":"Ds3.mp3",
+                    "F#3":"Fs3.mp3",
+
+                    A3:"A3.mp3",
+                    C4:"C4.mp3",
+                    "D#4":"Ds4.mp3",
+                    "F#4":"Fs4.mp3",
+
+                    A4:"A4.mp3",
+                    C5:"C5.mp3",
+                    "D#5":"Ds5.mp3",
+                    "F#5":"Fs5.mp3",
+
+                    A5:"A5.mp3",
+                    C6:"C6.mp3"
+
+                },
+
+                baseUrl:
+                    "https://tonejs.github.io/audio/salamander/",
+
+                release:1.4
+
+            }).toDestination();
+
+
+        await Tone.loaded();
+
+
+        pianoLoading = false;
+
+
+        status.textContent =
+            "Fortepian gotowy ✓";
+
+
+        return piano;
+
+    }
+
+    catch(error) {
+
+        pianoLoading = false;
+        piano = null;
+
+
+        status.textContent =
+            "Nie udało się załadować fortepianu.";
+
+
+        console.error(error);
+
+
+        return null;
+
+    }
+
+}
+
+
+/* ==========================================
+   MIDI
+========================================== */
+
+const ROOT_MIDI = {
+
+    a:57,
+    e:64,
+    h:59,
+    fis:66,
+    cis:61,
+    gis:68,
+
+    d:62,
+    g:67,
+    c:60,
+    f:65,
+    b:58
+
+};
+
+
+const PITCHES = [
+    "C","C#","D","D#",
+    "E","F","F#","G",
+    "G#","A","A#","B"
+];
+
+
+function midiName(midi) {
+
+    return (
+        PITCHES[midi % 12] +
+        (Math.floor(midi / 12)-1)
+    );
+
+}
+
+
+function midiScale(type=currentType) {
+
+    const root =
+        document.getElementById("root").value;
+
+
+    const base =
+        ROOT_MIDI[root];
+
+
+    return TYPES[type]
+        .offsets
+        .map(offset =>
+            base + offset
+        );
+
+}
+
+
+/* ==========================================
+   AUDIO
+========================================== */
+
+async function playSingleNote(index) {
+
+    const instrument =
+        await getPiano();
+
+
+    if(!instrument) return;
+
+
+    const midi =
+        midiScale()[index];
+
+
+    instrument.triggerAttackRelease(
+        midiName(midi),
+        .9
+    );
+
+}
+
+
+async function playScale(direction) {
+
+    const instrument =
+        await getPiano();
+
+
+    if(!instrument) return;
+
+
+    let notes;
+
+
+    /*
+       Melodyczna:
+       góra = melodyczna
+       dół = naturalna
+    */
+
+    if(
+        currentType === "melodic" &&
+        direction === "down"
+    ) {
+
+        notes =
+            midiScale("natural")
+            .reverse();
+
+    }
+
+    else if(
+        currentType === "melodic" &&
+        direction === "both"
+    ) {
+
+        const up =
+            midiScale("melodic");
+
+
+        const down =
+            midiScale("natural")
+            .slice(0,-1)
+            .reverse();
+
+
+        notes = [
+            ...up,
+            ...down
+        ];
+
+    }
+
+    else {
+
+        notes =
+            midiScale();
+
+
+        if(direction === "down") {
+
+            notes =
+                [...notes].reverse();
+
+        }
+
+
+        if(direction === "both") {
+
+            notes = [
+                ...notes,
+                ...notes
+                    .slice(0,-1)
+                    .reverse()
+            ];
+
+        }
+
+    }
+
+
+    const start =
+        Tone.now()+.1;
+
+
+    notes.forEach((midi,index) => {
+
+        instrument.triggerAttackRelease(
+
+            midiName(midi),
+
+            .85,
+
+            start + index*.43,
+
+            .75
+
+        );
+
+    });
+
+}
+
+
+/* ==========================================
+   PYTANIA
+========================================== */
+
+const RECOGNITION = [
+
+    {
+        q:
+            "Jak inaczej nazywamy gamę molową naturalną?",
+
+        correct:
+            "eolska",
+
+        answers:
+            ["eolska","dorycka","harmoniczna","melodyczna"]
+    },
+
+
+    {
+        q:
+            "Która odmiana ma podwyższony VII stopień?",
+
+        correct:
+            "harmoniczna",
+
+        answers:
+            ["naturalna","harmoniczna","dorycka","melodyczna"]
+    },
+
+
+    {
+        q:
+            "Która odmiana ma podwyższony VI stopień?",
+
+        correct:
+            "dorycka",
+
+        answers:
+            ["naturalna","harmoniczna","dorycka","melodyczna"]
+    },
+
+
+    {
+        q:
+            "Która odmiana w ruchu w górę ma podwyższony VI i VII stopień?",
+
+        correct:
+            "melodyczna",
+
+        answers:
+            ["naturalna","harmoniczna","dorycka","melodyczna"]
+    },
+
+
+    {
+        q:
+            "Gdzie występują półtony w gamie molowej naturalnej?",
+
+        correct:
+            "II–III i V–VI",
+
+        answers:
+            [
+                "II–III i V–VI",
+                "III–IV i VII–VIII",
+                "II–III i VI–VII",
+                "III–IV i V–VI"
+            ]
+    }
+
+];
+
+
+const BUILDING = [
+
+    {
+        q:
+            "Jak zmienia się a-moll harmoniczna?",
+
+        correct:
+            "G → Gis",
+
+        answers:
+            [
+                "G → Gis",
+                "F → Fis",
+                "C → Cis",
+                "H → His"
+            ]
+    },
+
+
+    {
+        q:
+            "Jak zmienia się a-moll dorycka?",
+
+        correct:
+            "F → Fis",
+
+        answers:
+            [
+                "F → Fis",
+                "G → Gis",
+                "C → Cis",
+                "E → Eis"
+            ]
+    },
+
+
+    {
+        q:
+            "Jak wygląda a-moll melodyczna w górę?",
+
+        correct:
+            "F → Fis i G → Gis",
+
+        answers:
+            [
+                "F → Fis i G → Gis",
+                "tylko G → Gis",
+                "tylko F → Fis",
+                "C → Cis i G → Gis"
+            ]
+    }
+
+];
+
+
+/* ==========================================
+   ĆWICZENIA
+========================================== */
+
+function setPractice(mode,button) {
+
+    practiceMode = mode;
+
+
+    document
+        .querySelectorAll(".practice-button")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+
+    button.classList.add("active");
+
+
+    newQuestion();
+
+}
+
+
+function random(array) {
+
+    return array[
+        Math.floor(
+            Math.random()*array.length
+        )
+    ];
+
+}
+
+
+function shuffle(array) {
+
+    return [...array]
+        .sort(() =>
+            Math.random()-.5
+        );
+
+}
+
+
+async function newQuestion() {
+
+    document.getElementById("feedback").textContent =
+        "";
+
+
+    let mode =
+        practiceMode;
+
+
+    if(mode === "mix") {
+
+        mode =
+            random([
+                "recognition",
+                "building",
+                "ear"
+            ]);
+
+    }
+
+
+    if(mode === "ear") {
+
+        await earQuestion();
+
+        return;
+
+    }
+
+
+    const source =
+        mode === "building"
+        ? BUILDING
+        : RECOGNITION;
+
+
+    const item =
+        random(source);
+
+
+    showQuestion(
+        item.q,
+        item.correct,
+        item.answers
+    );
+
+}
+
+
+function showQuestion(q,correct,options) {
+
+    document.getElementById("question").textContent =
+        q;
+
+
+    const answers =
+        document.getElementById("answers");
+
+
+    answers.innerHTML = "";
+
+
+    shuffle(options)
+        .forEach(option => {
+
+            const button =
+                document.createElement("button");
+
+
+            button.className =
+                "answer-button";
+
+
+            button.textContent =
+                option;
+
+
+            button.onclick =
+                () =>
+                    checkAnswer(
+                        button,
+                        option,
+                        correct
+                    );
+
+
+            answers.appendChild(button);
+
+        });
+
+}
+
+
+function checkAnswer(button,answer,correct) {
+
+    const buttons =
+        document.querySelectorAll(
+            "#answers .answer-button"
+        );
+
+
+    buttons.forEach(btn => {
+
+        if(
+            btn.textContent !==
+            "▶ Posłuchaj ponownie"
+        ) {
+
+            btn.disabled = true;
+
+        }
+
+    });
+
+
+    if(answer === correct) {
+
+        button.classList.add("correct");
+
+
+        document.getElementById("feedback").textContent =
+            "✓ Dobrze!";
+
+    }
+
+    else {
+
+        button.classList.add("wrong");
+
+
+        buttons.forEach(btn => {
+
+            if(btn.textContent === correct) {
+
+                btn.classList.add("correct");
+
+            }
+
+        });
+
+
+        document.getElementById("feedback").textContent =
+            "Poprawna odpowiedź: " + correct;
+
+    }
+
+}
+
+
+/* ==========================================
+   SŁUCH
+========================================== */
+
+let earType = null;
+
+
+async function earQuestion() {
+
+    earType =
+        random([
+            "natural",
+            "harmonic",
+            "dorian",
+            "melodic"
+        ]);
+
+
+    document.getElementById("question").textContent =
+        "Posłuchaj gamy. Która to odmiana?";
+
+
+    const answers =
+        document.getElementById("answers");
+
+
+    answers.innerHTML = "";
+
+
+    const replay =
+        document.createElement("button");
+
+
+    replay.className =
+        "answer-button";
+
+
+    replay.textContent =
+        "▶ Posłuchaj ponownie";
+
+
+    replay.onclick =
+        () => playEar();
+
+
+    answers.appendChild(replay);
+
+
+    [
+        "naturalna (eolska)",
+        "harmoniczna",
+        "dorycka",
+        "melodyczna"
+    ].forEach(label => {
+
+        const button =
+            document.createElement("button");
+
+
+        button.className =
+            "answer-button";
+
+
+        button.textContent =
+            label;
+
+
+        button.onclick =
+            () =>
+                checkAnswer(
+                    button,
+                    label,
+                    TYPES[earType].name
+                );
+
+
+        answers.appendChild(button);
+
+    });
+
+
+    await playEar();
+
+}
+
+
+async function playEar() {
+
+    const instrument =
+        await getPiano();
+
+
+    if(!instrument) return;
+
+
+    const notes =
+        midiScale(earType);
+
+
+    const start =
+        Tone.now()+.1;
+
+
+    notes.forEach((midi,index) => {
+
+        instrument.triggerAttackRelease(
+
+            midiName(midi),
+
+            .85,
+
+            start + index*.43,
+
+            .75
+
+        );
+
+    });
+
+}
+
+
+/* START */
+
+renderTheory();
+renderScale();
+newQuestion();
+
+</script>
+
+</body>
+
+</html>
