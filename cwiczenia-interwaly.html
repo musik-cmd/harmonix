@@ -9,10 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
 <style>
-
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
     margin:0;
@@ -48,10 +45,6 @@ body{
     font-size:17px;
 }
 
-/* =========================
-   KARTY
-========================= */
-
 .panel{
     background:white;
     border-radius:24px;
@@ -68,10 +61,6 @@ body{
     color:#777187;
     line-height:1.5;
 }
-
-/* =========================
-   RODZAJE ĆWICZEŃ
-========================= */
 
 .exercise-types{
     display:grid;
@@ -114,10 +103,6 @@ body{
     line-height:1.3;
 }
 
-/* =========================
-   INTERWAŁY
-========================= */
-
 .interval-section{
     margin-top:26px;
 }
@@ -138,7 +123,7 @@ body{
     border:1px solid #dedbea;
     background:#faf9ff;
     border-radius:14px;
-    min-height:70px;
+    min-height:74px;
     padding:10px 6px;
     cursor:pointer;
     color:#252238;
@@ -161,13 +146,9 @@ body{
     display:block;
     font-size:10px;
     margin-top:7px;
-    opacity:.7;
+    opacity:.72;
     line-height:1.15;
 }
-
-/* =========================
-   PRZYCISKI
-========================= */
 
 .tools{
     display:flex;
@@ -197,10 +178,6 @@ body{
     font-weight:700;
 }
 
-.primary:disabled{
-    opacity:.4;
-}
-
 .start-area{
     text-align:center;
     margin-top:28px;
@@ -212,10 +189,6 @@ body{
     color:#a44e60;
     font-size:14px;
 }
-
-/* =========================
-   TRYB SŁUCHOWY
-========================= */
 
 .mode-grid{
     display:grid;
@@ -239,12 +212,7 @@ body{
     color:white;
 }
 
-/* =========================
-   QUIZ
-========================= */
-
-#quiz,
-#finish{
+#quiz,#finish{
     display:none;
 }
 
@@ -284,11 +252,8 @@ body{
 .question-sub{
     color:#777187;
     font-size:14px;
+    line-height:1.6;
 }
-
-/* =========================
-   PLAY
-========================= */
 
 .play-button{
     width:95px;
@@ -306,10 +271,6 @@ body{
     text-align:center;
     margin-bottom:25px;
 }
-
-/* =========================
-   ODPOWIEDZI
-========================= */
 
 .answers{
     display:grid;
@@ -364,12 +325,8 @@ body{
     display:none;
 }
 
-/* =========================
-   PIĘCIOLINIA
-========================= */
-
 .staff-wrapper{
-    max-width:720px;
+    max-width:760px;
     margin:10px auto 30px;
 }
 
@@ -378,45 +335,14 @@ body{
     display:block;
 }
 
-/* =========================
-   PIANINO DO BUDOWANIA
-========================= */
-
-.keyboard{
-    position:relative;
-    max-width:760px;
-    height:190px;
-    margin:25px auto;
-    display:flex;
+.build-note{
+    display:inline-block;
+    padding:8px 13px;
+    border-radius:10px;
+    background:#eeecf7;
+    font-weight:800;
+    margin-top:8px;
 }
-
-.white-key{
-    flex:1;
-    height:185px;
-    background:white;
-    border:1px solid #aaa;
-    border-radius:0 0 7px 7px;
-    cursor:pointer;
-    position:relative;
-}
-
-.white-key:hover{
-    background:#f1eff8;
-}
-
-.white-key span{
-    position:absolute;
-    bottom:10px;
-    left:0;
-    right:0;
-    text-align:center;
-    font-size:11px;
-    color:#777;
-}
-
-/* =========================
-   KONIEC
-========================= */
 
 .finish-score{
     font-size:58px;
@@ -429,7 +355,7 @@ body{
 }
 
 .mistakes{
-    max-width:600px;
+    max-width:650px;
     margin:25px auto;
     text-align:left;
 }
@@ -441,21 +367,10 @@ body{
 }
 
 @media(max-width:600px){
-
-    .header h1{
-        font-size:32px;
-    }
-
-    .panel{
-        padding:20px 15px;
-    }
-
-    .interval-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-
+    .header h1{font-size:32px}
+    .panel{padding:20px 15px}
+    .interval-grid{grid-template-columns:repeat(3,1fr)}
 }
-
 </style>
 </head>
 
@@ -463,27 +378,14 @@ body{
 
 <div class="page">
 
-<a href="interwaly.html" class="back">
-← Wróć do interwałów
-</a>
+<a href="interwaly.html" class="back">← Wróć do interwałów</a>
 
 <div class="header">
-
-<h1>Ćwiczenia — Interwały</h1>
-
-<p>
-Ustaw trening dokładnie tak, jak chcesz.
-</p>
-
+    <h1>Ćwiczenia — Interwały</h1>
+    <p>Rozpoznawaj ze słuchu, czytaj z nut i buduj interwały.</p>
 </div>
 
-
-<!-- ==================================================
-     SETUP
-================================================== -->
-
 <div id="setup">
-
 
 <div class="panel">
 
@@ -491,92 +393,31 @@ Ustaw trening dokładnie tak, jak chcesz.
 
 <div class="exercise-types">
 
-<div class="exercise-type selected"
-     data-type="ear"
-     onclick="selectExercise(this)">
-
-<span class="exercise-icon">🎧</span>
-
-<span class="exercise-name">
-Rozpoznaj ze słuchu
-</span>
-
-<span class="exercise-description">
-Posłuchaj i wskaż interwał
-</span>
-
+<div class="exercise-type selected" data-type="ear" onclick="selectExercise(this)">
+    <span class="exercise-icon">🎧</span>
+    <span class="exercise-name">Rozpoznaj ze słuchu</span>
+    <span class="exercise-description">Posłuchaj i wskaż interwał</span>
 </div>
 
-
-<div class="exercise-type"
-     data-type="notes"
-     onclick="selectExercise(this)">
-
-<span class="exercise-icon">🎼</span>
-
-<span class="exercise-name">
-Rozpoznaj z nut
-</span>
-
-<span class="exercise-description">
-Odczytaj interwał z pięciolinii
-</span>
-
+<div class="exercise-type" data-type="notes" onclick="selectExercise(this)">
+    <span class="exercise-icon">🎼</span>
+    <span class="exercise-name">Rozpoznaj z nut</span>
+    <span class="exercise-description">Najpierw stopnie, potem półtony</span>
 </div>
 
-
-<div class="exercise-type"
-     data-type="build"
-     onclick="selectExercise(this)">
-
-<span class="exercise-icon">✏️</span>
-
-<span class="exercise-name">
-Budowanie
-</span>
-
-<span class="exercise-description">
-Zbuduj podany interwał
-</span>
-
+<div class="exercise-type" data-type="build" onclick="selectExercise(this)">
+    <span class="exercise-icon">✏️</span>
+    <span class="exercise-name">Budowanie</span>
+    <span class="exercise-description">Zbuduj wskazany interwał</span>
 </div>
 
-
-<div class="exercise-type"
-     data-type="piano"
-     onclick="selectExercise(this)">
-
-<span class="exercise-icon">🎹</span>
-
-<span class="exercise-name">
-Budowanie na pianinie
-</span>
-
-<span class="exercise-description">
-Znajdź drugi dźwięk
-</span>
-
-</div>
-
-
-<div class="exercise-type"
-     data-type="mixed"
-     onclick="selectExercise(this)">
-
-<span class="exercise-icon">⚡</span>
-
-<span class="exercise-name">
-Trening mieszany
-</span>
-
-<span class="exercise-description">
-Różne rodzaje zadań
-</span>
-
+<div class="exercise-type" data-type="mixed" onclick="selectExercise(this)">
+    <span class="exercise-icon">⚡</span>
+    <span class="exercise-name">Trening mieszany</span>
+    <span class="exercise-description">Słuch + nuty + budowanie</span>
 </div>
 
 </div>
-
 </div>
 
 
@@ -585,119 +426,79 @@ Różne rodzaje zadań
 <h2>2. Wybierz interwały</h2>
 
 <p class="description">
-Możesz ćwiczyć tylko kilka wybranych albo cały materiał.
+Pod symbolem masz pełną nazwę interwału.
 </p>
 
+<div class="interval-section">
+    <div class="section-name">Interwały proste</div>
+    <div id="simpleIntervals" class="interval-grid"></div>
+</div>
 
 <div class="interval-section">
-
-<div class="section-name">
-Interwały proste
+    <div class="section-name">Interwały złożone</div>
+    <div id="compoundIntervals" class="interval-grid"></div>
 </div>
-
-<div id="simpleIntervals"
-     class="interval-grid">
-</div>
-
-</div>
-
-
-<div class="interval-section">
-
-<div class="section-name">
-Interwały złożone
-</div>
-
-<div id="compoundIntervals"
-     class="interval-grid">
-</div>
-
-</div>
-
 
 <div class="tools">
 
-<button class="small-button"
-        onclick="selectSimple()">
+<button class="small-button" onclick="selectSimple()">
 Wszystkie proste
 </button>
 
-<button class="small-button"
-        onclick="selectCompound()">
+<button class="small-button" onclick="selectCompound()">
 Wszystkie złożone
 </button>
 
-<button class="small-button"
-        onclick="selectAll()">
+<button class="small-button" onclick="selectAll()">
 Zaznacz wszystkie
 </button>
 
-<button class="small-button"
-        onclick="clearAll()">
+<button class="small-button" onclick="clearAll()">
 Wyczyść
 </button>
 
 </div>
-
 </div>
 
 
-<div class="panel"
-     id="soundSettings">
+<div class="panel" id="soundSettings">
 
 <h2>3. Sposób odsłuchu</h2>
 
 <div class="mode-grid">
 
-<div class="mode selected"
-     data-mode="up"
-     onclick="selectMode(this)">
+<div class="mode selected" data-mode="up" onclick="selectMode(this)">
 ↗ Melodycznie w górę
 </div>
 
-<div class="mode"
-     data-mode="down"
-     onclick="selectMode(this)">
+<div class="mode" data-mode="down" onclick="selectMode(this)">
 ↘ Melodycznie w dół
 </div>
 
-<div class="mode"
-     data-mode="harmonic"
-     onclick="selectMode(this)">
+<div class="mode" data-mode="harmonic" onclick="selectMode(this)">
 ♫ Harmonicznie
 </div>
 
-<div class="mode"
-     data-mode="mixed"
-     onclick="selectMode(this)">
+<div class="mode" data-mode="mixed" onclick="selectMode(this)">
 ⤨ Losowo
 </div>
 
 </div>
-
 </div>
 
 
 <div class="start-area">
 
-<button class="primary"
-        onclick="startTraining()">
+<button class="primary" onclick="startTraining()">
 Rozpocznij trening
 </button>
 
-<div id="warning"
-     class="warning">
-</div>
+<div id="warning" class="warning"></div>
 
 </div>
 
-
 </div>
 
-
-<!-- ==================================================
-     QUIZ
-================================================== -->
 
 <div id="quiz">
 
@@ -720,31 +521,16 @@ Wynik: <span id="score">0</span>
 </div>
 
 <div class="progress">
-
-<div id="progressBar"
-     class="progress-bar">
+    <div id="progressBar" class="progress-bar"></div>
 </div>
 
-</div>
+<div id="questionArea" class="question"></div>
 
+<div id="staffArea" class="staff-wrapper"></div>
 
-<div id="questionArea"
-     class="question">
-</div>
+<div id="replayArea" class="replay">
 
-
-<div id="staffArea"
-     class="staff-wrapper">
-</div>
-
-
-<div id="replayArea"
-     class="replay">
-
-<button class="play-button"
-        onclick="playCurrent()">
-▶
-</button>
+<button class="play-button" onclick="playCurrent()">▶</button>
 
 <div class="question-sub">
 Posłuchaj ponownie
@@ -752,35 +538,21 @@ Posłuchaj ponownie
 
 </div>
 
+<div id="answers" class="answers"></div>
 
-<div id="answers"
-     class="answers">
-</div>
-
-
-<div id="feedback"
-     class="feedback">
-</div>
-
+<div id="feedback" class="feedback"></div>
 
 <div class="next-area">
 
-<button id="nextButton"
-        class="primary"
-        onclick="nextQuestion()">
+<button id="nextButton" class="primary" onclick="nextQuestion()">
 Następne →
 </button>
 
 </div>
 
 </div>
-
 </div>
 
-
-<!-- ==================================================
-     KONIEC
-================================================== -->
 
 <div id="finish">
 
@@ -788,33 +560,24 @@ Następne →
 
 <h2>Koniec treningu</h2>
 
-<div id="finalScore"
-     class="finish-score">
+<div id="finalScore" class="finish-score">
 0/10
 </div>
 
-<div id="finishMessage"
-     class="description">
-</div>
+<div id="finishMessage" class="description"></div>
 
-<div id="mistakes"
-     class="mistakes">
-</div>
+<div id="mistakes" class="mistakes"></div>
 
-<button class="primary"
-        onclick="restartSame()">
+<button class="primary" onclick="restartSame()">
 Jeszcze raz
 </button>
 
-<button class="small-button"
-        onclick="changeSettings()">
+<button class="small-button" onclick="changeSettings()">
 Zmień ustawienia
 </button>
 
 </div>
-
 </div>
-
 
 </div>
 
@@ -823,455 +586,365 @@ Zmień ustawienia
 
 /* =====================================================
    BAZA INTERWAŁÓW
+
+   number = liczba stopni interwału
+   semitones = liczba półtonów
+
+   W NUTACH:
+   number jest sprawdzane/budowane NAJPIERW.
+   Dopiero potem semitones określa znak chromatyczny.
 ===================================================== */
 
 const intervals=[
 
-/* PROSTE */
-
-{
-id:"2m",
-symbol:"2>",
-name:"sekunda mała",
-semitones:1,
-simple:true
-},
-
-{
-id:"2M",
-symbol:"2",
-name:"sekunda wielka",
-semitones:2,
-simple:true
-},
-
-{
-id:"2aug",
-symbol:"2<",
-name:"sekunda zwiększona",
-semitones:3,
-simple:true
-},
-
-{
-id:"2dim",
-symbol:"2>>",
-name:"sekunda zmniejszona",
-semitones:0,
-simple:true
-},
-
-
-{
-id:"3m",
-symbol:"3>",
-name:"tercja mała",
-semitones:3,
-simple:true
-},
-
-{
-id:"3M",
-symbol:"3",
-name:"tercja wielka",
-semitones:4,
-simple:true
-},
-
-{
-id:"3aug",
-symbol:"3<",
-name:"tercja zwiększona",
-semitones:5,
-simple:true
-},
-
-{
-id:"3dim",
-symbol:"3>>",
-name:"tercja zmniejszona",
-semitones:2,
-simple:true
-},
-
-
-{
-id:"4dim",
-symbol:"4>",
-name:"kwarta zmniejszona",
-semitones:4,
-simple:true
-},
-
-{
-id:"4P",
-symbol:"4",
-name:"kwarta czysta",
-semitones:5,
-simple:true
-},
-
-{
-id:"4aug",
-symbol:"4<",
-name:"kwarta zwiększona",
-semitones:6,
-simple:true
-},
-
-
-{
-id:"5dim",
-symbol:"5>",
-name:"kwinta zmniejszona",
-semitones:6,
-simple:true
-},
-
-{
-id:"5P",
-symbol:"5",
-name:"kwinta czysta",
-semitones:7,
-simple:true
-},
-
-{
-id:"5aug",
-symbol:"5<",
-name:"kwinta zwiększona",
-semitones:8,
-simple:true
-},
-
-
-{
-id:"6m",
-symbol:"6>",
-name:"seksta mała",
-semitones:8,
-simple:true
-},
-
-{
-id:"6M",
-symbol:"6",
-name:"seksta wielka",
-semitones:9,
-simple:true
-},
-
-{
-id:"6aug",
-symbol:"6<",
-name:"seksta zwiększona",
-semitones:10,
-simple:true
-},
-
-{
-id:"6dim",
-symbol:"6>>",
-name:"seksta zmniejszona",
-semitones:7,
-simple:true
-},
-
-
-/*
-WAŻNY WYJĄTEK:
-7 = MAŁA
-7< = WIELKA
-*/
-
-{
-id:"7dim",
-symbol:"7>",
-name:"septyma zmniejszona",
-semitones:9,
-simple:true
-},
-
-{
-id:"7m",
-symbol:"7",
-name:"septyma mała",
-semitones:10,
-simple:true
-},
-
-{
-id:"7M",
-symbol:"7<",
-name:"septyma wielka",
-semitones:11,
-simple:true
-},
-
-{
-id:"7aug",
-symbol:"7<<",
-name:"septyma zwiększona",
-semitones:12,
-simple:true
-},
-
-
-{
-id:"8dim",
-symbol:"8>",
-name:"oktawa zmniejszona",
-semitones:11,
-simple:true
-},
-
-{
-id:"8P",
-symbol:"8",
-name:"oktawa czysta",
-semitones:12,
-simple:true
-},
-
-{
-id:"8aug",
-symbol:"8<",
-name:"oktawa zwiększona",
-semitones:13,
-simple:true
-},
-
-
-/* =====================================================
-   ZŁOŻONE
-===================================================== */
-
-
-/* NONA */
-
-{
-id:"9m",
-symbol:"9>",
-name:"nona mała",
-semitones:13,
-simple:false
-},
-
-{
-id:"9M",
-symbol:"9",
-name:"nona wielka",
-semitones:14,
-simple:false
-},
-
-{
-id:"9aug",
-symbol:"9<",
-name:"nona zwiększona",
-semitones:15,
-simple:false
-},
-
-{
-id:"9dim",
-symbol:"9>>",
-name:"nona zmniejszona",
-semitones:12,
-simple:false
-},
-
-
-/* DECYMA */
-
-{
-id:"10m",
-symbol:"10>",
-name:"decyma mała",
-semitones:15,
-simple:false
-},
-
-{
-id:"10M",
-symbol:"10",
-name:"decyma wielka",
-semitones:16,
-simple:false
-},
-
-{
-id:"10aug",
-symbol:"10<",
-name:"decyma zwiększona",
-semitones:17,
-simple:false
-},
-
-{
-id:"10dim",
-symbol:"10>>",
-name:"decyma zmniejszona",
-semitones:14,
-simple:false
-},
-
-
-/* UNDECYMA */
-
-{
-id:"11dim",
-symbol:"11>",
-name:"undecyma zmniejszona",
-semitones:16,
-simple:false
-},
-
-{
-id:"11P",
-symbol:"11",
-name:"undecyma czysta",
-semitones:17,
-simple:false
-},
-
-{
-id:"11aug",
-symbol:"11<",
-name:"undecyma zwiększona",
-semitones:18,
-simple:false
-},
-
-
-/* DUODECYMA */
-
-{
-id:"12dim",
-symbol:"12>",
-name:"duodecyma zmniejszona",
-semitones:18,
-simple:false
-},
-
-{
-id:"12P",
-symbol:"12",
-name:"duodecyma czysta",
-semitones:19,
-simple:false
-},
-
-{
-id:"12aug",
-symbol:"12<",
-name:"duodecyma zwiększona",
-semitones:20,
-simple:false
-},
-
-
-/* TERCDECYMA */
-
-{
-id:"13m",
-symbol:"13>",
-name:"tercdecyma mała",
-semitones:20,
-simple:false
-},
-
-{
-id:"13M",
-symbol:"13",
-name:"tercdecyma wielka",
-semitones:21,
-simple:false
-},
-
-{
-id:"13aug",
-symbol:"13<",
-name:"tercdecyma zwiększona",
-semitones:22,
-simple:false
-},
-
-{
-id:"13dim",
-symbol:"13>>",
-name:"tercdecyma zmniejszona",
-semitones:19,
-simple:false
-},
-
-
-/* KWARTDECYMA */
-
-{
-id:"14dim",
-symbol:"14>",
-name:"kwartdecyma zmniejszona",
-semitones:21,
-simple:false
-},
-
-{
-id:"14m",
-symbol:"14",
-name:"kwartdecyma mała",
-semitones:22,
-simple:false
-},
-
-{
-id:"14M",
-symbol:"14<",
-name:"kwartdecyma wielka",
-semitones:23,
-simple:false
-},
-
-{
-id:"14aug",
-symbol:"14<<",
-name:"kwartdecyma zwiększona",
-semitones:24,
-simple:false
-},
-
-
-/* KWINTDECYMA */
-
-{
-id:"15dim",
-symbol:"15>",
-name:"kwintdecyma zmniejszona",
-semitones:23,
-simple:false
-},
-
-{
-id:"15P",
-symbol:"15",
-name:"kwintdecyma czysta",
-semitones:24,
-simple:false
-},
-
-{
-id:"15aug",
-symbol:"15<",
-name:"kwintdecyma zwiększona",
-semitones:25,
-simple:false
-}
+/* SEKUNDY */
+
+{id:"2dim",symbol:"2>>",name:"sekunda zmniejszona",number:2,semitones:0,simple:true},
+{id:"2m",symbol:"2>",name:"sekunda mała",number:2,semitones:1,simple:true},
+{id:"2M",symbol:"2",name:"sekunda wielka",number:2,semitones:2,simple:true},
+{id:"2aug",symbol:"2<",name:"sekunda zwiększona",number:2,semitones:3,simple:true},
+
+/* TERCJE */
+
+{id:"3dim",symbol:"3>>",name:"tercja zmniejszona",number:3,semitones:2,simple:true},
+{id:"3m",symbol:"3>",name:"tercja mała",number:3,semitones:3,simple:true},
+{id:"3M",symbol:"3",name:"tercja wielka",number:3,semitones:4,simple:true},
+{id:"3aug",symbol:"3<",name:"tercja zwiększona",number:3,semitones:5,simple:true},
+
+/* KWARTY */
+
+{id:"4dim",symbol:"4>",name:"kwarta zmniejszona",number:4,semitones:4,simple:true},
+{id:"4P",symbol:"4",name:"kwarta czysta",number:4,semitones:5,simple:true},
+{id:"4aug",symbol:"4<",name:"kwarta zwiększona",number:4,semitones:6,simple:true},
+
+/* KWINTY */
+
+{id:"5dim",symbol:"5>",name:"kwinta zmniejszona",number:5,semitones:6,simple:true},
+{id:"5P",symbol:"5",name:"kwinta czysta",number:5,semitones:7,simple:true},
+{id:"5aug",symbol:"5<",name:"kwinta zwiększona",number:5,semitones:8,simple:true},
+
+/* SEKSTY */
+
+{id:"6dim",symbol:"6>>",name:"seksta zmniejszona",number:6,semitones:7,simple:true},
+{id:"6m",symbol:"6>",name:"seksta mała",number:6,semitones:8,simple:true},
+{id:"6M",symbol:"6",name:"seksta wielka",number:6,semitones:9,simple:true},
+{id:"6aug",symbol:"6<",name:"seksta zwiększona",number:6,semitones:10,simple:true},
+
+/* SEPTYMY */
+
+{id:"7dim",symbol:"7>",name:"septyma zmniejszona",number:7,semitones:9,simple:true},
+{id:"7m",symbol:"7",name:"septyma mała",number:7,semitones:10,simple:true},
+{id:"7M",symbol:"7<",name:"septyma wielka",number:7,semitones:11,simple:true},
+{id:"7aug",symbol:"7<<",name:"septyma zwiększona",number:7,semitones:12,simple:true},
+
+/* OKTAWY */
+
+{id:"8dim",symbol:"8>",name:"oktawa zmniejszona",number:8,semitones:11,simple:true},
+{id:"8P",symbol:"8",name:"oktawa czysta",number:8,semitones:12,simple:true},
+{id:"8aug",symbol:"8<",name:"oktawa zwiększona",number:8,semitones:13,simple:true},
+
+/* NONY */
+
+{id:"9dim",symbol:"9>>",name:"nona zmniejszona",number:9,semitones:12,simple:false},
+{id:"9m",symbol:"9>",name:"nona mała",number:9,semitones:13,simple:false},
+{id:"9M",symbol:"9",name:"nona wielka",number:9,semitones:14,simple:false},
+{id:"9aug",symbol:"9<",name:"nona zwiększona",number:9,semitones:15,simple:false},
+
+/* DECYMY */
+
+{id:"10dim",symbol:"10>>",name:"decyma zmniejszona",number:10,semitones:14,simple:false},
+{id:"10m",symbol:"10>",name:"decyma mała",number:10,semitones:15,simple:false},
+{id:"10M",symbol:"10",name:"decyma wielka",number:10,semitones:16,simple:false},
+{id:"10aug",symbol:"10<",name:"decyma zwiększona",number:10,semitones:17,simple:false},
+
+/* UNDECYMY */
+
+{id:"11dim",symbol:"11>",name:"undecyma zmniejszona",number:11,semitones:16,simple:false},
+{id:"11P",symbol:"11",name:"undecyma czysta",number:11,semitones:17,simple:false},
+{id:"11aug",symbol:"11<",name:"undecyma zwiększona",number:11,semitones:18,simple:false},
+
+/* DUODECYMY */
+
+{id:"12dim",symbol:"12>",name:"duodecyma zmniejszona",number:12,semitones:18,simple:false},
+{id:"12P",symbol:"12",name:"duodecyma czysta",number:12,semitones:19,simple:false},
+{id:"12aug",symbol:"12<",name:"duodecyma zwiększona",number:12,semitones:20,simple:false},
+
+/* TERCDECYMY */
+
+{id:"13dim",symbol:"13>>",name:"tercdecyma zmniejszona",number:13,semitones:19,simple:false},
+{id:"13m",symbol:"13>",name:"tercdecyma mała",number:13,semitones:20,simple:false},
+{id:"13M",symbol:"13",name:"tercdecyma wielka",number:13,semitones:21,simple:false},
+{id:"13aug",symbol:"13<",name:"tercdecyma zwiększona",number:13,semitones:22,simple:false},
+
+/* KWARTDECYMY */
+
+{id:"14dim",symbol:"14>",name:"kwartdecyma zmniejszona",number:14,semitones:21,simple:false},
+{id:"14m",symbol:"14",name:"kwartdecyma mała",number:14,semitones:22,simple:false},
+{id:"14M",symbol:"14<",name:"kwartdecyma wielka",number:14,semitones:23,simple:false},
+{id:"14aug",symbol:"14<<",name:"kwartdecyma zwiększona",number:14,semitones:24,simple:false},
+
+/* KWINTDECYMY */
+
+{id:"15dim",symbol:"15>",name:"kwintdecyma zmniejszona",number:15,semitones:23,simple:false},
+{id:"15P",symbol:"15",name:"kwintdecyma czysta",number:15,semitones:24,simple:false},
+{id:"15aug",symbol:"15<",name:"kwintdecyma zwiększona",number:15,semitones:25,simple:false}
 
 ];
 
 
 /* =====================================================
-   GENEROWANIE KAFELKÓW
+   NUTY DIATONICZNE
+===================================================== */
+
+const letters=["C","D","E","F","G","A","B"];
+
+const naturalPitch={
+    C:0,
+    D:2,
+    E:4,
+    F:5,
+    G:7,
+    A:9,
+    B:11
+};
+
+
+/*
+Zamienia zapisaną nutę na MIDI.
+Np.
+C4 = 60
+Eb4 = 63
+D#4 = 63
+
+MIDI może być identyczne,
+ale ZAPIS nuty pozostaje różny.
+*/
+
+function writtenNoteToMidi(note){
+
+return 12*(note.octave+1)
+    + naturalPitch[note.letter]
+    + note.accidental;
+
+}
+
+
+/*
+Buduje poprawny interwał zapisany nutowo.
+
+TO JEST NAJWAŻNIEJSZA FUNKCJA.
+
+1. Najpierw liczba stopni.
+2. Wyznaczamy literę drugiej nuty.
+3. Wyznaczamy jej oktawę.
+4. Dopiero potem liczymy półtony.
+5. Dobieramy znak chromatyczny.
+*/
+
+function buildWrittenInterval(start,interval){
+
+const startLetterIndex=
+letters.indexOf(start.letter);
+
+
+/* liczba przesunięć literowych */
+
+const diatonicSteps=
+interval.number-1;
+
+
+/* absolutny indeks literowy */
+
+const absoluteLetterIndex=
+startLetterIndex+
+diatonicSteps;
+
+
+const targetLetter=
+letters[
+absoluteLetterIndex%7
+];
+
+
+/*
+Ile razy przeszliśmy przez C,
+czyli ile oktaw wyżej znajduje się nuta.
+*/
+
+const octaveShift=
+Math.floor(
+absoluteLetterIndex/7
+);
+
+
+const targetOctave=
+start.octave+
+octaveShift;
+
+
+/*
+MIDI naturalnej wersji drugiej nuty.
+*/
+
+const naturalTargetMidi=
+12*(targetOctave+1)
++
+naturalPitch[targetLetter];
+
+
+/*
+Dokładna wysokość, jakiej potrzebujemy.
+*/
+
+const requiredMidi=
+writtenNoteToMidi(start)
++
+interval.semitones;
+
+
+/*
+Różnica mówi, jaki znak chromatyczny
+musi dostać DRUGA NUTA.
+*/
+
+const accidental=
+requiredMidi-
+naturalTargetMidi;
+
+
+return{
+
+letter:targetLetter,
+octave:targetOctave,
+accidental:accidental,
+midi:requiredMidi
+
+};
+
+}
+
+
+/* =====================================================
+   WYŚWIETLANIE NAZW NUT
+===================================================== */
+
+function accidentalText(value){
+
+if(value===-2) return "♭♭";
+if(value===-1) return "♭";
+if(value===0) return "";
+if(value===1) return "♯";
+if(value===2) return "𝄪";
+
+if(value>2){
+    return "♯".repeat(value);
+}
+
+return "♭".repeat(Math.abs(value));
+
+}
+
+
+function writtenNoteName(note){
+
+return note.letter+
+accidentalText(note.accidental)+
+note.octave;
+
+}
+
+
+/* =====================================================
+   LOSOWANIE NUTY POCZĄTKOWEJ
+===================================================== */
+
+function randomStartNote(interval){
+
+/*
+W ćwiczeniach nutowych losujemy przede wszystkim
+zwykłe nuty i pojedyncze znaki, żeby zapis był czytelny.
+*/
+
+const possibleAccidentals=[
+-1,
+0,
+0,
+0,
+1
+];
+
+
+let tries=0;
+
+
+while(tries<200){
+
+tries++;
+
+
+const start={
+
+letter:random(letters),
+
+octave:
+interval.number>=9
+? random([3,4])
+: random([3,4,4]),
+
+accidental:
+random(possibleAccidentals)
+
+};
+
+
+const target=
+buildWrittenInterval(
+start,
+interval
+);
+
+
+/*
+Nie generujemy absurdalnych potrójnych znaków.
+Podwójne ♭/♯ są dopuszczalne.
+*/
+
+if(
+target.accidental>=-2 &&
+target.accidental<=2 &&
+target.midi>=43 &&
+target.midi<=88
+){
+
+return {
+start:start,
+target:target
+};
+
+}
+
+}
+
+
+/* awaryjnie */
+
+const start={
+letter:"C",
+octave:4,
+accidental:0
+};
+
+return{
+start:start,
+target:
+buildWrittenInterval(start,interval)
+};
+
+}
+
+
+/* =====================================================
+   KAFELKI
 ===================================================== */
 
 function makeIntervalButton(interval){
@@ -1337,7 +1010,6 @@ makeIntervalButton(interval)
 ===================================================== */
 
 let exerciseType="ear";
-
 let soundMode="up";
 
 
@@ -1345,19 +1017,13 @@ function selectExercise(element){
 
 document
 .querySelectorAll(".exercise-type")
-.forEach(x=>
-x.classList.remove("selected")
-);
+.forEach(x=>x.classList.remove("selected"));
 
 element.classList.add("selected");
 
 exerciseType=
 element.dataset.type;
 
-
-/*
-Odsłuch ma sens również w treningu mieszanym.
-*/
 
 document.getElementById("soundSettings")
 .style.display=
@@ -1375,9 +1041,7 @@ function selectMode(element){
 
 document
 .querySelectorAll(".mode")
-.forEach(x=>
-x.classList.remove("selected")
-);
+.forEach(x=>x.classList.remove("selected"));
 
 element.classList.add("selected");
 
@@ -1390,12 +1054,8 @@ element.dataset.mode;
 function selectSimple(){
 
 document
-.querySelectorAll(
-"#simpleIntervals .interval-choice"
-)
-.forEach(x=>
-x.classList.add("selected")
-);
+.querySelectorAll("#simpleIntervals .interval-choice")
+.forEach(x=>x.classList.add("selected"));
 
 }
 
@@ -1403,12 +1063,8 @@ x.classList.add("selected")
 function selectCompound(){
 
 document
-.querySelectorAll(
-"#compoundIntervals .interval-choice"
-)
-.forEach(x=>
-x.classList.add("selected")
-);
+.querySelectorAll("#compoundIntervals .interval-choice")
+.forEach(x=>x.classList.add("selected"));
 
 }
 
@@ -1417,9 +1073,7 @@ function selectAll(){
 
 document
 .querySelectorAll(".interval-choice")
-.forEach(x=>
-x.classList.add("selected")
-);
+.forEach(x=>x.classList.add("selected"));
 
 }
 
@@ -1428,18 +1082,13 @@ function clearAll(){
 
 document
 .querySelectorAll(".interval-choice")
-.forEach(x=>
-x.classList.remove("selected")
-);
+.forEach(x=>x.classList.remove("selected"));
 
 }
 
 
 /* =====================================================
    PIANINO
-
-   TEN SAM SPOSÓB HARMONICZNY,
-   KTÓRY ZADZIAŁAŁ W OKTAWACH
 ===================================================== */
 
 let piano=null;
@@ -1447,11 +1096,7 @@ let piano=null;
 
 async function createPiano(){
 
-if(piano){
-
-return piano;
-
-}
+if(piano) return piano;
 
 
 piano=new Tone.Sampler({
@@ -1509,75 +1154,81 @@ return piano;
 
 
 /* =====================================================
-   MIDI
+   MIDI DO AUDIO
 ===================================================== */
 
-const noteNames=[
-"C",
-"C#",
-"D",
-"D#",
-"E",
-"F",
-"F#",
-"G",
-"G#",
-"A",
-"A#",
-"B"
+const audioNames=[
+"C","C#","D","D#","E","F",
+"F#","G","G#","A","A#","B"
 ];
 
 
-function midiToNote(midi){
+function midiToAudioNote(midi){
 
-const note=
-noteNames[
+const pitch=
+audioNames[
 ((midi%12)+12)%12
 ];
 
 const octave=
 Math.floor(midi/12)-1;
 
-return note+octave;
-
-}
-
-
-function random(array){
-
-return array[
-Math.floor(
-Math.random()*array.length
-)
-];
+return pitch+octave;
 
 }
 
 
 /* =====================================================
-   QUIZ
+   POMOCNICZE
+===================================================== */
+
+function random(array){
+
+return array[
+Math.floor(Math.random()*array.length)
+];
+
+}
+
+
+function randomInteger(min,max){
+
+return Math.floor(
+Math.random()*(max-min+1)
+)+min;
+
+}
+
+
+function wait(ms){
+
+return new Promise(
+resolve=>setTimeout(resolve,ms)
+);
+
+}
+
+
+/* =====================================================
+   STAN QUIZU
 ===================================================== */
 
 let selectedIntervals=[];
 
 let currentInterval=null;
-
 let currentExercise=null;
-
 let currentSoundMode=null;
 
 let firstMidi=60;
-
 let secondMidi=61;
 
+let writtenStart=null;
+let writtenTarget=null;
+
 let questionNumber=1;
-
 let score=0;
-
 let streak=0;
-
 let answered=false;
-
 let mistakes=[];
 
 const totalQuestions=10;
@@ -1643,7 +1294,7 @@ generateQuestion();
 
 
 /* =====================================================
-   LOSOWANIE ZADANIA
+   NOWE PYTANIE
 ===================================================== */
 
 function generateQuestion(){
@@ -1654,16 +1305,13 @@ currentInterval=
 random(selectedIntervals);
 
 
-/* rodzaj zadania */
-
 if(exerciseType==="mixed"){
 
 currentExercise=
 random([
 "ear",
 "notes",
-"build",
-"piano"
+"build"
 ]);
 
 }else{
@@ -1674,7 +1322,40 @@ exerciseType;
 }
 
 
-/* sposób dźwięku */
+/* =====================================================
+   DLA NUT I BUDOWANIA:
+   UŻYWAMY SYSTEMU DIATONICZNEGO
+===================================================== */
+
+if(
+currentExercise==="notes" ||
+currentExercise==="build"
+){
+
+const generated=
+randomStartNote(currentInterval);
+
+writtenStart=
+generated.start;
+
+writtenTarget=
+generated.target;
+
+firstMidi=
+writtenNoteToMidi(writtenStart);
+
+secondMidi=
+writtenTarget.midi;
+
+}
+
+
+/* =====================================================
+   DLA SŁUCHU:
+   WYSTARCZA ODLEGŁOŚĆ W PÓŁTONACH
+===================================================== */
+
+else{
 
 if(soundMode==="mixed"){
 
@@ -1693,11 +1374,6 @@ soundMode;
 }
 
 
-/*
-Zakres MIDI dobieramy tak,
-aby zmieściły się również interwały złożone.
-*/
-
 const distance=
 currentInterval.semitones;
 
@@ -1705,7 +1381,7 @@ currentInterval.semitones;
 if(currentSoundMode==="down"){
 
 firstMidi=
-randomInteger(67,82);
+randomInteger(68,84);
 
 secondMidi=
 firstMidi-distance;
@@ -1713,50 +1389,51 @@ firstMidi-distance;
 }else{
 
 firstMidi=
-randomInteger(48,64);
+randomInteger(48,62);
 
 secondMidi=
 firstMidi+distance;
 
 }
 
-
-/* zabezpieczenie zakresu */
 
 while(
 secondMidi<36 ||
 secondMidi>88
 ){
 
+if(currentSoundMode==="down"){
+
 firstMidi=
-randomInteger(48,64);
+randomInteger(68,84);
+
+secondMidi=
+firstMidi-distance;
+
+}else{
+
+firstMidi=
+randomInteger(48,62);
 
 secondMidi=
 firstMidi+distance;
 
 }
 
+}
+
+}
+
 
 updateTop();
-
 clearQuestion();
-
 renderCurrentExercise();
 
 }
 
 
-function randomInteger(min,max){
-
-return Math.floor(
-Math.random()*(max-min+1)
-)+min;
-
-}
-
-
 /* =====================================================
-   GÓRA QUIZU
+   INTERFEJS
 ===================================================== */
 
 function updateTop(){
@@ -1797,34 +1474,18 @@ document.getElementById("replayArea")
 }
 
 
-/* =====================================================
-   RODZAJE ĆWICZEŃ
-===================================================== */
-
 function renderCurrentExercise(){
 
 if(currentExercise==="ear"){
-
-renderEar();
-
+    renderEar();
 }
 
-else if(currentExercise==="notes"){
-
-renderNotes();
-
+if(currentExercise==="notes"){
+    renderNotes();
 }
 
-else if(currentExercise==="build"){
-
-renderBuild();
-
-}
-
-else if(currentExercise==="piano"){
-
-renderPianoBuild();
-
+if(currentExercise==="build"){
+    renderBuild();
 }
 
 }
@@ -1847,31 +1508,12 @@ Posłuchaj i wybierz odpowiedź.
 
 `;
 
-
 document.getElementById("replayArea")
 .style.display="block";
 
-
 renderIntervalAnswers();
 
-
-setTimeout(
-playCurrent,
-300
-);
-
-}
-
-
-/* =====================================================
-   ODTWARZANIE
-===================================================== */
-
-function wait(ms){
-
-return new Promise(
-resolve=>setTimeout(resolve,ms)
-);
+setTimeout(playCurrent,300);
 
 }
 
@@ -1885,22 +1527,16 @@ await createPiano();
 
 
 const first=
-midiToNote(firstMidi);
+midiToAudioNote(firstMidi);
 
 const second=
-midiToNote(secondMidi);
+midiToAudioNote(secondMidi);
 
 
 if(currentSoundMode==="harmonic"){
 
 const together=
 Tone.now()+0.1;
-
-
-/*
-DWA WYWOŁANIA Z IDENTYCZNYM STARTEM.
-To jest działający mechanizm z oktaw.
-*/
 
 instrument.triggerAttackRelease(
 first,
@@ -1919,8 +1555,6 @@ return;
 }
 
 
-/* melodycznie */
-
 instrument.triggerAttackRelease(
 first,
 0.7
@@ -1937,54 +1571,7 @@ second,
 
 
 /* =====================================================
-   ODPOWIEDZI INTERWAŁOWE
-===================================================== */
-
-function renderIntervalAnswers(){
-
-const box=
-document.getElementById("answers");
-
-
-selectedIntervals.forEach(interval=>{
-
-const button=
-document.createElement("button");
-
-button.className="answer";
-
-button.dataset.id=interval.id;
-
-button.innerHTML=`
-
-<span class="answer-symbol">
-${interval.symbol}
-</span>
-
-<span class="answer-name">
-${interval.name}
-</span>
-
-`;
-
-button.onclick=()=>{
-
-checkIntervalAnswer(
-interval,
-button
-);
-
-};
-
-box.appendChild(button);
-
-});
-
-}
-
-
-/* =====================================================
-   NUTY
+   ROZPOZNAWANIE Z NUT
 ===================================================== */
 
 function renderNotes(){
@@ -1992,20 +1579,18 @@ function renderNotes(){
 document.getElementById("questionArea")
 .innerHTML=`
 
-<h2>Jaki interwał widzisz?</h2>
+<h2>Jaki to interwał?</h2>
 
 <div class="question-sub">
-Rozpoznaj go z zapisu nutowego.
+Najpierw policz stopnie, a następnie określ jego rodzaj.
 </div>
 
 `;
 
-
-drawStaff(
-firstMidi,
-secondMidi
+drawWrittenStaff(
+writtenStart,
+writtenTarget
 );
-
 
 renderIntervalAnswers();
 
@@ -2013,23 +1598,40 @@ renderIntervalAnswers();
 
 
 /* =====================================================
-   PIĘCIOLINIA
+   POPRAWNA PIĘCIOLINIA DIATONICZNA
 ===================================================== */
 
-function drawStaff(first,second){
+function diatonicPosition(note){
+
+return note.octave*7+
+letters.indexOf(note.letter);
+
+}
+
+
+function drawWrittenStaff(first,second){
 
 const container=
 document.getElementById("staffArea");
 
 
-const width=700;
-const height=230;
+const width=720;
+const height=310;
 
-const left=90;
-const right=650;
+const left=100;
+const right=675;
 
-const top=85;
+const top=125;
 const gap=14;
+
+
+/*
+Dolna linia klucza wiolinowego = E4.
+*/
+
+const E4Position=
+4*7+
+letters.indexOf("E");
 
 
 let svg=`
@@ -2042,7 +1644,7 @@ xmlns="http://www.w3.org/2000/svg"
 `;
 
 
-/* linie */
+/* PIĘCIOLINIA */
 
 for(let i=0;i<5;i++){
 
@@ -2065,15 +1667,15 @@ stroke-width="1.5"
 }
 
 
-/* klucz */
+/* KLUCZ WIOLINOWY */
 
 svg+=`
 
 <text
-x="20"
+x="25"
 y="${top+65}"
 font-family="serif"
-font-size="85"
+font-size="86"
 fill="#252238"
 >
 𝄞
@@ -2082,27 +1684,46 @@ fill="#252238"
 `;
 
 
-const notes=[
-{midi:first,x:310},
-{midi:second,x:470}
+const drawnNotes=[
+
+{
+note:first,
+x:315
+},
+
+{
+note:second,
+x:500
+}
+
 ];
 
 
-notes.forEach(note=>{
+drawnNotes.forEach(item=>{
+
+const note=item.note;
+const x=item.x;
+
 
 /*
-Uproszczona pozycja chromatyczna.
-Do treningu słuchowego nie wpływa.
+Najpierw pozycja DIATONICZNA.
+
+♯ i ♭ NIE przesuwają nuty
+na inną linię lub pole.
 */
 
-const diatonic=
-midiToDiatonic(note.midi);
-
-const reference=
-midiToDiatonic(64);
+const position=
+diatonicPosition(note);
 
 const step=
-diatonic-reference;
+position-
+E4Position;
+
+
+/*
+Dolna linia E4 znajduje się
+na top + 4*gap.
+*/
 
 const y=
 top+
@@ -2110,7 +1731,9 @@ top+
 step*(gap/2);
 
 
-/* dodatkowe linie */
+/* =====================================================
+   LINIE DODANE
+===================================================== */
 
 if(step<=-2){
 
@@ -2124,9 +1747,9 @@ s*(gap/2);
 svg+=`
 
 <line
-x1="${note.x-20}"
+x1="${x-21}"
 y1="${ly}"
-x2="${note.x+20}"
+x2="${x+21}"
 y2="${ly}"
 stroke="#252238"
 stroke-width="1.5"
@@ -2151,9 +1774,9 @@ s*(gap/2);
 svg+=`
 
 <line
-x1="${note.x-20}"
+x1="${x-21}"
 y1="${ly}"
-x2="${note.x+20}"
+x2="${x+21}"
 y2="${ly}"
 stroke="#252238"
 stroke-width="1.5"
@@ -2166,23 +1789,75 @@ stroke-width="1.5"
 }
 
 
-/* nuta */
+/* =====================================================
+   ZNAK CHROMATYCZNY
+
+   Znak jest oddzielny od stopnia nuty.
+===================================================== */
+
+let sign="";
+
+
+if(note.accidental===-2){
+    sign="𝄫";
+}
+
+if(note.accidental===-1){
+    sign="♭";
+}
+
+if(note.accidental===1){
+    sign="♯";
+}
+
+if(note.accidental===2){
+    sign="𝄪";
+}
+
+
+if(sign){
+
+svg+=`
+
+<text
+x="${x-42}"
+y="${y+9}"
+font-family="serif"
+font-size="29"
+fill="#252238"
+>
+${sign}
+</text>
+
+`;
+
+}
+
+
+/* GŁÓWKA */
 
 svg+=`
 
 <ellipse
-cx="${note.x}"
+cx="${x}"
 cy="${y}"
 rx="10"
 ry="7"
-transform="rotate(-18 ${note.x} ${y})"
+transform="rotate(-18 ${x} ${y})"
 fill="#252238"
 />
 
+`;
+
+
+/* LASECZKA */
+
+svg+=`
+
 <line
-x1="${note.x+8}"
+x1="${x+8}"
 y1="${y}"
-x2="${note.x+8}"
+x2="${x+8}"
 y2="${y-43}"
 stroke="#252238"
 stroke-width="2"
@@ -2193,41 +1868,70 @@ stroke-width="2"
 });
 
 
-svg+="</svg>";
+svg+=`
+</svg>
+`;
+
 
 container.innerHTML=svg;
 
 }
 
 
-function midiToDiatonic(midi){
+/* =====================================================
+   ODPOWIEDZI
+===================================================== */
 
-const pitch=
-((midi%12)+12)%12;
+function renderIntervalAnswers(){
 
-const octave=
-Math.floor(midi/12)-1;
-
-
-const map=[
-0,0,
-1,1,
-2,
-3,3,
-4,4,
-5,5,
-6
-];
+const box=
+document.getElementById("answers");
 
 
-return octave*7+
-map[pitch];
+selectedIntervals.forEach(interval=>{
+
+const button=
+document.createElement("button");
+
+button.className="answer";
+
+button.dataset.id=interval.id;
+
+
+button.innerHTML=`
+
+<span class="answer-symbol">
+${interval.symbol}
+</span>
+
+<span class="answer-name">
+${interval.name}
+</span>
+
+`;
+
+
+button.onclick=()=>{
+
+checkIntervalAnswer(
+interval,
+button
+);
+
+};
+
+
+box.appendChild(button);
+
+});
 
 }
 
 
 /* =====================================================
    BUDOWANIE
+
+   Tu również najpierw ustalamy STOPIEŃ.
 ===================================================== */
 
 function renderBuild(){
@@ -2243,8 +1947,11 @@ Zbuduj ${currentInterval.symbol}
 
 ${currentInterval.name}<br>
 
-Dźwięk początkowy:
-<strong>${midiToNote(firstMidi)}</strong>
+Od dźwięku:
+
+<span class="build-note">
+${writtenNoteName(writtenStart)}
+</span>
 
 </div>
 
@@ -2252,54 +1959,269 @@ Dźwięk początkowy:
 
 
 /*
-W tej wersji budowanie polega na wskazaniu
-poprawnego dźwięku końcowego.
+Pokazujemy na pięciolinii tylko nutę początkową.
 */
 
-renderNoteAnswers();
+drawSingleWrittenNote(
+writtenStart
+);
+
+
+renderBuildAnswers();
 
 }
 
 
 /* =====================================================
-   ODPOWIEDZI DŹWIĘKOWE
+   POJEDYNCZA NUTA
 ===================================================== */
 
-function renderNoteAnswers(){
+function drawSingleWrittenNote(note){
+
+const container=
+document.getElementById("staffArea");
+
+const width=720;
+const height=250;
+
+const top=95;
+const gap=14;
+
+const E4=
+4*7+
+letters.indexOf("E");
+
+
+const step=
+diatonicPosition(note)-E4;
+
+const y=
+top+
+4*gap-
+step*(gap/2);
+
+
+let sign=
+accidentalText(note.accidental);
+
+
+let svg=`
+
+<svg
+viewBox="0 0 ${width} ${height}"
+xmlns="http://www.w3.org/2000/svg"
+>
+
+`;
+
+
+for(let i=0;i<5;i++){
+
+const lineY=
+top+i*gap;
+
+svg+=`
+
+<line
+x1="100"
+y1="${lineY}"
+x2="675"
+y2="${lineY}"
+stroke="#252238"
+stroke-width="1.5"
+/>
+
+`;
+
+}
+
+
+svg+=`
+
+<text
+x="25"
+y="${top+65}"
+font-family="serif"
+font-size="86"
+fill="#252238"
+>
+𝄞
+</text>
+
+`;
+
+
+const x=400;
+
+
+/* linie dodane */
+
+if(step<=-2){
+
+for(let s=-2;s>=step;s-=2){
+
+const ly=
+top+4*gap-s*(gap/2);
+
+svg+=`
+
+<line
+x1="${x-21}"
+y1="${ly}"
+x2="${x+21}"
+y2="${ly}"
+stroke="#252238"
+stroke-width="1.5"
+/>
+
+`;
+
+}
+
+}
+
+
+if(step>=10){
+
+for(let s=10;s<=step;s+=2){
+
+const ly=
+top+4*gap-s*(gap/2);
+
+svg+=`
+
+<line
+x1="${x-21}"
+y1="${ly}"
+x2="${x+21}"
+y2="${ly}"
+stroke="#252238"
+stroke-width="1.5"
+/>
+
+`;
+
+}
+
+}
+
+
+if(sign){
+
+svg+=`
+
+<text
+x="${x-42}"
+y="${y+9}"
+font-family="serif"
+font-size="29"
+fill="#252238"
+>
+${sign}
+</text>
+
+`;
+
+}
+
+
+svg+=`
+
+<ellipse
+cx="${x}"
+cy="${y}"
+rx="10"
+ry="7"
+transform="rotate(-18 ${x} ${y})"
+fill="#252238"
+/>
+
+<line
+x1="${x+8}"
+y1="${y}"
+x2="${x+8}"
+y2="${y-43}"
+stroke="#252238"
+stroke-width="2"
+/>
+
+</svg>
+
+`;
+
+
+container.innerHTML=svg;
+
+}
+
+
+/* =====================================================
+   ODPOWIEDZI DO BUDOWANIA
+
+   Nie dajemy już przypadkowych MIDI.
+   Każda odpowiedź zachowuje POPRAWNY STOPIEŃ.
+
+   Przykład:
+   jeśli budujemy tercję od C,
+   odpowiedzi będą odmianami E,
+   a nie D# / F♭ jako przypadkowymi zamiennikami.
+===================================================== */
+
+function renderBuildAnswers(){
 
 const box=
 document.getElementById("answers");
 
 
-const correct=
-secondMidi;
+const variants=[];
 
 
-let possibilities=[
-correct-2,
-correct-1,
-correct,
-correct+1,
-correct+2
-];
+/*
+Ta sama litera i oktawa,
+różne znaki chromatyczne.
+*/
+
+for(let accidental=-2;
+    accidental<=2;
+    accidental++){
+
+variants.push({
+
+letter:
+writtenTarget.letter,
+
+octave:
+writtenTarget.octave,
+
+accidental:
+accidental
+
+});
+
+}
 
 
-possibilities=
-[...new Set(possibilities)]
-.sort(()=>Math.random()-.5);
+/*
+Mieszamy kolejność.
+*/
+
+variants.sort(
+()=>Math.random()-.5
+);
 
 
-possibilities.forEach(midi=>{
+variants.forEach(note=>{
 
 const button=
 document.createElement("button");
 
 button.className="answer";
 
+
 button.innerHTML=`
 
 <span class="answer-symbol">
-${midiToNote(midi)}
+${writtenNoteName(note)}
 </span>
 
 `;
@@ -2307,8 +2229,8 @@ ${midiToNote(midi)}
 
 button.onclick=()=>{
 
-checkNoteAnswer(
-midi,
+checkBuildAnswer(
+note,
 button
 );
 
@@ -2323,37 +2245,7 @@ box.appendChild(button);
 
 
 /* =====================================================
-   PIANINO
-===================================================== */
-
-function renderPianoBuild(){
-
-document.getElementById("questionArea")
-.innerHTML=`
-
-<h2>
-Zbuduj ${currentInterval.symbol} na pianinie
-</h2>
-
-<div class="question-sub">
-
-${currentInterval.name}<br>
-
-Od dźwięku
-<strong>${midiToNote(firstMidi)}</strong>
-
-</div>
-
-`;
-
-
-renderNoteAnswers();
-
-}
-
-
-/* =====================================================
-   SPRAWDZENIE INTERWAŁU
+   SPRAWDZENIE ROZPOZNAWANIA
 ===================================================== */
 
 function checkIntervalAnswer(interval,button){
@@ -2370,9 +2262,11 @@ button.classList.add("correct");
 score++;
 streak++;
 
+
 document.getElementById("feedback")
 .textContent=
-"✓ Dobrze — "+currentInterval.name;
+"✓ Dobrze — "+
+currentInterval.name;
 
 }else{
 
@@ -2380,24 +2274,32 @@ button.classList.add("wrong");
 
 streak=0;
 
+
 mistakes.push({
 
-wanted:currentInterval.name,
-answered:interval.name
+wanted:
+currentInterval.name,
+
+answered:
+interval.name
 
 });
 
 
 document.getElementById("feedback")
 .textContent=
-"✕ To była "+currentInterval.name;
+"✕ To była "+
+currentInterval.name;
 
 
 document
 .querySelectorAll(".answer")
 .forEach(x=>{
 
-if(x.dataset.id===currentInterval.id){
+if(
+x.dataset.id===
+currentInterval.id
+){
 
 x.classList.add("correct");
 
@@ -2414,26 +2316,47 @@ afterAnswer();
 
 
 /* =====================================================
-   SPRAWDZENIE NUTY
+   SPRAWDZENIE BUDOWANIA
+
+   Sprawdzamy zapis nutowy:
+   litera + oktawa + znak.
 ===================================================== */
 
-function checkNoteAnswer(midi,button){
+function checkBuildAnswer(note,button){
 
 if(answered) return;
 
 answered=true;
 
 
-if(midi===secondMidi){
+const correct=
+
+note.letter===
+writtenTarget.letter
+
+&&
+
+note.octave===
+writtenTarget.octave
+
+&&
+
+note.accidental===
+writtenTarget.accidental;
+
+
+if(correct){
 
 button.classList.add("correct");
 
 score++;
 streak++;
 
+
 document.getElementById("feedback")
 .textContent=
-"✓ Dobrze!";
+"✓ Dobrze — "+
+writtenNoteName(writtenTarget);
 
 }else{
 
@@ -2441,24 +2364,24 @@ button.classList.add("wrong");
 
 streak=0;
 
+
 mistakes.push({
 
 wanted:
 currentInterval.name+
 " → "+
-midiToNote(secondMidi),
+writtenNoteName(writtenTarget),
 
 answered:
-midiToNote(midi)
+writtenNoteName(note)
 
 });
 
 
 document.getElementById("feedback")
 .textContent=
-
-"✕ Poprawny dźwięk: "+
-midiToNote(secondMidi);
+"✕ Poprawna nuta: "+
+writtenNoteName(writtenTarget);
 
 }
 
@@ -2495,11 +2418,9 @@ function nextQuestion(){
 if(questionNumber>=totalQuestions){
 
 finishTraining();
-
 return;
 
 }
-
 
 questionNumber++;
 
@@ -2532,22 +2453,22 @@ let message="";
 if(score===10){
 
 message=
-"Perfekcyjny wynik.";
+"Perfekcyjnie — 10/10.";
 
 }else if(score>=8){
 
 message=
-"Bardzo dobrze. Zostało tylko kilka drobiazgów.";
+"Bardzo dobrze. Interwały są już naprawdę pewne.";
 
 }else if(score>=5){
 
 message=
-"Jest dobrze — powtórz jeszcze jedną rundę.";
+"Dobra baza. Warto zrobić jeszcze jedną rundę.";
 
 }else{
 
 message=
-"Spróbuj wybrać mniej interwałów i utrwalić je partiami.";
+"Wybierz na początek mniej interwałów i ćwicz je partiami.";
 
 }
 
@@ -2556,16 +2477,15 @@ document.getElementById("finishMessage")
 .textContent=message;
 
 
-const mistakesBox=
+const box=
 document.getElementById("mistakes");
 
-
-mistakesBox.innerHTML="";
+box.innerHTML="";
 
 
 if(mistakes.length){
 
-mistakesBox.innerHTML=
+box.innerHTML=
 "<strong>Do powtórzenia:</strong>";
 
 
@@ -2578,10 +2498,10 @@ row.className="mistake-row";
 
 row.textContent=
 mistake.wanted+
-" — Twoja odpowiedź: "+
+" — odpowiedź: "+
 mistake.answered;
 
-mistakesBox.appendChild(row);
+box.appendChild(row);
 
 });
 
@@ -2591,7 +2511,7 @@ mistakesBox.appendChild(row);
 
 
 /* =====================================================
-   RESTART
+   POWTÓRKA
 ===================================================== */
 
 function restartSame(){
@@ -2616,6 +2536,9 @@ generateQuestion();
 function changeSettings(){
 
 document.getElementById("finish")
+.style.display="none";
+
+document.getElementById("quiz")
 .style.display="none";
 
 document.getElementById("setup")
