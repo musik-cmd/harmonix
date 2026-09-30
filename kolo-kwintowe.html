@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Harmonix — Koło kwintowe i tonacje</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f5ff;
+    color: #252238;
+}
+
+.page {
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+}
+
+.container {
+    max-width: 1050px;
+    width: 100%;
+    margin: auto;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 28px;
+    color: #777187;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.title {
+    margin: 0;
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.subtitle {
+    margin-top: 12px;
+    color: #6b6680;
+    font-size: 18px;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.tabs {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 16px 10px;
+    border: 1px solid #e3e0eb;
+    border-radius: 14px;
+    background: white;
+    color: #777187;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.tab.active {
+    background: #ece9f5;
+    color: #252238;
+    border-color: #d4cfe2;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    margin-bottom: 18px;
+    padding: 28px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(40,30,80,.08);
+}
+
+.card h2 {
+    margin: 0 0 9px;
+    font-size: 22px;
+}
+
+.description {
+    margin: 0;
+    color: #777187;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================
+   MINI THEORY
+========================= */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.info {
+    padding: 18px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 14px;
+}
+
+.info strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.info span {
+    color: #777187;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* =========================
+   KOŁO
+========================= */
+
+.circle-area {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 25px;
+    align-items: center;
+}
+
+.circle-wrap {
+    position: relative;
+    width: min(600px,100%);
+    aspect-ratio: 1/1;
+    margin: auto;
+}
+
+.circle {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle,
+            white 0 26%,
+            #f7f5ff 26% 47%,
+            #ece9f5 47% 69%,
+            white 69%
+        );
+    border: 1px solid #e4e0eb;
+    box-shadow: 0 10px 35px rgba(40,30,80,.08);
+}
+
+.key {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 68px;
+    min-height: 48px;
+    transform:
+        translate(-50%,-50%)
+        rotate(var(--angle))
+        translateY(-235px)
+        rotate(calc(-1 * var(--angle)));
+
+    border: 1px solid #dedbea;
+    border-radius: 12px;
+    background: white;
+    color: #252238;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(40,30,80,.06);
+}
+
+.key:hover,
+.key.active {
+    background: #ddd7ec;
+    transform:
+        translate(-50%,-50%)
+        rotate(var(--angle))
+        translateY(-235px)
+        rotate(calc(-1 * var(--angle)))
+        scale(1.08);
+}
+
+.minor-key {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 61px;
+    min-height: 43px;
+    transform:
+        translate(-50%,-50%)
+        rotate(var(--angle))
+        translateY(-155px)
+        rotate(calc(-1 * var(--angle)));
+
+    border: 1px solid #e4e0eb;
+    border-radius: 11px;
+    background: #f8f6fc;
+    color: #6b6680;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.minor-key:hover,
+.minor-key.active {
+    background: #dcd6eb;
+    color: #252238;
+}
+
+.circle-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 125px;
+    height: 125px;
+    transform: translate(-50%,-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 50%;
+    background: white;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.4;
+    box-shadow: 0 5px 20px rgba(40,30,80,.07);
+}
+
+/* =========================
+   PANEL TONACJI
+========================= */
+
+.key-panel {
+    padding: 24px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 18px;
+}
+
+.key-name {
+    font-size: 31px;
+    font-weight: 800;
+}
+
+.key-minor {
+    margin-top: 4px;
+    color: #777187;
+    font-size: 14px;
+}
+
+.signature-big {
+    margin-top: 20px;
+    padding: 17px;
+    background: white;
+    border-radius: 13px;
+}
+
+.signature-number {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.signature-text {
+    margin-top: 4px;
+    color: #777187;
+    font-size: 11px;
+}
+
+.relationship {
+    margin-top: 16px;
+}
+
+.relationship div {
+    padding: 9px 0;
+    border-bottom: 1px solid #ece9f2;
+    font-size: 12px;
+}
+
+.relationship strong {
+    display: inline-block;
+    min-width: 125px;
+}
+
+/* =========================
+   PIĘCIOLINIA
+========================= */
+
+.staff-box {
+    margin-top: 22px;
+    padding: 20px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 17px;
+    overflow-x: auto;
+}
+
+.staff {
+    width: 100%;
+    min-width: 700px;
+    height: 190px;
+}
+
+/* =========================
+   ORDER
+========================= */
+
+.order-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.order-box {
+    padding: 22px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 15px;
+}
+
+.order-title {
+    font-weight: 800;
+    font-size: 15px;
+}
+
+.order-notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 14px;
+}
+
+.order-note {
+    min-width: 39px;
+    padding: 9px;
+    text-align: center;
+    background: white;
+    border: 1px solid #e5e2ec;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.arrow {
+    color: #aaa5b5;
+    align-self: center;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrap {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ece9f2;
+    text-align: left;
+    font-size: 12px;
+}
+
+th {
+    color: #777187;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+td strong {
+    font-size: 13px;
+}
+
+/* =========================
+   EXERCISES
+========================= */
+
+.exercise-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.exercise-menu button {
+    padding: 10px 14px;
+    border: 1px solid #dedbea;
+    border-radius: 10px;
+    background: #faf9ff;
+    color: #777187;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.exercise-menu button.active {
+    background: #ece9f5;
+    color: #252238;
+}
+
+.exercise {
+    margin-top: 18px;
+    padding: 23px;
+    background: #faf9ff;
+    border: 1px solid #ece9f2;
+    border-radius: 16px;
+}
+
+.question {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.question-small {
+    margin-top: 6px;
+    text-align: center;
+    color: #777187;
+    font-size: 11px;
+}
+
+.answers {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.answer {
+    padding: 12px;
+    border: 1px solid #dedbea;
+    border-radius: 10px;
+    background: white;
+    color: #514b68;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.answer.correct {
+    background: #edf7ef;
+    border-color: #b8d9bf;
+    color: #315c39;
+}
+
+.answer.wrong {
+    background: #faeeee;
+    border-color: #e0bebe;
+    color: #7b4242;
+}
+
+.feedback {
+    min-height: 20px;
+    margin-top: 13px;
+    text-align: center;
+    color: #777187;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.next {
+    display: block;
+    margin: 10px auto 0;
+    padding: 10px 16px;
+    border: 1px solid #d9d4e5;
+    border-radius: 10px;
+    background: #ece9f5;
+    color: #252238;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:850px) {
+
+    .circle-area {
+        grid-template-columns: 1fr;
+    }
+
+    .tabs {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .order-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width:600px) {
+
+    .title {
+        font-size: 39px;
+    }
+
+    .circle-wrap {
+        transform: scale(.82);
+        margin-top: -40px;
+        margin-bottom: -40px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+<div class="container">
+
+<a href="index.html" class="back">← Strona główna</a>
+
+<header class="header">
+
+<h1 class="title">Koło kwintowe i tonacje</h1>
+
+<div class="subtitle">
+Znaki przykluczowe, tonacje pokrewne i szybkie rozpoznawanie tonacji.
+</div>
+
+</header>
+
+
+<div class="tabs">
+
+<button class="tab active"
+onclick="showSection('circleSection',this)">
+Koło kwintowe
+</button>
+
+<button class="tab"
+onclick="showSection('signaturesSection',this)">
+Znaki przykluczowe
+</button>
+
+<button class="tab"
+onclick="showSection('relationsSection',this)">
+Tonacje pokrewne
+</button>
+
+<button class="tab"
+onclick="showSection('exerciseSection',this)">
+Ćwiczenia
+</button>
+
+</div>
+
+
+<!-- =========================================
+     KOŁO KWINTOWE
+========================================= -->
+
+<section id="circleSection">
+
+<div class="card">
+
+<h2>Jak działa koło kwintowe?</h2>
+
+<p class="description">
+Koło kwintowe porządkuje tonacje według liczby znaków przykluczowych.
+Idąc w prawo, dodajemy kolejne krzyżyki. Idąc w lewo, dodajemy kolejne bemole.
+Każda tonacja durowa ma odpowiadającą jej tonację molową z tymi samymi znakami przykluczowymi.
+</p>
+
+<div class="info-grid">
+
+<div class="info">
+<strong>→ w prawo</strong>
+<span>Kolejne tonacje oddalone są o kwintę czystą w górę i otrzymują następny krzyżyk.</span>
+</div>
+
+<div class="info">
+<strong>← w lewo</strong>
+<span>Kolejne tonacje otrzymują następny bemol.</span>
+</div>
+
+<div class="info">
+<strong>Dur ↔ moll</strong>
+<span>Tonacje równoległe mają dokładnie te same znaki przykluczowe.</span>
+</div>
+
+</div>
+
+
+<div class="circle-area">
+
+<div class="circle-wrap">
+
+<div class="circle"></div>
+
+<!-- DUROWE -->
+
+<button class="key"
+style="--angle:0deg"
+onclick="selectKey('C')">C</button>
+
+<button class="key"
+style="--angle:30deg"
+onclick="selectKey('G')">G</button>
+
+<button class="key"
+style="--angle:60deg"
+onclick="selectKey('D')">D</button>
+
+<button class="key"
+style="--angle:90deg"
+onclick="selectKey('A')">A</button>
+
+<button class="key"
+style="--angle:120deg"
+onclick="selectKey('E')">E</button>
+
+<button class="key"
+style="--angle:150deg"
+onclick="selectKey('H')">H</button>
+
+<button class="key"
+style="--angle:180deg"
+onclick="selectKey('Fis')">Fis</button>
+
+<button class="key"
+style="--angle:210deg"
+onclick="selectKey('Des')">Des</button>
+
+<button class="key"
+style="--angle:240deg"
+onclick="selectKey('As')">As</button>
+
+<button class="key"
+style="--angle:270deg"
+onclick="selectKey('Es')">Es</button>
+
+<button class="key"
+style="--angle:300deg"
+onclick="selectKey('B')">B</button>
+
+<button class="key"
+style="--angle:330deg"
+onclick="selectKey('F')">F</button>
+
+
+<!-- MOLOWE -->
+
+<button class="minor-key"
+style="--angle:0deg"
+onclick="selectKey('C')">a</button>
+
+<button class="minor-key"
+style="--angle:30deg"
+onclick="selectKey('G')">e</button>
+
+<button class="minor-key"
+style="--angle:60deg"
+onclick="selectKey('D')">h</button>
+
+<button class="minor-key"
+style="--angle:90deg"
+onclick="selectKey('A')">fis</button>
+
+<button class="minor-key"
+style="--angle:120deg"
+onclick="selectKey('E')">cis</button>
+
+<button class="minor-key"
+style="--angle:150deg"
+onclick="selectKey('H')">gis</button>
+
+<button class="minor-key"
+style="--angle:180deg"
+onclick="selectKey('Fis')">dis</button>
+
+<button class="minor-key"
+style="--angle:210deg"
+onclick="selectKey('Des')">b</button>
+
+<button class="minor-key"
+style="--angle:240deg"
+onclick="selectKey('As')">f</button>
+
+<button class="minor-key"
+style="--angle:270deg"
+onclick="selectKey('Es')">c</button>
+
+<button class="minor-key"
+style="--angle:300deg"
+onclick="selectKey('B')">g</button>
+
+<button class="minor-key"
+style="--angle:330deg"
+onclick="selectKey('F')">d</button>
+
+
+<div class="circle-center">
+KOŁO<br>KWINTOWE
+</div>
+
+</div>
+
+
+<div class="key-panel">
+
+<div class="key-name" id="selectedMajor">
+C-dur
+</div>
+
+<div class="key-minor" id="selectedMinor">
+a-moll
+</div>
+
+<div class="signature-big">
+
+<div class="signature-number" id="signatureNumber">
+0
+</div>
+
+<div class="signature-text" id="signatureText">
+brak znaków przykluczowych
+</div>
+
+</div>
+
+<div class="relationship">
+
+<div>
+<strong>Równoległa:</strong>
+<span id="parallelKey">a-moll</span>
+</div>
+
+<div>
+<strong>Dominanta:</strong>
+<span id="dominantKey">G-dur</span>
+</div>
+
+<div>
+<strong>Subdominanta:</strong>
+<span id="subdominantKey">F-dur</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="staff-box">
+
+<svg
+id="signatureStaff"
+class="staff"
+viewBox="0 0 800 190">
+</svg>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================
+     ZNAKI
+========================================= -->
+
+<section id="signaturesSection" class="hidden">
+
+<div class="card">
+
+<h2>Kolejność znaków przykluczowych</h2>
+
+<p class="description">
+Kolejność krzyżyków i bemoli jest stała. Warto znać ją na pamięć,
+bo pozwala bardzo szybko rozpoznawać tonacje.
+</p>
+
+
+<div class="order-grid">
+
+<div class="order-box">
+
+<div class="order-title">
+♯ Krzyżyki
+</div>
+
+<div class="order-notes">
+
+<div class="order-note">fis</div>
+<div class="arrow">→</div>
+
+<div class="order-note">cis</div>
+<div class="arrow">→</div>
+
+<div class="order-note">gis</div>
+<div class="arrow">→</div>
+
+<div class="order-note">dis</div>
+<div class="arrow">→</div>
+
+<div class="order-note">ais</div>
+<div class="arrow">→</div>
+
+<div class="order-note">eis</div>
+<div class="arrow">→</div>
+
+<div class="order-note">his</div>
+
+</div>
+
+</div>
+
+
+<div class="order-box">
+
+<div class="order-title">
+♭ Bemole
+</div>
+
+<div class="order-notes">
+
+<div class="order-note">b</div>
+<div class="arrow">→</div>
+
+<div class="order-note">es</div>
+<div class="arrow">→</div>
+
+<div class="order-note">as</div>
+<div class="arrow">→</div>
+
+<div class="order-note">des</div>
+<div class="arrow">→</div>
+
+<div class="order-note">ges</div>
+<div class="arrow">→</div>
+
+<div class="order-note">ces</div>
+<div class="arrow">→</div>
+
+<div class="order-note">fes</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Znaki</th>
+<th>Tonacja durowa</th>
+<th>Tonacja molowa</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr><td>7♭</td><td>Ces-dur</td><td>as-moll</td></tr>
+<tr><td>6♭</td><td>Ges-dur</td><td>es-moll</td></tr>
+<tr><td>5♭</td><td>Des-dur</td><td>b-moll</td></tr>
+<tr><td>4♭</td><td>As-dur</td><td>f-moll</td></tr>
+<tr><td>3♭</td><td>Es-dur</td><td>c-moll</td></tr>
+<tr><td>2♭</td><td>B-dur</td><td>g-moll</td></tr>
+<tr><td>1♭</td><td>F-dur</td><td>d-moll</td></tr>
+
+<tr><td>0</td><td>C-dur</td><td>a-moll</td></tr>
+
+<tr><td>1♯</td><td>G-dur</td><td>e-moll</td></tr>
+<tr><td>2♯</td><td>D-dur</td><td>h-moll</td></tr>
+<tr><td>3♯</td><td>A-dur</td><td>fis-moll</td></tr>
+<tr><td>4♯</td><td>E-dur</td><td>cis-moll</td></tr>
+<tr><td>5♯</td><td>H-dur</td><td>gis-moll</td></tr>
+<tr><td>6♯</td><td>Fis-dur</td><td>dis-moll</td></tr>
+<tr><td>7♯</td><td>Cis-dur</td><td>ais-moll</td></tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================
+     POKREWIEŃSTWO
+========================================= -->
+
+<section id="relationsSection" class="hidden">
+
+<div class="card">
+
+<h2>Tonacje równoległe</h2>
+
+<p class="description">
+Tonacja durowa i jej równoległa tonacja molowa mają ten sam zestaw znaków przykluczowych.
+Tonika tonacji molowej leży tercję małą poniżej toniki tonacji durowej.
+</p>
+
+<div class="info-grid">
+
+<div class="info">
+<strong>C-dur ↔ a-moll</strong>
+<span>0 znaków przykluczowych.</span>
+</div>
+
+<div class="info">
+<strong>G-dur ↔ e-moll</strong>
+<span>1 krzyżyk: fis.</span>
+</div>
+
+<div class="info">
+<strong>D-dur ↔ h-moll</strong>
+<span>2 krzyżyki: fis, cis.</span>
+</div>
+
+<div class="info">
+<strong>F-dur ↔ d-moll</strong>
+<span>1 bemol: b.</span>
+</div>
+
+<div class="info">
+<strong>B-dur ↔ g-moll</strong>
+<span>2 bemole: b, es.</span>
+</div>
+
+<div class="info">
+<strong>Es-dur ↔ c-moll</strong>
+<span>3 bemole: b, es, as.</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Tonacje jednoimienne</h2>
+
+<p class="description">
+Tonacje jednoimienne mają tę samą tonikę, ale inny tryb i inne znaki przykluczowe.
+Przykład: C-dur i c-moll albo A-dur i a-moll.
+</p>
+
+<div class="info-grid">
+
+<div class="info">
+<strong>C-dur ↔ c-moll</strong>
+<span>Ta sama tonika C, ale inny tryb.</span>
+</div>
+
+<div class="info">
+<strong>A-dur ↔ a-moll</strong>
+<span>Ta sama tonika A, ale inne znaki przykluczowe.</span>
+</div>
+
+<div class="info">
+<strong>G-dur ↔ g-moll</strong>
+<span>Ta sama tonika G, ale inne położenie III, VI i VII stopnia.</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Dominanta i subdominanta</h2>
+
+<p class="description">
+W tonacji durowej dominanta znajduje się na V stopniu,
+a subdominanta na IV stopniu. W kole kwintowym są to najbliżsi sąsiedzi danej tonacji.
+</p>
+
+<div class="info-grid">
+
+<div class="info">
+<strong>Subdominanta ← C → Dominanta</strong>
+<span>F-dur ← C-dur → G-dur</span>
+</div>
+
+<div class="info">
+<strong>Subdominanta ← G → Dominanta</strong>
+<span>C-dur ← G-dur → D-dur</span>
+</div>
+
+<div class="info">
+<strong>Subdominanta ← D → Dominanta</strong>
+<span>G-dur ← D-dur → A-dur</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================
+     ĆWICZENIA
+========================================= -->
+
+<section id="exerciseSection" class="hidden">
+
+<div class="card">
+
+<h2>Ćwiczenia</h2>
+
+<p class="description">
+Ćwicz znaki przykluczowe, tonacje równoległe i koło kwintowe.
+</p>
+
+
+<div class="exercise-menu">
+
+<button class="active"
+onclick="setExercise('signature',this)">
+Znaki → tonacja
+</button>
+
+<button onclick="setExercise('key',this)">
+Tonacja → znaki
+</button>
+
+<button onclick="setExercise('parallel',this)">
+Równoległe
+</button>
+
+<button onclick="setExercise('fifths',this)">
+Koło kwintowe
+</button>
+
+<button onclick="setExercise('mix',this)">
+Mix
+</button>
+
+</div>
+
+
+<div class="exercise">
+
+<div class="question" id="question"></div>
+
+<div class="question-small" id="questionSmall"></div>
+
+<div class="answers" id="answers"></div>
+
+<div class="feedback" id="feedback"></div>
+
+<button class="next" onclick="newQuestion()">
+Następne
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   DANE TONACJI
+========================================================= */
+
+const KEYS = {
+
+"C":{
+    major:"C-dur",
+    minor:"a-moll",
+    count:0,
+    type:"none",
+    signs:[],
+    dominant:"G-dur",
+    subdominant:"F-dur"
+},
+
+"G":{
+    major:"G-dur",
+    minor:"e-moll",
+    count:1,
+    type:"sharp",
+    signs:["fis"],
+    dominant:"D-dur",
+    subdominant:"C-dur"
+},
+
+"D":{
+    major:"D-dur",
+    minor:"h-moll",
+    count:2,
+    type:"sharp",
+    signs:["fis","cis"],
+    dominant:"A-dur",
+    subdominant:"G-dur"
+},
+
+"A":{
+    major:"A-dur",
+    minor:"fis-moll",
+    count:3,
+    type:"sharp",
+    signs:["fis","cis","gis"],
+    dominant:"E-dur",
+    subdominant:"D-dur"
+},
+
+"E":{
+    major:"E-dur",
+    minor:"cis-moll",
+    count:4,
+    type:"sharp",
+    signs:["fis","cis","gis","dis"],
+    dominant:"H-dur",
+    subdominant:"A-dur"
+},
+
+"H":{
+    major:"H-dur",
+    minor:"gis-moll",
+    count:5,
+    type:"sharp",
+    signs:["fis","cis","gis","dis","ais"],
+    dominant:"Fis-dur",
+    subdominant:"E-dur"
+},
+
+"Fis":{
+    major:"Fis-dur",
+    minor:"dis-moll",
+    count:6,
+    type:"sharp",
+    signs:["fis","cis","gis","dis","ais","eis"],
+    dominant:"Cis-dur",
+    subdominant:"H-dur"
+},
+
+"Des":{
+    major:"Des-dur",
+    minor:"b-moll",
+    count:5,
+    type:"flat",
+    signs:["b","es","as","des","ges"],
+    dominant:"As-dur",
+    subdominant:"Ges-dur"
+},
+
+"As":{
+    major:"As-dur",
+    minor:"f-moll",
+    count:4,
+    type:"flat",
+    signs:["b","es","as","des"],
+    dominant:"Es-dur",
+    subdominant:"Des-dur"
+},
+
+"Es":{
+    major:"Es-dur",
+    minor:"c-moll",
+    count:3,
+    type:"flat",
+    signs:["b","es","as"],
+    dominant:"B-dur",
+    subdominant:"As-dur"
+},
+
+"B":{
+    major:"B-dur",
+    minor:"g-moll",
+    count:2,
+    type:"flat",
+    signs:["b","es"],
+    dominant:"F-dur",
+    subdominant:"Es-dur"
+},
+
+"F":{
+    major:"F-dur",
+    minor:"d-moll",
+    count:1,
+    type:"flat",
+    signs:["b"],
+    dominant:"C-dur",
+    subdominant:"B-dur"
+}
+
+};
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+function showSection(id,button){
+
+document.querySelectorAll(
+"section[id$='Section']"
+).forEach(section=>{
+    section.classList.add("hidden");
+});
+
+document.getElementById(id)
+.classList.remove("hidden");
+
+document.querySelectorAll(".tab")
+.forEach(tab=>{
+    tab.classList.remove("active");
+});
+
+button.classList.add("active");
+
+}
+
+
+/* =========================================================
+   WYBÓR TONACJI
+========================================================= */
+
+function selectKey(key){
+
+const data=KEYS[key];
+
+document.getElementById(
+"selectedMajor"
+).textContent=data.major;
+
+document.getElementById(
+"selectedMinor"
+).textContent=data.minor;
+
+document.getElementById(
+"parallelKey"
+).textContent=data.minor;
+
+document.getElementById(
+"dominantKey"
+).textContent=data.dominant;
+
+document.getElementById(
+"subdominantKey"
+).textContent=data.subdominant;
+
+
+if(data.count===0){
+
+document.getElementById(
+"signatureNumber"
+).textContent="0";
+
+document.getElementById(
+"signatureText"
+).textContent=
+"brak znaków przykluczowych";
+
+}
+
+else{
+
+document.getElementById(
+"signatureNumber"
+).textContent=
+data.count+
+(data.type==="sharp" ? " ♯" : " ♭");
+
+document.getElementById(
+"signatureText"
+).textContent=
+data.signs.join(", ");
+
+}
+
+drawSignature(key);
+
+}
+
+
+/* =========================================================
+   SVG
+========================================================= */
+
+const NS=
+"http://www.w3.org/2000/svg";
+
+
+function svgEl(name,attributes={}){
+
+const el=
+document.createElementNS(NS,name);
+
+Object.entries(attributes)
+.forEach(([key,value])=>{
+    el.setAttribute(key,value);
+});
+
+return el;
+
+}
+
+
+/* =========================================================
+   PIĘCIOLINIA
+========================================================= */
+
+function drawStaff(svg){
+
+for(let i=0;i<5;i++){
+
+const y=70+i*14;
+
+svg.appendChild(
+svgEl("line",{
+x1:35,
+y1:y,
+x2:760,
+y2:y,
+stroke:"#373345",
+"stroke-width":"1.4"
+})
+);
+
+}
+
+}
+
+
+/* =========================================================
+   KLUCZ
+========================================================= */
+
+function drawClef(svg){
+
+const text=
+svgEl("text",{
+x:50,
+y:128,
+"font-size":"78",
+"font-family":
+"Bravura, Noto Music, Segoe UI Symbol, Apple Symbols, serif",
+fill:"#252238"
+});
+
+text.textContent="𝄞";
+
+svg.appendChild(text);
+
+}
+
+
+/* =========================================================
+   KRZYŻYK
+========================================================= */
+
+function sharp(svg,x,y){
+
+[
+[-4,-14,-4,14],
+[4,-16,4,12],
+[-10,-5,10,-8],
+[-10,6,10,3]
+
+].forEach((p,index)=>{
+
+svg.appendChild(
+svgEl("line",{
+x1:x+p[0],
+y1:y+p[1],
+x2:x+p[2],
+y2:y+p[3],
+stroke:"#252238",
+"stroke-width":
+index<2 ? 1.7 : 2.2
+})
+);
+
+});
+
+}
+
+
+/* =========================================================
+   BEMOL
+========================================================= */
+
+function flat(svg,x,y){
+
+svg.appendChild(
+svgEl("line",{
+x1:x-2,
+y1:y-17,
+x2:x-2,
+y2:y+12,
+stroke:"#252238",
+"stroke-width":"1.8"
+})
+);
+
+svg.appendChild(
+svgEl("path",{
+d:
+`M ${x-2} ${y-2}
+C ${x+12} ${y-10},
+${x+13} ${y+8},
+${x-2} ${y+12}`,
+fill:"none",
+stroke:"#252238",
+"stroke-width":"1.8"
+})
+);
+
+}
+
+
+/* =========================================================
+   POZYCJE ZNAKÓW
+========================================================= */
+
+const SHARP_POSITIONS=[
+63,
+84,
+56,
+77,
+98,
+70,
+91
+];
+
+const FLAT_POSITIONS=[
+91,
+70,
+98,
+77,
+105,
+84,
+112
+];
+
+
+/* =========================================================
+   RYSOWANIE ZNAKÓW
+========================================================= */
+
+function drawSignature(key){
+
+const svg=
+document.getElementById(
+"signatureStaff"
+);
+
+svg.innerHTML="";
+
+drawStaff(svg);
+drawClef(svg);
+
+const data=KEYS[key];
+
+let x=125;
+
+
+if(data.type==="sharp"){
+
+for(let i=0;i<data.count;i++){
+
+sharp(
+svg,
+x,
+SHARP_POSITIONS[i]
+);
+
+x+=25;
+
+}
+
+}
+
+
+if(data.type==="flat"){
+
+for(let i=0;i<data.count;i++){
+
+flat(
+svg,
+x,
+FLAT_POSITIONS[i]
+);
+
+x+=25;
+
+}
+
+}
+
+
+/* NAZWA */
+
+const title=
+svgEl("text",{
+x:420,
+y:165,
+"text-anchor":"middle",
+"font-family":"Arial",
+"font-size":"13",
+"font-weight":"700",
+fill:"#777187"
+});
+
+title.textContent=
+data.major+"  ↔  "+data.minor;
+
+svg.appendChild(title);
+
+}
+
+
+/* =========================================================
+   ĆWICZENIA
+========================================================= */
+
+let exerciseMode="signature";
+
+
+function setExercise(mode,button){
+
+exerciseMode=mode;
+
+document.querySelectorAll(
+".exercise-menu button"
+).forEach(b=>{
+b.classList.remove("active");
+});
+
+button.classList.add("active");
+
+newQuestion();
+
+}
+
+
+function random(array){
+
+return array[
+Math.floor(Math.random()*array.length)
+];
+
+}
+
+
+function shuffle(array){
+
+return [...array]
+.sort(()=>Math.random()-.5);
+
+}
+
+
+/* =========================================================
+   OPCJE
+========================================================= */
+
+const KEY_NAMES=
+Object.keys(KEYS);
+
+
+/* =========================================================
+   NOWE PYTANIE
+========================================================= */
+
+function newQuestion(){
+
+document.getElementById(
+"feedback"
+).textContent="";
+
+let mode=exerciseMode;
+
+if(mode==="mix"){
+
+mode=random([
+"signature",
+"key",
+"parallel",
+"fifths"
+]);
+
+}
+
+
+if(mode==="signature"){
+questionSignature();
+}
+
+if(mode==="key"){
+questionKey();
+}
+
+if(mode==="parallel"){
+questionParallel();
+}
+
+if(mode==="fifths"){
+questionFifths();
+}
+
+}
+
+
+/* =========================================================
+   ZNAKI → TONACJA
+========================================================= */
+
+function questionSignature(){
+
+const key=random(KEY_NAMES);
+const data=KEYS[key];
+
+let description;
+
+if(data.count===0){
+
+description=
+"brak znaków przykluczowych";
+
+}
+
+else{
+
+description=
+data.count+
+(data.type==="sharp"
+? " krzyżyk"+(data.count>1?"i":"")
+: " bemol"+(data.count>1?"e":""));
+
+}
+
+
+showQuestion(
+"Jaka tonacja durowa ma: "+description+"?",
+"Znaki: "+(
+data.signs.length
+? data.signs.join(", ")
+: "brak"
+),
+data.major,
+randomMajorAnswers(data.major)
+);
+
+}
+
+
+/* =========================================================
+   TONACJA → ZNAKI
+========================================================= */
+
+function questionKey(){
+
+const key=random(KEY_NAMES);
+const data=KEYS[key];
+
+let correct;
+
+if(data.count===0){
+
+correct="0 znaków";
+
+}
+
+else{
+
+correct=
+data.count+
+(data.type==="sharp"
+? " ♯"
+: " ♭");
+
+}
+
+
+const options=[
+"0 znaków",
+"1 ♯","2 ♯","3 ♯",
+"4 ♯","5 ♯","6 ♯",
+"1 ♭","2 ♭","3 ♭",
+"4 ♭","5 ♭","6 ♭"
+];
+
+let wrong=
+shuffle(
+options.filter(x=>x!==correct)
+).slice(0,3);
+
+showQuestion(
+"Ile znaków przykluczowych ma "+data.major+"?",
+"",
+correct,
+[correct,...wrong]
+);
+
+}
+
+
+/* =========================================================
+   RÓWNOLEGŁE
+========================================================= */
+
+function questionParallel(){
+
+const key=random(KEY_NAMES);
+const data=KEYS[key];
+
+const minors=
+Object.values(KEYS)
+.map(x=>x.minor);
+
+const wrong=
+shuffle(
+minors.filter(
+x=>x!==data.minor
+)
+).slice(0,3);
+
+
+showQuestion(
+"Jaka tonacja molowa jest równoległa do "+data.major+"?",
+"Obie tonacje mają te same znaki przykluczowe.",
+data.minor,
+[data.minor,...wrong]
+);
+
+}
+
+
+/* =========================================================
+   KOŁO KWINTOWE
+========================================================= */
+
+function questionFifths(){
+
+const key=random(KEY_NAMES);
+const data=KEYS[key];
+
+const askDominant=
+Math.random()>.5;
+
+const correct=
+askDominant
+? data.dominant
+: data.subdominant;
+
+const majors=
+Object.values(KEYS)
+.map(x=>x.major);
+
+const wrong=
+shuffle(
+majors.filter(x=>x!==correct)
+).slice(0,3);
+
+
+showQuestion(
+
+askDominant
+? "Jaka tonacja znajduje się o kwintę wyżej od "+data.major+"?"
+: "Jaka jest subdominanta tonacji "+data.major+"?",
+
+askDominant
+? "Szukamy tonacji na V stopniu."
+: "Szukamy tonacji na IV stopniu.",
+
+correct,
+
+[correct,...wrong]
+
+);
+
+}
+
+
+/* =========================================================
+   LOSOWE TONACJE
+========================================================= */
+
+function randomMajorAnswers(correct){
+
+const majors=
+Object.values(KEYS)
+.map(x=>x.major);
+
+const wrong=
+shuffle(
+majors.filter(x=>x!==correct)
+).slice(0,3);
+
+return [
+correct,
+...wrong
+];
+
+}
+
+
+/* =========================================================
+   WYŚWIETLENIE PYTANIA
+========================================================= */
+
+function showQuestion(
+question,
+small,
+correct,
+options
+){
+
+document.getElementById(
+"question"
+).textContent=question;
+
+document.getElementById(
+"questionSmall"
+).textContent=small;
+
+
+const answers=
+document.getElementById(
+"answers"
+);
+
+answers.innerHTML="";
+
+
+shuffle(options)
+.forEach(option=>{
+
+const button=
+document.createElement("button");
+
+button.className="answer";
+button.textContent=option;
+
+button.onclick=()=>{
+
+checkAnswer(
+button,
+option,
+correct
+);
+
+};
+
+answers.appendChild(button);
+
+});
+
+}
+
+
+/* =========================================================
+   SPRAWDZANIE
+========================================================= */
+
+function checkAnswer(
+button,
+answer,
+correct
+){
+
+const buttons=
+document.querySelectorAll(
+"#answers .answer"
+);
+
+buttons.forEach(b=>{
+b.disabled=true;
+});
+
+
+if(answer===correct){
+
+button.classList.add(
+"correct"
+);
+
+document.getElementById(
+"feedback"
+).textContent=
+"✓ Dobrze!";
+
+}
+
+else{
+
+button.classList.add(
+"wrong"
+);
+
+buttons.forEach(b=>{
+
+if(b.textContent===correct){
+
+b.classList.add(
+"correct"
+);
+
+}
+
+});
+
+document.getElementById(
+"feedback"
+).textContent=
+"Poprawna odpowiedź: "+
+correct;
+
+}
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+selectKey("C");
+newQuestion();
+
+</script>
+
+</body>
+</html>
