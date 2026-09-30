@@ -1,940 +1,3 @@
-<!DOCTYPE html>
-<html lang="pl">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Harmonix — Gamy molowe</title>
-
-<link rel="stylesheet" href="style.css">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
-
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f7f5ff;
-    color: #252238;
-}
-
-.page {
-    min-height: 100vh;
-    padding: 40px 20px 80px;
-}
-
-.container {
-    width: 100%;
-    max-width: 1050px;
-    margin: auto;
-}
-
-.back {
-    display: inline-block;
-    margin-bottom: 28px;
-    text-decoration: none;
-    color: #777187;
-    font-weight: 700;
-    font-size: 14px;
-}
-
-.header {
-    text-align: center;
-    margin-bottom: 34px;
-}
-
-.title {
-    margin: 0;
-    font-size: 52px;
-    font-weight: 800;
-    letter-spacing: -2px;
-}
-
-.subtitle {
-    margin: 12px auto 0;
-    max-width: 680px;
-    color: #6b6680;
-    font-size: 18px;
-    line-height: 1.5;
-}
-
-/* =========================
-   ODMIANY
-========================= */
-
-.tabs {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.tab {
-    padding: 17px 10px;
-    border: 1px solid #e3e0eb;
-    border-radius: 15px;
-    background: white;
-    color: #777187;
-    font-weight: 800;
-    cursor: pointer;
-    transition: .2s;
-}
-
-.tab:hover {
-    transform: translateY(-2px);
-}
-
-.tab.active {
-    background: #ece9f5;
-    color: #252238;
-    border-color: #d4cfe2;
-}
-
-/* =========================
-   KARTY
-========================= */
-
-.card {
-    margin-bottom: 18px;
-    padding: 28px;
-    background: white;
-    border-radius: 22px;
-    box-shadow: 0 8px 30px rgba(40,30,80,.08);
-}
-
-.card h2 {
-    margin: 0 0 8px;
-    font-size: 22px;
-}
-
-.description {
-    margin: 0;
-    color: #777187;
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-/* =========================
-   TEORIA
-========================= */
-
-.change {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
-    padding: 16px;
-    background: #f7f5ff;
-    border-radius: 14px;
-}
-
-.change-badge {
-    min-width: 100px;
-    padding: 12px;
-    text-align: center;
-    background: #ece9f5;
-    border-radius: 10px;
-    font-weight: 800;
-}
-
-.change-text {
-    color: #777187;
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-.change-text strong {
-    color: #252238;
-}
-
-.degrees {
-    display: grid;
-    grid-template-columns: repeat(8,1fr);
-    gap: 7px;
-    margin-top: 20px;
-}
-
-.degree {
-    padding: 12px 5px;
-    text-align: center;
-    background: #f7f5ff;
-    border-radius: 10px;
-    color: #777187;
-    font-size: 11px;
-    font-weight: 800;
-}
-
-.degree.changed {
-    background: #e5e0f1;
-    color: #252238;
-}
-
-.degree small {
-    display: block;
-    margin-top: 4px;
-    font-size: 8px;
-    font-weight: 500;
-}
-
-/* =========================
-   WYBÓR TONACJI
-========================= */
-
-.controls {
-    margin-top: 18px;
-}
-
-.controls select {
-    padding: 11px 15px;
-    border: 1px solid #dedbea;
-    border-radius: 11px;
-    background: #faf9ff;
-    color: #252238;
-    font-weight: 700;
-}
-
-/* =========================
-   ZAPIS NUTOWY
-========================= */
-
-.music-box {
-    margin-top: 20px;
-    padding: 22px 18px 20px;
-    background: #faf9ff;
-    border: 1px solid #ece9f2;
-    border-radius: 18px;
-}
-
-.scale-name {
-    text-align: center;
-    font-size: 24px;
-    font-weight: 800;
-}
-
-.scale-info {
-    margin-top: 5px;
-    text-align: center;
-    color: #9993a6;
-    font-size: 10px;
-    font-weight: 700;
-}
-
-.staff-scroll {
-    overflow-x: auto;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.staff {
-    display: block;
-    width: 100%;
-    min-width: 800px;
-    height: 245px;
-}
-
-/* =========================
-   AUDIO
-========================= */
-
-.listen {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 4px;
-}
-
-.listen button {
-    padding: 10px 14px;
-    border: 1px solid #dedbea;
-    border-radius: 10px;
-    background: white;
-    color: #514b68;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.listen button:hover {
-    background: #f1eff8;
-}
-
-.status {
-    min-height: 18px;
-    margin-top: 9px;
-    text-align: center;
-    color: #9993a6;
-    font-size: 10px;
-}
-
-/* =========================
-   NAZWY DŹWIĘKÓW
-========================= */
-
-.helper-title {
-    margin-top: 9px;
-    text-align: center;
-    color: #9993a6;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: .7px;
-    text-transform: uppercase;
-}
-
-.note-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 7px;
-    margin-top: 10px;
-}
-
-.note-button {
-    min-width: 55px;
-    padding: 10px 8px;
-    border: 1px solid #e5e2ec;
-    border-radius: 10px;
-    background: white;
-    color: #252238;
-    font-size: 14px;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.note-button.changed {
-    background: #e8e4f2;
-}
-
-.note-button small {
-    display: block;
-    margin-top: 3px;
-    color: #aaa5b5;
-    font-size: 8px;
-}
-
-.steps {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 13px;
-}
-
-.step {
-    padding: 5px 8px;
-    background: #efedf5;
-    border-radius: 7px;
-    color: #777187;
-    font-size: 9px;
-    font-weight: 800;
-}
-
-/* =========================
-   PORÓWNANIE
-========================= */
-
-.compare {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 10px;
-    margin-top: 18px;
-}
-
-.compare-box {
-    padding: 18px;
-    background: #faf9ff;
-    border: 1px solid #ece9f2;
-    border-radius: 14px;
-}
-
-.compare-box strong {
-    display: block;
-    margin-bottom: 7px;
-    font-size: 13px;
-}
-
-.compare-box span {
-    color: #777187;
-    font-size: 11px;
-    line-height: 1.5;
-}
-
-/* =========================
-   ĆWICZENIA
-========================= */
-
-.practice-menu {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-top: 18px;
-}
-
-.practice-menu button {
-    padding: 10px 13px;
-    border: 1px solid #dedbea;
-    border-radius: 10px;
-    background: #faf9ff;
-    color: #777187;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.practice-menu button.active {
-    background: #ece9f5;
-    color: #252238;
-}
-
-.exercise {
-    margin-top: 18px;
-    padding: 22px;
-    background: #faf9ff;
-    border: 1px solid #ece9f2;
-    border-radius: 16px;
-}
-
-.exercise-title {
-    text-align: center;
-    font-size: 17px;
-    font-weight: 800;
-}
-
-.exercise-subtitle {
-    margin-top: 5px;
-    text-align: center;
-    color: #777187;
-    font-size: 11px;
-}
-
-.builder-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-}
-
-.builder-buttons button {
-    padding: 10px 14px;
-    border: 1px solid #dedbea;
-    border-radius: 9px;
-    background: white;
-    color: #514b68;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.builder-buttons button.active {
-    background: #e5e0f1;
-    color: #252238;
-}
-
-.check {
-    display: block;
-    margin: 14px auto 0;
-    padding: 10px 18px;
-    border: 0;
-    border-radius: 10px;
-    background: #252238;
-    color: white;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.answers {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 8px;
-    margin-top: 17px;
-}
-
-.answer {
-    padding: 11px;
-    border: 1px solid #dedbea;
-    border-radius: 10px;
-    background: white;
-    color: #514b68;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.answer.correct {
-    background: #edf7ef;
-    border-color: #b8d9bf;
-    color: #315c39;
-}
-
-.answer.wrong {
-    background: #faeeee;
-    border-color: #e0bebe;
-    color: #7b4242;
-}
-
-.feedback {
-    min-height: 22px;
-    margin-top: 13px;
-    text-align: center;
-    color: #777187;
-    font-size: 12px;
-    font-weight: 800;
-}
-
-.next {
-    display: block;
-    margin: 8px auto 0;
-    padding: 10px 15px;
-    border: 1px solid #d9d4e5;
-    border-radius: 10px;
-    background: #ece9f5;
-    color: #252238;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.hidden {
-    display: none !important;
-}
-
-@media(max-width:800px) {
-
-    .title {
-        font-size: 42px;
-    }
-
-    .tabs {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .degrees {
-        grid-template-columns: repeat(4,1fr);
-    }
-
-    .compare {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .answers {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<main class="page">
-
-<div class="container">
-
-<a href="tonacje.html" class="back">
-    ← Gamy i tonacje
-</a>
-
-<header class="header">
-
-<h1 class="title">
-    Gamy molowe
-</h1>
-
-<p class="subtitle">
-    Naturalna (eolska), harmoniczna, dorycka i melodyczna —
-    zapisuj, buduj, porównuj i rozpoznawaj ze słuchu.
-</p>
-
-</header>
-
-
-<div class="tabs">
-
-<button
-    class="tab active"
-    onclick="changeType('natural',this)">
-    Naturalna (eolska)
-</button>
-
-<button
-    class="tab"
-    onclick="changeType('harmonic',this)">
-    Harmoniczna
-</button>
-
-<button
-    class="tab"
-    onclick="changeType('dorian',this)">
-    Dorycka
-</button>
-
-<button
-    class="tab"
-    onclick="changeType('melodic',this)">
-    Melodyczna
-</button>
-
-</div>
-
-
-<!-- TEORIA -->
-
-<section class="card">
-
-<h2 id="theoryTitle"></h2>
-
-<p
-    class="description"
-    id="theoryDescription">
-</p>
-
-<div class="change">
-
-<div
-    class="change-badge"
-    id="changeBadge">
-</div>
-
-<div
-    class="change-text"
-    id="changeText">
-</div>
-
-</div>
-
-
-<div class="degrees">
-
-<div class="degree" id="degree1">
-I
-<small>tonika</small>
-</div>
-
-<div class="degree" id="degree2">
-II
-<small>stopień</small>
-</div>
-
-<div class="degree" id="degree3">
-III
-<small>stopień</small>
-</div>
-
-<div class="degree" id="degree4">
-IV
-<small>subdominanta</small>
-</div>
-
-<div class="degree" id="degree5">
-V
-<small>dominanta</small>
-</div>
-
-<div class="degree" id="degree6">
-VI
-<small>stopień</small>
-</div>
-
-<div class="degree" id="degree7">
-VII
-<small>stopień</small>
-</div>
-
-<div class="degree" id="degree8">
-VIII
-<small>tonika</small>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ZAPIS -->
-
-<section class="card">
-
-<h2>Zapis gamy</h2>
-
-<p class="description">
-Znaki należące do tonacji znajdują się przy kluczu.
-Zmiany charakterystyczne dla danej odmiany zapisujemy
-przy odpowiednich stopniach gamy.
-</p>
-
-
-<div class="controls">
-
-<select
-    id="root"
-    onchange="renderAll()">
-
-<option value="a">a-moll</option>
-<option value="e">e-moll</option>
-<option value="h">h-moll</option>
-<option value="fis">fis-moll</option>
-<option value="cis">cis-moll</option>
-<option value="gis">gis-moll</option>
-
-<option value="d">d-moll</option>
-<option value="g">g-moll</option>
-<option value="c">c-moll</option>
-<option value="f">f-moll</option>
-<option value="b">b-moll</option>
-<option value="es">es-moll</option>
-
-</select>
-
-</div>
-
-
-<div class="music-box">
-
-<div
-    class="scale-name"
-    id="scaleName">
-</div>
-
-<div
-    class="scale-info"
-    id="scaleInfo">
-</div>
-
-
-<div class="staff-scroll">
-
-<svg
-    id="mainStaff"
-    class="staff"
-    viewBox="0 0 900 245">
-</svg>
-
-</div>
-
-
-<div class="listen">
-
-<button onclick="playScale('up')">
-▶ W górę
-</button>
-
-<button onclick="playScale('down')">
-▶ W dół
-</button>
-
-<button onclick="playScale('both')">
-▶ Góra + dół
-</button>
-
-</div>
-
-
-<div
-    class="status"
-    id="audioStatus">
-</div>
-
-
-<div class="helper-title">
-Nazwy dźwięków — pomoc
-</div>
-
-<div
-    class="note-buttons"
-    id="noteButtons">
-</div>
-
-<div
-    class="steps"
-    id="steps">
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PORÓWNANIE -->
-
-<section class="card">
-
-<h2>Porównaj odmiany</h2>
-
-<div class="compare">
-
-<div class="compare-box">
-
-<strong>Naturalna (eolska)</strong>
-
-<span>
-Podstawowa postać gamy molowej.
-Półtony: II–III oraz V–VI.
-</span>
-
-</div>
-
-
-<div class="compare-box">
-
-<strong>Harmoniczna</strong>
-
-<span>
-VII stopień podwyższamy o pół tonu.
-</span>
-
-</div>
-
-
-<div class="compare-box">
-
-<strong>Dorycka</strong>
-
-<span>
-VI stopień gamy naturalnej podwyższamy o pół tonu.
-</span>
-
-</div>
-
-
-<div class="compare-box">
-
-<strong>Melodyczna</strong>
-
-<span>
-W górę podwyższamy VI i VII stopień.
-W dół wracamy do postaci naturalnej.
-</span>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ĆWICZENIA -->
-
-<section class="card">
-
-<h2>Ćwiczenia</h2>
-
-<p class="description">
-Buduj odmiany gam molowych, rozpoznawaj ich budowę
-i ćwicz różnice ze słuchu.
-</p>
-
-
-<div class="practice-menu">
-
-<button
-    class="active"
-    onclick="setPractice('builder',this)">
-    Budowanie
-</button>
-
-<button
-    onclick="setPractice('theory',this)">
-    Rozpoznawanie
-</button>
-
-<button
-    onclick="setPractice('ear',this)">
-    Słuch
-</button>
-
-<button
-    onclick="setPractice('mix',this)">
-    Mix
-</button>
-
-</div>
-
-
-<div
-    id="builderExercise"
-    class="exercise">
-
-<div
-    class="exercise-title"
-    id="builderQuestion">
-</div>
-
-<div class="exercise-subtitle">
-Zaznacz zmiany potrzebne do zbudowania podanej odmiany.
-</div>
-
-
-<div class="staff-scroll">
-
-<svg
-    id="builderStaff"
-    class="staff"
-    viewBox="0 0 900 245">
-</svg>
-
-</div>
-
-
-<div
-    class="builder-buttons"
-    id="builderButtons">
-</div>
-
-
-<button
-    class="check"
-    onclick="checkBuilder()">
-    Sprawdź
-</button>
-
-
-<div
-    class="feedback"
-    id="builderFeedback">
-</div>
-
-</div>
-
-
-<div
-    id="questionExercise"
-    class="exercise hidden">
-
-<div
-    class="exercise-title"
-    id="question">
-</div>
-
-<div
-    class="answers"
-    id="answers">
-</div>
-
-<div
-    class="feedback"
-    id="feedback">
-</div>
-
-<button
-    class="next"
-    onclick="newQuestion()">
-    Następne
-</button>
-
-</div>
-
-</section>
-
-</div>
-
-</main>
-
-
 <script>
 
 /* =========================================================
@@ -944,33 +7,17 @@ Zaznacz zmiany potrzebne do zbudowania podanej odmiany.
 const TYPES = {
 
 natural: {
-
-    name:
-    "naturalna (eolska)",
-
-    title:
-    "Gama molowa naturalna (eolska)",
-
+    name: "naturalna (eolska)",
+    title: "Gama molowa naturalna (eolska)",
     description:
-    "Podstawowa postać gamy molowej. Półtony występują między II–III oraz V–VI stopniem.",
-
-    badge:
-    "bez zmian",
-
+        "Podstawowa postać gamy molowej. Półtony występują między II–III oraz V–VI stopniem.",
+    badge: "bez zmian",
     explanation:
-    "<strong>Nie zmieniamy żadnego stopnia.</strong> Jest to podstawowa, eolska postać gamy molowej.",
-
-    changed:
-    [],
-
-    raise:
-    [],
-
-    offsets:
-    [0,2,3,5,7,8,10,12],
-
-    steps:
-    [
+        "<strong>Nie zmieniamy żadnego stopnia.</strong> Jest to podstawowa, eolska postać gamy molowej.",
+    changed: [],
+    raise: [],
+    offsets: [0,2,3,5,7,8,10,12],
+    steps: [
         "ton",
         "półton",
         "ton",
@@ -979,38 +26,20 @@ natural: {
         "ton",
         "ton"
     ]
-
 },
 
-
 harmonic: {
-
-    name:
-    "harmoniczna",
-
-    title:
-    "Gama molowa harmoniczna",
-
+    name: "harmoniczna",
+    title: "Gama molowa harmoniczna",
     description:
-    "Powstaje z gamy molowej naturalnej przez podwyższenie VII stopnia o pół tonu.",
-
-    badge:
-    "↑ VII",
-
+        "Powstaje z gamy molowej naturalnej przez podwyższenie VII stopnia o pół tonu.",
+    badge: "↑ VII",
     explanation:
-    "<strong>VII stopień podwyższamy o pół tonu.</strong> Dzięki temu VII stopień znajduje się pół tonu poniżej toniki.",
-
-    changed:
-    [7],
-
-    raise:
-    [7],
-
-    offsets:
-    [0,2,3,5,7,8,11,12],
-
-    steps:
-    [
+        "<strong>VII stopień podwyższamy o pół tonu.</strong> Między VI i VII stopniem powstaje sekunda zwiększona.",
+    changed: [7],
+    raise: [7],
+    offsets: [0,2,3,5,7,8,11,12],
+    steps: [
         "ton",
         "półton",
         "ton",
@@ -1019,78 +48,20 @@ harmonic: {
         "1½ tonu",
         "półton"
     ]
-
 },
-
 
 dorian: {
-
-    name:
-    "dorycka",
-
-    title:
-    "Gama molowa dorycka",
-
+    name: "dorycka",
+    title: "Gama molowa dorycka",
     description:
-    "W odmianie doryckiej VI stopień gamy molowej naturalnej jest podwyższony o pół tonu.",
-
-    badge:
-    "↑ VI",
-
+        "W tej odmianie podwyższamy VI i VII stopień gamy molowej naturalnej.",
+    badge: "↑ VI, VII",
     explanation:
-    "<strong>VI stopień podwyższamy o pół tonu.</strong>",
-
-    changed:
-    [6],
-
-    raise:
-    [6],
-
-    offsets:
-    [0,2,3,5,7,9,10,12],
-
-    steps:
-    [
-        "ton",
-        "półton",
-        "ton",
-        "ton",
-        "ton",
-        "półton",
-        "ton"
-    ]
-
-},
-
-
-melodic: {
-
-    name:
-    "melodyczna",
-
-    title:
-    "Gama molowa melodyczna",
-
-    description:
-    "W kierunku wznoszącym podwyższamy VI i VII stopień o pół tonu. W tradycyjnym zapisie szkolnym w dół gama wraca do postaci naturalnej.",
-
-    badge:
-    "↑ VI, VII",
-
-    explanation:
-    "<strong>W górę podwyższamy VI i VII stopień.</strong> W dół gramy postać naturalną.",
-
-    changed:
-    [6,7],
-
-    raise:
-    [6,7],
-
-    offsets:
-    [0,2,3,5,7,9,11,12],
-
-    steps:
-    [
+        "<strong>VI i VII stopień podwyższamy o pół tonu.</strong>",
+    changed: [6,7],
+    raise: [6,7],
+    offsets: [0,2,3,5,7,9,11,12],
+    steps: [
         "ton",
         "półton",
         "ton",
@@ -1099,7 +70,29 @@ melodic: {
         "ton",
         "półton"
     ]
+},
 
+melodic: {
+    name: "melodyczna",
+    title: "Gama molowa melodyczna",
+    description:
+        "Gama melodyczna ma inną postać w ruchu wznoszącym i opadającym, dlatego zapisujemy ją w obu kierunkach.",
+    badge: "↑ VI, VII w górę",
+    explanation:
+        "<strong>W górę podwyższamy VI i VII stopień.</strong> W dół wracamy do postaci naturalnej.",
+    changed: [6,7],
+    raise: [6,7],
+    offsets: [0,2,3,5,7,9,11,12],
+    downOffsets: [12,10,8,7,5,3,2,0],
+    steps: [
+        "ton",
+        "półton",
+        "ton",
+        "ton",
+        "ton",
+        "ton",
+        "półton"
+    ]
 }
 
 };
@@ -1128,7 +121,6 @@ cis:
 
 gis:
 ["Gis","Ais","H","Cis","Dis","E","Fis","Gis"],
-
 
 d:
 ["D","E","F","G","A","B","C","D"],
@@ -1178,7 +170,6 @@ es:-6
 const SHARP_ORDER =
 ["F","C","G","D","A","E","H"];
 
-
 const FLAT_ORDER =
 ["H","E","A","D","G","C","F"];
 
@@ -1218,12 +209,9 @@ As:"A",
 H:"His",
 
 B:"H",
-Bes:"B",
-
-Ces:"C"
+Bes:"B"
 
 };
-
 
 return map[note] || note;
 
@@ -1236,34 +224,17 @@ return map[note] || note;
 
 function getLetter(note) {
 
-if(note.startsWith("C"))
-return "C";
+if(note.startsWith("C")) return "C";
+if(note.startsWith("D")) return "D";
+if(note.startsWith("E")) return "E";
+if(note.startsWith("F")) return "F";
+if(note.startsWith("G")) return "G";
+if(note.startsWith("A")) return "A";
+if(note.startsWith("H")) return "H";
 
-if(note.startsWith("D"))
-return "D";
+/* polskie B = obniżone H */
 
-if(note.startsWith("E"))
-return "E";
-
-if(note.startsWith("F"))
-return "F";
-
-if(note.startsWith("G"))
-return "G";
-
-if(note.startsWith("A"))
-return "A";
-
-if(note.startsWith("H"))
-return "H";
-
-/*
-Polskie B = H♭.
-*/
-
-if(note.startsWith("B"))
-return "H";
-
+if(note.startsWith("B")) return "H";
 
 return "C";
 
@@ -1271,28 +242,18 @@ return "C";
 
 
 /* =========================================================
-   WARTOŚĆ ZNAKU
+   WARTOŚĆ ZNAKU CHROMATYCZNEGO
 ========================================================= */
 
 function accidentalValue(note) {
 
-if(note === "B")
-return -1;
+if(note === "B") return -1;
+if(note === "Bes") return -2;
 
-if(note === "Bes")
-return -2;
-
-if(note.endsWith("isis"))
-return 2;
-
-if(note.endsWith("eses"))
-return -2;
-
-if(note.endsWith("is"))
-return 1;
-
-if(note.endsWith("es"))
-return -1;
+if(note.endsWith("isis")) return 2;
+if(note.endsWith("eses")) return -2;
+if(note.endsWith("is")) return 1;
+if(note.endsWith("es")) return -1;
 
 return 0;
 
@@ -1300,49 +261,35 @@ return 0;
 
 
 /* =========================================================
-   ZNAK W TONACJI
+   ZNAK WYNIKAJĄCY Z TONACJI
 ========================================================= */
 
-function keyAccidentalForLetter(
-root,
-letter
-) {
+function keyAccidentalForLetter(root,letter) {
 
-const count =
-KEY_COUNT[root];
-
+const count = KEY_COUNT[root];
 
 if(count > 0) {
 
-const used =
-SHARP_ORDER.slice(
-0,
-count
-);
+    const used =
+        SHARP_ORDER.slice(0,count);
 
-
-return used.includes(letter)
-? 1
-: 0;
-
+    return used.includes(letter)
+        ? 1
+        : 0;
 }
-
 
 if(count < 0) {
 
-const used =
-FLAT_ORDER.slice(
-0,
-Math.abs(count)
-);
+    const used =
+        FLAT_ORDER.slice(
+            0,
+            Math.abs(count)
+        );
 
-
-return used.includes(letter)
-? -1
-: 0;
-
+    return used.includes(letter)
+        ? -1
+        : 0;
 }
-
 
 return 0;
 
@@ -1350,37 +297,31 @@ return 0;
 
 
 /* =========================================================
-   SYMBOL ZNAKU
+   JAKI ZNAK NAPISAĆ PRZY NUCIE
 ========================================================= */
 
 function accidentalDifferenceSymbol(
-keyValue,
-wantedValue
+    keyValue,
+    wantedValue
 ) {
 
 if(keyValue === wantedValue)
-return "";
-
+    return "";
 
 if(wantedValue === 0)
-return "♮";
-
+    return "♮";
 
 if(wantedValue === 1)
-return "♯";
-
+    return "♯";
 
 if(wantedValue === -1)
-return "♭";
-
+    return "♭";
 
 if(wantedValue === 2)
-return "𝄪";
-
+    return "𝄪";
 
 if(wantedValue === -2)
-return "♭♭";
-
+    return "♭♭";
 
 return "";
 
@@ -1391,38 +332,27 @@ return "";
    AKTUALNA GAMA
 ========================================================= */
 
-let currentType =
-"natural";
+let currentType = "natural";
 
 
-function getScale(
-type=currentType
-) {
+function getScale(type=currentType) {
 
 const root =
-document.getElementById(
-"root"
-).value;
-
+    document.getElementById("root").value;
 
 const scale =
-[
-...SCALES[root]
-];
+    [...SCALES[root]];
 
+TYPES[type].raise.forEach(
+    degree => {
 
-TYPES[type]
-.raise
-.forEach(
-degree => {
+        scale[degree-1] =
+            raiseNote(
+                scale[degree-1]
+            );
 
-scale[degree-1] =
-raiseNote(
-scale[degree-1]
+    }
 );
-
-});
-
 
 return scale;
 
@@ -1434,34 +364,31 @@ return scale;
 ========================================================= */
 
 const SVG_NS =
-"http://www.w3.org/2000/svg";
+    "http://www.w3.org/2000/svg";
 
 
 function svgElement(
-name,
-attributes={}
+    name,
+    attributes={}
 ) {
 
 const element =
-document.createElementNS(
-SVG_NS,
-name
-);
+    document.createElementNS(
+        SVG_NS,
+        name
+    );
 
-
-Object.entries(
-attributes
-)
+Object.entries(attributes)
 .forEach(
-([key,value]) => {
+    ([key,value]) => {
 
-element.setAttribute(
-key,
-value
+        element.setAttribute(
+            key,
+            value
+        );
+
+    }
 );
-
-});
-
 
 return element;
 
@@ -1472,110 +399,145 @@ return element;
    POZYCJE NUT
 ========================================================= */
 
-const STAFF_Y_BOTTOM =
-145;
-
+const STAFF_Y_BOTTOM = 145;
 
 const LETTER_INDEX = {
-
-C:0,
-D:1,
-E:2,
-F:3,
-G:4,
-A:5,
-H:6
-
+    C:0,
+    D:1,
+    E:2,
+    F:3,
+    G:4,
+    A:5,
+    H:6
 };
 
 
-function scalePositions(
-scale
-) {
+function scalePositions(scale) {
 
 const firstLetter =
-getLetter(
-scale[0]
-);
+    getLetter(scale[0]);
 
-
-let octave =
-4;
-
-
-/*
-h-moll i b-moll zaczynamy niżej,
-żeby zapis dobrze mieścił się
-na pięciolinii.
-*/
+let octave = 4;
 
 if(firstLetter === "H")
-octave = 3;
-
+    octave = 3;
 
 let previous =
-LETTER_INDEX[
-firstLetter
-];
-
+    LETTER_INDEX[firstLetter];
 
 return scale.map(
-(note,index) => {
+    (note,index) => {
 
-const letter =
-getLetter(note);
+        const letter =
+            getLetter(note);
 
+        const current =
+            LETTER_INDEX[letter];
 
-const current =
-LETTER_INDEX[
-letter
-];
+        if(
+            index > 0 &&
+            current <= previous
+        ) {
+            octave++;
+        }
 
+        const diatonicNumber =
+            octave * 7 +
+            current;
 
-if(
-index > 0 &&
-current <= previous
-) {
+        const E4 =
+            4 * 7 +
+            LETTER_INDEX.E;
 
-octave++;
+        const stepsAboveE4 =
+            diatonicNumber -
+            E4;
+
+        const y =
+            STAFF_Y_BOTTOM -
+            stepsAboveE4 * 6;
+
+        previous =
+            current;
+
+        return {
+            note,
+            letter,
+            octave,
+            y
+        };
+
+    }
+);
 
 }
 
 
-const diatonicNumber =
-octave*7 +
-current;
+/* =========================================================
+   POZYCJE GAMY W DÓŁ
+========================================================= */
 
+function descendingPositions(scale) {
 
-const E4 =
-4*7 +
-LETTER_INDEX.E;
+/*
+scale podajemy w kolejności od górnej toniki
+do dolnej toniki.
+*/
 
+const firstLetter =
+    getLetter(scale[0]);
 
-const stepsAboveE4 =
-diatonicNumber -
-E4;
+let octave = 5;
 
+if(firstLetter === "H")
+    octave = 4;
 
-const y =
-STAFF_Y_BOTTOM -
-stepsAboveE4*6;
+let previous =
+    LETTER_INDEX[firstLetter];
 
+return scale.map(
+    (note,index) => {
 
-previous =
-current;
+        const letter =
+            getLetter(note);
 
+        const current =
+            LETTER_INDEX[letter];
 
-return {
+        if(
+            index > 0 &&
+            current >= previous
+        ) {
+            octave--;
+        }
 
-note,
-letter,
-octave,
-y
+        const diatonicNumber =
+            octave * 7 +
+            current;
 
-};
+        const E4 =
+            4 * 7 +
+            LETTER_INDEX.E;
 
-});
+        const stepsAboveE4 =
+            diatonicNumber -
+            E4;
+
+        const y =
+            STAFF_Y_BOTTOM -
+            stepsAboveE4 * 6;
+
+        previous = current;
+
+        return {
+            note,
+            letter,
+            octave,
+            y
+        };
+
+    }
+);
 
 }
 
@@ -1584,31 +546,28 @@ y
    PIĘCIOLINIA
 ========================================================= */
 
-function drawStaffLines(
-svg
-) {
+function drawStaffLines(svg) {
 
 for(let i=0;i<5;i++) {
 
-const y =
-97 + i*12;
+    const y =
+        97 + i*12;
 
+    svg.appendChild(
 
-svg.appendChild(
+        svgElement(
+            "line",
+            {
+                x1:35,
+                y1:y,
+                x2:865,
+                y2:y,
+                stroke:"#373345",
+                "stroke-width":"1.3"
+            }
+        )
 
-svgElement(
-"line",
-{
-x1:35,
-y1:y,
-x2:865,
-y2:y,
-stroke:"#373345",
-"stroke-width":"1.3"
-}
-)
-
-);
+    );
 
 }
 
@@ -1616,115 +575,97 @@ stroke:"#373345",
 
 
 /* =========================================================
-   KLUCZ
+   KLUCZ WIOLINOWY
 ========================================================= */
 
-function drawTrebleClef(
-svg
-) {
+function drawTrebleClef(svg) {
 
 const text =
-svgElement(
-"text",
-{
-x:47,
-y:145,
-"font-size":78,
-"font-family":
-"Bravura, Noto Music, Segoe UI Symbol, Apple Symbols, serif",
-fill:"#252238"
-}
-);
+    svgElement(
+        "text",
+        {
+            x:47,
+            y:145,
+            "font-size":78,
+            "font-family":
+            "Bravura, Noto Music, Segoe UI Symbol, Apple Symbols, serif",
+            fill:"#252238"
+        }
+    );
 
+text.textContent = "𝄞";
 
-text.textContent =
-"𝄞";
-
-
-svg.appendChild(
-text
-);
+svg.appendChild(text);
 
 }
 
 
 /* =========================================================
-   RYSOWANIE KRZYŻYKA
+   KRZYŻYK
 ========================================================= */
 
-function drawSharp(
-svg,
-x,
-y
-) {
+function drawSharp(svg,x,y) {
 
 const group =
-svgElement("g");
-
-
-group.appendChild(
-svgElement(
-"line",
-{
-x1:x-4,
-y1:y-13,
-x2:x-4,
-y2:y+13,
-stroke:"#252238",
-"stroke-width":"1.7"
-}
-)
-);
-
+    svgElement("g");
 
 group.appendChild(
-svgElement(
-"line",
-{
-x1:x+4,
-y1:y-15,
-x2:x+4,
-y2:y+11,
-stroke:"#252238",
-"stroke-width":"1.7"
-}
-)
+    svgElement(
+        "line",
+        {
+            x1:x-4,
+            y1:y-13,
+            x2:x-4,
+            y2:y+13,
+            stroke:"#252238",
+            "stroke-width":"1.7"
+        }
+    )
 );
-
 
 group.appendChild(
-svgElement(
-"line",
-{
-x1:x-9,
-y1:y-5,
-x2:x+9,
-y2:y-8,
-stroke:"#252238",
-"stroke-width":"2.2"
-}
-)
+    svgElement(
+        "line",
+        {
+            x1:x+4,
+            y1:y-15,
+            x2:x+4,
+            y2:y+11,
+            stroke:"#252238",
+            "stroke-width":"1.7"
+        }
+    )
 );
-
 
 group.appendChild(
-svgElement(
-"line",
-{
-x1:x-9,
-y1:y+5,
-x2:x+9,
-y2:y+2,
-stroke:"#252238",
-"stroke-width":"2.2"
-}
-)
+    svgElement(
+        "line",
+        {
+            x1:x-9,
+            y1:y-5,
+            x2:x+9,
+            y2:y-8,
+            stroke:"#252238",
+            "stroke-width":"2.2"
+        }
+    )
 );
 
-
-svg.appendChild(
-group
+group.appendChild(
+    svgElement(
+        "line",
+        {
+            x1:x-9,
+            y1:y+5,
+            x2:x+9,
+            y2:y+2,
+            stroke:"#252238",
+            "stroke-width":"2.2"
+        }
+    )
 );
+
+svg.appendChild(group);
 
 }
 
@@ -1733,45 +674,39 @@ group
    BEMOL
 ========================================================= */
 
-function drawFlat(
-svg,
-x,
-y
-) {
+function drawFlat(svg,x,y) {
 
 svg.appendChild(
 
-svgElement(
-"line",
-{
-x1:x-2,
-y1:y-16,
-x2:x-2,
-y2:y+11,
-stroke:"#252238",
-"stroke-width":"1.8"
-}
-)
+    svgElement(
+        "line",
+        {
+            x1:x-2,
+            y1:y-16,
+            x2:x-2,
+            y2:y+11,
+            stroke:"#252238",
+            "stroke-width":"1.8"
+        }
+    )
 
 );
 
-
 svg.appendChild(
 
-svgElement(
-"path",
-{
-d:
-`M ${x-2} ${y-1}
- C ${x+11} ${y-9},
-   ${x+12} ${y+7},
-   ${x-2} ${y+11}`,
-
-fill:"none",
-stroke:"#252238",
-"stroke-width":"1.8"
-}
-)
+    svgElement(
+        "path",
+        {
+            d:
+            `M ${x-2} ${y-1}
+             C ${x+11} ${y-9},
+               ${x+12} ${y+7},
+               ${x-2} ${y+11}`,
+            fill:"none",
+            stroke:"#252238",
+            "stroke-width":"1.8"
+        }
+    )
 
 );
 
@@ -1782,77 +717,62 @@ stroke:"#252238",
    KASOWNIK
 ========================================================= */
 
-function drawNatural(
-svg,
-x,
-y
-) {
+function drawNatural(svg,x,y) {
 
 svg.appendChild(
-
-svgElement(
-"line",
-{
-x1:x-5,
-y1:y-14,
-x2:x-5,
-y2:y+8,
-stroke:"#252238",
-"stroke-width":"1.7"
-}
-)
-
+    svgElement(
+        "line",
+        {
+            x1:x-5,
+            y1:y-14,
+            x2:x-5,
+            y2:y+8,
+            stroke:"#252238",
+            "stroke-width":"1.7"
+        }
+    )
 );
 
-
 svg.appendChild(
-
-svgElement(
-"line",
-{
-x1:x+5,
-y1:y-8,
-x2:x+5,
-y2:y+14,
-stroke:"#252238",
-"stroke-width":"1.7"
-}
-)
-
+    svgElement(
+        "line",
+        {
+            x1:x+5,
+            y1:y-8,
+            x2:x+5,
+            y2:y+14,
+            stroke:"#252238",
+            "stroke-width":"1.7"
+        }
+    )
 );
 
-
 svg.appendChild(
-
-svgElement(
-"line",
-{
-x1:x-5,
-y1:y,
-x2:x+5,
-y2:y-4,
-stroke:"#252238",
-"stroke-width":"2"
-}
-)
-
+    svgElement(
+        "line",
+        {
+            x1:x-5,
+            y1:y,
+            x2:x+5,
+            y2:y-4,
+            stroke:"#252238",
+            "stroke-width":"2"
+        }
+    )
 );
 
-
 svg.appendChild(
-
-svgElement(
-"line",
-{
-x1:x-5,
-y1:y+7,
-x2:x+5,
-y2:y+3,
-stroke:"#252238",
-"stroke-width":"2"
-}
-)
-
+    svgElement(
+        "line",
+        {
+            x1:x-5,
+            y1:y+7,
+            x2:x+5,
+            y2:y+3,
+            stroke:"#252238",
+            "stroke-width":"2"
+        }
+    )
 );
 
 }
@@ -1862,47 +782,36 @@ stroke:"#252238",
    PODWÓJNY KRZYŻYK
 ========================================================= */
 
-function drawDoubleSharp(
-svg,
-x,
-y
-) {
+function drawDoubleSharp(svg,x,y) {
 
-const size =
-7;
-
+const size = 7;
 
 svg.appendChild(
-
-svgElement(
-"line",
-{
-x1:x-size,
-y1:y-size,
-x2:x+size,
-y2:y+size,
-stroke:"#252238",
-"stroke-width":"2.1"
-}
-)
-
+    svgElement(
+        "line",
+        {
+            x1:x-size,
+            y1:y-size,
+            x2:x+size,
+            y2:y+size,
+            stroke:"#252238",
+            "stroke-width":"2.1"
+        }
+    )
 );
 
-
 svg.appendChild(
-
-svgElement(
-"line",
-{
-x1:x-size,
-y1:y+size,
-x2:x+size,
-y2:y-size,
-stroke:"#252238",
-"stroke-width":"2.1"
-}
-)
-
+    svgElement(
+        "line",
+        {
+            x1:x-size,
+            y1:y+size,
+            x2:x+size,
+            y2:y-size,
+            stroke:"#252238",
+            "stroke-width":"2.1"
+        }
+    )
 );
 
 }
@@ -1912,24 +821,10 @@ stroke:"#252238",
    PODWÓJNY BEMOL
 ========================================================= */
 
-function drawDoubleFlat(
-svg,
-x,
-y
-) {
+function drawDoubleFlat(svg,x,y) {
 
-drawFlat(
-svg,
-x-5,
-y
-);
-
-
-drawFlat(
-svg,
-x+6,
-y
-);
+drawFlat(svg,x-5,y);
+drawFlat(svg,x+6,y);
 
 }
 
@@ -1939,48 +834,34 @@ y
 ========================================================= */
 
 function drawAccidental(
-svg,
-symbol,
-x,
-y
+    svg,
+    symbol,
+    x,
+    y
 ) {
 
 if(symbol === "♯") {
-
-drawSharp(svg,x,y);
-return;
-
+    drawSharp(svg,x,y);
+    return;
 }
-
 
 if(symbol === "♭") {
-
-drawFlat(svg,x,y);
-return;
-
+    drawFlat(svg,x,y);
+    return;
 }
-
 
 if(symbol === "♮") {
-
-drawNatural(svg,x,y);
-return;
-
+    drawNatural(svg,x,y);
+    return;
 }
-
 
 if(symbol === "𝄪") {
-
-drawDoubleSharp(svg,x,y);
-return;
-
+    drawDoubleSharp(svg,x,y);
+    return;
 }
 
-
 if(symbol === "♭♭") {
-
-drawDoubleFlat(svg,x,y);
-
+    drawDoubleFlat(svg,x,y);
 }
 
 }
@@ -1991,101 +872,80 @@ drawDoubleFlat(svg,x,y);
 ========================================================= */
 
 const SHARP_Y = {
-
-F:91,
-C:109,
-G:85,
-D:103,
-A:121,
-E:97,
-H:115
-
+    F:91,
+    C:109,
+    G:85,
+    D:103,
+    A:121,
+    E:97,
+    H:115
 };
 
-
 const FLAT_Y = {
-
-H:115,
-E:97,
-A:121,
-D:103,
-G:127,
-C:109,
-F:133
-
+    H:115,
+    E:97,
+    A:121,
+    D:103,
+    G:127,
+    C:109,
+    F:133
 };
 
 
 function drawKeySignature(
-svg,
-root
+    svg,
+    root
 ) {
 
 const count =
-KEY_COUNT[root];
-
+    KEY_COUNT[root];
 
 if(count === 0)
-return 90;
+    return 90;
 
-
-let x =
-102;
-
+let x = 102;
 
 if(count > 0) {
 
-for(
-let i=0;
-i<count;
-i++
-) {
+    for(let i=0;i<count;i++) {
 
-const letter =
-SHARP_ORDER[i];
+        const letter =
+            SHARP_ORDER[i];
 
+        drawSharp(
+            svg,
+            x,
+            SHARP_Y[letter]
+        );
 
-drawSharp(
-svg,
-x,
-SHARP_Y[letter]
-);
+        x += 17;
 
+    }
 
-x += 17;
+} else {
 
-}
+    for(
+        let i=0;
+        i<Math.abs(count);
+        i++
+    ) {
 
-}
+        const letter =
+            FLAT_ORDER[i];
 
+        drawFlat(
+            svg,
+            x,
+            FLAT_Y[letter]
+        );
 
-else {
+        x += 17;
 
-for(
-let i=0;
-i<Math.abs(count);
-i++
-) {
-
-const letter =
-FLAT_ORDER[i];
-
-
-drawFlat(
-svg,
-x,
-FLAT_Y[letter]
-);
-
-
-x += 17;
+    }
 
 }
 
-}
-
-
-return x+15;
+return x + 15;
 
 }
 
@@ -2095,65 +955,60 @@ return x+15;
 ========================================================= */
 
 function drawLedgerLines(
-svg,
-x,
-y
+    svg,
+    x,
+    y
 ) {
 
 if(y >= 157) {
 
-for(
-let ledgerY=157;
-ledgerY<=y+1;
-ledgerY+=12
-) {
+    for(
+        let ledgerY=157;
+        ledgerY<=y+1;
+        ledgerY+=12
+    ) {
 
-svg.appendChild(
+        svg.appendChild(
+            svgElement(
+                "line",
+                {
+                    x1:x-14,
+                    y1:ledgerY,
+                    x2:x+14,
+                    y2:ledgerY,
+                    stroke:"#373345",
+                    "stroke-width":"1.3"
+                }
+            )
+        );
 
-svgElement(
-"line",
-{
-x1:x-14,
-y1:ledgerY,
-x2:x+14,
-y2:ledgerY,
-stroke:"#373345",
-"stroke-width":"1.3"
-}
-)
-
-);
-
-}
+    }
 
 }
-
 
 if(y <= 85) {
 
-for(
-let ledgerY=85;
-ledgerY>=y-1;
-ledgerY-=12
-) {
+    for(
+        let ledgerY=85;
+        ledgerY>=y-1;
+        ledgerY-=12
+    ) {
 
-svg.appendChild(
+        svg.appendChild(
+            svgElement(
+                "line",
+                {
+                    x1:x-14,
+                    y1:ledgerY,
+                    x2:x+14,
+                    y2:ledgerY,
+                    stroke:"#373345",
+                    "stroke-width":"1.3"
+                }
+            )
+        );
 
-svgElement(
-"line",
-{
-x1:x-14,
-y1:ledgerY,
-x2:x+14,
-y2:ledgerY,
-stroke:"#373345",
-"stroke-width":"1.3"
-}
-)
-
-);
-
-}
+    }
 
 }
 
@@ -2161,171 +1016,141 @@ stroke:"#373345",
 
 
 /* =========================================================
-   NUTA
+   RYSOWANIE NUTY
 ========================================================= */
 
 function drawNote(
-svg,
-x,
-y,
-index,
-accidental,
-clickable=true
+    svg,
+    x,
+    y,
+    label,
+    accidental,
+    clickAction=null
 ) {
 
 drawLedgerLines(
-svg,
-x,
-y
+    svg,
+    x,
+    y
 );
-
 
 if(accidental) {
 
-drawAccidental(
-svg,
-accidental,
-x-24,
-y
-);
+    drawAccidental(
+        svg,
+        accidental,
+        x-24,
+        y
+    );
 
 }
 
 
-/*
-Główka.
-*/
+/* GŁÓWKA */
 
 svg.appendChild(
 
-svgElement(
-"ellipse",
-{
-cx:x,
-cy:y,
-rx:8.5,
-ry:6,
-fill:"#252238",
-transform:
-`rotate(-18 ${x} ${y})`
-}
-)
+    svgElement(
+        "ellipse",
+        {
+            cx:x,
+            cy:y,
+            rx:8.5,
+            ry:6,
+            fill:"#252238",
+            transform:
+            `rotate(-18 ${x} ${y})`
+        }
+    )
 
 );
 
 
-/*
-Laseczka.
-*/
+/* LASECZKA */
 
 const stemUp =
-y >= 121;
-
+    y >= 121;
 
 if(stemUp) {
 
-svg.appendChild(
+    svg.appendChild(
+        svgElement(
+            "line",
+            {
+                x1:x+7,
+                y1:y,
+                x2:x+7,
+                y2:y-37,
+                stroke:"#252238",
+                "stroke-width":"1.8"
+            }
+        )
+    );
 
-svgElement(
-"line",
-{
-x1:x+7,
-y1:y,
-x2:x+7,
-y2:y-37,
-stroke:"#252238",
-"stroke-width":"1.8"
-}
-)
+} else {
 
-);
-
-}
-
-else {
-
-svg.appendChild(
-
-svgElement(
-"line",
-{
-x1:x-7,
-y1:y,
-x2:x-7,
-y2:y+37,
-stroke:"#252238",
-"stroke-width":"1.8"
-}
-)
-
-);
+    svg.appendChild(
+        svgElement(
+            "line",
+            {
+                x1:x-7,
+                y1:y,
+                x2:x-7,
+                y2:y+37,
+                stroke:"#252238",
+                "stroke-width":"1.8"
+            }
+        )
+    );
 
 }
 
 
-/*
-Stopień.
-*/
+/* STOPIEŃ */
 
 const degree =
-svgElement(
-"text",
-{
-x:x,
-y:205,
-"text-anchor":"middle",
-"font-family":"Arial, sans-serif",
-"font-size":"11",
-"font-weight":"700",
-fill:"#777187"
-}
-);
+    svgElement(
+        "text",
+        {
+            x:x,
+            y:205,
+            "text-anchor":"middle",
+            "font-family":
+            "Arial, sans-serif",
+            "font-size":"11",
+            "font-weight":"700",
+            fill:"#777187"
+        }
+    );
+
+degree.textContent = label;
+
+svg.appendChild(degree);
 
 
-degree.textContent =
-[
-"I",
-"II",
-"III",
-"IV",
-"V",
-"VI",
-"VII",
-"VIII"
-][index];
+/* KLIKNIĘCIE */
 
+if(clickAction) {
 
-svg.appendChild(
-degree
-);
+    const hit =
+        svgElement(
+            "rect",
+            {
+                x:x-27,
+                y:y-30,
+                width:54,
+                height:60,
+                fill:"transparent",
+                style:"cursor:pointer"
+            }
+        );
 
+    hit.addEventListener(
+        "click",
+        clickAction
+    );
 
-if(clickable) {
-
-const hit =
-svgElement(
-"rect",
-{
-x:x-28,
-y:y-30,
-width:56,
-height:60,
-fill:"transparent",
-style:"cursor:pointer"
-}
-);
-
-
-hit.addEventListener(
-"click",
-() =>
-playSingleNote(index)
-);
-
-
-svg.appendChild(
-hit
-);
+    svg.appendChild(hit);
 
 }
 
@@ -2333,110 +1158,380 @@ hit
 
 
 /* =========================================================
-   RYSOWANIE GAMY
+   NORMALNA GAMA — 8 NUT
 ========================================================= */
 
-function drawScaleStaff(
-svgId,
-root,
-scale,
-type,
-clickable=true
+function drawNormalScaleStaff(
+    svgId,
+    root,
+    scale,
+    type,
+    clickable=true
 ) {
 
 const svg =
-document.getElementById(
-svgId
-);
+    document.getElementById(svgId);
 
+svg.innerHTML = "";
 
-svg.innerHTML =
-"";
-
-
-drawStaffLines(
-svg
-);
-
-
-drawTrebleClef(
-svg
-);
-
+drawStaffLines(svg);
+drawTrebleClef(svg);
 
 const firstNoteX =
-drawKeySignature(
-svg,
-root
-) + 35;
-
+    drawKeySignature(
+        svg,
+        root
+    ) + 35;
 
 const positions =
-scalePositions(
-scale
-);
-
+    scalePositions(scale);
 
 const availableWidth =
-820-firstNoteX;
-
+    820 - firstNoteX;
 
 const spacing =
-availableWidth/7;
-
+    availableWidth / 7;
 
 positions.forEach(
-(item,index) => {
+    (item,index) => {
 
-const x =
-firstNoteX +
-index*spacing;
+        const x =
+            firstNoteX +
+            index*spacing;
 
+        let accidental = "";
 
-let accidental =
-"";
+        if(
+            TYPES[type]
+            .changed
+            .includes(index+1)
+        ) {
 
+            const keyValue =
+                keyAccidentalForLetter(
+                    root,
+                    item.letter
+                );
 
-if(
-TYPES[type]
-.changed
-.includes(index+1)
-) {
+            const wantedValue =
+                accidentalValue(
+                    item.note
+                );
 
-const keyValue =
-keyAccidentalForLetter(
-root,
-item.letter
-);
+            accidental =
+                accidentalDifferenceSymbol(
+                    keyValue,
+                    wantedValue
+                );
 
+        }
 
-const wantedValue =
-accidentalValue(
-item.note
-);
+        drawNote(
+            svg,
+            x,
+            item.y,
+            [
+                "I","II","III","IV",
+                "V","VI","VII","VIII"
+            ][index],
+            accidental,
+            clickable
+                ? () => playSingleNote(index)
+                : null
+        );
 
-
-accidental =
-accidentalDifferenceSymbol(
-keyValue,
-wantedValue
+    }
 );
 
 }
 
 
-drawNote(
+/* =========================================================
+   MELODYCZNA — GÓRA + DÓŁ NA JEDNEJ PIĘCIOLINII
+========================================================= */
 
-svg,
-x,
-item.y,
-index,
-accidental,
-clickable
+function drawMelodicStaff(
+    svgId,
+    root,
+    clickable=true
+) {
 
+const svg =
+    document.getElementById(svgId);
+
+svg.innerHTML = "";
+
+drawStaffLines(svg);
+drawTrebleClef(svg);
+
+const natural =
+    [...SCALES[root]];
+
+
+/* =========================
+   W GÓRĘ
+========================= */
+
+const up =
+    [...natural];
+
+up[5] =
+    raiseNote(up[5]);
+
+up[6] =
+    raiseNote(up[6]);
+
+
+/* =========================
+   W DÓŁ — NATURALNA
+========================= */
+
+const down =
+    [...natural]
+    .reverse();
+
+
+const upPositions =
+    scalePositions(up);
+
+const downPositions =
+    descendingPositions(down);
+
+
+const firstNoteX =
+    drawKeySignature(
+        svg,
+        root
+    ) + 28;
+
+
+/*
+15 nut:
+8 w górę +
+7 w dół, bez powtarzania górnej toniki.
+*/
+
+const totalNotes = 15;
+
+const availableWidth =
+    825-firstNoteX;
+
+const spacing =
+    availableWidth /
+    (totalNotes-1);
+
+
+/* =========================
+   STRZAŁKA / OPIS
+========================= */
+
+const upLabel =
+    svgElement(
+        "text",
+        {
+            x:firstNoteX+110,
+            y:55,
+            "text-anchor":"middle",
+            "font-family":"Arial",
+            "font-size":"10",
+            "font-weight":"700",
+            fill:"#9993a6"
+        }
+    );
+
+upLabel.textContent =
+    "W GÓRĘ ↑";
+
+svg.appendChild(upLabel);
+
+
+const downLabel =
+    svgElement(
+        "text",
+        {
+            x:firstNoteX+550,
+            y:55,
+            "text-anchor":"middle",
+            "font-family":"Arial",
+            "font-size":"10",
+            "font-weight":"700",
+            fill:"#9993a6"
+        }
+    );
+
+downLabel.textContent =
+    "W DÓŁ ↓";
+
+svg.appendChild(downLabel);
+
+
+/* =========================
+   NUTY W GÓRĘ
+========================= */
+
+upPositions.forEach(
+    (item,index) => {
+
+        const x =
+            firstNoteX +
+            index*spacing;
+
+        let accidental = "";
+
+        if(
+            index === 5 ||
+            index === 6
+        ) {
+
+            const keyValue =
+                keyAccidentalForLetter(
+                    root,
+                    item.letter
+                );
+
+            const wantedValue =
+                accidentalValue(
+                    item.note
+                );
+
+            accidental =
+                accidentalDifferenceSymbol(
+                    keyValue,
+                    wantedValue
+                );
+
+        }
+
+        drawNote(
+            svg,
+            x,
+            item.y,
+            [
+                "I","II","III","IV",
+                "V","VI↑","VII↑","VIII"
+            ][index],
+            accidental,
+            clickable
+                ? () => playMelodicVisualNote(
+                    index,
+                    true
+                )
+                : null
+        );
+
+    }
 );
 
-});
+
+/* =========================
+   NUTY W DÓŁ
+========================= */
+
+/*
+Pomijamy down[0], bo jest to ta sama
+górna tonika, którą już zapisaliśmy.
+*/
+
+downPositions
+.slice(1)
+.forEach(
+    (item,index) => {
+
+        const actualIndex =
+            index+1;
+
+        const x =
+            firstNoteX +
+            (8+index)*spacing;
+
+
+        /*
+        Przy zejściu VI i VII wracają
+        do postaci naturalnej.
+
+        Jeżeli tonacja przy kluczu ma już
+        odpowiedni znak, nie trzeba nic
+        dopisywać.
+
+        Jednak po wcześniejszym znaku
+        podwyższającym w takcie trzeba
+        pokazać anulowanie znaku.
+
+        Dlatego przy odpowiadających
+        stopniach zapisujemy znak
+        naturalnej postaci.
+        */
+
+        let accidental = "";
+
+
+        /*
+        down:
+        VIII VII VI V IV III II I
+
+        actualIndex 1 = VII
+        actualIndex 2 = VI
+        */
+
+        if(
+            actualIndex === 1 ||
+            actualIndex === 2
+        ) {
+
+            const wantedValue =
+                accidentalValue(
+                    item.note
+                );
+
+            /*
+            Ponieważ wcześniej w tym samym
+            zapisie VII/VI zostały podwyższone,
+            pokazujemy powrót do wartości
+            wynikającej z gamy naturalnej.
+            */
+
+            if(wantedValue === 0)
+                accidental = "♮";
+
+            else if(wantedValue === -1)
+                accidental = "♭";
+
+            else if(wantedValue === 1)
+                accidental = "♯";
+
+        }
+
+
+        const labels =
+        [
+            "VIII",
+            "VII",
+            "VI",
+            "V",
+            "IV",
+            "III",
+            "II",
+            "I"
+        ];
+
+
+        drawNote(
+            svg,
+            x,
+            item.y,
+            labels[actualIndex],
+            accidental,
+            clickable
+                ? () =>
+                playMelodicVisualNote(
+                    actualIndex,
+                    false
+                )
+                : null
+        );
+
+    }
+);
 
 }
 
@@ -2448,217 +1543,332 @@ clickable
 function renderTheory() {
 
 const data =
-TYPES[currentType];
-
+    TYPES[currentType];
 
 document.getElementById(
-"theoryTitle"
+    "theoryTitle"
 ).textContent =
-data.title;
-
+    data.title;
 
 document.getElementById(
-"theoryDescription"
+    "theoryDescription"
 ).textContent =
-data.description;
-
+    data.description;
 
 document.getElementById(
-"changeBadge"
+    "changeBadge"
 ).textContent =
-data.badge;
-
+    data.badge;
 
 document.getElementById(
-"changeText"
+    "changeText"
 ).innerHTML =
-data.explanation;
+    data.explanation;
 
 
-for(
-let i=1;
-i<=8;
-i++
-) {
+for(let i=1;i<=8;i++) {
 
-document.getElementById(
-"degree"+i
-)
-.classList.remove(
-"changed"
-);
+    document.getElementById(
+        "degree"+i
+    )
+    .classList
+    .remove("changed");
 
 }
 
 
 data.changed.forEach(
-number => {
+    number => {
 
-document.getElementById(
-"degree"+number
-)
-.classList.add(
-"changed"
+        document.getElementById(
+            "degree"+number
+        )
+        .classList
+        .add("changed");
+
+    }
 );
-
-});
 
 }
 
 
 /* =========================================================
-   RENDER
+   RENDER CAŁEJ STRONY
 ========================================================= */
 
 function renderAll() {
 
 renderTheory();
 
-
 const root =
-document.getElementById(
-"root"
-).value;
-
+    document.getElementById(
+        "root"
+    ).value;
 
 const data =
-TYPES[currentType];
-
+    TYPES[currentType];
 
 const scale =
-getScale();
+    getScale();
 
 
 document.getElementById(
-"scaleName"
+    "scaleName"
 ).textContent =
-root +
-"-moll " +
-data.name;
+    root +
+    "-moll " +
+    data.name;
 
 
-document.getElementById(
-"scaleInfo"
-).textContent =
-data.badge;
+if(currentType === "melodic") {
 
+    document.getElementById(
+        "scaleInfo"
+    ).textContent =
+        "w górę: ↑ VI, ↑ VII • w dół: postać naturalna";
 
-drawScaleStaff(
+} else {
 
-"mainStaff",
-root,
-scale,
-currentType,
-true
-
-);
-
-
-/*
-NAZWY DŹWIĘKÓW
-*/
-
-const noteButtons =
-document.getElementById(
-"noteButtons"
-);
-
-
-noteButtons.innerHTML =
-"";
-
-
-scale.forEach(
-(note,index) => {
-
-const button =
-document.createElement(
-"button"
-);
-
-
-button.className =
-"note-button";
-
-
-if(
-data.changed
-.includes(index+1)
-) {
-
-button.classList.add(
-"changed"
-);
+    document.getElementById(
+        "scaleInfo"
+    ).textContent =
+        data.badge;
 
 }
 
 
-button.innerHTML =
-note +
-"<small>" +
-[
-"I",
-"II",
-"III",
-"IV",
-"V",
-"VI",
-"VII",
-"VIII"
-][index] +
-"</small>";
+/* =========================================================
+   PIĘCIOLINIA
+========================================================= */
+
+if(currentType === "melodic") {
+
+    drawMelodicStaff(
+        "mainStaff",
+        root,
+        true
+    );
+
+} else {
+
+    drawNormalScaleStaff(
+        "mainStaff",
+        root,
+        scale,
+        currentType,
+        true
+    );
+
+}
 
 
-button.onclick =
-() =>
-playSingleNote(
-index
-);
+/* =========================================================
+   NAZWY NUT
+========================================================= */
+
+const noteButtons =
+    document.getElementById(
+        "noteButtons"
+    );
+
+noteButtons.innerHTML = "";
 
 
-noteButtons.appendChild(
-button
-);
+if(currentType === "melodic") {
 
-});
+    /*
+    Pokazujemy całą melodyczną:
+    góra + dół.
+    */
+
+    const up =
+        getScale("melodic");
+
+    const down =
+        [...SCALES[root]]
+        .reverse();
+
+    const displayNotes =
+    [
+        ...up,
+        ...down.slice(1)
+    ];
+
+    const labels =
+    [
+        "I↑","II↑","III↑","IV↑",
+        "V↑","VI↑","VII↑","VIII",
+        "VII↓","VI↓","V↓","IV↓",
+        "III↓","II↓","I↓"
+    ];
+
+    displayNotes.forEach(
+        (note,index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "note-button";
+
+            if(
+                index === 5 ||
+                index === 6
+            ) {
+                button.classList.add(
+                    "changed"
+                );
+            }
+
+            button.innerHTML =
+                note +
+                "<small>" +
+                labels[index] +
+                "</small>";
+
+            button.onclick =
+                () => {
+
+                    if(index <= 7) {
+
+                        playMelodicVisualNote(
+                            index,
+                            true
+                        );
+
+                    } else {
+
+                        playMelodicVisualNote(
+                            index-7,
+                            false
+                        );
+
+                    }
+
+                };
+
+            noteButtons.appendChild(
+                button
+            );
+
+        }
+    );
+
+} else {
+
+    scale.forEach(
+        (note,index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "note-button";
+
+            if(
+                data.changed
+                .includes(index+1)
+            ) {
+
+                button.classList.add(
+                    "changed"
+                );
+
+            }
+
+            button.innerHTML =
+                note +
+                "<small>" +
+                [
+                    "I","II","III","IV",
+                    "V","VI","VII","VIII"
+                ][index] +
+                "</small>";
+
+            button.onclick =
+                () =>
+                playSingleNote(index);
+
+            noteButtons.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
 
 
-/*
-KROKI
-*/
+/* =========================================================
+   KROKI
+========================================================= */
 
 const steps =
-document.getElementById(
-"steps"
-);
+    document.getElementById(
+        "steps"
+    );
 
+steps.innerHTML = "";
 
-steps.innerHTML =
-"";
+if(currentType === "melodic") {
 
+    [
+        "↑ ton",
+        "↑ półton",
+        "↑ ton",
+        "↑ ton",
+        "↑ ton",
+        "↑ ton",
+        "↑ półton",
+        "↓ ton",
+        "↓ ton",
+        "↓ półton",
+        "↓ ton",
+        "↓ ton",
+        "↓ półton",
+        "↓ ton"
+    ]
+    .forEach(
+        text => {
 
-data.steps.forEach(
-text => {
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-const div =
-document.createElement(
-"div"
-);
+            div.className = "step";
 
+            div.textContent = text;
 
-div.className =
-"step";
+            steps.appendChild(div);
 
+        }
+    );
 
-div.textContent =
-text;
+} else {
 
+    data.steps.forEach(
+        text => {
 
-steps.appendChild(
-div
-);
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-});
+            div.className = "step";
+
+            div.textContent = text;
+
+            steps.appendChild(div);
+
+        }
+    );
+
+}
 
 }
 
@@ -2668,29 +1878,25 @@ div
 ========================================================= */
 
 function changeType(
-type,
-button
+    type,
+    button
 ) {
 
-currentType =
-type;
-
+currentType = type;
 
 document.querySelectorAll(
-".tab"
+    ".tab"
 )
 .forEach(
-item =>
-item.classList.remove(
-"active"
-)
+    item =>
+        item.classList.remove(
+            "active"
+        )
 );
-
 
 button.classList.add(
-"active"
+    "active"
 );
-
 
 renderAll();
 
@@ -2701,147 +1907,125 @@ renderAll();
    FORTEPIAN
 ========================================================= */
 
-let piano =
-null;
-
-
-let pianoLoading =
-false;
+let piano = null;
+let pianoLoading = false;
 
 
 async function getPiano() {
 
 const status =
-document.getElementById(
-"audioStatus"
-);
-
+    document.getElementById(
+        "audioStatus"
+    );
 
 try {
 
-await Tone.start();
+    await Tone.start();
+
+    if(piano)
+        return piano;
 
 
-if(piano)
-return piano;
+    if(pianoLoading) {
+
+        status.textContent =
+            "Ładowanie fortepianu…";
+
+        while(pianoLoading) {
+
+            await new Promise(
+                resolve =>
+                    setTimeout(
+                        resolve,
+                        100
+                    )
+            );
+
+        }
+
+        return piano;
+
+    }
 
 
-if(pianoLoading) {
+    pianoLoading = true;
 
-status.textContent =
-"Ładowanie fortepianu…";
-
-
-while(pianoLoading) {
-
-await new Promise(
-resolve =>
-setTimeout(
-resolve,
-100
-)
-);
-
-}
+    status.textContent =
+        "Ładowanie fortepianu…";
 
 
-return piano;
+    piano =
+        new Tone.Sampler({
 
-}
+            urls: {
 
+                A0:"A0.mp3",
 
-pianoLoading =
-true;
+                C1:"C1.mp3",
+                "D#1":"Ds1.mp3",
+                "F#1":"Fs1.mp3",
 
+                A1:"A1.mp3",
 
-status.textContent =
-"Ładowanie fortepianu…";
+                C2:"C2.mp3",
+                "D#2":"Ds2.mp3",
+                "F#2":"Fs2.mp3",
 
+                A2:"A2.mp3",
 
-piano =
-new Tone.Sampler({
+                C3:"C3.mp3",
+                "D#3":"Ds3.mp3",
+                "F#3":"Fs3.mp3",
 
-urls: {
+                A3:"A3.mp3",
 
-A0:"A0.mp3",
+                C4:"C4.mp3",
+                "D#4":"Ds4.mp3",
+                "F#4":"Fs4.mp3",
 
-C1:"C1.mp3",
-"D#1":"Ds1.mp3",
-"F#1":"Fs1.mp3",
+                A4:"A4.mp3",
 
-A1:"A1.mp3",
+                C5:"C5.mp3",
+                "D#5":"Ds5.mp3",
+                "F#5":"Fs5.mp3",
 
-C2:"C2.mp3",
-"D#2":"Ds2.mp3",
-"F#2":"Fs2.mp3",
+                A5:"A5.mp3",
 
-A2:"A2.mp3",
+                C6:"C6.mp3"
 
-C3:"C3.mp3",
-"D#3":"Ds3.mp3",
-"F#3":"Fs3.mp3",
+            },
 
-A3:"A3.mp3",
+            baseUrl:
+            "https://tonejs.github.io/audio/salamander/",
 
-C4:"C4.mp3",
-"D#4":"Ds4.mp3",
-"F#4":"Fs4.mp3",
+            release:1.4
 
-A4:"A4.mp3",
-
-C5:"C5.mp3",
-"D#5":"Ds5.mp3",
-"F#5":"Fs5.mp3",
-
-A5:"A5.mp3",
-
-C6:"C6.mp3"
-
-},
-
-baseUrl:
-"https://tonejs.github.io/audio/salamander/",
-
-release:1.4
-
-})
-.toDestination();
+        })
+        .toDestination();
 
 
-await Tone.loaded();
+    await Tone.loaded();
 
+    pianoLoading = false;
 
-pianoLoading =
-false;
+    status.textContent =
+        "Fortepian gotowy ✓";
 
-
-status.textContent =
-"Fortepian gotowy ✓";
-
-
-return piano;
+    return piano;
 
 }
 
 catch(error) {
 
-pianoLoading =
-false;
+    pianoLoading = false;
+    piano = null;
 
-piano =
-null;
+    status.textContent =
+        "Nie udało się załadować fortepianu.";
 
+    console.error(error);
 
-status.textContent =
-"Nie udało się załadować fortepianu.";
-
-
-console.error(
-error
-);
-
-
-return null;
+    return null;
 
 }
 
@@ -2855,121 +2039,151 @@ return null;
 const ROOT_MIDI = {
 
 a:69,
-
 e:64,
-
 h:71,
-
 fis:66,
-
 cis:61,
-
 gis:68,
 
 d:62,
-
 g:67,
-
 c:60,
-
 f:65,
-
 b:70,
-
 es:63
 
 };
 
 
 const PITCHES = [
-
-"C",
-"C#",
-"D",
-"D#",
-"E",
-"F",
-"F#",
-"G",
-"G#",
-"A",
-"A#",
-"B"
-
+    "C",
+    "C#",
+    "D",
+    "D#",
+    "E",
+    "F",
+    "F#",
+    "G",
+    "G#",
+    "A",
+    "A#",
+    "B"
 ];
 
 
-function midiName(
-midi
-) {
+function midiName(midi) {
 
 return (
-PITCHES[
-midi % 12
-]
-+
-(
-Math.floor(
-midi/12
-)-1
-)
+    PITCHES[midi % 12] +
+    (
+        Math.floor(midi/12)-1
+    )
 );
 
 }
 
 
 function midiScale(
-type=currentType
+    type=currentType
 ) {
 
 const root =
-document.getElementById(
-"root"
-).value;
-
+    document.getElementById(
+        "root"
+    ).value;
 
 const base =
-ROOT_MIDI[root];
-
+    ROOT_MIDI[root];
 
 return TYPES[type]
-.offsets
-.map(
-offset =>
-base+offset
+    .offsets
+    .map(
+        offset =>
+            base + offset
+    );
+
+}
+
+
+/* =========================================================
+   POJEDYNCZA NUTA
+========================================================= */
+
+async function playSingleNote(index) {
+
+const instrument =
+    await getPiano();
+
+if(!instrument)
+    return;
+
+const notes =
+    midiScale();
+
+instrument.triggerAttackRelease(
+    midiName(
+        notes[index]
+    ),
+    .9
 );
 
 }
 
 
 /* =========================================================
-   ODSŁUCH POJEDYNCZEJ NUTY
+   NUTA MELODYCZNEJ
 ========================================================= */
 
-async function playSingleNote(
-index
+async function playMelodicVisualNote(
+    index,
+    goingUp
 ) {
 
 const instrument =
-await getPiano();
-
+    await getPiano();
 
 if(!instrument)
-return;
+    return;
+
+const root =
+    document.getElementById(
+        "root"
+    ).value;
+
+const base =
+    ROOT_MIDI[root];
 
 
-const notes =
-midiScale();
+let notes;
 
+if(goingUp) {
+
+    notes =
+        TYPES.melodic
+        .offsets
+        .map(
+            offset =>
+                base+offset
+        );
+
+} else {
+
+    notes =
+        TYPES.natural
+        .offsets
+        .map(
+            offset =>
+                base+offset
+        )
+        .reverse();
+
+}
 
 instrument.triggerAttackRelease(
-
-midiName(
-notes[index]
-),
-
-.9
-
+    midiName(
+        notes[index]
+    ),
+    .9
 );
 
 }
@@ -2979,153 +2193,129 @@ notes[index]
    ODSŁUCH GAMY
 ========================================================= */
 
-async function playScale(
-direction
-) {
+async function playScale(direction) {
 
 const instrument =
-await getPiano();
-
+    await getPiano();
 
 if(!instrument)
-return;
+    return;
 
 
 const root =
-document.getElementById(
-"root"
-).value;
-
+    document.getElementById(
+        "root"
+    ).value;
 
 const base =
-ROOT_MIDI[root];
-
-
-let up =
-TYPES[currentType]
-.offsets
-.map(
-offset =>
-base+offset
-);
+    ROOT_MIDI[root];
 
 
 let notes;
 
 
-/*
-MELODYCZNA:
-w górę melodyczna,
-w dół naturalna.
-*/
+/* MELODYCZNA */
 
-if(
-currentType ===
-"melodic"
-) {
+if(currentType === "melodic") {
 
-const naturalDown =
-TYPES.natural
-.offsets
-.map(
-offset =>
-base+offset
-)
-.reverse();
+    const up =
+        TYPES.melodic
+        .offsets
+        .map(
+            offset =>
+                base+offset
+        );
+
+    const down =
+        TYPES.natural
+        .offsets
+        .map(
+            offset =>
+                base+offset
+        )
+        .reverse();
 
 
-if(direction === "up") {
+    if(direction === "up") {
 
-notes =
-up;
+        notes = up;
+
+    }
+
+    else if(direction === "down") {
+
+        notes = down;
+
+    }
+
+    else {
+
+        notes = [
+            ...up,
+            ...down.slice(1)
+        ];
+
+    }
 
 }
 
 
-else if(
-direction === "down"
-) {
-
-notes =
-naturalDown;
-
-}
-
+/* POZOSTAŁE */
 
 else {
 
-notes = [
+    const up =
+        TYPES[currentType]
+        .offsets
+        .map(
+            offset =>
+                base+offset
+        );
 
-...up,
+    if(direction === "up") {
 
-...naturalDown.slice(1)
+        notes = up;
 
-];
+    }
 
-}
+    else if(direction === "down") {
 
-}
+        notes =
+            [...up]
+            .reverse();
 
+    }
 
-else {
+    else {
 
-if(direction === "up") {
+        notes = [
+            ...up,
+            ...up
+            .slice(0,-1)
+            .reverse()
+        ];
 
-notes =
-up;
-
-}
-
-
-else if(
-direction === "down"
-) {
-
-notes =
-[...up]
-.reverse();
-
-}
-
-
-else {
-
-notes = [
-
-...up,
-
-...up
-.slice(0,-1)
-.reverse()
-
-];
-
-}
+    }
 
 }
 
 
 const start =
-Tone.now()+.1;
+    Tone.now()+.1;
 
 
 notes.forEach(
-(midi,index) => {
+    (midi,index) => {
 
-instrument.triggerAttackRelease(
+        instrument.triggerAttackRelease(
+            midiName(midi),
+            .85,
+            start + index*.43,
+            .75
+        );
 
-midiName(midi),
-
-.85,
-
-start +
-index*.43,
-
-.75
-
+    }
 );
-
-});
 
 }
 
@@ -3134,31 +2324,22 @@ index*.43,
    BUDOWANIE
 ========================================================= */
 
-let builderType =
-"harmonic";
-
-
-let builderRoot =
-"a";
-
+let builderType = "harmonic";
+let builderRoot = "a";
 
 let builderChanges = {
-
-6:false,
-7:false
-
+    6:false,
+    7:false
 };
 
 
-function random(
-array
-) {
+function random(array) {
 
 return array[
-Math.floor(
-Math.random() *
-array.length
-)
+    Math.floor(
+        Math.random() *
+        array.length
+    )
 ];
 
 }
@@ -3167,46 +2348,34 @@ array.length
 function newBuilder() {
 
 builderType =
-random([
-"natural",
-"harmonic",
-"dorian",
-"melodic"
-]);
-
+    random([
+        "natural",
+        "harmonic",
+        "dorian",
+        "melodic"
+    ]);
 
 builderRoot =
-random(
-Object.keys(
-SCALES
-)
-);
-
+    random(
+        Object.keys(SCALES)
+    );
 
 builderChanges = {
-
-6:false,
-7:false
-
+    6:false,
+    7:false
 };
 
+document.getElementById(
+    "builderQuestion"
+).textContent =
+    "Zbuduj: " +
+    builderRoot +
+    "-moll " +
+    TYPES[builderType].name;
 
 document.getElementById(
-"builderQuestion"
-).textContent =
-"Zbuduj: " +
-builderRoot +
-"-moll " +
-TYPES[
-builderType
-].name;
-
-
-document.getElementById(
-"builderFeedback"
-).textContent =
-"";
-
+    "builderFeedback"
+).textContent = "";
 
 renderBuilder();
 
@@ -3214,247 +2383,195 @@ renderBuilder();
 
 
 /* =========================================================
-   PIĘCIOLINIA BUDOWANIA
+   RENDER BUDOWANIA
 ========================================================= */
 
 function renderBuilder() {
 
 const scale =
-[
-...SCALES[
-builderRoot
-]
-];
+    [...SCALES[builderRoot]];
 
+if(builderChanges[6]) {
 
-if(
-builderChanges[6]
-) {
+    scale[5] =
+        raiseNote(
+            scale[5]
+        );
 
-scale[5] =
-raiseNote(
-scale[5]
-);
+}
+
+if(builderChanges[7]) {
+
+    scale[6] =
+        raiseNote(
+            scale[6]
+        );
 
 }
 
 
-if(
-builderChanges[7]
-) {
-
-scale[6] =
-raiseNote(
-scale[6]
-);
-
-}
-
-
-const tempChanged =
-[];
-
+const tempChanged = [];
 
 if(builderChanges[6])
-tempChanged.push(6);
-
+    tempChanged.push(6);
 
 if(builderChanges[7])
-tempChanged.push(7);
+    tempChanged.push(7);
 
 
 TYPES.builderTemp = {
-
-changed:
-tempChanged
-
+    changed:tempChanged
 };
 
 
-drawScaleStaff(
-
-"builderStaff",
-
-builderRoot,
-
-scale,
-
-"builderTemp",
-
-false
-
+drawNormalScaleStaff(
+    "builderStaff",
+    builderRoot,
+    scale,
+    "builderTemp",
+    false
 );
 
 
 delete TYPES.builderTemp;
 
 
-/*
-PRZYCISKI
-*/
-
 const box =
-document.getElementById(
-"builderButtons"
-);
+    document.getElementById(
+        "builderButtons"
+    );
 
-
-box.innerHTML =
-"";
+box.innerHTML = "";
 
 
 [
-{
-degree:6,
-label:"↑ VI"
-},
-
-{
-degree:7,
-label:"↑ VII"
-}
-
+    {
+        degree:6,
+        label:"↑ VI"
+    },
+    {
+        degree:7,
+        label:"↑ VII"
+    }
 ]
 .forEach(
-item => {
+    item => {
 
-const button =
-document.createElement(
-"button"
+        const button =
+            document.createElement(
+                "button"
+            );
+
+        button.textContent =
+            item.label;
+
+        if(
+            builderChanges[
+                item.degree
+            ]
+        ) {
+
+            button.classList.add(
+                "active"
+            );
+
+        }
+
+        button.onclick =
+            () => {
+
+                builderChanges[
+                    item.degree
+                ] =
+                !builderChanges[
+                    item.degree
+                ];
+
+                renderBuilder();
+
+            };
+
+        box.appendChild(button);
+
+    }
 );
-
-
-button.textContent =
-item.label;
-
-
-if(
-builderChanges[
-item.degree
-]
-) {
-
-button.classList.add(
-"active"
-);
-
-}
-
-
-button.onclick =
-() => {
-
-builderChanges[
-item.degree
-] =
-!builderChanges[
-item.degree
-];
-
-
-renderBuilder();
-
-};
-
-
-box.appendChild(
-button
-);
-
-});
 
 }
 
 
 /* =========================================================
-   SPRAWDZANIE BUDOWANIA
+   SPRAWDZENIE BUDOWANIA
 ========================================================= */
 
 function checkBuilder() {
 
 const expected =
-TYPES[
-builderType
-].changed;
-
+    TYPES[builderType]
+    .changed;
 
 const selected =
-Object.keys(
-builderChanges
-)
-.filter(
-key =>
-builderChanges[key]
-)
-.map(Number);
+    Object.keys(
+        builderChanges
+    )
+    .filter(
+        key =>
+            builderChanges[key]
+    )
+    .map(Number);
 
 
 const correct =
-
-expected.length ===
-selected.length
-
-&&
-
-expected.every(
-degree =>
-selected.includes(
-degree
-)
-);
+    expected.length ===
+    selected.length
+    &&
+    expected.every(
+        degree =>
+            selected.includes(
+                degree
+            )
+    );
 
 
 const feedback =
-document.getElementById(
-"builderFeedback"
-);
+    document.getElementById(
+        "builderFeedback"
+    );
 
 
 if(correct) {
 
-feedback.textContent =
-"✓ Dobrze!";
+    feedback.textContent =
+        "✓ Dobrze!";
 
+    setTimeout(
+        newBuilder,
+        900
+    );
 
-setTimeout(
-newBuilder,
-900
-);
+} else {
 
-}
+    let answer =
+        "bez zmian";
 
-else {
+    if(expected.length) {
 
-let answer =
-"bez zmian";
+        answer =
+            expected
+            .map(
+                degree =>
+                    "↑ " +
+                    [
+                        "I","II","III","IV",
+                        "V","VI","VII","VIII"
+                    ][degree-1]
+            )
+            .join(", ");
 
+    }
 
-if(expected.length) {
-
-answer =
-expected
-.map(
-degree =>
-"↑ " +
-[
-"I",
-"II",
-"III",
-"IV",
-"V",
-"VI",
-"VII",
-"VIII"
-][degree-1]
-)
-.join(", ");
-
-}
-
-
-feedback.textContent =
-"Jeszcze nie — poprawnie: " +
-answer;
+    feedback.textContent =
+        "Jeszcze nie — poprawnie: " +
+        answer;
 
 }
 
@@ -3468,107 +2585,104 @@ answer;
 const QUESTIONS = [
 
 {
+    q:
+    "Jak inaczej nazywamy naturalną gamę molową?",
 
-q:
-"Jak inaczej nazywamy naturalną gamę molową?",
+    correct:
+    "eolską",
 
-correct:
-"eolską",
-
-answers:[
-"eolską",
-"dorycką",
-"frygijską",
-"lidyjską"
-]
-
+    answers:[
+        "eolską",
+        "dorycką",
+        "frygijską",
+        "lidyjską"
+    ]
 },
 
-
 {
+    q:
+    "W gamie molowej harmonicznej podwyższamy:",
 
-q:
-"W gamie molowej harmonicznej podwyższamy:",
+    correct:
+    "VII stopień",
 
-correct:
-"VII stopień",
-
-answers:[
-"VII stopień",
-"VI stopień",
-"VI i VII stopień",
-"III stopień"
-]
-
+    answers:[
+        "VII stopień",
+        "VI stopień",
+        "VI i VII stopień",
+        "III stopień"
+    ]
 },
 
-
 {
+    q:
+    "W gamie molowej doryckiej podwyższamy:",
 
-q:
-"W gamie molowej doryckiej podwyższamy:",
+    correct:
+    "VI i VII stopień",
 
-correct:
-"VI stopień",
-
-answers:[
-"VI stopień",
-"VII stopień",
-"VI i VII stopień",
-"II stopień"
-]
-
+    answers:[
+        "VI i VII stopień",
+        "tylko VI stopień",
+        "tylko VII stopień",
+        "III i VI stopień"
+    ]
 },
 
-
 {
+    q:
+    "W gamie molowej melodycznej w górę podwyższamy:",
 
-q:
-"W gamie molowej melodycznej w górę podwyższamy:",
+    correct:
+    "VI i VII stopień",
 
-correct:
-"VI i VII stopień",
-
-answers:[
-"VI i VII stopień",
-"tylko VII stopień",
-"tylko VI stopień",
-"III i VII stopień"
-]
-
+    answers:[
+        "VI i VII stopień",
+        "tylko VII stopień",
+        "tylko VI stopień",
+        "III i VII stopień"
+    ]
 },
 
+{
+    q:
+    "W gamie molowej melodycznej w dół gramy:",
+
+    correct:
+    "postać naturalną",
+
+    answers:[
+        "postać naturalną",
+        "postać harmoniczną",
+        "podwyższony VII stopień",
+        "podwyższony VI stopień"
+    ]
+},
 
 {
+    q:
+    "Półtony w naturalnej gamie molowej występują między:",
 
-q:
-"Półtony w naturalnej gamie molowej występują między:",
+    correct:
+    "II–III i V–VI",
 
-correct:
-"II–III i V–VI",
-
-answers:[
-"II–III i V–VI",
-"III–IV i VII–VIII",
-"II–III i VI–VII",
-"I–II i V–VI"
-]
-
+    answers:[
+        "II–III i V–VI",
+        "III–IV i VII–VIII",
+        "II–III i VI–VII",
+        "I–II i V–VI"
+    ]
 }
 
 ];
 
 
-function shuffle(
-array
-) {
+function shuffle(array) {
 
-return [
-...array
-]
+return [...array]
 .sort(
-() =>
-Math.random()-.5
+    () =>
+        Math.random()-.5
 );
 
 }
@@ -3579,78 +2693,66 @@ Math.random()-.5
 ========================================================= */
 
 let practiceMode =
-"builder";
+    "builder";
 
 
 function setPractice(
-mode,
-button
+    mode,
+    button
 ) {
 
-practiceMode =
-mode;
-
+practiceMode = mode;
 
 document.querySelectorAll(
-".practice-menu button"
+    ".practice-menu button"
 )
 .forEach(
-item =>
-item.classList.remove(
-"active"
-)
+    item =>
+        item.classList.remove(
+            "active"
+        )
 );
-
 
 button.classList.add(
-"active"
+    "active"
 );
 
 
-if(
-mode ===
-"builder"
-) {
+if(mode === "builder") {
 
-document.getElementById(
-"builderExercise"
-)
-.classList.remove(
-"hidden"
-);
+    document.getElementById(
+        "builderExercise"
+    )
+    .classList.remove(
+        "hidden"
+    );
 
+    document.getElementById(
+        "questionExercise"
+    )
+    .classList.add(
+        "hidden"
+    );
 
-document.getElementById(
-"questionExercise"
-)
-.classList.add(
-"hidden"
-);
+    newBuilder();
 
+} else {
 
-newBuilder();
+    document.getElementById(
+        "builderExercise"
+    )
+    .classList.add(
+        "hidden"
+    );
 
-}
+    document.getElementById(
+        "questionExercise"
+    )
+    .classList.remove(
+        "hidden"
+    );
 
-else {
-
-document.getElementById(
-"builderExercise"
-)
-.classList.add(
-"hidden"
-);
-
-
-document.getElementById(
-"questionExercise"
-)
-.classList.remove(
-"hidden"
-);
-
-
-newQuestion();
+    newQuestion();
 
 }
 
@@ -3664,202 +2766,175 @@ newQuestion();
 async function newQuestion() {
 
 document.getElementById(
-"feedback"
-).textContent =
-"";
+    "feedback"
+).textContent = "";
 
 
 let mode =
-practiceMode;
+    practiceMode;
 
 
-if(
-mode ===
-"mix"
-) {
+if(mode === "mix") {
 
-mode =
-random([
-"theory",
-"ear"
-]);
+    mode =
+        random([
+            "theory",
+            "ear"
+        ]);
 
 }
 
 
-if(
-mode ===
-"ear"
-) {
+if(mode === "ear") {
 
-await earQuestion();
+    await earQuestion();
 
-return;
+    return;
 
 }
 
 
 const item =
-random(
-QUESTIONS
-);
+    random(QUESTIONS);
 
 
 showQuestion(
-
-item.q,
-
-item.correct,
-
-item.answers
-
+    item.q,
+    item.correct,
+    item.answers
 );
 
 }
 
 
 /* =========================================================
-   PYTANIE
+   WYŚWIETLENIE PYTANIA
 ========================================================= */
 
 function showQuestion(
-question,
-correct,
-options
+    question,
+    correct,
+    options
 ) {
 
 document.getElementById(
-"question"
+    "question"
 ).textContent =
-question;
+    question;
 
 
 const answers =
-document.getElementById(
-"answers"
-);
+    document.getElementById(
+        "answers"
+    );
+
+answers.innerHTML = "";
 
 
-answers.innerHTML =
-"";
-
-
-shuffle(
-options
-)
+shuffle(options)
 .forEach(
-option => {
+    option => {
 
-const button =
-document.createElement(
-"button"
+        const button =
+            document.createElement(
+                "button"
+            );
+
+        button.className =
+            "answer";
+
+        button.textContent =
+            option;
+
+        button.onclick =
+            () =>
+                checkAnswer(
+                    button,
+                    option,
+                    correct
+                );
+
+        answers.appendChild(
+            button
+        );
+
+    }
 );
-
-
-button.className =
-"answer";
-
-
-button.textContent =
-option;
-
-
-button.onclick =
-() =>
-checkAnswer(
-button,
-option,
-correct
-);
-
-
-answers.appendChild(
-button
-);
-
-});
 
 }
 
 
 /* =========================================================
-   ODPOWIEDŹ
+   SPRAWDZENIE ODPOWIEDZI
 ========================================================= */
 
 function checkAnswer(
-button,
-answer,
-correct
+    button,
+    answer,
+    correct
 ) {
 
 const buttons =
-document.querySelectorAll(
-"#answers .answer"
-);
+    document.querySelectorAll(
+        "#answers .answer"
+    );
 
 
 buttons.forEach(
-item => {
+    item => {
 
-if(
-item.textContent !==
-"▶ Posłuchaj ponownie"
-) {
+        if(
+            item.textContent !==
+            "▶ Posłuchaj ponownie"
+        ) {
 
-item.disabled =
-true;
+            item.disabled = true;
 
-}
+        }
 
-});
-
-
-if(
-answer ===
-correct
-) {
-
-button.classList.add(
-"correct"
+    }
 );
 
 
-document.getElementById(
-"feedback"
-).textContent =
-"✓ Dobrze!";
+if(answer === correct) {
 
-}
+    button.classList.add(
+        "correct"
+    );
 
-else {
+    document.getElementById(
+        "feedback"
+    ).textContent =
+        "✓ Dobrze!";
 
-button.classList.add(
-"wrong"
-);
+} else {
 
+    button.classList.add(
+        "wrong"
+    );
 
-buttons.forEach(
-item => {
+    buttons.forEach(
+        item => {
 
-if(
-item.textContent ===
-correct
-) {
+            if(
+                item.textContent ===
+                correct
+            ) {
 
-item.classList.add(
-"correct"
-);
+                item.classList.add(
+                    "correct"
+                );
 
-}
+            }
 
-});
+        }
+    );
 
-
-document.getElementById(
-"feedback"
-).textContent =
-"Poprawna odpowiedź: " +
-correct;
+    document.getElementById(
+        "feedback"
+    ).textContent =
+        "Poprawna odpowiedź: " +
+        correct;
 
 }
 
@@ -3870,103 +2945,83 @@ correct;
    SŁUCH
 ========================================================= */
 
-let earType =
-null;
+let earType = null;
 
 
 async function earQuestion() {
 
 earType =
-random([
-"natural",
-"harmonic",
-"dorian",
-"melodic"
-]);
+    random([
+        "natural",
+        "harmonic",
+        "dorian",
+        "melodic"
+    ]);
 
 
 document.getElementById(
-"question"
+    "question"
 ).textContent =
-"Posłuchaj gamy. Która to odmiana?";
+    "Posłuchaj gamy. Która to odmiana?";
 
 
 const box =
-document.getElementById(
-"answers"
-);
+    document.getElementById(
+        "answers"
+    );
 
-
-box.innerHTML =
-"";
+box.innerHTML = "";
 
 
 const replay =
-document.createElement(
-"button"
-);
-
+    document.createElement(
+        "button"
+    );
 
 replay.className =
-"answer";
-
+    "answer";
 
 replay.textContent =
-"▶ Posłuchaj ponownie";
-
+    "▶ Posłuchaj ponownie";
 
 replay.onclick =
-playEar;
+    playEar;
 
-
-box.appendChild(
-replay
-);
+box.appendChild(replay);
 
 
 [
-"naturalna (eolska)",
-"harmoniczna",
-"dorycka",
-"melodyczna"
+    "naturalna (eolska)",
+    "harmoniczna",
+    "dorycka",
+    "melodyczna"
 ]
 .forEach(
-label => {
+    label => {
 
-const button =
-document.createElement(
-"button"
+        const button =
+            document.createElement(
+                "button"
+            );
+
+        button.className =
+            "answer";
+
+        button.textContent =
+            label;
+
+        button.onclick =
+            () =>
+                checkAnswer(
+                    button,
+                    label,
+                    TYPES[earType].name
+                );
+
+        box.appendChild(button);
+
+    }
 );
-
-
-button.className =
-"answer";
-
-
-button.textContent =
-label;
-
-
-button.onclick =
-() =>
-checkAnswer(
-
-button,
-
-label,
-
-TYPES[
-earType
-].name
-
-);
-
-
-box.appendChild(
-button
-);
-
-});
 
 
 await playEar();
@@ -3981,63 +3036,86 @@ await playEar();
 async function playEar() {
 
 const instrument =
-await getPiano();
-
+    await getPiano();
 
 if(!instrument)
-return;
+    return;
 
 
 const root =
-document.getElementById(
-"root"
-).value;
-
+    document.getElementById(
+        "root"
+    ).value;
 
 const base =
-ROOT_MIDI[
-root
-];
+    ROOT_MIDI[root];
 
 
-let notes =
-TYPES[
-earType
-]
-.offsets
-.map(
-offset =>
-base+offset
-);
+let notes;
 
 
-/*
-W pytaniu melodyczną gramy w górę,
-żeby można było rozpoznać
-podwyższone VI i VII.
-*/
+/* MELODYCZNA — GÓRA + DÓŁ */
+
+if(earType === "melodic") {
+
+    const up =
+        TYPES.melodic
+        .offsets
+        .map(
+            offset =>
+                base+offset
+        );
+
+    const down =
+        TYPES.natural
+        .offsets
+        .map(
+            offset =>
+                base+offset
+        )
+        .reverse();
+
+    notes = [
+        ...up,
+        ...down.slice(1)
+    ];
+
+} else {
+
+    const up =
+        TYPES[earType]
+        .offsets
+        .map(
+            offset =>
+                base+offset
+        );
+
+    notes = [
+        ...up,
+        ...up
+        .slice(0,-1)
+        .reverse()
+    ];
+
+}
+
 
 const start =
-Tone.now()+.1;
+    Tone.now()+.1;
 
 
 notes.forEach(
-(midi,index) => {
+    (midi,index) => {
 
-instrument.triggerAttackRelease(
+        instrument.triggerAttackRelease(
+            midiName(midi),
+            .85,
+            start + index*.43,
+            .75
+        );
 
-midiName(midi),
-
-.85,
-
-start +
-index*.43,
-
-.75
-
+    }
 );
-
-});
 
 }
 
@@ -4047,11 +3125,6 @@ index*.43,
 ========================================================= */
 
 renderAll();
-
 newBuilder();
 
 </script>
-
-</body>
-
-</html>
