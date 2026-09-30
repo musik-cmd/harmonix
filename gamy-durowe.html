@@ -13,27 +13,38 @@
 
 <style>
 
+/* =========================================================
+   HARMONIX — GAMY DUROWE
+========================================================= */
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    margin: 0;
+    margin: 0 !important;
+    background: #f7f5ff !important;
+    color: #252238 !important;
+    font-family: Arial, sans-serif !important;
 }
 
-.major-page {
+.scale-page {
     min-height: 100vh;
-    padding: 38px 20px 80px;
+    padding: 40px 20px 80px;
 }
 
-.major-container {
-    max-width: 1050px;
+.scale-container {
+    width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-/* POWRÓT */
 
-.back {
+/* =========================================================
+   POWRÓT
+========================================================= */
+
+.back-button {
     display: inline-block;
     margin-bottom: 30px;
 
@@ -41,62 +52,68 @@ body {
     text-decoration: none;
 
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
 
     transition: .2s;
 }
 
-.back:hover {
+.back-button:hover {
     color: #252238;
     transform: translateX(-3px);
 }
 
-/* HEADER */
 
-.major-header {
+/* =========================================================
+   HEADER
+========================================================= */
+
+.page-header {
     text-align: center;
-    margin-bottom: 36px;
+    margin-bottom: 35px;
 }
 
-.major-title {
-    font-size: clamp(40px,6vw,60px);
-    font-weight: 800;
+.page-title {
+    margin: 0;
 
+    font-size: 52px;
+    font-weight: 800;
     letter-spacing: -2px;
 
     color: #252238;
 }
 
-.major-subtitle {
-    max-width: 620px;
+.page-subtitle {
     margin: 12px auto 0;
+    max-width: 650px;
 
-    color: #777187;
+    color: #6b6680;
 
-    font-size: 15px;
-    line-height: 1.55;
+    font-size: 18px;
+    line-height: 1.5;
 }
 
-/* WYBÓR ODMIANY */
+
+/* =========================================================
+   WYBÓR ODMIANY
+========================================================= */
 
 .scale-tabs {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
 
-    gap: 10px;
+    gap: 12px;
 
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 .scale-tab {
     padding: 17px;
 
-    background: white;
+    background: #ffffff !important;
+    color: #777187 !important;
 
-    border: 1px solid rgba(70,60,100,.10);
+    border: 1px solid #e3e0eb !important;
     border-radius: 15px;
-
-    color: #777187;
 
     font-size: 13px;
     font-weight: 800;
@@ -108,122 +125,131 @@ body {
 
 .scale-tab:hover {
     transform: translateY(-2px);
+    background: #faf9ff !important;
 }
 
 .scale-tab.active {
-    background: #f1eff8;
+    background: #ece9f5 !important;
+    color: #252238 !important;
 
-    border-color: #d9d4e8;
-
-    color: #252238;
+    border-color: #d4cfe2 !important;
 }
 
-/* KARTY */
 
-.panel {
-    margin-bottom: 17px;
-    padding: 27px;
+/* =========================================================
+   KARTY
+========================================================= */
 
-    background: white;
+.section-card {
+    margin-bottom: 18px;
+    padding: 28px;
 
-    border: 1px solid rgba(70,60,100,.08);
-    border-radius: 23px;
+    background: #ffffff !important;
+
+    border: 1px solid rgba(70, 60, 100, .08) !important;
+    border-radius: 22px;
 
     box-shadow:
-        0 8px 30px rgba(40,30,80,.065);
+        0 8px 30px rgba(40, 30, 80, .08) !important;
+
+    color: #252238 !important;
 }
 
-.panel-title {
+.section-card h2 {
     margin: 0 0 8px;
 
-    color: #252238;
+    color: #252238 !important;
 
-    font-size: 23px;
+    font-size: 22px;
     font-weight: 800;
 }
 
-.panel-text {
+.section-description {
     margin: 0;
 
-    color: #777187;
+    color: #777187 !important;
 
     font-size: 13px;
     line-height: 1.6;
 }
 
-/* CO SIĘ ZMIENIA */
 
-.change-box {
+/* =========================================================
+   ZMIANA W GAMIE
+========================================================= */
+
+.change-row {
     display: flex;
     align-items: center;
 
-    gap: 14px;
+    gap: 15px;
 
     margin-top: 20px;
-    padding: 17px;
+    padding: 16px;
 
-    background: #f7f6fb;
+    background: #f7f5ff !important;
 
-    border-radius: 15px;
+    border-radius: 14px;
 }
 
-.change-symbol {
-    min-width: 65px;
+.change-badge {
+    min-width: 85px;
 
-    padding: 12px 9px;
+    padding: 12px;
 
-    background: #ece9f5;
-
-    border-radius: 11px;
-
-    text-align: center;
-
-    color: #252238;
-
-    font-size: 18px;
-    font-weight: 800;
-}
-
-.change-text {
-    color: #666173;
-
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-.change-text strong {
-    color: #252238;
-}
-
-/* STOPNIE */
-
-.degrees {
-    display: grid;
-    grid-template-columns: repeat(8,1fr);
-
-    gap: 6px;
-
-    margin-top: 20px;
-}
-
-.degree {
-    padding: 11px 5px;
-
-    background: #f7f6fb;
+    background: #ece9f5 !important;
+    color: #252238 !important;
 
     border-radius: 10px;
 
     text-align: center;
 
-    color: #777187;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.change-description {
+    color: #777187 !important;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.change-description strong {
+    color: #252238 !important;
+}
+
+
+/* =========================================================
+   STOPNIE
+========================================================= */
+
+.degree-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+
+    gap: 7px;
+
+    margin-top: 20px;
+}
+
+.degree {
+    padding: 12px 5px;
+
+    background: #f7f5ff !important;
+    color: #777187 !important;
+
+    border-radius: 10px;
+
+    text-align: center;
 
     font-size: 11px;
     font-weight: 800;
 }
 
 .degree.changed {
-    background: #e4e0f0;
-    color: #252238;
+    background: #e5e0f1 !important;
+    color: #252238 !important;
 }
 
 .degree small {
@@ -233,13 +259,14 @@ body {
 
     font-size: 8px;
     font-weight: 500;
-
-    opacity: .7;
 }
 
-/* GENERATOR */
 
-.controls {
+/* =========================================================
+   WYBÓR TONACJI
+========================================================= */
+
+.scale-controls {
     display: flex;
     flex-wrap: wrap;
 
@@ -248,44 +275,39 @@ body {
     margin-top: 18px;
 }
 
-select,
-.action {
+.scale-controls select,
+.scale-controls button {
     padding: 11px 14px;
 
-    border: 1px solid #dedbea;
+    background: #faf9ff !important;
+    color: #252238 !important;
+
+    border: 1px solid #dedbea !important;
     border-radius: 11px;
-
-    background: #faf9ff;
-
-    color: #252238;
 
     font-family: inherit;
     font-size: 12px;
     font-weight: 700;
 }
 
-.action {
+.scale-controls button {
     cursor: pointer;
 }
 
-.action:hover {
-    background: #f1eff8;
+.scale-controls button:hover {
+    background: #f1eff8 !important;
 }
 
-.action.main {
-    background: #252238;
-    border-color: #252238;
 
-    color: white;
-}
+/* =========================================================
+   GAMA
+========================================================= */
 
-/* WYNIK */
-
-.scale-result {
+.scale-display {
     margin-top: 22px;
     padding: 22px;
 
-    background: #faf9ff;
+    background: #faf9ff !important;
 
     border-radius: 17px;
 
@@ -293,41 +315,41 @@ select,
 }
 
 .scale-name {
-    color: #252238;
+    color: #252238 !important;
 
     font-size: 24px;
     font-weight: 800;
 }
 
-.scale-rule {
+.scale-hint {
     margin-top: 6px;
 
-    color: #9993a6;
+    color: #9993a6 !important;
 
     font-size: 10px;
+    font-weight: 700;
 }
 
-.notes {
+.notes-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 
     gap: 7px;
 
-    margin-top: 19px;
+    margin-top: 20px;
 }
 
-.note {
-    min-width: 54px;
+.note-button {
+    min-width: 55px;
 
-    padding: 10px 8px;
+    padding: 11px 8px;
 
-    background: white;
+    background: #ffffff !important;
+    color: #252238 !important;
 
-    border: 1px solid #e5e2ec;
+    border: 1px solid #e5e2ec !important;
     border-radius: 10px;
-
-    color: #252238;
 
     font-size: 14px;
     font-weight: 800;
@@ -337,124 +359,155 @@ select,
     transition: .15s;
 }
 
-.note:hover {
+.note-button:hover {
     transform: translateY(-2px);
-
-    background: #f4f2fa;
+    background: #f3f1f9 !important;
 }
 
-.note.changed {
-    background: #ece9f5;
-    border-color: #d8d3e5;
+.note-button.changed {
+    background: #e8e4f2 !important;
+    border-color: #d6d0e4 !important;
 }
 
-.note small {
+.note-button small {
     display: block;
 
-    margin-top: 3px;
+    margin-top: 4px;
 
-    color: #aaa5b5;
+    color: #aaa5b5 !important;
 
     font-size: 8px;
 }
 
-/* ODLEGŁOŚCI */
 
-.intervals {
+/* =========================================================
+   TONY / PÓŁTONY
+========================================================= */
+
+.steps-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 
     gap: 5px;
 
-    margin-top: 13px;
+    margin-top: 14px;
 }
 
-.interval {
+.step {
     padding: 5px 8px;
 
-    background: #efedf5;
+    background: #efedf5 !important;
+    color: #777187 !important;
 
     border-radius: 7px;
-
-    color: #777187;
 
     font-size: 9px;
     font-weight: 800;
 }
 
-/* AUDIO */
 
-.listen {
+/* =========================================================
+   ODSŁUCH
+========================================================= */
+
+.listen-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 
     gap: 8px;
 
-    margin-top: 18px;
+    margin-top: 20px;
 }
 
-.listen button {
+.listen-button {
     padding: 10px 14px;
 
-    background: white;
+    background: #ffffff !important;
+    color: #514b68 !important;
 
-    border: 1px solid #dedbea;
+    border: 1px solid #dedbea !important;
     border-radius: 10px;
-
-    color: #514b68;
-
-    cursor: pointer;
 
     font-size: 11px;
     font-weight: 800;
+
+    cursor: pointer;
 }
 
-.listen button:hover {
-    background: #f1eff8;
+.listen-button:hover {
+    background: #f1eff8 !important;
 }
 
-/* PORÓWNANIE */
+.audio-status {
+    min-height: 18px;
+
+    margin-top: 12px;
+
+    color: #9993a6 !important;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   PORÓWNANIE
+========================================================= */
 
 .compare-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
 
-    gap: 9px;
+    gap: 10px;
 
     margin-top: 18px;
 }
 
-.compare-card {
-    padding: 17px;
+.compare-box {
+    padding: 18px;
 
-    background: #faf9ff;
+    background: #faf9ff !important;
 
-    border: 1px solid #ece9f2;
+    border: 1px solid #ece9f2 !important;
     border-radius: 14px;
 }
 
-.compare-card strong {
+.compare-box strong {
     display: block;
 
     margin-bottom: 7px;
 
-    color: #252238;
+    color: #252238 !important;
 
     font-size: 13px;
 }
 
-.compare-card span {
-    color: #777187;
+.compare-box span {
+    color: #777187 !important;
 
     font-size: 11px;
     line-height: 1.5;
 }
 
-/* ĆWICZENIA — JASNE JAK RESZTA */
 
-.practice-types {
+/* =========================================================
+   ĆWICZENIA — WYMUSZONE JASNE
+========================================================= */
+
+.practice-section,
+.practice-section *,
+.exercise-box,
+.exercise-box * {
+    color: #252238;
+}
+
+.practice-section {
+    background: #ffffff !important;
+    color: #252238 !important;
+}
+
+.practice-menu {
     display: flex;
     flex-wrap: wrap;
 
@@ -463,123 +516,135 @@ select,
     margin-top: 18px;
 }
 
-.practice-type {
-    padding: 9px 12px;
+.practice-button {
+    padding: 10px 13px !important;
 
-    background: #faf9ff;
+    background: #faf9ff !important;
+    color: #777187 !important;
 
-    border: 1px solid #dedbea;
-    border-radius: 10px;
-
-    color: #777187;
-
-    cursor: pointer;
+    border: 1px solid #dedbea !important;
+    border-radius: 10px !important;
 
     font-size: 11px;
     font-weight: 800;
+
+    cursor: pointer;
 }
 
-.practice-type.active {
-    background: #ece9f5;
-    color: #252238;
+.practice-button:hover {
+    background: #f1eff8 !important;
 }
 
-.exercise {
-    margin-top: 17px;
+.practice-button.active {
+    background: #ece9f5 !important;
+    color: #252238 !important;
+
+    border-color: #d4cfe2 !important;
+}
+
+.exercise-box {
+    margin-top: 18px;
     padding: 22px;
 
-    background: #faf9ff;
+    background: #faf9ff !important;
+    color: #252238 !important;
 
+    border: 1px solid #ece9f2 !important;
     border-radius: 16px;
-
-    text-align: center;
 }
 
-.question {
-    color: #252238;
+.exercise-question {
+    color: #252238 !important;
 
     font-size: 17px;
     font-weight: 800;
 
-    line-height: 1.4;
+    line-height: 1.45;
 }
 
 .answers {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 8px;
 
     margin-top: 17px;
 }
 
-.answer {
-    padding: 11px;
+.answer-button {
+    padding: 11px !important;
 
-    background: white;
+    background: #ffffff !important;
+    color: #514b68 !important;
 
-    border: 1px solid #dedbea;
-    border-radius: 10px;
+    border: 1px solid #dedbea !important;
+    border-radius: 10px !important;
 
-    color: #514b68;
+    font-size: 12px;
+    font-weight: 700;
 
     cursor: pointer;
-
-    font-weight: 700;
 }
 
-.answer:hover {
-    background: #f1eff8;
+.answer-button:hover {
+    background: #f1eff8 !important;
 }
 
-.answer.correct {
-    background: #edf7ef;
-    border-color: #b8d9bf;
+.answer-button.correct {
+    background: #edf7ef !important;
+    border-color: #b8d9bf !important;
+    color: #315c39 !important;
 }
 
-.answer.wrong {
-    background: #faeeee;
-    border-color: #e0bebe;
+.answer-button.wrong {
+    background: #faeeee !important;
+    border-color: #e0bebe !important;
+    color: #7b4242 !important;
 }
 
 .feedback {
-    min-height: 24px;
+    min-height: 23px;
 
     margin-top: 14px;
 
-    color: #777187;
+    color: #777187 !important;
 
     font-size: 12px;
     font-weight: 800;
 }
 
-.next-question {
+.next-button {
     margin-top: 8px;
+    padding: 10px 15px !important;
 
-    padding: 10px 14px;
+    background: #ece9f5 !important;
+    color: #252238 !important;
 
-    background: #252238;
-
-    border: 0;
-    border-radius: 10px;
-
-    color: white;
-
-    cursor: pointer;
+    border: 1px solid #d9d4e5 !important;
+    border-radius: 10px !important;
 
     font-weight: 800;
+
+    cursor: pointer;
 }
 
-/* MOBILE */
 
-@media(max-width:700px) {
+/* =========================================================
+   RESPONSYWNOŚĆ
+========================================================= */
+
+@media(max-width: 750px) {
+
+    .page-title {
+        font-size: 42px;
+    }
 
     .scale-tabs {
         grid-template-columns: 1fr;
     }
 
-    .degrees {
-        grid-template-columns: repeat(4,1fr);
+    .degree-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .compare-grid {
@@ -590,8 +655,8 @@ select,
         grid-template-columns: 1fr;
     }
 
-    .panel {
-        padding: 21px;
+    .section-card {
+        padding: 22px;
     }
 }
 
@@ -602,84 +667,85 @@ select,
 
 <body>
 
-<main class="major-page">
+<main class="scale-page">
 
-<div class="major-container">
+<div class="scale-container">
 
-
-<a href="tonacje.html" class="back">
+<a href="tonacje.html" class="back-button">
     ← Gamy i tonacje
 </a>
 
 
-<header class="major-header">
+<header class="page-header">
 
-    <div class="major-title">
+    <h1 class="page-title">
         Gamy durowe
-    </div>
+    </h1>
 
-    <div class="major-subtitle">
-        Naturalna, harmoniczna i miękka.
-        Zobacz budowę, usłysz różnice i przećwicz je.
-    </div>
+    <p class="page-subtitle">
+        Naturalna, harmoniczna i miękka — zobacz różnice,
+        zbuduj gamę, posłuchaj jej i sprawdź się.
+    </p>
 
 </header>
 
 
-<!-- WYBÓR -->
+<!-- =====================================================
+     ODMIANY
+====================================================== -->
 
 <div class="scale-tabs">
 
     <button
         class="scale-tab active"
-        onclick="selectType('natural',this)">
+        onclick="selectScaleType('natural', this)">
         Naturalna
     </button>
 
     <button
         class="scale-tab"
-        onclick="selectType('harmonic',this)">
+        onclick="selectScaleType('harmonic', this)">
         Harmoniczna
     </button>
 
     <button
         class="scale-tab"
-        onclick="selectType('soft',this)">
+        onclick="selectScaleType('soft', this)">
         Miękka
     </button>
 
 </div>
 
 
-<!-- TEORIA -->
+<!-- =====================================================
+     TEORIA
+====================================================== -->
 
-<section class="panel">
+<section class="section-card">
 
-    <h2 class="panel-title"
-        id="theoryTitle">
+    <h2 id="theoryTitle">
         Gama durowa naturalna
     </h2>
 
-    <p class="panel-text"
-       id="theoryText">
+    <p class="section-description"
+       id="theoryDescription">
     </p>
 
 
-    <div class="change-box">
+    <div class="change-row">
 
-        <div class="change-symbol"
-             id="changeSymbol">
-            —
+        <div class="change-badge"
+             id="changeBadge">
         </div>
 
-        <div class="change-text"
-             id="changeText">
+        <div class="change-description"
+             id="changeDescription">
         </div>
 
     </div>
 
 
-    <div class="degrees">
+    <div class="degree-grid">
 
         <div class="degree" id="degree1">
             I
@@ -726,86 +792,93 @@ select,
 </section>
 
 
-<!-- GENERATOR -->
+<!-- =====================================================
+     BUDOWANIE + AUDIO
+====================================================== -->
 
-<section class="panel">
+<section class="section-card">
 
-    <h2 class="panel-title">
+    <h2>
         Zbuduj i posłuchaj
     </h2>
 
-    <p class="panel-text">
-        Wybierz tonację. Kliknij dowolny dźwięk,
-        żeby usłyszeć go osobno.
+    <p class="section-description">
+        Wybierz tonację. Możesz też kliknąć pojedynczy
+        dźwięk gamy, żeby go usłyszeć.
     </p>
 
 
-    <div class="controls">
+    <div class="scale-controls">
 
         <select id="root"
                 onchange="renderScale()">
 
-            <option>C</option>
-            <option>G</option>
-            <option>D</option>
-            <option>A</option>
-            <option>E</option>
-            <option>H</option>
-            <option>Fis</option>
-            <option>Cis</option>
+            <option value="C">C-dur</option>
+            <option value="G">G-dur</option>
+            <option value="D">D-dur</option>
+            <option value="A">A-dur</option>
+            <option value="E">E-dur</option>
+            <option value="H">H-dur</option>
+            <option value="Fis">Fis-dur</option>
+            <option value="Cis">Cis-dur</option>
 
-            <option>F</option>
-            <option>B</option>
-            <option>Es</option>
-            <option>As</option>
-            <option>Des</option>
-            <option>Ges</option>
+            <option value="F">F-dur</option>
+            <option value="B">B-dur</option>
+            <option value="Es">Es-dur</option>
+            <option value="As">As-dur</option>
+            <option value="Des">Des-dur</option>
+            <option value="Ges">Ges-dur</option>
 
         </select>
-
-        <button class="action main"
-                onclick="renderScale()">
-            Zbuduj gamę
-        </button>
 
     </div>
 
 
-    <div class="scale-result">
+    <div class="scale-display">
 
         <div class="scale-name"
              id="scaleName">
         </div>
 
-        <div class="scale-rule"
-             id="scaleRule">
+        <div class="scale-hint"
+             id="scaleHint">
         </div>
 
 
-        <div class="notes"
-             id="notes">
+        <div class="notes-row"
+             id="notesRow">
         </div>
 
 
-        <div class="intervals"
-             id="intervals">
+        <div class="steps-row"
+             id="stepsRow">
         </div>
 
 
-        <div class="listen">
+        <div class="listen-buttons">
 
-            <button onclick="playScale('up')">
+            <button
+                class="listen-button"
+                onclick="playScale('up')">
                 ▶ W górę
             </button>
 
-            <button onclick="playScale('down')">
+            <button
+                class="listen-button"
+                onclick="playScale('down')">
                 ▶ W dół
             </button>
 
-            <button onclick="playScale('both')">
+            <button
+                class="listen-button"
+                onclick="playScale('both')">
                 ▶ Góra + dół
             </button>
 
+        </div>
+
+        <div class="audio-status"
+             id="audioStatus">
         </div>
 
     </div>
@@ -813,36 +886,38 @@ select,
 </section>
 
 
-<!-- PORÓWNANIE -->
+<!-- =====================================================
+     PORÓWNANIE
+====================================================== -->
 
-<section class="panel">
+<section class="section-card">
 
-    <h2 class="panel-title">
-        Zapamiętaj
+    <h2>
+        Trzy odmiany
     </h2>
 
-    <p class="panel-text">
-        Najważniejsza różnica między trzema odmianami.
+    <p class="section-description">
+        Najważniejsze różnice do zapamiętania.
     </p>
 
 
     <div class="compare-grid">
 
-        <div class="compare-card">
+        <div class="compare-box">
 
             <strong>
                 Naturalna
             </strong>
 
             <span>
-                Podstawowa postać gamy durowej.
-                Półtony: III–IV i VII–VIII.
+                Podstawowa postać. Półtony znajdują się
+                między III–IV oraz VII–VIII stopniem.
             </span>
 
         </div>
 
 
-        <div class="compare-card">
+        <div class="compare-box">
 
             <strong>
                 Harmoniczna
@@ -856,7 +931,7 @@ select,
         </div>
 
 
-        <div class="compare-card">
+        <div class="compare-box">
 
             <strong>
                 Miękka
@@ -874,64 +949,69 @@ select,
 </section>
 
 
-<!-- ĆWICZENIA -->
+<!-- =====================================================
+     ĆWICZENIA
+====================================================== -->
 
-<section class="panel">
+<section class="section-card practice-section">
 
-    <h2 class="panel-title">
+    <h2>
         Ćwiczenia
     </h2>
 
-    <p class="panel-text">
-        Wybierz rodzaj ćwiczenia.
+    <p class="section-description">
+        Wybierz, co chcesz przećwiczyć.
     </p>
 
 
-    <div class="practice-types">
+    <div class="practice-menu">
 
         <button
-            class="practice-type active"
-            onclick="setPractice('theory',this)">
-            Odmiany
+            class="practice-button active"
+            onclick="setPractice('recognition', this)">
+            Rozpoznawanie
         </button>
 
         <button
-            class="practice-type"
-            onclick="setPractice('notes',this)">
+            class="practice-button"
+            onclick="setPractice('building', this)">
             Budowanie
         </button>
 
         <button
-            class="practice-type"
-            onclick="setPractice('ear',this)">
+            class="practice-button"
+            onclick="setPractice('ear', this)">
             Słuch
         </button>
 
         <button
-            class="practice-type"
-            onclick="setPractice('mixed',this)">
+            class="practice-button"
+            onclick="setPractice('mix', this)">
             Mix
         </button>
 
     </div>
 
 
-    <div class="exercise">
+    <div class="exercise-box">
 
-        <div class="question"
+        <div class="exercise-question"
              id="question">
         </div>
+
 
         <div class="answers"
              id="answers">
         </div>
 
+
         <div class="feedback"
              id="feedback">
         </div>
 
+
         <button
-            class="next-question"
+            class="next-button"
             onclick="newQuestion()">
             Następne
         </button>
@@ -948,27 +1028,26 @@ select,
 
 <script>
 
-/* ========================================
-   DANE
-======================================== */
+/* =========================================================
+   ODMIANY GAMY
+========================================================= */
 
-const types = {
+const SCALE_TYPES = {
 
     natural: {
 
-        label: "naturalna",
+        name: "naturalna",
 
-        title:
-            "Gama durowa naturalna",
+        title: "Gama durowa naturalna",
 
-        text:
-            "To podstawowa postać gamy durowej. Jej charakterystyczny układ półtonów znajduje się między III–IV oraz VII–VIII stopniem.",
+        description:
+            "Podstawowa postać gamy durowej. Półtony występują między III–IV oraz VII–VIII stopniem.",
 
-        symbol:
+        badge:
             "bez zmian",
 
         change:
-            "<strong>Nie zmieniamy żadnego stopnia.</strong> To punkt wyjścia do pozostałych odmian.",
+            "<strong>Żaden stopień nie jest dodatkowo zmieniany.</strong>",
 
         changed:
             [],
@@ -976,7 +1055,7 @@ const types = {
         offsets:
             [0,2,4,5,7,9,11,12],
 
-        intervals:
+        steps:
             ["ton","ton","półton","ton","ton","ton","półton"]
 
     },
@@ -984,20 +1063,18 @@ const types = {
 
     harmonic: {
 
-        label:
-            "harmoniczna",
+        name: "harmoniczna",
 
-        title:
-            "Gama durowa harmoniczna",
+        title: "Gama durowa harmoniczna",
 
-        text:
+        description:
             "Powstaje z gamy durowej naturalnej przez obniżenie VI stopnia o pół tonu.",
 
-        symbol:
+        badge:
             "↓ VI",
 
         change:
-            "<strong>Obniż VI stopień o pół tonu.</strong> Między VI a VII stopniem powstaje sekunda zwiększona.",
+            "<strong>VI stopień obniżamy o pół tonu.</strong>",
 
         changed:
             [6],
@@ -1005,7 +1082,7 @@ const types = {
         offsets:
             [0,2,4,5,7,8,11,12],
 
-        intervals:
+        steps:
             ["ton","ton","półton","ton","półton","1½ tonu","półton"]
 
     },
@@ -1013,20 +1090,18 @@ const types = {
 
     soft: {
 
-        label:
-            "miękka",
+        name: "miękka",
 
-        title:
-            "Gama durowa miękka",
+        title: "Gama durowa miękka",
 
-        text:
+        description:
             "Powstaje z gamy durowej naturalnej przez obniżenie VI i VII stopnia o pół tonu.",
 
-        symbol:
-            "↓ VI  ↓ VII",
+        badge:
+            "↓ VI, VII",
 
         change:
-            "<strong>Obniż VI i VII stopień o pół tonu.</strong>",
+            "<strong>VI i VII stopień obniżamy o pół tonu.</strong>",
 
         changed:
             [6,7],
@@ -1034,7 +1109,7 @@ const types = {
         offsets:
             [0,2,4,5,7,8,10,12],
 
-        intervals:
+        steps:
             ["ton","ton","półton","ton","półton","ton","ton"]
 
     }
@@ -1042,7 +1117,15 @@ const types = {
 };
 
 
-const majorScales = {
+let currentType = "natural";
+let practiceMode = "recognition";
+
+
+/* =========================================================
+   GAMY NATURALNE — POPRAWNA PISOWNIA
+========================================================= */
+
+const MAJOR_SCALES = {
 
     C:
         ["C","D","E","F","G","A","H","C"],
@@ -1089,7 +1172,386 @@ const majorScales = {
 };
 
 
-const rootMidi = {
+/* =========================================================
+   OBNIŻANIE DŹWIĘKU
+========================================================= */
+
+function lowerNote(note) {
+
+    const map = {
+
+        "C":"Ces",
+        "Cis":"C",
+
+        "D":"Des",
+        "Dis":"D",
+
+        "E":"Es",
+        "Eis":"E",
+
+        "F":"Fes",
+        "Fis":"F",
+
+        "G":"Ges",
+        "Gis":"G",
+
+        "A":"As",
+        "Ais":"A",
+
+        "H":"B",
+        "His":"H",
+
+        "B":"Bes",
+
+        "Es":"Eses",
+        "As":"Ases",
+        "Des":"Deses",
+        "Ges":"Geses",
+        "Ces":"Ceses"
+
+    };
+
+    return map[note] || note;
+
+}
+
+
+/* =========================================================
+   WYBÓR ODMIANY
+========================================================= */
+
+function selectScaleType(type, button) {
+
+    currentType = type;
+
+    document
+        .querySelectorAll(".scale-tab")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    renderTheory();
+    renderScale();
+
+}
+
+
+function renderTheory() {
+
+    const data = SCALE_TYPES[currentType];
+
+
+    document.getElementById("theoryTitle").textContent =
+        data.title;
+
+
+    document.getElementById("theoryDescription").textContent =
+        data.description;
+
+
+    document.getElementById("changeBadge").textContent =
+        data.badge;
+
+
+    document.getElementById("changeDescription").innerHTML =
+        data.change;
+
+
+    for(let i = 1; i <= 8; i++) {
+
+        document
+            .getElementById("degree" + i)
+            .classList.remove("changed");
+
+    }
+
+
+    data.changed.forEach(number => {
+
+        document
+            .getElementById("degree" + number)
+            .classList.add("changed");
+
+    });
+
+}
+
+
+/* =========================================================
+   BUDOWANIE GAMY
+========================================================= */
+
+function getWrittenScale() {
+
+    const root =
+        document.getElementById("root").value;
+
+
+    const scale =
+        [...MAJOR_SCALES[root]];
+
+
+    if(currentType === "harmonic") {
+
+        scale[5] =
+            lowerNote(scale[5]);
+
+    }
+
+
+    if(currentType === "soft") {
+
+        scale[5] =
+            lowerNote(scale[5]);
+
+        scale[6] =
+            lowerNote(scale[6]);
+
+    }
+
+
+    return scale;
+
+}
+
+
+function renderScale() {
+
+    const root =
+        document.getElementById("root").value;
+
+
+    const data =
+        SCALE_TYPES[currentType];
+
+
+    const scale =
+        getWrittenScale();
+
+
+    document.getElementById("scaleName").textContent =
+        root + "-dur " + data.name;
+
+
+    document.getElementById("scaleHint").textContent =
+        data.badge;
+
+
+    const notesRow =
+        document.getElementById("notesRow");
+
+
+    notesRow.innerHTML = "";
+
+
+    scale.forEach((note, index) => {
+
+        const button =
+            document.createElement("button");
+
+
+        button.className =
+            "note-button";
+
+
+        if(data.changed.includes(index + 1)) {
+
+            button.classList.add("changed");
+
+        }
+
+
+        button.innerHTML =
+            note +
+            "<small>" +
+            roman(index + 1) +
+            "</small>";
+
+
+        button.onclick =
+            () => playSingleNote(index);
+
+
+        notesRow.appendChild(button);
+
+    });
+
+
+    const stepsRow =
+        document.getElementById("stepsRow");
+
+
+    stepsRow.innerHTML = "";
+
+
+    data.steps.forEach(step => {
+
+        const div =
+            document.createElement("div");
+
+
+        div.className =
+            "step";
+
+
+        div.textContent =
+            step;
+
+
+        stepsRow.appendChild(div);
+
+    });
+
+}
+
+
+function roman(number) {
+
+    return [
+        "I","II","III","IV",
+        "V","VI","VII","VIII"
+    ][number - 1];
+
+}
+
+
+/* =========================================================
+   FORTEPIAN — TYLKO PRÓBKI
+   BRAK OSCYLATORA
+   BRAK SYNTH
+   BRAK ROBOTYCZNEGO FALLBACKU
+========================================================= */
+
+let piano = null;
+let pianoLoading = false;
+
+
+async function getPiano() {
+
+    const status =
+        document.getElementById("audioStatus");
+
+
+    try {
+
+        await Tone.start();
+
+
+        if(piano) {
+            return piano;
+        }
+
+
+        if(pianoLoading) {
+
+            status.textContent =
+                "Ładowanie fortepianu…";
+
+            while(pianoLoading) {
+
+                await new Promise(
+                    resolve =>
+                        setTimeout(resolve, 100)
+                );
+
+            }
+
+            return piano;
+
+        }
+
+
+        pianoLoading = true;
+
+
+        status.textContent =
+            "Pierwsze uruchomienie — ładowanie próbek fortepianu…";
+
+
+        piano =
+            new Tone.Sampler({
+
+                urls: {
+
+                    A0: "A0.mp3",
+                    C1: "C1.mp3",
+                    "D#1": "Ds1.mp3",
+                    "F#1": "Fs1.mp3",
+
+                    A1: "A1.mp3",
+                    C2: "C2.mp3",
+                    "D#2": "Ds2.mp3",
+                    "F#2": "Fs2.mp3",
+
+                    A2: "A2.mp3",
+                    C3: "C3.mp3",
+                    "D#3": "Ds3.mp3",
+                    "F#3": "Fs3.mp3",
+
+                    A3: "A3.mp3",
+                    C4: "C4.mp3",
+                    "D#4": "Ds4.mp3",
+                    "F#4": "Fs4.mp3",
+
+                    A4: "A4.mp3",
+                    C5: "C5.mp3",
+                    "D#5": "Ds5.mp3",
+                    "F#5": "Fs5.mp3",
+
+                    A5: "A5.mp3",
+                    C6: "C6.mp3"
+
+                },
+
+                release: 1.4,
+
+                baseUrl:
+                    "https://tonejs.github.io/audio/salamander/"
+
+            }).toDestination();
+
+
+        await Tone.loaded();
+
+
+        pianoLoading = false;
+
+
+        status.textContent =
+            "Fortepian gotowy ✓";
+
+
+        return piano;
+
+    }
+
+    catch(error) {
+
+        pianoLoading = false;
+        piano = null;
+
+
+        status.textContent =
+            "Nie udało się załadować próbek fortepianu. Odśwież stronę i spróbuj ponownie.";
+
+
+        console.error(error);
+
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   MIDI
+========================================================= */
+
+const ROOT_MIDI = {
 
     C:60,
     Cis:61,
@@ -1117,363 +1579,24 @@ const rootMidi = {
 };
 
 
-let currentType =
-    "natural";
-
-
-let practiceMode =
-    "theory";
-
-
-/* ========================================
-   OBNIŻENIE NUTY
-======================================== */
-
-function lower(note) {
-
-    const map = {
-
-        C:"Ces",
-        Cis:"C",
-
-        D:"Des",
-        Dis:"D",
-
-        E:"Es",
-        Eis:"E",
-
-        F:"Fes",
-        Fis:"F",
-
-        G:"Ges",
-        Gis:"G",
-
-        A:"As",
-        Ais:"A",
-
-        H:"B",
-        His:"H",
-
-        B:"Bes",
-
-        Es:"Eses",
-        As:"Ases",
-        Des:"Deses",
-        Ges:"Geses",
-        Ces:"Ceses"
-
-    };
-
-    return map[note] || note;
-
-}
-
-
-/* ========================================
-   WYBÓR ODMIANY
-======================================== */
-
-function selectType(type,button) {
-
-    currentType = type;
-
-
-    document
-        .querySelectorAll(".scale-tab")
-        .forEach(x =>
-            x.classList.remove("active")
-        );
-
-
-    button.classList.add("active");
-
-
-    updateTheory();
-
-    renderScale();
-
-}
-
-
-function updateTheory() {
-
-    const data =
-        types[currentType];
-
-
-    document
-        .getElementById("theoryTitle")
-        .textContent =
-        data.title;
-
-
-    document
-        .getElementById("theoryText")
-        .textContent =
-        data.text;
-
-
-    document
-        .getElementById("changeSymbol")
-        .textContent =
-        data.symbol;
-
-
-    document
-        .getElementById("changeText")
-        .innerHTML =
-        data.change;
-
-
-    for(let i=1;i<=8;i++) {
-
-        document
-            .getElementById("degree"+i)
-            .classList.remove("changed");
-
-    }
-
-
-    data.changed.forEach(number => {
-
-        document
-            .getElementById("degree"+number)
-            .classList.add("changed");
-
-    });
-
-}
-
-
-/* ========================================
-   GAMA
-======================================== */
-
-function getWrittenScale() {
-
-    const root =
-        document.getElementById("root").value;
-
-
-    const scale =
-        [...majorScales[root]];
-
-
-    if(currentType === "harmonic") {
-
-        scale[5] =
-            lower(scale[5]);
-
-    }
-
-
-    if(currentType === "soft") {
-
-        scale[5] =
-            lower(scale[5]);
-
-        scale[6] =
-            lower(scale[6]);
-
-    }
-
-
-    return scale;
-
-}
-
-
-function renderScale() {
-
-    const root =
-        document.getElementById("root").value;
-
-
-    const data =
-        types[currentType];
-
-
-    const scale =
-        getWrittenScale();
-
-
-    document
-        .getElementById("scaleName")
-        .textContent =
-        root +
-        "-dur " +
-        data.label;
-
-
-    document
-        .getElementById("scaleRule")
-        .textContent =
-        data.symbol === "bez zmian"
-        ? "postać podstawowa"
-        : data.symbol;
-
-
-    const notes =
-        document.getElementById("notes");
-
-
-    notes.innerHTML = "";
-
-
-    scale.forEach((note,index) => {
-
-        const button =
-            document.createElement("button");
-
-
-        button.className =
-            "note";
-
-
-        if(
-            data.changed.includes(index+1)
-        ) {
-
-            button.classList.add("changed");
-
-        }
-
-
-        button.innerHTML =
-            note +
-            "<small>" +
-            roman(index+1) +
-            "</small>";
-
-
-        button.onclick =
-            () => playSingle(index);
-
-
-        notes.appendChild(button);
-
-    });
-
-
-    const intervals =
-        document.getElementById("intervals");
-
-
-    intervals.innerHTML = "";
-
-
-    data.intervals.forEach(item => {
-
-        const div =
-            document.createElement("div");
-
-
-        div.className =
-            "interval";
-
-
-        div.textContent =
-            item;
-
-
-        intervals.appendChild(div);
-
-    });
-
-}
-
-
-function roman(number) {
-
-    return [
-        "I","II","III","IV",
-        "V","VI","VII","VIII"
-    ][number-1];
-
-}
-
-
-/* ========================================
-   PRAWDZIWE PRÓBKI FORTEPIANU
-======================================== */
-
-let piano = null;
-
-
-async function preparePiano() {
-
-    await Tone.start();
-
-
-    if(!piano) {
-
-        piano =
-            new Tone.Sampler({
-
-                urls: {
-
-                    A0:"A0.mp3",
-                    C1:"C1.mp3",
-                    "D#1":"Ds1.mp3",
-                    "F#1":"Fs1.mp3",
-
-                    A1:"A1.mp3",
-                    C2:"C2.mp3",
-                    "D#2":"Ds2.mp3",
-                    "F#2":"Fs2.mp3",
-
-                    A2:"A2.mp3",
-                    C3:"C3.mp3",
-                    "D#3":"Ds3.mp3",
-                    "F#3":"Fs3.mp3",
-
-                    A3:"A3.mp3",
-                    C4:"C4.mp3",
-                    "D#4":"Ds4.mp3",
-                    "F#4":"Fs4.mp3",
-
-                    A4:"A4.mp3",
-                    C5:"C5.mp3",
-                    "D#5":"Ds5.mp3",
-                    "F#5":"Fs5.mp3",
-
-                    A5:"A5.mp3",
-                    C6:"C6.mp3"
-
-                },
-
-                baseUrl:
-                "https://tonejs.github.io/audio/salamander/",
-
-                release:1.1
-
-            }).toDestination();
-
-
-        await Tone.loaded();
-
-    }
-
-}
-
-
-/* ========================================
-   AUDIO
-======================================== */
-
-const pitchNames = [
+const CHROMATIC_NAMES = [
     "C","C#","D","D#",
     "E","F","F#","G",
     "G#","A","A#","B"
 ];
 
 
-function midiName(midi) {
+function midiToToneName(midi) {
 
-    return (
-        pitchNames[midi % 12] +
-        (Math.floor(midi / 12)-1)
-    );
+    const pitch =
+        CHROMATIC_NAMES[midi % 12];
+
+
+    const octave =
+        Math.floor(midi / 12) - 1;
+
+
+    return pitch + octave;
 
 }
 
@@ -1485,28 +1608,40 @@ function currentMidiScale() {
 
 
     const base =
-        rootMidi[root];
+        ROOT_MIDI[root];
 
 
-    return types[currentType]
+    return SCALE_TYPES[currentType]
         .offsets
-        .map(x => base+x);
+        .map(offset =>
+            base + offset
+        );
 
 }
 
 
-async function playSingle(index) {
+/* =========================================================
+   ODSŁUCH
+========================================================= */
 
-    await preparePiano();
+async function playSingleNote(index) {
+
+    const instrument =
+        await getPiano();
+
+
+    if(!instrument) {
+        return;
+    }
 
 
     const midi =
         currentMidiScale()[index];
 
 
-    piano.triggerAttackRelease(
-        midiName(midi),
-        .8
+    instrument.triggerAttackRelease(
+        midiToToneName(midi),
+        0.9
     );
 
 }
@@ -1514,7 +1649,13 @@ async function playSingle(index) {
 
 async function playScale(direction) {
 
-    await preparePiano();
+    const instrument =
+        await getPiano();
+
+
+    if(!instrument) {
+        return;
+    }
 
 
     let notes =
@@ -1533,22 +1674,28 @@ async function playScale(direction) {
 
         notes = [
             ...notes,
-            ...notes.slice(0,-1).reverse()
+            ...notes.slice(0, -1).reverse()
         ];
 
     }
 
 
-    const now =
-        Tone.now()+.1;
+    const start =
+        Tone.now() + 0.1;
 
 
-    notes.forEach((midi,index) => {
+    notes.forEach((midi, index) => {
 
-        piano.triggerAttackRelease(
-            midiName(midi),
-            .7,
-            now + index*.42
+        instrument.triggerAttackRelease(
+
+            midiToToneName(midi),
+
+            0.85,
+
+            start + index * 0.43,
+
+            0.75
+
         );
 
     });
@@ -1556,146 +1703,200 @@ async function playScale(direction) {
 }
 
 
-/* ========================================
+/* =========================================================
    ĆWICZENIA
-======================================== */
+========================================================= */
 
-const theoryQuestions = [
+const RECOGNITION_QUESTIONS = [
 
     {
         q:
-        "Co zmieniamy w gamie durowej harmonicznej?",
+            "Która odmiana gamy durowej ma obniżony VI stopień?",
 
         correct:
-        "Obniżamy VI stopień",
+            "harmoniczna",
 
-        answers:[
-            "Obniżamy VI stopień",
-            "Obniżamy VII stopień",
-            "Podwyższamy VI stopień",
-            "Obniżamy VI i VII"
-        ]
+        answers:
+            [
+                "naturalna",
+                "harmoniczna",
+                "miękka"
+            ]
     },
 
+
     {
         q:
-        "Co zmieniamy w gamie durowej miękkiej?",
+            "Która odmiana ma obniżone VI i VII stopień?",
 
         correct:
-        "Obniżamy VI i VII stopień",
+            "miękka",
 
-        answers:[
-            "Obniżamy VI i VII stopień",
-            "Obniżamy tylko VI",
-            "Podwyższamy VI i VII",
-            "Obniżamy III i VI"
-        ]
+        answers:
+            [
+                "naturalna",
+                "harmoniczna",
+                "miękka"
+            ]
     },
 
+
     {
         q:
-        "Gdzie występują półtony w gamie durowej naturalnej?",
+            "W której odmianie nie zmieniamy dodatkowo żadnego stopnia?",
 
         correct:
-        "III–IV i VII–VIII",
+            "naturalna",
 
-        answers:[
+        answers:
+            [
+                "naturalna",
+                "harmoniczna",
+                "miękka"
+            ]
+    },
+
+
+    {
+        q:
+            "Gdzie występują półtony w gamie durowej naturalnej?",
+
+        correct:
             "III–IV i VII–VIII",
-            "II–III i VI–VII",
-            "III–IV i VI–VII",
-            "II–III i VII–VIII"
-        ]
+
+        answers:
+            [
+                "III–IV i VII–VIII",
+                "II–III i VI–VII",
+                "III–IV i VI–VII",
+                "II–III i VII–VIII"
+            ]
     }
 
 ];
 
 
-const buildQuestions = [
+const BUILDING_QUESTIONS = [
 
     {
         q:
-        "C-dur harmoniczna: który dźwięk zmieniamy?",
+            "Jak zbudujesz C-dur harmoniczną?",
 
         correct:
-        "A → As",
+            "A zmieniamy na As",
 
-        answers:[
-            "A → As",
-            "H → B",
-            "E → Es",
-            "G → Ges"
-        ]
+        answers:
+            [
+                "A zmieniamy na As",
+                "H zmieniamy na B",
+                "E zmieniamy na Es",
+                "F zmieniamy na Fis"
+            ]
     },
 
+
     {
         q:
-        "C-dur miękka: które dźwięki zmieniamy?",
+            "Jak zbudujesz C-dur miękką?",
 
         correct:
-        "A → As, H → B",
+            "A → As oraz H → B",
 
-        answers:[
-            "A → As, H → B",
-            "A → As",
-            "E → Es, H → B",
-            "F → Fis, H → B"
-        ]
+        answers:
+            [
+                "A → As oraz H → B",
+                "tylko A → As",
+                "E → Es oraz H → B",
+                "F → Fis oraz H → B"
+            ]
+    },
+
+
+    {
+        q:
+            "Co robimy z VI stopniem w gamie durowej harmonicznej?",
+
+        correct:
+            "obniżamy o pół tonu",
+
+        answers:
+            [
+                "obniżamy o pół tonu",
+                "podwyższamy o pół tonu",
+                "nie zmieniamy",
+                "obniżamy o cały ton"
+            ]
     }
 
 ];
 
 
-function setPractice(mode,button) {
+function setPractice(mode, button) {
 
     practiceMode = mode;
 
 
     document
-        .querySelectorAll(".practice-type")
-        .forEach(x =>
-            x.classList.remove("active")
+        .querySelectorAll(".practice-button")
+        .forEach(btn =>
+            btn.classList.remove("active")
         );
 
 
     button.classList.add("active");
+
 
     newQuestion();
 
 }
 
 
-function shuffle(array) {
+function shuffled(array) {
 
     return [...array]
-        .sort(() => Math.random()-.5);
+        .sort(() =>
+            Math.random() - 0.5
+        );
+
+}
+
+
+function randomFrom(array) {
+
+    return array[
+        Math.floor(
+            Math.random() * array.length
+        )
+    ];
 
 }
 
 
 async function newQuestion() {
 
-    document
-        .getElementById("feedback")
-        .textContent = "";
+    document.getElementById("feedback").textContent =
+        "";
 
 
     let mode =
         practiceMode;
 
 
-    if(mode === "mixed") {
+    if(mode === "mix") {
 
         mode =
-            ["theory","notes","ear"][
-                Math.floor(Math.random()*3)
-            ];
+            randomFrom([
+                "recognition",
+                "building",
+                "ear"
+            ]);
 
     }
 
 
     if(mode === "ear") {
 
-        await earQuestion();
+        await createEarQuestion();
 
         return;
 
@@ -1703,84 +1904,88 @@ async function newQuestion() {
 
 
     const source =
-        mode === "notes"
-        ? buildQuestions
-        : theoryQuestions;
+        mode === "building"
+        ? BUILDING_QUESTIONS
+        : RECOGNITION_QUESTIONS;
 
 
-    const item =
-        source[
-            Math.floor(
-                Math.random()*source.length
-            )
-        ];
+    const question =
+        randomFrom(source);
 
 
     showQuestion(
-        item.q,
-        item.correct,
-        item.answers
+        question.q,
+        question.correct,
+        question.answers
     );
 
 }
 
 
-function showQuestion(question,correct,options) {
+function showQuestion(text, correct, answers) {
 
-    document
-        .getElementById("question")
-        .textContent =
-        question;
+    document.getElementById("question").textContent =
+        text;
 
 
-    const answers =
+    const container =
         document.getElementById("answers");
 
 
-    answers.innerHTML = "";
+    container.innerHTML = "";
 
 
-    shuffle(options)
-        .forEach(option => {
+    shuffled(answers)
+        .forEach(answer => {
 
             const button =
                 document.createElement("button");
 
 
             button.className =
-                "answer";
+                "answer-button";
 
 
             button.textContent =
-                option;
+                answer;
 
 
-            button.onclick = () =>
-                checkAnswer(
-                    button,
-                    option,
-                    correct
-                );
+            button.onclick =
+                () =>
+                    checkAnswer(
+                        button,
+                        answer,
+                        correct
+                    );
 
 
-            answers.appendChild(button);
+            container.appendChild(button);
 
         });
 
 }
 
 
-function checkAnswer(button,answer,correct) {
+function checkAnswer(button, answer, correct) {
 
     const buttons =
         document.querySelectorAll(
-            "#answers .answer"
+            "#answers .answer-button"
         );
 
 
-    buttons.forEach(x =>
-        x.disabled = true
-    );
+    buttons.forEach(btn => {
+
+        if(
+            btn.textContent !==
+            "▶ Posłuchaj jeszcze raz"
+        ) {
+
+            btn.disabled = true;
+
+        }
+
+    });
 
 
     if(answer === correct) {
@@ -1788,135 +1993,128 @@ function checkAnswer(button,answer,correct) {
         button.classList.add("correct");
 
 
-        document
-            .getElementById("feedback")
-            .textContent =
+        document.getElementById("feedback").textContent =
             "✓ Dobrze!";
 
-    } else {
+    }
+
+    else {
 
         button.classList.add("wrong");
 
 
-        buttons.forEach(x => {
+        buttons.forEach(btn => {
 
-            if(x.textContent === correct) {
+            if(btn.textContent === correct) {
 
-                x.classList.add("correct");
+                btn.classList.add("correct");
 
             }
 
         });
 
 
-        document
-            .getElementById("feedback")
-            .textContent =
-            "Poprawna odpowiedź: " +
-            correct;
+        document.getElementById("feedback").textContent =
+            "Poprawna odpowiedź: " + correct;
 
     }
 
 }
 
 
-/* ========================================
-   SŁUCH
-======================================== */
+/* =========================================================
+   ĆWICZENIE SŁUCHOWE
+========================================================= */
 
-let earCorrect = "";
-
-
-async function earQuestion() {
-
-    const possible = [
-        "natural",
-        "harmonic",
-        "soft"
-    ];
+let currentEarType = null;
 
 
-    const chosen =
-        possible[
-            Math.floor(
-                Math.random()*possible.length
-            )
-        ];
+async function createEarQuestion() {
+
+    currentEarType =
+        randomFrom([
+            "natural",
+            "harmonic",
+            "soft"
+        ]);
 
 
-    earCorrect =
-        types[chosen].label;
-
-
-    document
-        .getElementById("question")
-        .textContent =
+    document.getElementById("question").textContent =
         "Posłuchaj gamy. Która to odmiana?";
 
 
-    const answers =
+    const container =
         document.getElementById("answers");
 
 
-    answers.innerHTML = "";
+    container.innerHTML = "";
 
 
-    const play =
+    const replay =
         document.createElement("button");
 
 
-    play.className =
-        "answer";
+    replay.className =
+        "answer-button";
 
 
-    play.textContent =
-        "▶ Odtwórz ponownie";
+    replay.textContent =
+        "▶ Posłuchaj jeszcze raz";
 
 
-    play.onclick =
-        () => playEarScale(chosen);
+    replay.onclick =
+        () => playEarQuestion();
 
 
-    answers.appendChild(play);
+    container.appendChild(replay);
 
 
-    ["naturalna","harmoniczna","miękka"]
-        .forEach(label => {
+    [
+        "naturalna",
+        "harmoniczna",
+        "miękka"
+    ].forEach(answer => {
 
-            const button =
-                document.createElement("button");
-
-
-            button.className =
-                "answer";
-
-
-            button.textContent =
-                label;
+        const button =
+            document.createElement("button");
 
 
-            button.onclick =
-                () =>
+        button.className =
+            "answer-button";
+
+
+        button.textContent =
+            answer;
+
+
+        button.onclick =
+            () =>
                 checkAnswer(
                     button,
-                    label,
-                    earCorrect
+                    answer,
+                    SCALE_TYPES[currentEarType].name
                 );
 
 
-            answers.appendChild(button);
+        container.appendChild(button);
 
-        });
+    });
 
 
-    await playEarScale(chosen);
+    await playEarQuestion();
 
 }
 
 
-async function playEarScale(type) {
+async function playEarQuestion() {
 
-    await preparePiano();
+    const instrument =
+        await getPiano();
+
+
+    if(!instrument) {
+        return;
+    }
 
 
     const root =
@@ -1924,25 +2122,33 @@ async function playEarScale(type) {
 
 
     const base =
-        rootMidi[root];
+        ROOT_MIDI[root];
 
 
     const notes =
-        types[type]
-        .offsets
-        .map(x => base+x);
+        SCALE_TYPES[currentEarType]
+            .offsets
+            .map(offset =>
+                base + offset
+            );
 
 
-    const now =
-        Tone.now()+.1;
+    const start =
+        Tone.now() + 0.1;
 
 
-    notes.forEach((midi,index) => {
+    notes.forEach((midi, index) => {
 
-        piano.triggerAttackRelease(
-            midiName(midi),
-            .7,
-            now + index*.42
+        instrument.triggerAttackRelease(
+
+            midiToToneName(midi),
+
+            0.85,
+
+            start + index * 0.43,
+
+            0.75
+
         );
 
     });
@@ -1950,12 +2156,12 @@ async function playEarScale(type) {
 }
 
 
-/* START */
+/* =========================================================
+   START
+========================================================= */
 
-updateTheory();
-
+renderTheory();
 renderScale();
-
 newQuestion();
 
 </script>
