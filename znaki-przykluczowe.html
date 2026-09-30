@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Harmonix — Znaki przykluczowe</title>
-
 <link rel="stylesheet" href="style.css">
 
 <style>
@@ -40,6 +39,10 @@ body {
     font-weight: 700;
 }
 
+.back:hover {
+    color: #252238;
+}
+
 .header {
     text-align: center;
     margin-bottom: 38px;
@@ -53,7 +56,7 @@ body {
 }
 
 .subtitle {
-    max-width: 700px;
+    max-width: 720px;
     margin: 12px auto 0;
     color: #6b6680;
     font-size: 18px;
@@ -81,7 +84,9 @@ body {
 }
 
 
-/* PODSTAWY */
+/* =========================
+   PODSTAWY
+========================= */
 
 .sign-types {
     display: grid;
@@ -98,12 +103,13 @@ body {
 }
 
 .big-symbol {
-    font-size: 42px;
     margin-bottom: 10px;
+    font-size: 42px;
 }
 
 .sign-type h3 {
     margin: 0 0 7px;
+    font-size: 16px;
 }
 
 .sign-type p {
@@ -114,7 +120,9 @@ body {
 }
 
 
-/* KOLEJNOŚĆ */
+/* =========================
+   KOLEJNOŚĆ
+========================= */
 
 .order-grid {
     display: grid;
@@ -131,7 +139,14 @@ body {
 }
 
 .order-title {
+    font-size: 15px;
     font-weight: 800;
+}
+
+.order-subtitle {
+    margin-top: 4px;
+    color: #9993a6;
+    font-size: 10px;
 }
 
 .order {
@@ -143,10 +158,12 @@ body {
 }
 
 .note {
+    min-width: 42px;
     padding: 9px 10px;
     background: white;
     border: 1px solid #e3dfea;
     border-radius: 9px;
+    text-align: center;
     font-size: 12px;
     font-weight: 800;
 }
@@ -156,9 +173,12 @@ body {
 }
 
 
-/* WYBÓR */
+/* =========================
+   PRZYCISKI
+========================= */
 
-.selector {
+.selector,
+.exercise-tabs {
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
@@ -176,19 +196,22 @@ body {
     cursor: pointer;
 }
 
-.selector button.active,
 .selector button:hover,
+.selector button.active,
+.exercise-tabs button:hover,
 .exercise-tabs button.active {
     background: #ece9f5;
     color: #252238;
 }
 
 
-/* PIĘCIOLINIA */
+/* =========================
+   PIĘCIOLINIA
+========================= */
 
 .staff-box {
     margin-top: 20px;
-    padding: 15px;
+    padding: 18px;
     overflow-x: auto;
     background: #faf9ff;
     border: 1px solid #ece9f2;
@@ -198,12 +221,14 @@ body {
 .staff-box svg {
     display: block;
     width: 100%;
-    min-width: 700px;
+    min-width: 720px;
     height: 190px;
 }
 
 
-/* INFO */
+/* =========================
+   INFO
+========================= */
 
 .selected-info {
     display: grid;
@@ -224,15 +249,19 @@ body {
     font-size: 9px;
     font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: .5px;
 }
 
 .info-value {
     margin-top: 5px;
+    font-size: 15px;
     font-weight: 800;
 }
 
 
-/* WSKAZÓWKI */
+/* =========================
+   WSKAZÓWKI
+========================= */
 
 .tip-grid {
     display: grid;
@@ -248,9 +277,10 @@ body {
     border-radius: 15px;
 }
 
-.tip strong {
-    display: block;
+.tip-title {
     margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 800;
 }
 
 .tip p {
@@ -261,31 +291,34 @@ body {
 }
 
 .example {
-    margin-top: 12px;
-    padding: 10px;
+    margin-top: 11px;
+    padding: 11px;
     background: white;
     border-radius: 9px;
+    color: #514b68;
     font-size: 11px;
     font-weight: 800;
 }
 
 
-/* TABELA */
+/* =========================
+   TABELA
+========================= */
 
 .table-wrap {
+    margin-top: 20px;
     overflow-x: auto;
-    margin-top: 18px;
 }
 
 table {
     width: 100%;
-    min-width: 650px;
+    min-width: 680px;
     border-collapse: collapse;
 }
 
 th,
 td {
-    padding: 11px 10px;
+    padding: 12px 10px;
     border-bottom: 1px solid #eeeaf3;
     text-align: left;
     font-size: 12px;
@@ -295,17 +328,17 @@ th {
     color: #9993a6;
     font-size: 9px;
     text-transform: uppercase;
+    letter-spacing: .6px;
+}
+
+td strong {
+    font-size: 13px;
 }
 
 
-/* ĆWICZENIA */
-
-.exercise-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 18px;
-}
+/* =========================
+   ĆWICZENIA
+========================= */
 
 .exercise {
     margin-top: 17px;
@@ -329,7 +362,7 @@ th {
 }
 
 .exercise-staff {
-    margin-top: 12px;
+    margin-top: 14px;
     overflow-x: auto;
 }
 
@@ -342,9 +375,9 @@ th {
 
 .answers {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2,1fr);
     gap: 8px;
-    margin-top: 15px;
+    margin-top: 16px;
 }
 
 .answer {
@@ -355,6 +388,10 @@ th {
     color: #514b68;
     font-weight: 800;
     cursor: pointer;
+}
+
+.answer:hover {
+    background: #f5f3fa;
 }
 
 .answer.correct {
@@ -370,9 +407,10 @@ th {
 }
 
 .feedback {
-    min-height: 20px;
-    margin-top: 12px;
+    min-height: 21px;
+    margin-top: 13px;
     text-align: center;
+    color: #777187;
     font-size: 12px;
     font-weight: 800;
 }
@@ -390,7 +428,6 @@ th {
 }
 
 @media(max-width:750px) {
-
     .title {
         font-size: 41px;
     }
@@ -406,46 +443,56 @@ th {
 </style>
 </head>
 
+
 <body>
 
 <main class="page">
+
 <div class="container">
 
 <a href="tonacje.html" class="back">
 ← Tonacje i gamy
 </a>
 
-<header class="header">
-    <h1 class="title">Znaki przykluczowe</h1>
 
-    <p class="subtitle">
-        Naucz się kolejności krzyżyków i bemoli oraz ich
-        prawidłowego zapisu w kluczu wiolinowym.
-    </p>
+<header class="header">
+
+<h1 class="title">
+Znaki przykluczowe
+</h1>
+
+<p class="subtitle">
+Krzyżyki i bemole — kolejność, prawidłowe położenie
+na pięciolinii oraz rozpoznawanie tonacji.
+</p>
+
 </header>
 
 
+<!-- PODSTAWY -->
+
 <section class="card">
 
-<h2>Znaki przykluczowe</h2>
+<h2>Co to są znaki przykluczowe?</h2>
 
 <p class="description">
-Znaki przykluczowe zapisujemy bezpośrednio po kluczu.
-Obowiązują w całym utworze lub do momentu zmiany sygnatury.
+Znaki przykluczowe zapisujemy po kluczu, na początku pięciolinii.
+Określają, które dźwięki mają być stale podwyższane lub obniżane.
+Ich liczba i rodzaj wskazują tonację.
 </p>
 
 <div class="sign-types">
 
 <div class="sign-type">
-    <div class="big-symbol">♯</div>
-    <h3>Krzyżyk</h3>
-    <p>Podwyższa dźwięk o pół tonu.</p>
+<div class="big-symbol">♯</div>
+<h3>Krzyżyk</h3>
+<p>Podwyższa dźwięk o pół tonu.</p>
 </div>
 
 <div class="sign-type">
-    <div class="big-symbol">♭</div>
-    <h3>Bemol</h3>
-    <p>Obniża dźwięk o pół tonu.</p>
+<div class="big-symbol">♭</div>
+<h3>Bemol</h3>
+<p>Obniża dźwięk o pół tonu.</p>
 </div>
 
 </div>
@@ -453,12 +500,14 @@ Obowiązują w całym utworze lub do momentu zmiany sygnatury.
 </section>
 
 
+<!-- KOLEJNOŚĆ -->
+
 <section class="card">
 
 <h2>Kolejność znaków</h2>
 
 <p class="description">
-Znaki przykluczowe pojawiają się zawsze w ustalonej kolejności.
+Krzyżyki i bemole mają zawsze tę samą kolejność.
 </p>
 
 <div class="order-grid">
@@ -466,6 +515,7 @@ Znaki przykluczowe pojawiają się zawsze w ustalonej kolejności.
 <div class="order-box">
 
 <div class="order-title">♯ Krzyżyki</div>
+<div class="order-subtitle">Kolejność dodawania</div>
 
 <div class="order">
 <span class="note">fis</span><span class="arrow">→</span>
@@ -479,9 +529,11 @@ Znaki przykluczowe pojawiają się zawsze w ustalonej kolejności.
 
 </div>
 
+
 <div class="order-box">
 
 <div class="order-title">♭ Bemole</div>
+<div class="order-subtitle">Kolejność dodawania</div>
 
 <div class="order">
 <span class="note">b</span><span class="arrow">→</span>
@@ -500,14 +552,17 @@ Znaki przykluczowe pojawiają się zawsze w ustalonej kolejności.
 </section>
 
 
+<!-- PIĘCIOLINIA -->
+
 <section class="card">
 
-<h2>Zapis na pięciolinii</h2>
+<h2>Zapis znaków przy kluczu</h2>
 
 <p class="description">
-Wybierz sygnaturę. Znaki są ustawione według standardowego
-zapisu w kluczu wiolinowym.
+Wybierz liczbę znaków. Zobaczysz ich położenie
+na pięciolinii w kluczu wiolinowym.
 </p>
+
 
 <div class="selector">
 
@@ -532,9 +587,16 @@ onclick="selectSignature(0,'none',this)">0</button>
 
 </div>
 
+
 <div class="staff-box">
-<svg id="mainStaff" viewBox="0 0 800 190"></svg>
+
+<svg
+id="mainStaff"
+viewBox="0 0 800 190">
+</svg>
+
 </div>
+
 
 <div class="selected-info">
 
@@ -544,12 +606,12 @@ onclick="selectSignature(0,'none',this)">0</button>
 </div>
 
 <div class="info-box">
-<div class="info-label">Dur</div>
+<div class="info-label">Tonacja durowa</div>
 <div class="info-value" id="selectedMajor">C-dur</div>
 </div>
 
 <div class="info-box">
-<div class="info-label">moll</div>
+<div class="info-label">Tonacja molowa</div>
 <div class="info-value" id="selectedMinor">a-moll</div>
 </div>
 
@@ -557,6 +619,8 @@ onclick="selectSignature(0,'none',this)">0</button>
 
 </section>
 
+
+<!-- ROZPOZNAWANIE -->
 
 <section class="card">
 
@@ -566,30 +630,35 @@ onclick="selectSignature(0,'none',this)">0</button>
 
 <div class="tip">
 
-<strong>♯ Krzyżyki</strong>
+<div class="tip-title">
+♯ Tonacje krzyżykowe
+</div>
 
 <p>
-Ostatni krzyżyk znajduje się pół tonu poniżej toniki
-tonacji durowej.
+Ostatni krzyżyk znajduje się pół tonu poniżej
+toniki tonacji durowej.
 </p>
 
 <div class="example">
-fis, cis, gis → gis → A-dur
+fis, cis, gis → ostatni gis → A-dur
 </div>
 
 </div>
+
 
 <div class="tip">
 
-<strong>♭ Bemole</strong>
+<div class="tip-title">
+♭ Tonacje bemolowe
+</div>
 
 <p>
-Przy dwóch lub większej liczbie bemoli przedostatni bemol
-wskazuje tonację durową.
+Jeżeli są co najmniej dwa bemole,
+przedostatni bemol wskazuje tonację durową.
 </p>
 
 <div class="example">
-b, es, as → Es-dur
+b, es, as → przedostatni es → Es-dur
 </div>
 
 </div>
@@ -599,9 +668,15 @@ b, es, as → Es-dur
 </section>
 
 
+<!-- TABELA -->
+
 <section class="card">
 
-<h2>Ściąga</h2>
+<h2>Wszystkie znaki przykluczowe</h2>
+
+<p class="description">
+Tonacje równoległe durowa i molowa mają te same znaki przykluczowe.
+</p>
 
 <div class="table-wrap">
 
@@ -610,6 +685,7 @@ b, es, as → Es-dur
 <thead>
 <tr>
 <th>Znaki</th>
+<th>Dźwięki</th>
 <th>Dur</th>
 <th>moll</th>
 </tr>
@@ -617,23 +693,23 @@ b, es, as → Es-dur
 
 <tbody>
 
-<tr><td>7♭</td><td>Ces-dur</td><td>as-moll</td></tr>
-<tr><td>6♭</td><td>Ges-dur</td><td>es-moll</td></tr>
-<tr><td>5♭</td><td>Des-dur</td><td>b-moll</td></tr>
-<tr><td>4♭</td><td>As-dur</td><td>f-moll</td></tr>
-<tr><td>3♭</td><td>Es-dur</td><td>c-moll</td></tr>
-<tr><td>2♭</td><td>B-dur</td><td>g-moll</td></tr>
-<tr><td>1♭</td><td>F-dur</td><td>d-moll</td></tr>
+<tr><td>7♭</td><td>b, es, as, des, ges, ces, fes</td><td><strong>Ces-dur</strong></td><td>as-moll</td></tr>
+<tr><td>6♭</td><td>b, es, as, des, ges, ces</td><td><strong>Ges-dur</strong></td><td>es-moll</td></tr>
+<tr><td>5♭</td><td>b, es, as, des, ges</td><td><strong>Des-dur</strong></td><td>b-moll</td></tr>
+<tr><td>4♭</td><td>b, es, as, des</td><td><strong>As-dur</strong></td><td>f-moll</td></tr>
+<tr><td>3♭</td><td>b, es, as</td><td><strong>Es-dur</strong></td><td>c-moll</td></tr>
+<tr><td>2♭</td><td>b, es</td><td><strong>B-dur</strong></td><td>g-moll</td></tr>
+<tr><td>1♭</td><td>b</td><td><strong>F-dur</strong></td><td>d-moll</td></tr>
 
-<tr><td>0</td><td>C-dur</td><td>a-moll</td></tr>
+<tr><td>0</td><td>—</td><td><strong>C-dur</strong></td><td>a-moll</td></tr>
 
-<tr><td>1♯</td><td>G-dur</td><td>e-moll</td></tr>
-<tr><td>2♯</td><td>D-dur</td><td>h-moll</td></tr>
-<tr><td>3♯</td><td>A-dur</td><td>fis-moll</td></tr>
-<tr><td>4♯</td><td>E-dur</td><td>cis-moll</td></tr>
-<tr><td>5♯</td><td>H-dur</td><td>gis-moll</td></tr>
-<tr><td>6♯</td><td>Fis-dur</td><td>dis-moll</td></tr>
-<tr><td>7♯</td><td>Cis-dur</td><td>ais-moll</td></tr>
+<tr><td>1♯</td><td>fis</td><td><strong>G-dur</strong></td><td>e-moll</td></tr>
+<tr><td>2♯</td><td>fis, cis</td><td><strong>D-dur</strong></td><td>h-moll</td></tr>
+<tr><td>3♯</td><td>fis, cis, gis</td><td><strong>A-dur</strong></td><td>fis-moll</td></tr>
+<tr><td>4♯</td><td>fis, cis, gis, dis</td><td><strong>E-dur</strong></td><td>cis-moll</td></tr>
+<tr><td>5♯</td><td>fis, cis, gis, dis, ais</td><td><strong>H-dur</strong></td><td>gis-moll</td></tr>
+<tr><td>6♯</td><td>fis, cis, gis, dis, ais, eis</td><td><strong>Fis-dur</strong></td><td>dis-moll</td></tr>
+<tr><td>7♯</td><td>fis, cis, gis, dis, ais, eis, his</td><td><strong>Cis-dur</strong></td><td>ais-moll</td></tr>
 
 </tbody>
 
@@ -644,14 +720,20 @@ b, es, as → Es-dur
 </section>
 
 
+<!-- ĆWICZENIA -->
+
 <section class="card">
 
 <h2>Ćwiczenia</h2>
 
+<p class="description">
+Rozpoznawaj tonacje po znakach i ćwicz kolejność znaków przykluczowych.
+</p>
+
 <div class="exercise-tabs">
 
 <button class="active"
-onclick="setMode('staff',this)">
+onclick="setMode('major',this)">
 Pięciolinia → Dur
 </button>
 
@@ -668,6 +750,7 @@ Mix
 </button>
 
 </div>
+
 
 <div class="exercise">
 
@@ -696,19 +779,19 @@ Następne
 
 <script>
 
-/* =========================================================
+/* =====================================================
    DANE
-========================================================= */
+===================================================== */
 
 const SIGNATURES = [
 
-{count:7,type:"flat", signs:["b","es","as","des","ges","ces","fes"],major:"Ces-dur",minor:"as-moll"},
-{count:6,type:"flat", signs:["b","es","as","des","ges","ces"],major:"Ges-dur",minor:"es-moll"},
-{count:5,type:"flat", signs:["b","es","as","des","ges"],major:"Des-dur",minor:"b-moll"},
-{count:4,type:"flat", signs:["b","es","as","des"],major:"As-dur",minor:"f-moll"},
-{count:3,type:"flat", signs:["b","es","as"],major:"Es-dur",minor:"c-moll"},
-{count:2,type:"flat", signs:["b","es"],major:"B-dur",minor:"g-moll"},
-{count:1,type:"flat", signs:["b"],major:"F-dur",minor:"d-moll"},
+{count:7,type:"flat",signs:["b","es","as","des","ges","ces","fes"],major:"Ces-dur",minor:"as-moll"},
+{count:6,type:"flat",signs:["b","es","as","des","ges","ces"],major:"Ges-dur",minor:"es-moll"},
+{count:5,type:"flat",signs:["b","es","as","des","ges"],major:"Des-dur",minor:"b-moll"},
+{count:4,type:"flat",signs:["b","es","as","des"],major:"As-dur",minor:"f-moll"},
+{count:3,type:"flat",signs:["b","es","as"],major:"Es-dur",minor:"c-moll"},
+{count:2,type:"flat",signs:["b","es"],major:"B-dur",minor:"g-moll"},
+{count:1,type:"flat",signs:["b"],major:"F-dur",minor:"d-moll"},
 
 {count:0,type:"none",signs:[],major:"C-dur",minor:"a-moll"},
 
@@ -729,87 +812,90 @@ const FLAT_ORDER =
 ["b","es","as","des","ges","ces","fes"];
 
 
-/* =========================================================
+/* =====================================================
    SYSTEM PIĘCIOLINII
 
-   Odstęp między liniami = 16 px.
-   Jeden stopień diatoniczny = 8 px.
+   Odstęp linii = 16
+   Połowa odstępu = 8
+===================================================== */
 
-   5 linia F5 = 60
-   4 linia D5 = 76
-   3 linia H4 = 92
-   2 linia G4 = 108
-   1 linia E4 = 124
+const NS = "http://www.w3.org/2000/svg";
 
-========================================================= */
-
-const STAFF_TOP = 60;
+const STAFF_TOP = 55;
 const LINE_GAP = 16;
-const STEP = LINE_GAP / 2;
+const HALF_GAP = 8;
 
 
 /*
-Pozycje wszystkich potrzebnych dźwięków.
+KLUCZ WIOLINOWY
 
-To właśnie te wartości decydują,
-na jakiej linii/polu znajduje się znak.
+G5 = nad 5. linią
+F5 = 5. linia
+E5 = 4. pole
+D5 = 4. linia
+C5 = 3. pole
+H4 = 3. linia
+A4 = 2. pole
+G4 = 2. linia
+F4 = 1. pole
+E4 = 1. linia
 */
 
-const PITCH_Y = {
+const PITCH = {
 
-    G5: STAFF_TOP - STEP,        // 52
-    F5: STAFF_TOP,               // 60
-    E5: STAFF_TOP + STEP,        // 68
-    D5: STAFF_TOP + STEP*2,      // 76
-    C5: STAFF_TOP + STEP*3,      // 84
-    H4: STAFF_TOP + STEP*4,      // 92
-    A4: STAFF_TOP + STEP*5,      // 100
-    G4: STAFF_TOP + STEP*6,      // 108
-    F4: STAFF_TOP + STEP*7,      // 116
-    E4: STAFF_TOP + STEP*8       // 124
+    G5:47,
+    F5:55,
+    E5:63,
+    D5:71,
+    C5:79,
+    H4:87,
+    A4:95,
+    G4:103,
+    F4:111,
+    E4:119
 
 };
 
 
-/* =========================================================
-   POZYCJE SYGNATUR
+/* =====================================================
+   PRAWIDŁOWA SYGNATURA
 
-   ♯:
-   F5 C5 G5 D5 A4 E5 H4
+   KRZYŻYKI:
+   F C G D A E H
 
-   ♭:
-   H4 E5 A4 D5 G4 C5 F4
-========================================================= */
+   BEMOLE:
+   H E A D G C F
+===================================================== */
 
 const SHARP_POSITIONS = [
 
-    PITCH_Y.F5,
-    PITCH_Y.C5,
-    PITCH_Y.G5,
-    PITCH_Y.D5,
-    PITCH_Y.A4,
-    PITCH_Y.E5,
-    PITCH_Y.H4
+    PITCH.F5, // fis
+    PITCH.C5, // cis
+    PITCH.G5, // gis
+    PITCH.D5, // dis
+    PITCH.A4, // ais
+    PITCH.E5, // eis
+    PITCH.H4  // his
 
 ];
 
 
 const FLAT_POSITIONS = [
 
-    PITCH_Y.H4,
-    PITCH_Y.E5,
-    PITCH_Y.A4,
-    PITCH_Y.D5,
-    PITCH_Y.G4,
-    PITCH_Y.C5,
-    PITCH_Y.F4
+    PITCH.H4, // b   = 3. linia
+    PITCH.E5, // es  = 4. pole
+    PITCH.A4, // as  = 2. pole
+    PITCH.D5, // des = 4. linia
+    PITCH.G4, // ges = 2. linia
+    PITCH.C5, // ces = 3. pole
+    PITCH.F4  // fes = 1. pole
 
 ];
 
 
-const NS =
-"http://www.w3.org/2000/svg";
-
+/* =====================================================
+   SVG HELPER
+===================================================== */
 
 function svgEl(name,attrs={}) {
 
@@ -818,20 +904,18 @@ function svgEl(name,attrs={}) {
 
     Object.entries(attrs)
     .forEach(([key,value]) => {
-
         el.setAttribute(key,value);
-
     });
 
     return el;
 }
 
 
-/* =========================================================
+/* =====================================================
    PIĘCIOLINIA
-========================================================= */
+===================================================== */
 
-function drawStaff(svg,width) {
+function drawStaff(svg,width=760) {
 
     for(let i=0;i<5;i++) {
 
@@ -842,7 +926,7 @@ function drawStaff(svg,width) {
 
             svgEl("line",{
 
-                x1:25,
+                x1:28,
                 y1:y,
 
                 x2:width,
@@ -860,19 +944,19 @@ function drawStaff(svg,width) {
 }
 
 
-/* =========================================================
+/* =====================================================
    KLUCZ WIOLINOWY
-========================================================= */
+===================================================== */
 
 function drawClef(svg) {
 
     const clef =
     svgEl("text",{
 
-        x:42,
-        y:127,
+        x:43,
+        y:121,
 
-        "font-size":"78",
+        "font-size":"77",
 
         "font-family":
         "'Noto Music','Segoe UI Symbol','Apple Symbols',serif",
@@ -888,11 +972,11 @@ function drawClef(svg) {
 }
 
 
-/* =========================================================
-   KRZYŻYK SVG
+/* =====================================================
+   KRZYŻYK
 
-   Punkt (x,y) jest DOKŁADNYM środkiem wysokości dźwięku.
-========================================================= */
+   Punkt 0,0 = wysokość dźwięku
+===================================================== */
 
 function drawSharp(svg,x,y) {
 
@@ -902,84 +986,51 @@ function drawSharp(svg,x,y) {
     });
 
 
-    /*
-    Dwie pionowe kreski
-    */
-
     g.appendChild(
-
         svgEl("line",{
-
             x1:-4,
             y1:-14,
-
             x2:-4,
             y2:14,
-
             stroke:"#252238",
             "stroke-width":"1.8"
-
         })
-
     );
 
 
     g.appendChild(
-
         svgEl("line",{
-
             x1:4,
-            y1:-16,
-
+            y1:-15,
             x2:4,
-            y2:12,
-
+            y2:13,
             stroke:"#252238",
             "stroke-width":"1.8"
-
         })
-
     );
 
 
-    /*
-    Dwie poprzeczne kreski.
-    Ich środek wypada na wysokości dźwięku.
-    */
-
     g.appendChild(
-
         svgEl("line",{
-
             x1:-10,
             y1:-5,
-
             x2:10,
             y2:-8,
-
             stroke:"#252238",
             "stroke-width":"2.3"
-
         })
-
     );
 
 
     g.appendChild(
-
         svgEl("line",{
-
             x1:-10,
             y1:6,
-
             x2:10,
             y2:3,
-
             stroke:"#252238",
             "stroke-width":"2.3"
-
         })
-
     );
 
 
@@ -988,18 +1039,17 @@ function drawSharp(svg,x,y) {
 }
 
 
-/* =========================================================
-   BEMOL SVG
+/* =====================================================
+   BEMOL
 
-   y oznacza dokładną wysokość dźwięku.
+   WAŻNE:
+   Punkt (0,0) oznacza dokładną wysokość dźwięku.
 
-   Najważniejsze:
-   punkt zetknięcia "brzuszka" bemola
-   z pionową kreską jest ustawiony na y.
+   Linia/pięciolinia przechodzi przez środek główki
+   bemola, czyli miejsce odpowiadające dźwiękowi.
 
-   Dzięki temu np. b faktycznie leży na H,
-   a nie między H i A.
-========================================================= */
+   Nie centrujemy całego znaku.
+===================================================== */
 
 function drawFlat(svg,x,y) {
 
@@ -1010,30 +1060,10 @@ function drawFlat(svg,x,y) {
 
 
     /*
-    pionowa część bemola
-    */
+       PIONOWA CZĘŚĆ
 
-    g.appendChild(
-
-        svgEl("line",{
-
-            x1:-3,
-            y1:-20,
-
-            x2:-3,
-            y2:11,
-
-            stroke:"#252238",
-            "stroke-width":"1.8",
-            "stroke-linecap":"round"
-
-        })
-
-    );
-
-
-    /*
-    brzuszek bemola
+       Zaczyna się wysoko nad dźwiękiem.
+       Dochodzi nieco poniżej główki.
     */
 
     g.appendChild(
@@ -1041,14 +1071,14 @@ function drawFlat(svg,x,y) {
         svgEl("path",{
 
             d:
-            "M -3 -2 " +
-            "C 9 -10, 13 -4, 11 2 " +
-            "C 9 8, 2 10, -3 12",
+            "M -4 -23 " +
+            "L -4 10",
 
             fill:"none",
 
             stroke:"#252238",
             "stroke-width":"1.8",
+
             "stroke-linecap":"round"
 
         })
@@ -1057,22 +1087,56 @@ function drawFlat(svg,x,y) {
 
 
     /*
-    mała ukośna część nadająca
-    znakowi bardziej nutowy wygląd
+       GŁÓWKA / BRZUSZEK
+
+       Jej ŚRODEK znajduje się dokładnie
+       na wysokości y = 0.
+
+       To jest najważniejsza poprawka.
     */
 
     g.appendChild(
 
-        svgEl("line",{
+        svgEl("path",{
 
-            x1:-2,
-            y1:11,
+            d:
+            "M -4 -4 " +
+            "C 1 -7, 8 -7, 10 -2 " +
+            "C 12 3, 8 8, -4 13",
 
-            x2:8,
-            y2:1,
+            fill:"none",
 
             stroke:"#252238",
-            "stroke-width":"1.5"
+            "stroke-width":"1.9",
+
+            "stroke-linecap":"round",
+            "stroke-linejoin":"round"
+
+        })
+
+    );
+
+
+    /*
+       Delikatna wewnętrzna linia.
+       Nadaje znakowi kształt bliższy
+       normalnemu bemolowi nutowemu.
+    */
+
+    g.appendChild(
+
+        svgEl("path",{
+
+            d:
+            "M -3 11 " +
+            "C 1 7, 5 3, 8 -1",
+
+            fill:"none",
+
+            stroke:"#252238",
+            "stroke-width":"1.25",
+
+            "stroke-linecap":"round"
 
         })
 
@@ -1084,9 +1148,9 @@ function drawFlat(svg,x,y) {
 }
 
 
-/* =========================================================
+/* =====================================================
    RYSOWANIE SYGNATURY
-========================================================= */
+===================================================== */
 
 function renderSignature(
     svg,
@@ -1098,7 +1162,6 @@ function renderSignature(
     svg.innerHTML="";
 
     drawStaff(svg,width);
-
     drawClef(svg);
 
 
@@ -1114,10 +1177,10 @@ function renderSignature(
 
 
     /*
-    Znaki stoją blisko siebie jak w normalnej sygnaturze.
+       Pierwszy znak zaczyna się za kluczem.
     */
 
-    let x=122;
+    let x=125;
 
 
     for(let i=0;i<count;i++) {
@@ -1147,6 +1210,10 @@ function renderSignature(
         }
 
 
+        /*
+           Odstęp znaków jak w zwartej sygnaturze.
+        */
+
         x += 25;
 
     }
@@ -1154,9 +1221,9 @@ function renderSignature(
 }
 
 
-/* =========================================================
+/* =====================================================
    WYBÓR SYGNATURY
-========================================================= */
+===================================================== */
 
 function selectSignature(
     count,
@@ -1164,20 +1231,14 @@ function selectSignature(
     button
 ) {
 
-    document.querySelectorAll(
-        ".selector button"
-    ).forEach(button => {
-
-        button.classList.remove(
-            "active"
-        );
-
+    document
+    .querySelectorAll(".selector button")
+    .forEach(b => {
+        b.classList.remove("active");
     });
 
 
-    button.classList.add(
-        "active"
-    );
+    button.classList.add("active");
 
 
     const data =
@@ -1189,14 +1250,9 @@ function selectSignature(
 
 
     renderSignature(
-
-        document.getElementById(
-            "mainStaff"
-        ),
-
+        document.getElementById("mainStaff"),
         count,
         type
-
     );
 
 
@@ -1205,9 +1261,7 @@ function selectSignature(
     ).textContent =
 
         data.signs.length
-
         ? data.signs.join(", ")
-
         : "brak";
 
 
@@ -1225,11 +1279,11 @@ function selectSignature(
 }
 
 
-/* =========================================================
+/* =====================================================
    ĆWICZENIA
-========================================================= */
+===================================================== */
 
-let mode="staff";
+let mode="major";
 
 
 function setMode(newMode,button) {
@@ -1237,21 +1291,14 @@ function setMode(newMode,button) {
     mode=newMode;
 
 
-    document.querySelectorAll(
-        ".exercise-tabs button"
-    ).forEach(button => {
-
-        button.classList.remove(
-            "active"
-        );
-
+    document
+    .querySelectorAll(".exercise-tabs button")
+    .forEach(b => {
+        b.classList.remove("active");
     });
 
 
-    button.classList.add(
-        "active"
-    );
-
+    button.classList.add("active");
 
     newQuestion();
 
@@ -1279,9 +1326,9 @@ function shuffle(array) {
 }
 
 
-/* =========================================================
+/* =====================================================
    NOWE PYTANIE
-========================================================= */
+===================================================== */
 
 function newQuestion() {
 
@@ -1297,7 +1344,7 @@ function newQuestion() {
 
         currentMode =
         random([
-            "staff",
+            "major",
             "minor",
             "order"
         ]);
@@ -1305,7 +1352,7 @@ function newQuestion() {
     }
 
 
-    if(currentMode==="staff") {
+    if(currentMode==="major") {
         staffQuestion(false);
     }
 
@@ -1320,9 +1367,9 @@ function newQuestion() {
 }
 
 
-/* =========================================================
+/* =====================================================
    PYTANIE Z PIĘCIOLINII
-========================================================= */
+===================================================== */
 
 function staffQuestion(minor=false) {
 
@@ -1336,15 +1383,10 @@ function staffQuestion(minor=false) {
 
 
     renderSignature(
-
-        document.getElementById(
-            "exerciseStaff"
-        ),
-
+        document.getElementById("exerciseStaff"),
         data.count,
         data.type,
         700
-
     );
 
 
@@ -1365,20 +1407,16 @@ function staffQuestion(minor=false) {
 
     const wrong =
     shuffle(
-
         possibilities.filter(
             item=>item!==correct
         )
-
     ).slice(0,3);
 
 
     showQuestion(
 
         minor
-
         ? "Jaka tonacja molowa ma taką sygnaturę?"
-
         : "Jaka tonacja durowa ma taką sygnaturę?",
 
         "Rozpoznaj rodzaj i liczbę znaków.",
@@ -1395,9 +1433,9 @@ function staffQuestion(minor=false) {
 }
 
 
-/* =========================================================
+/* =====================================================
    KOLEJNOŚĆ
-========================================================= */
+===================================================== */
 
 function orderQuestion() {
 
@@ -1422,6 +1460,10 @@ function orderQuestion() {
     );
 
 
+    const current =
+    order[index];
+
+
     const correct =
     order[index+1];
 
@@ -1435,25 +1477,27 @@ function orderQuestion() {
 
     const wrong =
     shuffle(
-
         all.filter(
             item=>item!==correct
         )
-
     ).slice(0,3);
 
 
     showQuestion(
 
         "Jaki znak występuje po „"
-        + order[index]
-        + "”?",
+        + current +
+        "” w kolejności "
+        +
+        (
+            sharp
+            ? "krzyżyków?"
+            : "bemoli?"
+        ),
 
         sharp
-
-        ? "Kolejność krzyżyków"
-
-        : "Kolejność bemoli",
+        ? "fis → cis → gis → dis → ais → eis → his"
+        : "b → es → as → des → ges → ces → fes",
 
         correct,
 
@@ -1467,9 +1511,9 @@ function orderQuestion() {
 }
 
 
-/* =========================================================
-   WYŚWIETLANIE
-========================================================= */
+/* =====================================================
+   WYŚWIETLANIE PYTANIA
+===================================================== */
 
 function showQuestion(
     question,
@@ -1503,17 +1547,11 @@ function showQuestion(
     .forEach(option => {
 
         const button =
-        document.createElement(
-            "button"
-        );
+        document.createElement("button");
 
 
-        button.className =
-        "answer";
-
-
-        button.textContent =
-        option;
+        button.className="answer";
+        button.textContent=option;
 
 
         button.onclick =
@@ -1524,18 +1562,16 @@ function showQuestion(
         );
 
 
-        box.appendChild(
-            button
-        );
+        box.appendChild(button);
 
     });
 
 }
 
 
-/* =========================================================
-   ODPOWIEDŹ
-========================================================= */
+/* =====================================================
+   SPRAWDZANIE
+===================================================== */
 
 function checkAnswer(
     button,
@@ -1550,7 +1586,7 @@ function checkAnswer(
 
 
     buttons.forEach(
-        item=>item.disabled=true
+        b=>b.disabled=true
     );
 
 
@@ -1575,13 +1611,13 @@ function checkAnswer(
         );
 
 
-        buttons.forEach(item => {
+        buttons.forEach(b => {
 
             if(
-                item.textContent===correct
+                b.textContent===correct
             ) {
 
-                item.classList.add(
+                b.classList.add(
                     "correct"
                 );
 
@@ -1601,21 +1637,15 @@ function checkAnswer(
 }
 
 
-/* =========================================================
+/* =====================================================
    START
-========================================================= */
+===================================================== */
 
 renderSignature(
-
-    document.getElementById(
-        "mainStaff"
-    ),
-
+    document.getElementById("mainStaff"),
     0,
     "none"
-
 );
-
 
 newQuestion();
 
