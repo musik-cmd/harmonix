@@ -1,47 +1,179 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Harmonix</title>
-<link rel="stylesheet" href="style.css"></head>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* Link obejmuje cały kafelek */
+
+        .card a {
+            display: block;
+            height: 100%;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            color: inherit;
+        }
+
+
+        /* Mały napis nad działami */
+
+        .section-label {
+            margin-top: 38px;
+            margin-bottom: 15px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+
+            color: #8b8698;
+        }
+
+    </style>
+
+</head>
+
 
 <body>
 
-    <main class="hero">
-        <div class="container">
 
-            <div class="logo">Harmonix</div>
+<main class="hero">
 
-            <div class="subtitle">
-                Naucz się słyszeć harmonię.
+
+    <div class="container">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+            Harmonix
+        </div>
+
+
+        <!-- PODTYTUŁ -->
+
+        <div class="subtitle">
+            Naucz się słyszeć, rozumieć i budować muzykę.
+        </div>
+
+
+        <!-- DZIAŁY -->
+
+        <div class="section-label">
+            Wybierz dział
+        </div>
+
+
+        <div class="cards">
+
+
+            <!-- INTERWAŁY -->
+
+            <div class="card">
+
+                <a href="interwaly.html">
+
+                    <div class="icon">
+                        🎵
+                    </div>
+
+                    <h2>
+                        Interwały
+                    </h2>
+
+                    <p>
+                        Poznaj interwały, posłuchaj ich brzmienia
+                        i sprawdź się w ćwiczeniach.
+                    </p>
+
+                </a>
+
             </div>
 
-            <div class="cards">
 
-                <div class="card">
-    <a href="teoria.html">
-        <div class="icon">🎼</div>
-        <h2>Teoria</h2>
-        <p>Akordy, funkcje, tonacje, kadencje i najważniejsze zasady harmonii.</p>
-    </a>
-</div>
-                <div class="card">
-                    <div class="icon">🎧</div>
-                    <h2>Słuch</h2>
-                    <p>Ćwicz rozpoznawanie interwałów, akordów i następstw harmonicznych.</p>
+            <!-- AKORDY — NA PÓŹNIEJ -->
+
+            <div class="card">
+
+                <div class="icon">
+                    🎹
                 </div>
 
-                <div class="card">
-                    <div class="icon">🎹</div>
-                    <h2>Ćwiczenia</h2>
-                    <p>Harmonizuj soprany, buduj akordy i rozwiązuj zadania krok po kroku.</p>
-                </div>
+                <h2>
+                    Akordy
+                </h2>
+
+                <p>
+                    Budowa akordów, przewroty, odsłuch
+                    i ćwiczenia.
+                </p>
 
             </div>
+
+
+            <!-- TONACJE — NA PÓŹNIEJ -->
+
+            <div class="card">
+
+                <div class="icon">
+                    ♯
+                </div>
+
+                <h2>
+                    Tonacje
+                </h2>
+
+                <p>
+                    Gamy, znaki przykluczowe, koło kwintowe
+                    i rozpoznawanie tonacji.
+                </p>
+
+            </div>
+
+
+            <!-- HARMONIA — NA PÓŹNIEJ -->
+
+            <div class="card">
+
+                <div class="icon">
+                    🎼
+                </div>
+
+                <h2>
+                    Harmonia
+                </h2>
+
+                <p>
+                    Funkcje harmoniczne, kadencje,
+                    harmonizacja i prowadzenie głosów.
+                </p>
+
+            </div>
+
 
         </div>
-    </main>
+
+
+    </div>
+
+
+</main>
+
 
 </body>
+
 </html>
