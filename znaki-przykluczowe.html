@@ -42,6 +42,10 @@ body {
     font-weight: 700;
 }
 
+.back:hover {
+    color: #252238;
+}
+
 .header {
     text-align: center;
     margin-bottom: 38px;
@@ -61,6 +65,11 @@ body {
     font-size: 18px;
     line-height: 1.5;
 }
+
+
+/* =========================================
+   KARTY
+========================================= */
 
 .card {
     margin-bottom: 18px;
@@ -82,9 +91,10 @@ body {
     line-height: 1.6;
 }
 
-/* ==============================
-   DWA RODZAJE
-============================== */
+
+/* =========================================
+   PODSTAWY
+========================================= */
 
 .sign-types {
     display: grid;
@@ -102,8 +112,9 @@ body {
 
 .big-symbol {
     margin-bottom: 10px;
-    font-size: 42px;
-    font-weight: 800;
+    font-family: "Noto Music", "Segoe UI Symbol", serif;
+    font-size: 43px;
+    line-height: 1;
 }
 
 .sign-type h3 {
@@ -115,12 +126,13 @@ body {
     margin: 0;
     color: #777187;
     font-size: 11px;
-    line-height: 1.5;
+    line-height: 1.55;
 }
 
-/* ==============================
+
+/* =========================================
    KOLEJNOŚĆ
-============================== */
+========================================= */
 
 .order-grid {
     display: grid;
@@ -171,9 +183,10 @@ body {
     font-size: 12px;
 }
 
-/* ==============================
+
+/* =========================================
    PIĘCIOLINIA
-============================== */
+========================================= */
 
 .staff-box {
     margin-top: 20px;
@@ -191,9 +204,10 @@ body {
     height: 190px;
 }
 
-/* ==============================
-   INTERAKTYWNE
-============================== */
+
+/* =========================================
+   WYBÓR ZNAKÓW
+========================================= */
 
 .selector {
     display: flex;
@@ -218,9 +232,14 @@ body {
     color: #252238;
 }
 
+
+/* =========================================
+   INFORMACJE
+========================================= */
+
 .selected-info {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3,1fr);
     gap: 10px;
     margin-top: 14px;
 }
@@ -246,9 +265,10 @@ body {
     font-weight: 800;
 }
 
-/* ==============================
-   ŚCIĄGA
-============================== */
+
+/* =========================================
+   ZASADY
+========================================= */
 
 .tip-grid {
     display: grid;
@@ -279,7 +299,7 @@ body {
 
 .example {
     margin-top: 11px;
-    padding: 10px;
+    padding: 11px;
     background: white;
     border-radius: 9px;
     color: #514b68;
@@ -287,9 +307,10 @@ body {
     font-weight: 800;
 }
 
-/* ==============================
+
+/* =========================================
    TABELA
-============================== */
+========================================= */
 
 .table-wrap {
     margin-top: 20px;
@@ -298,7 +319,7 @@ body {
 
 table {
     width: 100%;
-    min-width: 650px;
+    min-width: 680px;
     border-collapse: collapse;
 }
 
@@ -321,9 +342,10 @@ td strong {
     font-size: 13px;
 }
 
-/* ==============================
+
+/* =========================================
    ĆWICZENIA
-============================== */
+========================================= */
 
 .exercise-tabs {
     display: flex;
@@ -370,6 +392,7 @@ td strong {
 
 .exercise-staff {
     margin-top: 14px;
+    padding: 5px 10px;
     overflow-x: auto;
 }
 
@@ -377,7 +400,7 @@ td strong {
     display: block;
     width: 100%;
     min-width: 650px;
-    height: 160px;
+    height: 165px;
 }
 
 .answers {
@@ -395,6 +418,10 @@ td strong {
     color: #514b68;
     font-weight: 800;
     cursor: pointer;
+}
+
+.answer:hover {
+    background: #f5f3fa;
 }
 
 .answer.correct {
@@ -430,6 +457,11 @@ td strong {
     cursor: pointer;
 }
 
+
+/* =========================================
+   MOBILE
+========================================= */
+
 @media(max-width:750px) {
 
     .title {
@@ -454,15 +486,18 @@ td strong {
 </style>
 </head>
 
+
 <body>
 
 <main class="page">
 
 <div class="container">
 
+
 <a href="tonacje.html" class="back">
 ← Tonacje i gamy
 </a>
+
 
 <header class="header">
 
@@ -471,26 +506,28 @@ Znaki przykluczowe
 </h1>
 
 <p class="subtitle">
-Krzyżyki i bemole, ich kolejność, zapis przy kluczu
-oraz szybkie rozpoznawanie tonacji.
+Krzyżyki i bemole, ich prawidłowa kolejność,
+zapis na pięciolinii oraz rozpoznawanie tonacji.
 </p>
 
 </header>
 
 
+
 <!-- =========================================
-     CO TO SĄ ZNAKI
+     PODSTAWY
 ========================================= -->
 
 <section class="card">
 
-<h2>Znaki przykluczowe</h2>
+<h2>Co to są znaki przykluczowe?</h2>
 
 <p class="description">
-Znaki przykluczowe zapisujemy na początku pięciolinii, bezpośrednio po kluczu.
-Obowiązują one w całym utworze lub do momentu zmiany tonacji.
-Ich liczba i rodzaj pozwalają określić możliwą tonację utworu.
+Znaki przykluczowe zapisujemy po kluczu, na początku pięciolinii.
+Określają one, które dźwięki mają być stale podwyższane lub obniżane.
+Ich liczba i rodzaj wskazują tonację.
 </p>
+
 
 <div class="sign-types">
 
@@ -502,10 +539,11 @@ Ich liczba i rodzaj pozwalają określić możliwą tonację utworu.
 
 <p>
 Podwyższa dźwięk o pół tonu.
-Tonacje krzyżykowe otrzymują znaki zawsze w tej samej kolejności.
+Krzyżyki pojawiają się przy kluczu zawsze w ustalonej kolejności.
 </p>
 
 </div>
+
 
 <div class="sign-type">
 
@@ -515,7 +553,7 @@ Tonacje krzyżykowe otrzymują znaki zawsze w tej samej kolejności.
 
 <p>
 Obniża dźwięk o pół tonu.
-Kolejność bemoli jest odwrotnością kolejności krzyżyków.
+Bemole również mają stałą kolejność zapisu przy kluczu.
 </p>
 
 </div>
@@ -523,6 +561,7 @@ Kolejność bemoli jest odwrotnością kolejności krzyżyków.
 </div>
 
 </section>
+
 
 
 <!-- =========================================
@@ -534,11 +573,13 @@ Kolejność bemoli jest odwrotnością kolejności krzyżyków.
 <h2>Kolejność znaków</h2>
 
 <p class="description">
-Tych dwóch kolejności warto nauczyć się na pamięć.
-Nie zmieniają się niezależnie od tonacji.
+Kolejność krzyżyków i bemoli jest stała.
+W zapisie przykluczowym nie możemy dowolnie zmieniać ich kolejności.
 </p>
 
+
 <div class="order-grid">
+
 
 <div class="order-box">
 
@@ -547,7 +588,7 @@ Nie zmieniają się niezależnie od tonacji.
 </div>
 
 <div class="order-subtitle">
-Kolejność dodawania
+Kolejność dodawania znaków
 </div>
 
 <div class="order">
@@ -577,6 +618,7 @@ Kolejność dodawania
 </div>
 
 
+
 <div class="order-box">
 
 <div class="order-title">
@@ -584,7 +626,7 @@ Kolejność dodawania
 </div>
 
 <div class="order-subtitle">
-Kolejność dodawania
+Kolejność dodawania znaków
 </div>
 
 <div class="order">
@@ -613,27 +655,31 @@ Kolejność dodawania
 
 </div>
 
+
 </div>
 
 </section>
 
 
+
 <!-- =========================================
-     ZAPIS NA PIĘCIOLINII
+     PIĘCIOLINIA
 ========================================= -->
 
 <section class="card">
 
-<h2>Zapis przy kluczu</h2>
+<h2>Znaki przy kluczu</h2>
 
 <p class="description">
-Wybierz liczbę znaków. Zobaczysz ich prawidłową kolejność
-i położenie na pięciolinii.
+Kliknij liczbę znaków. Harmonix pokaże ich prawidłową
+kolejność i dokładne położenie na pięciolinii w kluczu wiolinowym.
 </p>
+
 
 <div class="selector">
 
-<button class="active"
+<button
+class="active"
 onclick="selectSignature(0,'none',this)">
 0
 </button>
@@ -676,7 +722,9 @@ viewBox="0 0 800 190">
 Znaki
 </div>
 
-<div class="info-value" id="selectedSigns">
+<div
+class="info-value"
+id="selectedSigns">
 brak
 </div>
 
@@ -689,7 +737,9 @@ brak
 Tonacja durowa
 </div>
 
-<div class="info-value" id="selectedMajor">
+<div
+class="info-value"
+id="selectedMajor">
 C-dur
 </div>
 
@@ -702,7 +752,9 @@ C-dur
 Tonacja molowa
 </div>
 
-<div class="info-value" id="selectedMinor">
+<div
+class="info-value"
+id="selectedMinor">
 a-moll
 </div>
 
@@ -713,21 +765,23 @@ a-moll
 </section>
 
 
+
 <!-- =========================================
-     JAK ROZPOZNAĆ
+     ROZPOZNAWANIE
 ========================================= -->
 
 <section class="card">
 
-<h2>Jak szybko rozpoznać tonację?</h2>
+<h2>Jak rozpoznać tonację po znakach?</h2>
 
 <p class="description">
-Nie musisz za każdym razem odtwarzać całego koła kwintowego.
-Dla znaków krzyżykowych i bemolowych istnieją proste zasady.
+Są dwa szybkie sposoby, dzięki którym nie trzeba za każdym razem
+odtwarzać całego koła kwintowego.
 </p>
 
 
 <div class="tip-grid">
+
 
 <div class="tip">
 
@@ -736,12 +790,12 @@ Dla znaków krzyżykowych i bemolowych istnieją proste zasady.
 </div>
 
 <p>
-Spójrz na ostatni krzyżyk przy kluczu.
-Tonika tonacji durowej znajduje się pół tonu wyżej.
+Znajdź ostatni krzyżyk. Dźwięk znajdujący się pół tonu wyżej
+jest toniką tonacji durowej.
 </p>
 
 <div class="example">
-fis, cis, gis → ostatni: gis → pół tonu wyżej: A → A-dur
+fis – cis – gis → ostatni gis → pół tonu wyżej A → A-dur
 </div>
 
 </div>
@@ -754,19 +808,21 @@ fis, cis, gis → ostatni: gis → pół tonu wyżej: A → A-dur
 </div>
 
 <p>
-Przy co najmniej dwóch bemolach przedostatni bemol
-wskazuje nazwę tonacji durowej.
+Jeżeli mamy co najmniej dwa bemole,
+przedostatni bemol wskazuje nazwę tonacji durowej.
 </p>
 
 <div class="example">
-b, es, as → przedostatni: es → Es-dur
+b – es – as → przedostatni es → Es-dur
 </div>
 
 </div>
+
 
 </div>
 
 </section>
+
 
 
 <!-- =========================================
@@ -775,7 +831,13 @@ b, es, as → przedostatni: es → Es-dur
 
 <section class="card">
 
-<h2>Tonacje według liczby znaków</h2>
+<h2>Wszystkie znaki przykluczowe</h2>
+
+<p class="description">
+Tonacja durowa i odpowiadająca jej tonacja molowa
+mają ten sam zestaw znaków przykluczowych.
+</p>
+
 
 <div class="table-wrap">
 
@@ -785,7 +847,7 @@ b, es, as → przedostatni: es → Es-dur
 
 <tr>
 <th>Znaki</th>
-<th>Jakie?</th>
+<th>Dźwięki</th>
 <th>Dur</th>
 <th>moll</th>
 </tr>
@@ -908,17 +970,18 @@ b, es, as → przedostatni: es → Es-dur
 </section>
 
 
+
 <!-- =========================================
      ĆWICZENIA
 ========================================= -->
 
 <section class="card">
 
-<h2>Ćwiczenia — znaki przykluczowe</h2>
+<h2>Ćwiczenia</h2>
 
 <p class="description">
-Rozpoznawaj znaki na pięciolinii, określaj tonacje
-i ćwicz kolejność krzyżyków oraz bemoli.
+Ćwicz rozpoznawanie znaków dokładnie tak,
+jak widzisz je w normalnym zapisie nutowym.
 </p>
 
 
@@ -951,9 +1014,15 @@ Mix
 
 <div class="exercise">
 
-<div class="question" id="question"></div>
+<div
+class="question"
+id="question">
+</div>
 
-<div class="hint" id="hint"></div>
+<div
+class="hint"
+id="hint">
+</div>
 
 
 <div
@@ -962,17 +1031,25 @@ id="exerciseStaffBox">
 
 <svg
 id="exerciseStaff"
-viewBox="0 0 750 160">
+viewBox="0 0 750 165">
 </svg>
 
 </div>
 
 
-<div class="answers" id="answers"></div>
+<div
+class="answers"
+id="answers">
+</div>
 
-<div class="feedback" id="feedback"></div>
+<div
+class="feedback"
+id="feedback">
+</div>
 
-<button class="next" onclick="newQuestion()">
+<button
+class="next"
+onclick="newQuestion()">
 Następne
 </button>
 
@@ -980,892 +1057,1060 @@ Następne
 
 </section>
 
-</div>
 
+</div>
 </main>
 
 
 <script>
 
-/* =====================================================
+/* =========================================================
    DANE
-===================================================== */
+========================================================= */
 
 const SIGNATURES = [
 
 {
-count:7,
-type:"flat",
-signs:["b","es","as","des","ges","ces","fes"],
-major:"Ces-dur",
-minor:"as-moll"
+    count:7,
+    type:"flat",
+    signs:["b","es","as","des","ges","ces","fes"],
+    major:"Ces-dur",
+    minor:"as-moll"
 },
 
 {
-count:6,
-type:"flat",
-signs:["b","es","as","des","ges","ces"],
-major:"Ges-dur",
-minor:"es-moll"
+    count:6,
+    type:"flat",
+    signs:["b","es","as","des","ges","ces"],
+    major:"Ges-dur",
+    minor:"es-moll"
 },
 
 {
-count:5,
-type:"flat",
-signs:["b","es","as","des","ges"],
-major:"Des-dur",
-minor:"b-moll"
+    count:5,
+    type:"flat",
+    signs:["b","es","as","des","ges"],
+    major:"Des-dur",
+    minor:"b-moll"
 },
 
 {
-count:4,
-type:"flat",
-signs:["b","es","as","des"],
-major:"As-dur",
-minor:"f-moll"
+    count:4,
+    type:"flat",
+    signs:["b","es","as","des"],
+    major:"As-dur",
+    minor:"f-moll"
 },
 
 {
-count:3,
-type:"flat",
-signs:["b","es","as"],
-major:"Es-dur",
-minor:"c-moll"
+    count:3,
+    type:"flat",
+    signs:["b","es","as"],
+    major:"Es-dur",
+    minor:"c-moll"
 },
 
 {
-count:2,
-type:"flat",
-signs:["b","es"],
-major:"B-dur",
-minor:"g-moll"
+    count:2,
+    type:"flat",
+    signs:["b","es"],
+    major:"B-dur",
+    minor:"g-moll"
 },
 
 {
-count:1,
-type:"flat",
-signs:["b"],
-major:"F-dur",
-minor:"d-moll"
+    count:1,
+    type:"flat",
+    signs:["b"],
+    major:"F-dur",
+    minor:"d-moll"
 },
 
 {
-count:0,
-type:"none",
-signs:[],
-major:"C-dur",
-minor:"a-moll"
+    count:0,
+    type:"none",
+    signs:[],
+    major:"C-dur",
+    minor:"a-moll"
 },
 
 {
-count:1,
-type:"sharp",
-signs:["fis"],
-major:"G-dur",
-minor:"e-moll"
+    count:1,
+    type:"sharp",
+    signs:["fis"],
+    major:"G-dur",
+    minor:"e-moll"
 },
 
 {
-count:2,
-type:"sharp",
-signs:["fis","cis"],
-major:"D-dur",
-minor:"h-moll"
+    count:2,
+    type:"sharp",
+    signs:["fis","cis"],
+    major:"D-dur",
+    minor:"h-moll"
 },
 
 {
-count:3,
-type:"sharp",
-signs:["fis","cis","gis"],
-major:"A-dur",
-minor:"fis-moll"
+    count:3,
+    type:"sharp",
+    signs:["fis","cis","gis"],
+    major:"A-dur",
+    minor:"fis-moll"
 },
 
 {
-count:4,
-type:"sharp",
-signs:["fis","cis","gis","dis"],
-major:"E-dur",
-minor:"cis-moll"
+    count:4,
+    type:"sharp",
+    signs:["fis","cis","gis","dis"],
+    major:"E-dur",
+    minor:"cis-moll"
 },
 
 {
-count:5,
-type:"sharp",
-signs:["fis","cis","gis","dis","ais"],
-major:"H-dur",
-minor:"gis-moll"
+    count:5,
+    type:"sharp",
+    signs:["fis","cis","gis","dis","ais"],
+    major:"H-dur",
+    minor:"gis-moll"
 },
 
 {
-count:6,
-type:"sharp",
-signs:["fis","cis","gis","dis","ais","eis"],
-major:"Fis-dur",
-minor:"dis-moll"
+    count:6,
+    type:"sharp",
+    signs:["fis","cis","gis","dis","ais","eis"],
+    major:"Fis-dur",
+    minor:"dis-moll"
 },
 
 {
-count:7,
-type:"sharp",
-signs:["fis","cis","gis","dis","ais","eis","his"],
-major:"Cis-dur",
-minor:"ais-moll"
+    count:7,
+    type:"sharp",
+    signs:["fis","cis","gis","dis","ais","eis","his"],
+    major:"Cis-dur",
+    minor:"ais-moll"
 }
 
 ];
 
 
-const SHARP_ORDER =
-["fis","cis","gis","dis","ais","eis","his"];
+const SHARP_ORDER = [
+    "fis",
+    "cis",
+    "gis",
+    "dis",
+    "ais",
+    "eis",
+    "his"
+];
 
-const FLAT_ORDER =
-["b","es","as","des","ges","ces","fes"];
+
+const FLAT_ORDER = [
+    "b",
+    "es",
+    "as",
+    "des",
+    "ges",
+    "ces",
+    "fes"
+];
 
 
-/* =====================================================
+/* =========================================================
    SVG
-===================================================== */
+========================================================= */
 
 const NS =
 "http://www.w3.org/2000/svg";
 
 
-function svgEl(name,attrs={}) {
+function svgEl(name, attributes={}) {
 
-const el =
-document.createElementNS(NS,name);
+    const el =
+    document.createElementNS(NS,name);
 
-Object.entries(attrs)
-.forEach(([key,value])=>{
-    el.setAttribute(key,value);
-});
+    Object.entries(attributes)
+    .forEach(([key,value]) => {
 
-return el;
+        el.setAttribute(
+            key,
+            value
+        );
 
+    });
+
+    return el;
 }
 
 
-/* =====================================================
+/* =========================================================
    PIĘCIOLINIA
-===================================================== */
 
-function drawStaff(svg,width=760) {
+   y = 60  -> 5. linia = F
+   y = 74  -> 4. linia = D
+   y = 88  -> 3. linia = H
+   y = 102 -> 2. linia = G
+   y = 116 -> 1. linia = E
 
-for(let i=0;i<5;i++) {
+========================================================= */
 
-const y =
-65+i*14;
+function drawStaff(svg, width=760) {
 
-svg.appendChild(
-svgEl("line",{
-x1:30,
-y1:y,
-x2:width,
-y2:y,
-stroke:"#373345",
-"stroke-width":"1.3"
-})
-);
+    const staffLines = [
+        60,
+        74,
+        88,
+        102,
+        116
+    ];
+
+    staffLines.forEach(y => {
+
+        svg.appendChild(
+
+            svgEl("line",{
+
+                x1:30,
+                y1:y,
+
+                x2:width,
+                y2:y,
+
+                stroke:"#373345",
+                "stroke-width":"1.35"
+
+            })
+
+        );
+
+    });
 
 }
 
-}
 
-
-/* =====================================================
-   KLUCZ
-===================================================== */
+/* =========================================================
+   KLUCZ WIOLINOWY
+========================================================= */
 
 function drawClef(svg) {
 
-const text =
-svgEl("text",{
-x:46,
-y:123,
-"font-size":"75",
-"font-family":
-"Bravura, Noto Music, Segoe UI Symbol, Apple Symbols, serif",
-fill:"#252238"
-});
+    const clef =
+    svgEl("text",{
 
-text.textContent="𝄞";
+        x:46,
+        y:119,
 
-svg.appendChild(text);
+        "font-size":"76",
+
+        "font-family":
+        "Bravura, Noto Music, Segoe UI Symbol, Apple Symbols, serif",
+
+        fill:"#252238"
+
+    });
+
+    clef.textContent="𝄞";
+
+    svg.appendChild(clef);
 
 }
 
 
-/* =====================================================
-   KRZYŻYK
-===================================================== */
+/* =========================================================
+   SYMBOL ♯
+========================================================= */
 
 function drawSharp(svg,x,y) {
 
-[
-[-4,-14,-4,14],
-[4,-16,4,12],
-[-10,-5,10,-8],
-[-10,6,10,3]
+    const sign =
+    svgEl("text",{
 
-].forEach((p,index)=>{
+        x:x,
+        y:y + 10,
 
-svg.appendChild(
-svgEl("line",{
-x1:x+p[0],
-y1:y+p[1],
-x2:x+p[2],
-y2:y+p[3],
-stroke:"#252238",
-"stroke-width":
-index<2 ? 1.7 : 2.2
-})
-);
+        "text-anchor":"middle",
 
-});
+        "font-size":"30",
+
+        "font-family":
+        "Bravura, Noto Music, Segoe UI Symbol, Apple Symbols, serif",
+
+        fill:"#252238"
+
+    });
+
+    sign.textContent="♯";
+
+    svg.appendChild(sign);
 
 }
 
 
-/* =====================================================
-   BEMOL
-===================================================== */
+/* =========================================================
+   SYMBOL ♭
+========================================================= */
 
 function drawFlat(svg,x,y) {
 
-svg.appendChild(
-svgEl("line",{
-x1:x-2,
-y1:y-17,
-x2:x-2,
-y2:y+12,
-stroke:"#252238",
-"stroke-width":"1.8"
-})
-);
+    const sign =
+    svgEl("text",{
 
-svg.appendChild(
-svgEl("path",{
-d:
-`M ${x-2} ${y-2}
-C ${x+12} ${y-10},
-${x+13} ${y+8},
-${x-2} ${y+12}`,
-fill:"none",
-stroke:"#252238",
-"stroke-width":"1.8"
-})
-);
+        x:x,
+        y:y + 11,
+
+        "text-anchor":"middle",
+
+        "font-size":"33",
+
+        "font-family":
+        "Bravura, Noto Music, Segoe UI Symbol, Apple Symbols, serif",
+
+        fill:"#252238"
+
+    });
+
+    sign.textContent="♭";
+
+    svg.appendChild(sign);
 
 }
 
 
-/* =====================================================
-   POZYCJE
-===================================================== */
+/* =========================================================
+   DOKŁADNE POZYCJE KRZYŻYKÓW
+   W KLUCZU WIOLINOWYM
 
-/*
-Klucz wiolinowy.
-
-Krzyżyki:
-fis cis gis dis ais eis his
-
-Bemole:
-b es as des ges ces fes
-*/
+   fis  = F5
+   cis  = C5
+   gis  = G5
+   dis  = D5
+   ais  = A4
+   eis  = E5
+   his  = H4
+========================================================= */
 
 const SHARP_Y = [
-58,
-79,
-51,
-72,
-93,
-65,
-86
+
+    60,   // fis  - 5. linia
+
+    81,   // cis  - pole między D i H
+
+    53,   // gis  - pole nad 5. linią
+
+    74,   // dis  - 4. linia
+
+    95,   // ais  - pole między H i G
+
+    67,   // eis  - pole między F i D
+
+    88    // his  - 3. linia
+
 ];
+
+
+/* =========================================================
+   DOKŁADNE POZYCJE BEMOLI
+   W KLUCZU WIOLINOWYM
+
+   b    = B4 / H♭
+   es   = E♭5
+   as   = A♭4
+   des  = D♭5
+   ges  = G♭4
+   ces  = C♭5
+   fes  = F♭4
+========================================================= */
 
 const FLAT_Y = [
-86,
-65,
-93,
-72,
-100,
-79,
-107
+
+    88,   // b    - 3. linia
+
+    67,   // es   - pole między F i D
+
+    95,   // as   - pole między H i G
+
+    74,   // des  - 4. linia
+
+    102,  // ges  - 2. linia
+
+    81,   // ces  - pole między D i H
+
+    109   // fes  - pole między G i E
+
 ];
 
 
-/* =====================================================
-   RYSOWANIE SYGNATURY
-===================================================== */
+/* =========================================================
+   RYSOWANIE ZNAKÓW
+========================================================= */
 
 function renderSignature(
-svg,
-count,
-type,
-width=760
+    svg,
+    count,
+    type,
+    width=760
 ) {
 
-svg.innerHTML="";
+    svg.innerHTML="";
 
-drawStaff(svg,width);
-drawClef(svg);
+    drawStaff(
+        svg,
+        width
+    );
 
-if(type==="none")
-return;
-
-
-let x=120;
+    drawClef(svg);
 
 
-for(let i=0;i<count;i++) {
+    if(type==="none") {
+        return;
+    }
 
-if(type==="sharp") {
 
-drawSharp(
-svg,
-x,
-SHARP_Y[i]
-);
+    let x=125;
+
+
+    for(let i=0;i<count;i++) {
+
+        if(type==="sharp") {
+
+            drawSharp(
+                svg,
+                x,
+                SHARP_Y[i]
+            );
+
+        }
+
+        else {
+
+            drawFlat(
+                svg,
+                x,
+                FLAT_Y[i]
+            );
+
+        }
+
+        x += 27;
+
+    }
 
 }
 
-else {
 
-drawFlat(
-svg,
-x,
-FLAT_Y[i]
-);
-
-}
-
-x+=25;
-
-}
-
-}
-
-
-/* =====================================================
-   WYBÓR
-===================================================== */
+/* =========================================================
+   WYBÓR ZNAKÓW
+========================================================= */
 
 function selectSignature(
-count,
-type,
-button
+    count,
+    type,
+    button
 ) {
 
-document.querySelectorAll(
-".selector button"
-).forEach(b=>
-b.classList.remove("active")
-);
+    document
+    .querySelectorAll(
+        ".selector button"
+    )
+    .forEach(b => {
 
-button.classList.add("active");
+        b.classList.remove(
+            "active"
+        );
 
-
-const data =
-SIGNATURES.find(
-x=>
-x.count===count &&
-x.type===type
-);
+    });
 
 
-renderSignature(
-document.getElementById("mainStaff"),
-count,
-type
-);
+    button.classList.add(
+        "active"
+    );
 
 
-document.getElementById(
-"selectedSigns"
-).textContent =
-data.signs.length
-? data.signs.join(", ")
-: "brak";
+    const data =
+    SIGNATURES.find(
+        item =>
+        item.count===count &&
+        item.type===type
+    );
 
 
-document.getElementById(
-"selectedMajor"
-).textContent =
-data.major;
+    renderSignature(
+
+        document.getElementById(
+            "mainStaff"
+        ),
+
+        count,
+        type
+
+    );
 
 
-document.getElementById(
-"selectedMinor"
-).textContent =
-data.minor;
+    document.getElementById(
+        "selectedSigns"
+    ).textContent =
+
+        data.signs.length
+
+        ? data.signs.join(", ")
+
+        : "brak";
+
+
+    document.getElementById(
+        "selectedMajor"
+    ).textContent =
+        data.major;
+
+
+    document.getElementById(
+        "selectedMinor"
+    ).textContent =
+        data.minor;
 
 }
 
 
-/* =====================================================
+/* =========================================================
    ĆWICZENIA
-===================================================== */
+========================================================= */
 
 let mode="staff";
 
 
-function setMode(newMode,button) {
+function setMode(
+    newMode,
+    button
+) {
 
-mode=newMode;
+    mode=newMode;
 
-document.querySelectorAll(
-".exercise-tabs button"
-).forEach(b=>
-b.classList.remove("active")
-);
 
-button.classList.add("active");
+    document
+    .querySelectorAll(
+        ".exercise-tabs button"
+    )
+    .forEach(b => {
 
-newQuestion();
+        b.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    newQuestion();
 
 }
 
 
+/* =========================================================
+   RANDOM
+========================================================= */
+
 function random(array) {
 
-return array[
-Math.floor(
-Math.random()*array.length
-)
-];
+    return array[
+        Math.floor(
+            Math.random()*array.length
+        )
+    ];
 
 }
 
 
 function shuffle(array) {
 
-return [...array]
-.sort(()=>Math.random()-.5);
+    return [...array]
+    .sort(
+        () => Math.random()-.5
+    );
 
 }
 
 
-/* =====================================================
-   PYTANIA
-===================================================== */
+/* =========================================================
+   NOWE PYTANIE
+========================================================= */
 
 function newQuestion() {
 
-document.getElementById(
-"feedback"
-).textContent="";
+    document.getElementById(
+        "feedback"
+    ).textContent="";
 
 
-let currentMode=mode;
+    let currentMode=mode;
 
-if(currentMode==="mix") {
 
-currentMode =
-random([
-"staff",
-"major",
-"minor",
-"order"
-]);
+    if(currentMode==="mix") {
+
+        currentMode =
+        random([
+
+            "staff",
+            "major",
+            "minor",
+            "order"
+
+        ]);
+
+    }
+
+
+    if(currentMode==="staff") {
+        staffQuestion();
+    }
+
+    if(currentMode==="major") {
+        majorQuestion();
+    }
+
+    if(currentMode==="minor") {
+        minorQuestion();
+    }
+
+    if(currentMode==="order") {
+        orderQuestion();
+    }
 
 }
 
 
-if(currentMode==="staff")
-staffQuestion();
-
-if(currentMode==="major")
-majorQuestion();
-
-if(currentMode==="minor")
-minorQuestion();
-
-if(currentMode==="order")
-orderQuestion();
-
-}
-
-
-/* =====================================================
+/* =========================================================
    PIĘCIOLINIA → TONACJA
-===================================================== */
+========================================================= */
 
 function staffQuestion() {
 
-const data =
-random(SIGNATURES);
+    const data =
+    random(SIGNATURES);
 
 
-document.getElementById(
-"exerciseStaffBox"
-).style.display="block";
+    document.getElementById(
+        "exerciseStaffBox"
+    ).style.display="block";
 
 
-renderSignature(
-document.getElementById(
-"exerciseStaff"
-),
-data.count,
-data.type,
-700
-);
+    renderSignature(
+
+        document.getElementById(
+            "exerciseStaff"
+        ),
+
+        data.count,
+        data.type,
+        700
+
+    );
 
 
-const correct =
-data.major;
+    const correct =
+    data.major;
 
 
-const majors =
-SIGNATURES.map(x=>x.major);
+    const majors =
+    SIGNATURES.map(
+        x => x.major
+    );
 
 
-const wrong =
-shuffle(
-majors.filter(x=>x!==correct)
-).slice(0,3);
+    const wrong =
+    shuffle(
+
+        majors.filter(
+            x => x!==correct
+        )
+
+    ).slice(0,3);
 
 
-showQuestion(
+    showQuestion(
 
-"Jaka tonacja durowa ma taki zapis przykluczowy?",
+        "Jaka tonacja durowa ma takie znaki przykluczowe?",
 
-"Najpierw rozpoznaj liczbę i rodzaj znaków.",
+        "Rozpoznaj rodzaj i liczbę znaków na pięciolinii.",
 
-correct,
+        correct,
 
-[
-correct,
-...wrong
-]
+        [
+            correct,
+            ...wrong
+        ]
 
-);
+    );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    ZNAKI → DUR
-===================================================== */
+========================================================= */
 
 function majorQuestion() {
 
-document.getElementById(
-"exerciseStaffBox"
-).style.display="none";
+    document.getElementById(
+        "exerciseStaffBox"
+    ).style.display="none";
 
 
-const data =
-random(SIGNATURES);
+    const data =
+    random(SIGNATURES);
 
 
-let signs =
-data.signs.length
-? data.signs.join(", ")
-: "brak znaków";
+    const signs =
+    data.signs.length
+
+    ? data.signs.join(", ")
+
+    : "brak znaków";
 
 
-const correct =
-data.major;
+    const correct =
+    data.major;
 
 
-const wrong =
-shuffle(
-SIGNATURES
-.map(x=>x.major)
-.filter(x=>x!==correct)
-).slice(0,3);
+    const wrong =
+    shuffle(
+
+        SIGNATURES
+        .map(x=>x.major)
+        .filter(
+            x=>x!==correct
+        )
+
+    ).slice(0,3);
 
 
-showQuestion(
+    showQuestion(
 
-"Jaka tonacja durowa ma znaki: "+signs+"?",
+        "Jaka tonacja durowa ma znaki: "
+        + signs + "?",
 
-data.count===0
-? "Brak znaków przykluczowych."
-: data.count+
-(data.type==="sharp"
-? " krzyżyków"
-: " bemoli"),
+        data.count===0
 
-correct,
+        ? "Brak znaków przykluczowych."
 
-[
-correct,
-...wrong
-]
+        : data.count +
+        (
+            data.type==="sharp"
+            ? " ♯"
+            : " ♭"
+        ),
 
-);
+        correct,
+
+        [
+            correct,
+            ...wrong
+        ]
+
+    );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    ZNAKI → MOLL
-===================================================== */
+========================================================= */
 
 function minorQuestion() {
 
-document.getElementById(
-"exerciseStaffBox"
-).style.display="none";
+    document.getElementById(
+        "exerciseStaffBox"
+    ).style.display="none";
 
 
-const data =
-random(SIGNATURES);
+    const data =
+    random(SIGNATURES);
 
 
-const signs =
-data.signs.length
-? data.signs.join(", ")
-: "brak znaków";
+    const signs =
+    data.signs.length
+
+    ? data.signs.join(", ")
+
+    : "brak znaków";
 
 
-const correct =
-data.minor;
+    const correct =
+    data.minor;
 
 
-const wrong =
-shuffle(
-SIGNATURES
-.map(x=>x.minor)
-.filter(x=>x!==correct)
-).slice(0,3);
+    const wrong =
+    shuffle(
+
+        SIGNATURES
+        .map(x=>x.minor)
+        .filter(
+            x=>x!==correct
+        )
+
+    ).slice(0,3);
 
 
-showQuestion(
+    showQuestion(
 
-"Jaka tonacja molowa ma znaki: "+signs+"?",
+        "Jaka tonacja molowa ma znaki: "
+        + signs + "?",
 
-"Pamiętaj: nazwy tonacji molowych zapisujemy małą literą.",
+        "Tonacje molowe zapisujemy małą literą.",
 
-correct,
+        correct,
 
-[
-correct,
-...wrong
-]
+        [
+            correct,
+            ...wrong
+        ]
 
-);
+    );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    KOLEJNOŚĆ
-===================================================== */
+========================================================= */
 
 function orderQuestion() {
 
-document.getElementById(
-"exerciseStaffBox"
-).style.display="none";
+    document.getElementById(
+        "exerciseStaffBox"
+    ).style.display="none";
 
 
-const sharp =
-Math.random()>.5;
+    const isSharp =
+    Math.random()>.5;
 
 
-const order =
-sharp
-? SHARP_ORDER
-: FLAT_ORDER;
+    const order =
+    isSharp
+    ? SHARP_ORDER
+    : FLAT_ORDER;
 
 
-const index =
-Math.floor(
-Math.random()*6
-);
+    const index =
+    Math.floor(
+        Math.random()*6
+    );
 
 
-const current =
-order[index];
+    const current =
+    order[index];
 
 
-const correct =
-order[index+1];
+    const correct =
+    order[index+1];
 
 
-const all =
-[
-...SHARP_ORDER,
-...FLAT_ORDER
-];
+    const all =
+    [
+        ...SHARP_ORDER,
+        ...FLAT_ORDER
+    ];
 
 
-const wrong =
-shuffle(
-all.filter(
-x=>x!==correct
-)
-).slice(0,3);
+    const wrong =
+    shuffle(
+
+        all.filter(
+            x=>x!==correct
+        )
+
+    ).slice(0,3);
 
 
-showQuestion(
+    showQuestion(
 
-"Jaki znak występuje po „"+
-current+
-"” w kolejności "+
-(sharp ? "krzyżyków?" : "bemoli?"),
+        "Jaki znak występuje po „"
+        + current +
+        "” w kolejności "
+        +
+        (
+            isSharp
+            ? "krzyżyków?"
+            : "bemoli?"
+        ),
 
-sharp
-? "fis → cis → gis → dis → ais → eis → his"
-: "b → es → as → des → ges → ces → fes",
+        isSharp
 
-correct,
+        ? "fis → cis → gis → dis → ais → eis → his"
 
-[
-correct,
-...wrong
-]
+        : "b → es → as → des → ges → ces → fes",
 
-);
+        correct,
+
+        [
+            correct,
+            ...wrong
+        ]
+
+    );
 
 }
 
 
-/* =====================================================
-   WYŚWIETLANIE
-===================================================== */
+/* =========================================================
+   WYŚWIETLENIE PYTANIA
+========================================================= */
 
 function showQuestion(
-question,
-hint,
-correct,
-options
+    question,
+    hint,
+    correct,
+    options
 ) {
 
-document.getElementById(
-"question"
-).textContent =
-question;
+    document.getElementById(
+        "question"
+    ).textContent =
+        question;
 
 
-document.getElementById(
-"hint"
-).textContent =
-hint;
+    document.getElementById(
+        "hint"
+    ).textContent =
+        hint;
 
 
-const box =
-document.getElementById(
-"answers"
-);
+    const answers =
+    document.getElementById(
+        "answers"
+    );
 
 
-box.innerHTML="";
+    answers.innerHTML="";
 
 
-shuffle(options)
-.forEach(option=>{
+    shuffle(options)
+    .forEach(option => {
 
-const button =
-document.createElement("button");
-
-button.className="answer";
-
-button.textContent=option;
+        const button =
+        document.createElement(
+            "button"
+        );
 
 
-button.onclick=()=>{
-
-checkAnswer(
-button,
-option,
-correct
-);
-
-};
+        button.className =
+        "answer";
 
 
-box.appendChild(button);
+        button.textContent =
+        option;
 
-});
+
+        button.onclick =
+        () => {
+
+            checkAnswer(
+                button,
+                option,
+                correct
+            );
+
+        };
+
+
+        answers.appendChild(
+            button
+        );
+
+    });
 
 }
 
 
-/* =====================================================
-   SPRAWDZANIE
-===================================================== */
+/* =========================================================
+   SPRAWDZANIE ODPOWIEDZI
+========================================================= */
 
 function checkAnswer(
-button,
-answer,
-correct
+    button,
+    answer,
+    correct
 ) {
 
-const buttons =
-document.querySelectorAll(
-"#answers .answer"
-);
+    const buttons =
+    document.querySelectorAll(
+        "#answers .answer"
+    );
 
 
-buttons.forEach(
-b=>b.disabled=true
-);
+    buttons.forEach(
+        b => b.disabled=true
+    );
 
 
-if(answer===correct) {
+    if(answer===correct) {
 
-button.classList.add(
-"correct"
-);
+        button.classList.add(
+            "correct"
+        );
 
-document.getElementById(
-"feedback"
-).textContent=
-"✓ Dobrze!";
+
+        document.getElementById(
+            "feedback"
+        ).textContent =
+            "✓ Dobrze!";
+
+    }
+
+    else {
+
+        button.classList.add(
+            "wrong"
+        );
+
+
+        buttons.forEach(b => {
+
+            if(
+                b.textContent===correct
+            ) {
+
+                b.classList.add(
+                    "correct"
+                );
+
+            }
+
+        });
+
+
+        document.getElementById(
+            "feedback"
+        ).textContent =
+            "Poprawna odpowiedź: "
+            + correct;
+
+    }
 
 }
 
-else {
 
-button.classList.add(
-"wrong"
-);
-
-
-buttons.forEach(b=>{
-
-if(b.textContent===correct) {
-
-b.classList.add(
-"correct"
-);
-
-}
-
-});
-
-
-document.getElementById(
-"feedback"
-).textContent=
-"Poprawna odpowiedź: "+
-correct;
-
-}
-
-}
-
-
-/* =====================================================
+/* =========================================================
    START
-===================================================== */
+========================================================= */
 
 renderSignature(
-document.getElementById(
-"mainStaff"
-),
-0,
-"none"
+
+    document.getElementById(
+        "mainStaff"
+    ),
+
+    0,
+    "none"
+
 );
+
 
 newQuestion();
 
 </script>
 
 </body>
-
 </html>
