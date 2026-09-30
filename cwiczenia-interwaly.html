@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Harmonix — Trening interwałów</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f7f5ff;
+    color:#252238;
+}
+
+.page{
+    max-width:1000px;
+    margin:auto;
+    padding:45px 20px 80px;
+}
+
+.back{
+    color:#6b6680;
+    text-decoration:none;
+    font-size:15px;
+}
+
+.header{
+    text-align:center;
+    margin:25px 0 40px;
+}
+
+.header h1{
+    font-size:42px;
+    margin:0 0 10px;
+}
+
+.header p{
+    color:#777187;
+    font-size:17px;
+}
+
+
+/* =========================
+   PANEL
+========================= */
+
+.panel{
+    background:white;
+    border-radius:24px;
+    padding:30px;
+
+    box-shadow:
+    0 10px 35px rgba(40,30,80,.08);
+
+    margin-bottom:22px;
+}
+
+.panel h2{
+    margin-top:0;
+    font-size:21px;
+}
+
+.description{
+    color:#777187;
+    line-height:1.5;
+}
+
+
+/* =========================
+   INTERWAŁY
+========================= */
+
+.interval-groups{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+
+    margin-top:25px;
+}
+
+.group-title{
+    font-size:14px;
+    font-weight:700;
+    color:#777187;
+    margin-bottom:8px;
+}
+
+.interval-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.interval-choice{
+
+    border:1px solid #ddd9eb;
+    background:#faf9ff;
+
+    min-width:55px;
+
+    padding:11px 14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:16px;
+    font-weight:700;
+
+    color:#353047;
+
+    transition:.15s;
+}
+
+.interval-choice:hover{
+    transform:translateY(-1px);
+}
+
+.interval-choice.selected{
+
+    background:#252238;
+    color:white;
+
+    border-color:#252238;
+}
+
+
+/* =========================
+   NARZĘDZIA WYBORU
+========================= */
+
+.selection-tools{
+
+    display:flex;
+    gap:8px;
+
+    margin-top:22px;
+    flex-wrap:wrap;
+}
+
+.small-button{
+
+    border:none;
+
+    background:#eeecf7;
+    color:#39344a;
+
+    padding:10px 15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+}
+
+
+/* =========================
+   TRYBY
+========================= */
+
+.mode-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.mode{
+
+    border:1px solid #ddd9eb;
+
+    border-radius:15px;
+
+    padding:17px;
+
+    cursor:pointer;
+
+    background:#faf9ff;
+
+    text-align:center;
+
+    font-weight:600;
+}
+
+.mode.selected{
+
+    background:#252238;
+    color:white;
+
+    border-color:#252238;
+}
+
+.mode-icon{
+    display:block;
+    font-size:24px;
+    margin-bottom:7px;
+}
+
+
+/* =========================
+   START
+========================= */
+
+.start-area{
+    text-align:center;
+    margin-top:30px;
+}
+
+.primary{
+
+    border:none;
+
+    background:#252238;
+    color:white;
+
+    padding:15px 32px;
+
+    border-radius:14px;
+
+    font-size:16px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.primary:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+}
+
+.warning{
+
+    color:#9b5260;
+
+    font-size:14px;
+
+    min-height:20px;
+
+    margin-top:12px;
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+#quiz{
+    display:none;
+}
+
+.quiz-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    color:#777187;
+
+    font-weight:600;
+}
+
+.progress{
+
+    height:8px;
+
+    background:#eceaf4;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:18px 0 30px;
+}
+
+.progress-bar{
+
+    height:100%;
+
+    width:0;
+
+    background:#252238;
+
+    transition:.3s;
+}
+
+
+.listen-box{
+    text-align:center;
+}
+
+.listen-circle{
+
+    width:95px;
+    height:95px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:#252238;
+
+    color:white;
+
+    font-size:34px;
+
+    cursor:pointer;
+
+    margin:10px auto 12px;
+}
+
+.listen-label{
+    color:#777187;
+    font-size:14px;
+}
+
+.question-title{
+
+    text-align:center;
+
+    margin:30px 0 20px;
+
+    font-size:21px;
+}
+
+
+/* =========================
+   ODPOWIEDZI
+========================= */
+
+.answers{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(110px,1fr));
+
+    gap:10px;
+}
+
+.answer{
+
+    border:1px solid #ddd9eb;
+
+    background:#faf9ff;
+
+    padding:16px;
+
+    border-radius:13px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    color:#252238;
+}
+
+.answer:hover{
+    background:#f0eef8;
+}
+
+.answer.correct{
+
+    background:#dff4e6;
+
+    border-color:#8dcfa3;
+}
+
+.answer.wrong{
+
+    background:#f8e1e5;
+
+    border-color:#dca2ac;
+}
+
+
+/* =========================
+   FEEDBACK
+========================= */
+
+.feedback{
+
+    text-align:center;
+
+    min-height:28px;
+
+    margin:22px 0 10px;
+
+    font-weight:700;
+}
+
+.next-area{
+    text-align:center;
+}
+
+#nextButton{
+    display:none;
+}
+
+
+/* =========================
+   KONIEC
+========================= */
+
+#finish{
+    display:none;
+    text-align:center;
+}
+
+.big-score{
+
+    font-size:58px;
+    font-weight:800;
+
+    margin:15px 0;
+}
+
+.finish-text{
+    color:#777187;
+    margin-bottom:25px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .header h1{
+        font-size:34px;
+    }
+
+    .panel{
+        padding:22px 17px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+<a href="interwaly.html" class="back">
+← Wróć do interwałów
+</a>
+
+
+<div class="header">
+
+<h1>
+Trening interwałów
+</h1>
+
+<p>
+Ty decydujesz, czego chcesz się dzisiaj nauczyć.
+</p>
+
+</div>
+
+
+
+<!-- ======================================
+     USTAWIENIA
+====================================== -->
+
+<div id="setup">
+
+
+<div class="panel">
+
+<h2>
+1. Wybierz interwały
+</h2>
+
+<p class="description">
+Zaznacz tylko te interwały, które chcesz ćwiczyć.
+</p>
+
+
+<div class="interval-groups" id="intervalGroups">
+</div>
+
+
+<div class="selection-tools">
+
+<button
+class="small-button"
+onclick="selectAll()">
+Zaznacz wszystkie
+</button>
+
+<button
+class="small-button"
+onclick="clearAll()">
+Wyczyść
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="panel">
+
+<h2>
+2. Jak mają być grane?
+</h2>
+
+
+<div class="mode-grid">
+
+
+<div
+class="mode selected"
+data-mode="up"
+onclick="selectMode(this)">
+
+<span class="mode-icon">
+↗
+</span>
+
+Melodycznie w górę
+
+</div>
+
+
+<div
+class="mode"
+data-mode="down"
+onclick="selectMode(this)">
+
+<span class="mode-icon">
+↘
+</span>
+
+Melodycznie w dół
+
+</div>
+
+
+<div
+class="mode"
+data-mode="harmonic"
+onclick="selectMode(this)">
+
+<span class="mode-icon">
+♫
+</span>
+
+Harmonicznie
+
+</div>
+
+
+<div
+class="mode"
+data-mode="mixed"
+onclick="selectMode(this)">
+
+<span class="mode-icon">
+⤨
+</span>
+
+Mieszane
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<div class="start-area">
+
+<button
+class="primary"
+onclick="startQuiz()">
+
+Rozpocznij trening
+
+</button>
+
+<div
+id="setupWarning"
+class="warning">
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- ======================================
+     QUIZ
+====================================== -->
+
+<div id="quiz">
+
+<div class="panel">
+
+
+<div class="quiz-top">
+
+<div>
+Pytanie
+<span id="questionNumber">1</span>/10
+</div>
+
+<div>
+Wynik:
+<span id="score">0</span>
+</div>
+
+<div>
+🔥
+<span id="streak">0</span>
+</div>
+
+</div>
+
+
+<div class="progress">
+
+<div
+id="progressBar"
+class="progress-bar">
+</div>
+
+</div>
+
+
+<div class="listen-box">
+
+<button
+class="listen-circle"
+onclick="playCurrent()">
+▶
+</button>
+
+<div class="listen-label">
+Kliknij, aby posłuchać ponownie
+</div>
+
+</div>
+
+
+<div class="question-title">
+Jaki to interwał?
+</div>
+
+
+<div
+id="answers"
+class="answers">
+</div>
+
+
+<div
+id="feedback"
+class="feedback">
+</div>
+
+
+<div class="next-area">
+
+<button
+id="nextButton"
+class="primary"
+onclick="nextQuestion()">
+
+Następne →
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ======================================
+     KONIEC
+====================================== -->
+
+<div id="finish">
+
+<div class="panel">
+
+
+<h2>
+Koniec treningu
+</h2>
+
+
+<div
+id="finalScore"
+class="big-score">
+0/10
+</div>
+
+
+<div
+id="finishText"
+class="finish-text">
+</div>
+
+
+<button
+class="primary"
+onclick="restartSame()">
+
+Jeszcze raz
+
+</button>
+
+
+<button
+class="small-button"
+onclick="changeSettings()">
+
+Zmień ustawienia
+
+</button>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   INTERWAŁY
+
+   symbol = to, co widzi użytkownik
+   semitones = faktyczna odległość
+===================================================== */
+
+const intervalData=[
+
+/* PRYMA */
+
+{
+symbol:"1>",
+name:"pryma zmniejszona",
+semitones:-1,
+group:"Prymy"
+},
+
+{
+symbol:"1",
+name:"pryma czysta",
+semitones:0,
+group:"Prymy"
+},
+
+{
+symbol:"1<",
+name:"pryma zwiększona",
+semitones:1,
+group:"Prymy"
+},
+
+
+/* SEKUNDY */
+
+{
+symbol:"2>",
+name:"sekunda zmniejszona",
+semitones:0,
+group:"Sekundy"
+},
+
+{
+symbol:"2",
+name:"sekunda mała",
+semitones:1,
+group:"Sekundy"
+},
+
+{
+symbol:"2<",
+name:"sekunda wielka",
+semitones:2,
+group:"Sekundy"
+},
+
+{
+symbol:"2<<",
+name:"sekunda zwiększona",
+semitones:3,
+group:"Sekundy"
+},
+
+
+/* TERCJE */
+
+{
+symbol:"3>",
+name:"tercja zmniejszona",
+semitones:2,
+group:"Tercje"
+},
+
+{
+symbol:"3",
+name:"tercja mała",
+semitones:3,
+group:"Tercje"
+},
+
+{
+symbol:"3<",
+name:"tercja wielka",
+semitones:4,
+group:"Tercje"
+},
+
+{
+symbol:"3<<",
+name:"tercja zwiększona",
+semitones:5,
+group:"Tercje"
+},
+
+
+/* KWARTY */
+
+{
+symbol:"4>",
+name:"kwarta zmniejszona",
+semitones:4,
+group:"Kwarty"
+},
+
+{
+symbol:"4",
+name:"kwarta czysta",
+semitones:5,
+group:"Kwarty"
+},
+
+{
+symbol:"4<",
+name:"kwarta zwiększona",
+semitones:6,
+group:"Kwarty"
+},
+
+
+/* KWINTY */
+
+{
+symbol:"5>",
+name:"kwinta zmniejszona",
+semitones:6,
+group:"Kwinty"
+},
+
+{
+symbol:"5",
+name:"kwinta czysta",
+semitones:7,
+group:"Kwinty"
+},
+
+{
+symbol:"5<",
+name:"kwinta zwiększona",
+semitones:8,
+group:"Kwinty"
+},
+
+
+/* SEKSTY */
+
+{
+symbol:"6>",
+name:"seksta zmniejszona",
+semitones:7,
+group:"Seksty"
+},
+
+{
+symbol:"6",
+name:"seksta mała",
+semitones:8,
+group:"Seksty"
+},
+
+{
+symbol:"6<",
+name:"seksta wielka",
+semitones:9,
+group:"Seksty"
+},
+
+{
+symbol:"6<<",
+name:"seksta zwiększona",
+semitones:10,
+group:"Seksty"
+},
+
+
+/* SEPTYMY */
+
+{
+symbol:"7>",
+name:"septyma zmniejszona",
+semitones:9,
+group:"Septymy"
+},
+
+{
+symbol:"7",
+name:"septyma mała",
+semitones:10,
+group:"Septymy"
+},
+
+{
+symbol:"7<",
+name:"septyma wielka",
+semitones:11,
+group:"Septymy"
+},
+
+{
+symbol:"7<<",
+name:"septyma zwiększona",
+semitones:12,
+group:"Septymy"
+},
+
+
+/* OKTAWY */
+
+{
+symbol:"8>",
+name:"oktawa zmniejszona",
+semitones:11,
+group:"Oktawy"
+},
+
+{
+symbol:"8",
+name:"oktawa czysta",
+semitones:12,
+group:"Oktawy"
+},
+
+{
+symbol:"8<",
+name:"oktawa zwiększona",
+semitones:13,
+group:"Oktawy"
+}
+
+];
+
+
+/* =====================================================
+   GENEROWANIE WYBORU
+===================================================== */
+
+const groups=[
+
+"Prymy",
+"Sekundy",
+"Tercje",
+"Kwarty",
+"Kwinty",
+"Seksty",
+"Septymy",
+"Oktawy"
+
+];
+
+
+const intervalGroups=
+document.getElementById("intervalGroups");
+
+
+groups.forEach(group=>{
+
+const wrapper=
+document.createElement("div");
+
+
+const title=
+document.createElement("div");
+
+title.className=
+"group-title";
+
+title.textContent=
+group;
+
+
+const buttons=
+document.createElement("div");
+
+buttons.className=
+"interval-buttons";
+
+
+intervalData
+.filter(x=>x.group===group)
+.forEach(interval=>{
+
+const button=
+document.createElement("button");
+
+button.className=
+"interval-choice";
+
+button.textContent=
+interval.symbol;
+
+button.dataset.symbol=
+interval.symbol;
+
+button.title=
+interval.name;
+
+
+button.onclick=()=>{
+
+button.classList.toggle(
+"selected"
+);
+
+};
+
+
+buttons.appendChild(
+button
+);
+
+});
+
+
+wrapper.appendChild(
+title
+);
+
+wrapper.appendChild(
+buttons
+);
+
+intervalGroups.appendChild(
+wrapper
+);
+
+});
+
+
+/* =====================================================
+   WYBÓR
+===================================================== */
+
+function selectAll(){
+
+document
+.querySelectorAll(".interval-choice")
+.forEach(button=>
+button.classList.add("selected")
+);
+
+}
+
+
+function clearAll(){
+
+document
+.querySelectorAll(".interval-choice")
+.forEach(button=>
+button.classList.remove("selected")
+);
+
+}
+
+
+let selectedMode="up";
+
+
+function selectMode(element){
+
+document
+.querySelectorAll(".mode")
+.forEach(x=>
+x.classList.remove("selected")
+);
+
+element.classList.add(
+"selected"
+);
+
+selectedMode=
+element.dataset.mode;
+
+}
+
+
+/* =====================================================
+   PIANINO
+
+   TEN SAM MECHANIZM,
+   KTÓRY ZADZIAŁAŁ W OKTAWACH
+===================================================== */
+
+let piano=null;
+
+
+async function createPiano(){
+
+if(piano){
+
+return piano;
+
+}
+
+
+piano=new Tone.Sampler({
+
+urls:{
+
+A0:"A0.mp3",
+
+C1:"C1.mp3",
+
+"D#1":"Ds1.mp3",
+
+"F#1":"Fs1.mp3",
+
+
+A1:"A1.mp3",
+
+C2:"C2.mp3",
+
+"D#2":"Ds2.mp3",
+
+"F#2":"Fs2.mp3",
+
+
+A2:"A2.mp3",
+
+C3:"C3.mp3",
+
+"D#3":"Ds3.mp3",
+
+"F#3":"Fs3.mp3",
+
+
+A3:"A3.mp3",
+
+C4:"C4.mp3",
+
+"D#4":"Ds4.mp3",
+
+"F#4":"Fs4.mp3",
+
+
+A4:"A4.mp3",
+
+C5:"C5.mp3",
+
+"D#5":"Ds5.mp3",
+
+"F#5":"Fs5.mp3",
+
+
+A5:"A5.mp3",
+
+C6:"C6.mp3",
+
+"D#6":"Ds6.mp3",
+
+"F#6":"Fs6.mp3",
+
+
+A6:"A6.mp3",
+
+C7:"C7.mp3"
+
+},
+
+release:1.2,
+
+baseUrl:
+"https://tonejs.github.io/audio/salamander/"
+
+}).toDestination();
+
+
+await Tone.loaded();
+
+return piano;
+
+}
+
+
+/* =====================================================
+   STAN QUIZU
+===================================================== */
+
+let selectedIntervals=[];
+
+let currentInterval=null;
+
+let currentMode=null;
+
+let firstMidi=null;
+
+let secondMidi=null;
+
+let question=1;
+
+let score=0;
+
+let streak=0;
+
+let answered=false;
+
+
+const totalQuestions=10;
+
+
+/* =====================================================
+   MIDI -> NAZWA NUTY
+===================================================== */
+
+const pitchNames=[
+
+"C",
+"C#",
+"D",
+"D#",
+"E",
+"F",
+"F#",
+"G",
+"G#",
+"A",
+"A#",
+"B"
+
+];
+
+
+function midiToNote(midi){
+
+const pitch=
+pitchNames[midi%12];
+
+const octave=
+Math.floor(midi/12)-1;
+
+return pitch+octave;
+
+}
+
+
+/* =====================================================
+   LOSOWANIE
+===================================================== */
+
+function randomFrom(array){
+
+return array[
+Math.floor(
+Math.random()*array.length
+)
+];
+
+}
+
+
+function generateQuestion(){
+
+answered=false;
+
+
+currentInterval=
+randomFrom(
+selectedIntervals
+);
+
+
+/* TRYB */
+
+if(selectedMode==="mixed"){
+
+currentMode=
+randomFrom([
+"up",
+"down",
+"harmonic"
+]);
+
+}else{
+
+currentMode=
+selectedMode;
+
+}
+
+
+/*
+Zakres środkowego fortepianu.
+Zostawiamy zapas na duże interwały.
+*/
+
+const distance=
+currentInterval.semitones;
+
+
+if(currentMode==="down"){
+
+firstMidi=
+Math.floor(
+Math.random()*13
+)+65;
+
+secondMidi=
+firstMidi-distance;
+
+}else{
+
+firstMidi=
+Math.floor(
+Math.random()*13
+)+55;
+
+secondMidi=
+firstMidi+distance;
+
+}
+
+
+/* odpowiedzi */
+
+renderAnswers();
+
+
+document.getElementById(
+"feedback"
+).textContent="";
+
+
+document.getElementById(
+"nextButton"
+).style.display="none";
+
+
+document.getElementById(
+"questionNumber"
+).textContent=question;
+
+
+document.getElementById(
+"score"
+).textContent=score;
+
+
+document.getElementById(
+"streak"
+).textContent=streak;
+
+
+document.getElementById(
+"progressBar"
+).style.width=
+((question-1)/totalQuestions*100)+"%";
+
+
+/* automatycznie zagraj */
+
+setTimeout(
+playCurrent,
+300
+);
+
+}
+
+
+/* =====================================================
+   ODTWARZANIE
+===================================================== */
+
+function wait(ms){
+
+return new Promise(
+resolve=>
+setTimeout(resolve,ms)
+);
+
+}
+
+
+async function playCurrent(){
+
+try{
+
+await Tone.start();
+
+const instrument=
+await createPiano();
+
+
+const first=
+midiToNote(firstMidi);
+
+const second=
+midiToNote(secondMidi);
+
+
+if(currentMode==="harmonic"){
+
+const together=
+Tone.now()+0.1;
+
+
+/* IDENTYCZNY SYSTEM JAK W DZIAŁAJĄCEJ OKTAWIE */
+
+instrument.triggerAttackRelease(
+first,
+1.4,
+together
+);
+
+instrument.triggerAttackRelease(
+second,
+1.4,
+together
+);
+
+return;
+
+}
+
+
+/* MELODYCZNIE */
+
+instrument.triggerAttackRelease(
+first,
+0.65
+);
+
+await wait(800);
+
+instrument.triggerAttackRelease(
+second,
+0.65
+);
+
+}catch(error){
+
+console.error(
+"Harmonix audio:",
+error
+);
+
+}
+
+}
+
+
+/* =====================================================
+   ODPOWIEDZI
+===================================================== */
+
+function renderAnswers(){
+
+const answers=
+document.getElementById(
+"answers"
+);
+
+answers.innerHTML="";
+
+
+/*
+Pokazujemy wszystkie interwały,
+które użytkownik wybrał przed treningiem.
+*/
+
+selectedIntervals.forEach(interval=>{
+
+const button=
+document.createElement(
+"button"
+);
+
+button.className=
+"answer";
+
+button.textContent=
+interval.symbol;
+
+button.title=
+interval.name;
+
+
+button.onclick=()=>{
+
+checkAnswer(
+interval,
+button
+);
+
+};
+
+
+answers.appendChild(
+button
+);
+
+});
+
+}
+
+
+/* =====================================================
+   SPRAWDZANIE
+===================================================== */
+
+function checkAnswer(interval,button){
+
+if(answered){
+
+return;
+
+}
+
+
+answered=true;
+
+
+const correct=
+interval.symbol===
+currentInterval.symbol;
+
+
+const feedback=
+document.getElementById(
+"feedback"
+);
+
+
+if(correct){
+
+button.classList.add(
+"correct"
+);
+
+score++;
+
+streak++;
+
+
+feedback.textContent=
+"✓ Dobrze! "+currentInterval.name;
+
+}else{
+
+button.classList.add(
+"wrong"
+);
+
+streak=0;
+
+
+feedback.textContent=
+"✕ To była "+currentInterval.name+
+" ("+currentInterval.symbol+")";
+
+
+document
+.querySelectorAll(".answer")
+.forEach(answer=>{
+
+if(
+answer.textContent===
+currentInterval.symbol
+){
+
+answer.classList.add(
+"correct"
+);
+
+}
+
+});
+
+}
+
+
+document.getElementById(
+"score"
+).textContent=score;
+
+
+document.getElementById(
+"streak"
+).textContent=streak;
+
+
+document.getElementById(
+"nextButton"
+).style.display=
+"inline-block";
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+async function startQuiz(){
+
+const symbols=
+[
+...document.querySelectorAll(
+".interval-choice.selected"
+)
+]
+.map(
+button=>button.dataset.symbol
+);
+
+
+if(symbols.length<2){
+
+document.getElementById(
+"setupWarning"
+).textContent=
+"Zaznacz przynajmniej dwa interwały.";
+
+return;
+
+}
+
+
+selectedIntervals=
+intervalData.filter(
+x=>symbols.includes(x.symbol)
+);
+
+
+document.getElementById(
+"setupWarning"
+).textContent="";
+
+
+question=1;
+
+score=0;
+
+streak=0;
+
+
+document.getElementById(
+"setup"
+).style.display="none";
+
+
+document.getElementById(
+"finish"
+).style.display="none";
+
+
+document.getElementById(
+"quiz"
+).style.display="block";
+
+
+/*
+Uruchamiamy audio po kliknięciu START,
+żeby przeglądarka go nie blokowała.
+*/
+
+await Tone.start();
+
+await createPiano();
+
+
+generateQuestion();
+
+}
+
+
+/* =====================================================
+   NASTĘPNE
+===================================================== */
+
+function nextQuestion(){
+
+if(question>=totalQuestions){
+
+finishQuiz();
+
+return;
+
+}
+
+
+question++;
+
+generateQuestion();
+
+}
+
+
+/* =====================================================
+   KONIEC
+===================================================== */
+
+function finishQuiz(){
+
+document.getElementById(
+"quiz"
+).style.display="none";
+
+
+document.getElementById(
+"finish"
+).style.display="block";
+
+
+document.getElementById(
+"finalScore"
+).textContent=
+score+"/"+totalQuestions;
+
+
+let text="";
+
+
+if(score===10){
+
+text=
+"Perfekcyjnie. Wszystkie interwały rozpoznane.";
+
+}else if(score>=8){
+
+text=
+"Bardzo dobrze — zostało naprawdę niewiele do dopracowania.";
+
+}else if(score>=5){
+
+text=
+"Jest baza. Jeszcze jedna runda i będzie dużo pewniej.";
+
+}else{
+
+text=
+"Spróbuj ponownie z mniejszą liczbą interwałów.";
+
+}
+
+
+document.getElementById(
+"finishText"
+).textContent=text;
+
+}
+
+
+/* =====================================================
+   POWTÓRKA
+===================================================== */
+
+function restartSame(){
+
+question=1;
+
+score=0;
+
+streak=0;
+
+
+document.getElementById(
+"finish"
+).style.display="none";
+
+
+document.getElementById(
+"quiz"
+).style.display="block";
+
+
+generateQuestion();
+
+}
+
+
+/* =====================================================
+   USTAWIENIA
+===================================================== */
+
+function changeSettings(){
+
+document.getElementById(
+"finish"
+).style.display="none";
+
+
+document.getElementById(
+"setup"
+).style.display="block";
+
+}
+
+</script>
+
+</body>
+
+</html>
