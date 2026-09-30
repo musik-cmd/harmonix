@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Harmonix</title>
 
@@ -13,16 +11,239 @@
 
     <style>
 
-        .card a {
-            display: block;
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /* ================================
+           GŁÓWNY EKRAN
+        ================================= */
+
+        .home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 55px 20px 70px;
+        }
+
+        .home-container {
+            width: 100%;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        /* ================================
+           NAGŁÓWEK
+        ================================= */
+
+        .home-header {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .home-logo {
+            font-size: clamp(46px, 7vw, 76px);
+            font-weight: 800;
+            letter-spacing: -3px;
+            color: #252238;
+            line-height: 1;
+        }
+
+        .home-subtitle {
+            margin-top: 15px;
+            font-size: 17px;
+            color: #777187;
+            line-height: 1.5;
+        }
+
+        .home-label {
+            margin-top: 27px;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            color: #aaa5b5;
+        }
+
+        /* ================================
+           KAFELKI
+        ================================= */
+
+        .home-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 16px;
+        }
+
+        .home-card {
+            position: relative;
+
+            min-height: 205px;
+
+            background: white;
+
+            border: 1px solid rgba(70, 60, 100, .08);
+            border-radius: 23px;
+
+            box-shadow:
+                0 8px 30px rgba(40, 30, 80, .065);
+
+            overflow: hidden;
+
+            transition:
+                transform .22s ease,
+                box-shadow .22s ease,
+                border-color .22s ease;
+        }
+
+        .home-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 17px 45px rgba(40, 30, 80, .11);
+
+            border-color:
+                rgba(70, 60, 100, .16);
+        }
+
+        .home-card a {
+            display: flex;
+            flex-direction: column;
+
             width: 100%;
             height: 100%;
+
+            min-height: 205px;
+
+            padding: 24px;
+
             color: inherit;
             text-decoration: none;
         }
 
-        .card a:hover {
-            color: inherit;
+        /* kafelki jeszcze nieaktywne */
+
+        .home-card.locked {
+            cursor: default;
+        }
+
+        /* ================================
+           IKONY
+        ================================= */
+
+        .home-icon {
+            width: 49px;
+            height: 49px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 21px;
+
+            border-radius: 15px;
+
+            background: #f1eff8;
+
+            font-size: 24px;
+        }
+
+        /* ================================
+           TEKST
+        ================================= */
+
+        .home-card h2 {
+            margin: 0 0 9px;
+
+            font-size: 20px;
+            font-weight: 800;
+
+            color: #252238;
+        }
+
+        .home-card p {
+            margin: 0;
+
+            color: #777187;
+
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        /* ================================
+           DOLNY NAPIS
+        ================================= */
+
+        .card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: auto;
+            padding-top: 20px;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            color: #aaa5b5;
+        }
+
+        .open-text {
+            color: #59536d;
+        }
+
+        .arrow {
+            font-size: 17px;
+            transition: transform .2s ease;
+        }
+
+        .home-card:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        /* ================================
+           RESPONSYWNOŚĆ
+        ================================= */
+
+        @media (max-width: 800px) {
+
+            .home-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+        @media (max-width: 520px) {
+
+            .home {
+                align-items: flex-start;
+                padding-top: 40px;
+            }
+
+            .home-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .home-card,
+            .home-card a {
+                min-height: 175px;
+            }
+
+            .home-logo {
+                letter-spacing: -2px;
+            }
+
         }
 
     </style>
@@ -32,80 +253,114 @@
 
 <body>
 
-<main class="hero">
+<main class="home">
 
-    <div class="container">
+<div class="home-container">
 
 
-        <!-- GŁÓWNY TYTUŁ -->
+    <!-- ============================
+         LOGO
+    ============================= -->
 
-        <div class="logo">
+    <header class="home-header">
+
+        <div class="home-logo">
             Harmonix
         </div>
 
-
-        <!-- PODTYTUŁ -->
-
-        <div class="subtitle">
-            Zrozum, usłysz i ćwicz harmonię krok po kroku.
+        <div class="home-subtitle">
+            Teoria, słuch i praktyka muzyczna w jednym miejscu.
         </div>
 
+        <div class="home-label">
+            Wybierz dział
+        </div>
 
-        <!-- GŁÓWNE DZIAŁY HARMONIX -->
-
-        <div class="cards">
-
-
-            <!-- INTERWAŁY -->
-
-            <div class="card">
-
-                <a href="interwaly.html">
-
-                    <div class="icon">
-                        🎵
-                    </div>
-
-                    <h2>
-                        Interwały
-                    </h2>
-
-                    <p>
-                        Od prymy do interwałów złożonych —
-                        naucz się rozpoznawać i budować różne
-                        odległości między dźwiękami.
-                    </p>
-
-                </a>
-
-            </div>
+    </header>
 
 
-            <!-- TONACJE I GAMY -->
+    <!-- ============================
+         DZIAŁY
+    ============================= -->
 
-            <div class="card">
+    <div class="home-grid">
 
-                <div class="icon">
-                    🎼
+
+        <!-- INTERWAŁY -->
+
+        <div class="home-card">
+
+            <a href="interwaly.html">
+
+                <div class="home-icon">
+                    🎵
                 </div>
 
                 <h2>
-                    Tonacje i gamy
+                    Interwały
                 </h2>
 
                 <p>
-                    Dur, moll, znaki przykluczowe
-                    i koło kwintowe.
+                    Od prymy po interwały złożone.
+                    Nauka, odsłuch, budowanie i rozpoznawanie.
                 </p>
+
+                <div class="card-bottom">
+
+                    <span class="open-text">
+                        Otwórz dział
+                    </span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <!-- GAMY I TONACJE -->
+
+        <div class="home-card locked">
+
+            <div style="padding:24px; height:100%; min-height:205px; display:flex; flex-direction:column;">
+
+                <div class="home-icon">
+                    ♯
+                </div>
+
+                <h2>
+                    Gamy i tonacje
+                </h2>
+
+                <p>
+                    Dur i moll, znaki przykluczowe,
+                    koło kwintowe oraz pokrewieństwo tonacji.
+                </p>
+
+                <div class="card-bottom">
+
+                    <span>
+                        Następny dział
+                    </span>
+
+                </div>
 
             </div>
 
+        </div>
 
-            <!-- AKORDY -->
 
-            <div class="card">
+        <!-- AKORDY -->
 
-                <div class="icon">
+        <div class="home-card locked">
+
+            <div style="padding:24px; height:100%; min-height:205px; display:flex; flex-direction:column;">
+
+                <div class="home-icon">
                     🎹
                 </div>
 
@@ -114,76 +369,122 @@
                 </h2>
 
                 <p>
-                    Trójdźwięki, przewroty
-                    i budowanie akordów.
+                    Trójdźwięki, rodzaje akordów,
+                    przewroty, budowanie i rozpoznawanie.
                 </p>
 
-            </div>
+                <div class="card-bottom">
 
+                    <span>
+                        W przygotowaniu
+                    </span>
 
-            <!-- FUNKCJE HARMONICZNE -->
-
-            <div class="card">
-
-                <div class="icon">
-                    🔺
                 </div>
 
-                <h2>
-                    Funkcje harmoniczne
-                </h2>
-
-                <p>
-                    T, S i D oraz ich zastosowanie
-                    w harmonii.
-                </p>
-
             </div>
-
-
-            <!-- KADENCJE -->
-
-            <div class="card">
-
-                <div class="icon">
-                    🔄
-                </div>
-
-                <h2>
-                    Kadencje
-                </h2>
-
-                <p>
-                    Poznaj zakończenia muzycznych zdań
-                    i ich charakter.
-                </p>
-
-            </div>
-
-
-            <!-- AKORDY SEPTYMOWE -->
-
-            <div class="card">
-
-                <div class="icon">
-                    ✨
-                </div>
-
-                <h2>
-                    Akordy septymowe
-                </h2>
-
-                <p>
-                    D7 i inne akordy septymowe
-                    oraz zasady ich rozwiązywania.
-                </p>
-
-            </div>
-
 
         </div>
 
+
+        <!-- HARMONIA -->
+
+        <div class="home-card locked">
+
+            <div style="padding:24px; height:100%; min-height:205px; display:flex; flex-direction:column;">
+
+                <div class="home-icon">
+                    △
+                </div>
+
+                <h2>
+                    Harmonia
+                </h2>
+
+                <p>
+                    Tonika, subdominanta, dominanta,
+                    funkcje harmoniczne i ich łączenie.
+                </p>
+
+                <div class="card-bottom">
+
+                    <span>
+                        W przygotowaniu
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HARMONIZACJA -->
+
+        <div class="home-card locked">
+
+            <div style="padding:24px; height:100%; min-height:205px; display:flex; flex-direction:column;">
+
+                <div class="home-icon">
+                    ✍️
+                </div>
+
+                <h2>
+                    Harmonizacja
+                </h2>
+
+                <p>
+                    Harmonizowanie sopranu i basu,
+                    prowadzenie głosów oraz zadania harmoniczne.
+                </p>
+
+                <div class="card-bottom">
+
+                    <span>
+                        W przygotowaniu
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- KSZTAŁCENIE SŁUCHU -->
+
+        <div class="home-card locked">
+
+            <div style="padding:24px; height:100%; min-height:205px; display:flex; flex-direction:column;">
+
+                <div class="home-icon">
+                    🎧
+                </div>
+
+                <h2>
+                    Kształcenie słuchu
+                </h2>
+
+                <p>
+                    Dyktanda, rozpoznawanie brzmień,
+                    melodii, rytmu i struktur muzycznych.
+                </p>
+
+                <div class="card-bottom">
+
+                    <span>
+                        W przygotowaniu
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
     </div>
+
+</div>
 
 </main>
 
