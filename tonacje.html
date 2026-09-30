@@ -2,6 +2,7 @@
 <html lang="pl">
 
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -13,342 +14,105 @@
 
 <style>
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-}
-
-/* =========================================
-   STRONA
-========================================= */
-
-.tonacje-page {
-    min-height: 100vh;
-    padding: 40px 20px 80px;
-}
-
-.tonacje-container {
-    max-width: 1050px;
-    margin: 0 auto;
-}
-
-/* =========================================
-   POWRÓT
-========================================= */
-
-.back-home {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-
-    margin-bottom: 32px;
-
-    color: #777187;
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    transition: .2s;
-}
-
-.back-home:hover {
-    color: #252238;
-    transform: translateX(-3px);
-}
-
-/* =========================================
-   NAGŁÓWEK
-========================================= */
-
-.tonacje-header {
-    text-align: center;
-    margin-bottom: 42px;
-}
-
-.tonacje-title {
-    font-size: clamp(40px, 6vw, 60px);
-    font-weight: 800;
-
-    letter-spacing: -2px;
-
-    color: #252238;
-}
-
-.tonacje-subtitle {
-    max-width: 650px;
-
-    margin: 12px auto 0;
-
-    color: #777187;
-
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.section-label {
-    margin-top: 27px;
-
-    color: #aaa5b5;
-
-    font-size: 10px;
-    font-weight: 800;
-
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* =========================================
-   KAFELKI
-========================================= */
-
-.topic-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 16px;
-}
-
-.topic-card {
-    min-height: 235px;
-
-    background: white;
-
-    border: 1px solid rgba(70, 60, 100, .08);
-    border-radius: 23px;
-
-    box-shadow:
-        0 8px 30px rgba(40, 30, 80, .065);
-
-    overflow: hidden;
-
-    transition:
-        transform .22s ease,
-        box-shadow .22s ease,
-        border-color .22s ease;
-}
-
-.topic-card:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 17px 45px rgba(40, 30, 80, .11);
-
-    border-color:
-        rgba(70, 60, 100, .16);
-}
-
-.topic-card a {
-    width: 100%;
-    height: 100%;
-
-    min-height: 235px;
-
-    padding: 24px;
-
-    display: flex;
-    flex-direction: column;
-
-    color: inherit;
-    text-decoration: none;
-}
-
-/* =========================================
-   IKONA
-========================================= */
-
-.topic-icon {
-    width: 50px;
-    height: 50px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 20px;
-
-    border-radius: 15px;
-
-    background: #f1eff8;
-
-    color: #514b68;
-
-    font-size: 22px;
-    font-weight: 800;
-}
-
-/* =========================================
-   TEKST
-========================================= */
-
-.topic-card h2 {
-    margin: 0 0 8px;
-
-    color: #252238;
-
-    font-size: 20px;
-    font-weight: 800;
-}
-
-.topic-card p {
-    margin: 0;
-
-    color: #777187;
-
-    font-size: 12px;
-    line-height: 1.55;
-}
-
-/* =========================================
-   TAGI
-========================================= */
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 5px;
-
-    margin-top: 14px;
-}
-
-.tag {
-    padding: 5px 7px;
-
-    border-radius: 7px;
-
-    background: #f7f6fb;
-
-    color: #777187;
-
-    font-size: 9px;
-    font-weight: 700;
-}
-
-/* =========================================
-   DÓŁ KAFELKA
-========================================= */
-
-.card-bottom {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    margin-top: auto;
-    padding-top: 18px;
-
-    color: #59536d;
-
-    font-size: 11px;
-    font-weight: 700;
-}
-
-.arrow {
-    font-size: 17px;
-    transition: .2s;
-}
-
-.topic-card:hover .arrow {
-    transform: translateX(4px);
-}
-
-/* =========================================
-   ĆWICZENIA
-========================================= */
-
-.practice-card {
-    background: #252238;
-}
-
-.practice-card h2 {
-    color: white;
-}
-
-.practice-card p {
-    color: #cbc7d7;
-}
-
-.practice-card .topic-icon {
-    background: rgba(255, 255, 255, .1);
-    color: white;
-}
-
-.practice-card .tag {
-    background: rgba(255, 255, 255, .08);
-    color: #ddd9e7;
-}
-
-.practice-card .card-bottom {
-    color: white;
-}
-
-/* =========================================
-   INFORMACJA O ZAPISIE
-========================================= */
-
-.naming-note {
-    max-width: 700px;
-
-    margin: 28px auto 0;
-
-    padding: 14px 18px;
-
-    background: rgba(255, 255, 255, .55);
-
-    border: 1px solid rgba(70, 60, 100, .07);
-    border-radius: 14px;
-
-    text-align: center;
-
-    color: #8b8698;
-
-    font-size: 11px;
-    line-height: 1.6;
-}
-
-.naming-note strong {
-    color: #514b68;
-}
-
-/* =========================================
-   TABLET
-========================================= */
-
-@media (max-width: 850px) {
-
-    .topic-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+    .card a {
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        color: inherit;
+        text-decoration: none;
     }
 
-}
-
-/* =========================================
-   TELEFON
-========================================= */
-
-@media (max-width: 550px) {
-
-    .tonacje-page {
-        padding: 30px 16px 60px;
+    .card a:hover {
+        color: inherit;
     }
 
-    .topic-grid {
-        grid-template-columns: 1fr;
+
+    /* POWRÓT */
+
+    .back-home {
+        display: inline-block;
+
+        margin-bottom: 28px;
+
+        color: #777187;
+        text-decoration: none;
+
+        font-size: 15px;
+        font-weight: 600;
+
+        transition: 0.2s;
     }
 
-    .topic-card,
-    .topic-card a {
-        min-height: 205px;
+    .back-home:hover {
+        color: #252238;
+        transform: translateX(-3px);
     }
 
-}
+
+    /* PODZIAŁ GAM */
+
+    .scale-types {
+        margin-top: 14px;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+    .scale-type {
+        font-size: 12px;
+        color: #777187;
+    }
+
+    .scale-type strong {
+        color: #4f4962;
+    }
+
+
+    /* ĆWICZENIA */
+
+    .practice-card {
+        background: #252238;
+    }
+
+    .practice-card h2 {
+        color: white;
+    }
+
+    .practice-card p {
+        color: #d1cddd;
+    }
+
+    .practice-card .icon {
+        color: white;
+    }
+
+    .practice-card .scale-type {
+        color: #c7c2d2;
+    }
+
+    .practice-card .scale-type strong {
+        color: white;
+    }
+
+
+    /* MAŁY TYTUŁ SEKCJI */
+
+    .section-title {
+        width: 100%;
+
+        margin: 35px 0 15px;
+
+        color: #aaa5b5;
+
+        font-size: 11px;
+        font-weight: 800;
+
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+    }
 
 </style>
 
@@ -358,404 +122,349 @@ body {
 <body>
 
 
-<main class="tonacje-page">
+<main class="hero">
 
 
-<div class="tonacje-container">
+<div class="container">
 
 
-<!-- =========================================
-     POWRÓT
-========================================= -->
+    <!-- POWRÓT -->
 
-<a href="index.html"
-   class="back-home">
+    <a href="index.html"
+       class="back-home">
 
-    ← Strona główna
+        ← Strona główna
 
-</a>
+    </a>
 
 
-<!-- =========================================
-     NAGŁÓWEK
-========================================= -->
 
-<header class="tonacje-header">
+    <!-- TYTUŁ -->
 
-    <div class="tonacje-title">
+    <div class="logo">
+
         Gamy i tonacje
-    </div>
-
-    <div class="tonacje-subtitle">
-        Poznaj budowę gam durowych i molowych,
-        znaki przykluczowe oraz zależności między tonacjami.
-    </div>
-
-    <div class="section-label">
-        Wybierz temat
-    </div>
-
-</header>
-
-
-<!-- =========================================
-     KAFELKI
-========================================= -->
-
-<div class="topic-grid">
-
-
-<!-- =========================================
-     GAMY DUROWE
-========================================= -->
-
-<div class="topic-card">
-
-<a href="gamy-durowe.html">
-
-    <div class="topic-icon">
-        D
-    </div>
-
-    <h2>
-        Gamy durowe
-    </h2>
-
-    <p>
-        Budowa gam durowych, rozmieszczenie półtonów,
-        stopnie gamy oraz ich odmiany.
-    </p>
-
-    <div class="tags">
-
-        <span class="tag">
-            naturalna
-        </span>
-
-        <span class="tag">
-            harmoniczna
-        </span>
-
-        <span class="tag">
-            miękka
-        </span>
 
     </div>
 
-    <div class="card-bottom">
 
-        <span>
-            Otwórz temat
-        </span>
+    <div class="subtitle">
 
-        <span class="arrow">
-            →
-        </span>
+        Gamy, znaki przykluczowe i zależności między tonacjami.
 
     </div>
 
-</a>
-
-</div>
 
 
-<!-- =========================================
-     GAMY MOLOWE
-========================================= -->
+    <!-- =====================================
+         GAMY
+    ====================================== -->
 
-<div class="topic-card">
+    <div class="section-title">
 
-<a href="gamy-molowe.html">
-
-    <div class="topic-icon">
-        m
-    </div>
-
-    <h2>
-        Gamy molowe
-    </h2>
-
-    <p>
-        Poznaj budowę gam molowych i zobacz,
-        jak zmieniają się ich poszczególne stopnie.
-    </p>
-
-    <div class="tags">
-
-        <span class="tag">
-            naturalna
-        </span>
-
-        <span class="tag">
-            harmoniczna
-        </span>
-
-        <span class="tag">
-            melodyczna
-        </span>
+        Gamy
 
     </div>
 
-    <div class="card-bottom">
 
-        <span>
-            Otwórz temat
-        </span>
+    <div class="cards">
 
-        <span class="arrow">
-            →
-        </span>
+
+        <!-- GAMY DUROWE -->
+
+        <div class="card">
+
+            <a href="gamy-durowe.html">
+
+
+                <div class="icon">
+
+                    D
+
+                </div>
+
+
+                <h2>
+
+                    Gamy durowe
+
+                </h2>
+
+
+                <p>
+
+                    Budowa i odmiany gam durowych.
+
+                </p>
+
+
+                <div class="scale-types">
+
+                    <div class="scale-type">
+                        <strong>Naturalna</strong>
+                    </div>
+
+                    <div class="scale-type">
+                        <strong>Harmoniczna</strong>
+                    </div>
+
+                    <div class="scale-type">
+                        <strong>Miękka</strong>
+                    </div>
+
+                </div>
+
+
+            </a>
+
+        </div>
+
+
+
+        <!-- GAMY MOLOWE -->
+
+        <div class="card">
+
+            <a href="gamy-molowe.html">
+
+
+                <div class="icon">
+
+                    m
+
+                </div>
+
+
+                <h2>
+
+                    Gamy molowe
+
+                </h2>
+
+
+                <p>
+
+                    Budowa i odmiany gam molowych.
+
+                </p>
+
+
+                <div class="scale-types">
+
+                    <div class="scale-type">
+                        <strong>Naturalna</strong>
+                    </div>
+
+                    <div class="scale-type">
+                        <strong>Harmoniczna</strong>
+                    </div>
+
+                    <div class="scale-type">
+                        <strong>Melodyczna</strong>
+                    </div>
+
+                </div>
+
+
+            </a>
+
+        </div>
+
 
     </div>
 
-</a>
-
-</div>
 
 
-<!-- =========================================
-     ZNAKI PRZYKLUCZOWE
-========================================= -->
+    <!-- =====================================
+         TONACJE
+    ====================================== -->
 
-<div class="topic-card">
+    <div class="section-title">
 
-<a href="znaki-przykluczowe.html">
-
-    <div class="topic-icon">
-        ♯♭
-    </div>
-
-    <h2>
-        Znaki przykluczowe
-    </h2>
-
-    <p>
-        Naucz się określać tonację na podstawie
-        liczby krzyżyków lub bemoli — i odwrotnie.
-    </p>
-
-    <div class="tags">
-
-        <span class="tag">
-            krzyżyki
-        </span>
-
-        <span class="tag">
-            bemole
-        </span>
-
-        <span class="tag">
-            C-dur
-        </span>
-
-        <span class="tag">
-            a-moll
-        </span>
+        Tonacje
 
     </div>
 
-    <div class="card-bottom">
 
-        <span>
-            Otwórz temat
-        </span>
+    <div class="cards">
 
-        <span class="arrow">
-            →
-        </span>
+
+        <!-- ZNAKI -->
+
+        <div class="card">
+
+            <a href="znaki-przykluczowe.html">
+
+
+                <div class="icon">
+
+                    ♯♭
+
+                </div>
+
+
+                <h2>
+
+                    Znaki przykluczowe
+
+                </h2>
+
+
+                <p>
+
+                    Krzyżyki, bemole i określanie tonacji.
+
+                </p>
+
+
+            </a>
+
+        </div>
+
+
+
+        <!-- KOŁO KWINTOWE -->
+
+        <div class="card">
+
+            <a href="kolo-kwintowe.html">
+
+
+                <div class="icon">
+
+                    ◯
+
+                </div>
+
+
+                <h2>
+
+                    Koło kwintowe
+
+                </h2>
+
+
+                <p>
+
+                    Wszystkie tonacje i ich znaki w jednym układzie.
+
+                </p>
+
+
+            </a>
+
+        </div>
+
+
+
+        <!-- POKREWIEŃSTWO -->
+
+        <div class="card">
+
+            <a href="pokrewienstwo-tonacji.html">
+
+
+                <div class="icon">
+
+                    ↔
+
+                </div>
+
+
+                <h2>
+
+                    Pokrewieństwo tonacji
+
+                </h2>
+
+
+                <p>
+
+                    Tonacje równoległe, jednoimienne i pokrewne.
+
+                </p>
+
+
+            </a>
+
+        </div>
+
 
     </div>
 
-</a>
-
-</div>
 
 
-<!-- =========================================
-     KOŁO KWINTOWE
-========================================= -->
+    <!-- =====================================
+         ĆWICZENIA
+    ====================================== -->
 
-<div class="topic-card">
+    <div class="section-title">
 
-<a href="kolo-kwintowe.html">
-
-    <div class="topic-icon">
-        ◯
-    </div>
-
-    <h2>
-        Koło kwintowe
-    </h2>
-
-    <p>
-        Zobacz układ tonacji durowych i molowych
-        oraz kolejność pojawiania się znaków.
-    </p>
-
-    <div class="tags">
-
-        <span class="tag">
-            kwinty
-        </span>
-
-        <span class="tag">
-            znaki
-        </span>
-
-        <span class="tag">
-            C-dur ↔ a-moll
-        </span>
+        Praktyka
 
     </div>
 
-    <div class="card-bottom">
 
-        <span>
-            Otwórz temat
-        </span>
+    <div class="cards">
 
-        <span class="arrow">
-            →
-        </span>
+
+        <div class="card practice-card">
+
+            <a href="cwiczenia-tonacje.html">
+
+
+                <div class="icon">
+
+                    ✓
+
+                </div>
+
+
+                <h2>
+
+                    Ćwiczenia
+
+                </h2>
+
+
+                <p>
+
+                    Sprawdź, czy naprawdę umiesz gamy i tonacje.
+
+                </p>
+
+
+                <div class="scale-types">
+
+                    <div class="scale-type">
+                        <strong>Budowanie gam</strong>
+                    </div>
+
+                    <div class="scale-type">
+                        <strong>Rozpoznawanie</strong>
+                    </div>
+
+                    <div class="scale-type">
+                        <strong>Znaki przykluczowe</strong>
+                    </div>
+
+                    <div class="scale-type">
+                        <strong>Słuch</strong>
+                    </div>
+
+                </div>
+
+
+            </a>
+
+        </div>
+
 
     </div>
-
-</a>
-
-</div>
-
-
-<!-- =========================================
-     POKREWIEŃSTWO TONACJI
-========================================= -->
-
-<div class="topic-card">
-
-<a href="pokrewienstwo-tonacji.html">
-
-    <div class="topic-icon">
-        ↔
-    </div>
-
-    <h2>
-        Pokrewieństwo tonacji
-    </h2>
-
-    <p>
-        Zrozum relacje między tonacjami i naucz się
-        szybko znajdować tonacje ze sobą powiązane.
-    </p>
-
-    <div class="tags">
-
-        <span class="tag">
-            równoległe
-        </span>
-
-        <span class="tag">
-            jednoimienne
-        </span>
-
-        <span class="tag">
-            pokrewne
-        </span>
-
-    </div>
-
-    <div class="card-bottom">
-
-        <span>
-            Otwórz temat
-        </span>
-
-        <span class="arrow">
-            →
-        </span>
-
-    </div>
-
-</a>
-
-</div>
-
-
-<!-- =========================================
-     ĆWICZENIA I SŁUCH
-========================================= -->
-
-<div class="topic-card practice-card">
-
-<a href="cwiczenia-tonacje.html">
-
-    <div class="topic-icon">
-        ✓
-    </div>
-
-    <h2>
-        Ćwiczenia i słuch
-    </h2>
-
-    <p>
-        Buduj gamy, określaj tonacje i znaki,
-        rozpoznawaj odmiany oraz ćwicz je ze słuchu.
-    </p>
-
-    <div class="tags">
-
-        <span class="tag">
-            budowanie
-        </span>
-
-        <span class="tag">
-            rozpoznawanie
-        </span>
-
-        <span class="tag">
-            słuch
-        </span>
-
-        <span class="tag">
-            test
-        </span>
-
-    </div>
-
-    <div class="card-bottom">
-
-        <span>
-            Rozpocznij ćwiczenia
-        </span>
-
-        <span class="arrow">
-            →
-        </span>
-
-    </div>
-
-</a>
-
-</div>
 
 
 </div>
 
-
-<!-- =========================================
-     ZASADA NAZEWNICTWA
-========================================= -->
-
-<div class="naming-note">
-
-    W Harmonix stosujemy zapis:
-    <strong>C-dur, G-dur, Es-dur</strong>
-    dla tonacji durowych oraz
-    <strong>a-moll, e-moll, c-moll</strong>
-    dla tonacji molowych.
-
-</div>
-
-
-</div>
 
 </main>
 
